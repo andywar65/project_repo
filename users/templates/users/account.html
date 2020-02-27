@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}RP | Account{%endblock title %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    {% if submitted %}
+    <p class="alert alert-success" role="alert">
+      Il profilo di {{ submitted }} è stato modificato con successo!
+    </p>
+    {% endif %}
+    <h4><strong>Account di {{ user.member.get_full_name_reverse }}</strong></h4>
+    <p>Da questa pagina si accede ai propri dati personali,
+      {% if children %}a quelli dei propri figli,{% endif %}
+      si può cambiare la propria password oppure si può effettuare il logout
+      (consigliabile farlo sempre alla fine della sessione).</p>
+      <a class="btn btn-success center" role="button" href="/accounts/profile/{{ user.id }}/change">
+        Cambia i tuoi dati</a>
+        <hr class="mb-4">
+      {% if children %}{% for child in children %}
+        <a class="btn btn-success" role="button" href="/accounts/profile/{{ child.id }}/change">
+          Cambia i dati di {{ child.member.first_name }}</a>
+      {% endfor %}<hr class="mb-4">{% endif %}
+        <a class="btn btn-warning" role="button" href="{% url 'password_change' %}">
+          Cambia la tua password</a>
+      {% if user.is_staff %}
+        <a class="btn btn-primary" role="button" href="/admin/">
+          Vai all'amministrazione</a>
+      {% endif %}
+        <a class="btn btn-danger" role="button" href="{% url 'front_logout' %}">
+          Effettua il logout</a>
+    {% else %}
+    <p class="alert alert-danger" role="alert">
+      ATTENZIONE! Per accedere a quest'area bisogna essere autenticati.
+    </p>
+    <p>Fai clic qui per effettuare il <a href="{% url 'front_login' %}">login</a>.</p>
+    {% endif %}
+    <hr class="mb-4">
+  </div>
+</div>
+
+{% endblock content %}

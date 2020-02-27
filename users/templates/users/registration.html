@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}RP | Richiesta di iscrizione{%endblock title %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h4><strong>Richiesta di iscrizione</strong></h4>
+      {% if submitted %}
+      <div class="alert alert-success" role="alert">
+        <p><strong>La tua richiesta è stata inoltrata con successo, grazie!</strong></p>
+        <p>A breve riceverai una mail con le credenziali di accesso.
+        Non è un processo automatico, per cui può richiedere tempo, intanto
+        puoi effettuare un'altra iscrizione.</p>
+      </div>
+      {% endif %}
+      <p>Questo modulo può servire sia per iscriversi a Rifondazione Podistica e
+        correre con noi, sia per iscrivere i propri figli e rimanere a guardare
+        (NON corri con noi ma inserisci i dati dei figli), sia per iscriversi
+        semplicemente al sito (NON corri con noi e basta). Se vuoi semplicemente
+        inviarci un messaggio, usa quest'altro
+        <a href="/contacts/">modulo.</a></p>
+      <p>Se invece sei già registrato, effettua il
+        <a href="/accounts/login/?next=/registration">login.</a></p>
+        {% if form.errors %}
+          <p class="alert alert-danger" role="alert">
+            Per favore, correggi gli errori qui sotto.
+          </p>
+        {% endif %}
+      <form action="" method="post" novalidate>
+                {% include 'users/profile_includes/name.html' %}
+                {% include 'users/profile_includes/email.html' %}
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    {{ form.sector|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 mb-3">
+                    {{ form.children_str|as_crispy_field }}
+                  </div>
+                </div>
+                <hr class="mb-4">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                      {{ form.privacy|as_crispy_field }}<br>
+                      <a href="/privacy">Informativa per la privacy</a>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    {{ form.captcha }}
+                  </div>
+                </div>
+                {% include 'users/profile_includes/button.html' %}
+        {% csrf_token %}
+      </form>
+  </div>
+</div>
+{% endblock content %}

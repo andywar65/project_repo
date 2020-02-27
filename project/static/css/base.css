@@ -1,0 +1,89 @@
+/*
+    RP frontend styles
+*/
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  background-color: #baeb1d
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+main > .container {
+  padding: 10px 15px 0;
+  background-color: #ffffff
+}
+
+.footer {
+  background-color: #195905;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-top: 20px;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+
+/* LINKS */
+
+a:link, a:visited {
+    color: #24890d;
+    text-decoration: none;
+}
+
+a.btn:link, a.btn:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    color: #88a91e;
+}
+
+a:focus {
+    text-decoration: underline;
+}
+
+.row-striped:nth-of-type(odd){
+  background-color: #dddddd;
+  border-left: 4px #000000 solid;
+}
+
+.row-striped:nth-of-type(even){
+  background-color: #efefef;
+  border-left: 4px #dddddd solid;
+}
+
+.row-striped {
+    padding: 15px 0;
+}
+
+.page-link:hover {
+    color: #24890d;
+    background-color: #e9ecef;
+}

@@ -1,0 +1,14 @@
+{% load crispy_forms_tags %}
+<div class="row">
+  <div class="col-md-12 mb-3">
+    {{ form.address|as_crispy_field }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 mb-3">
+    {{ form.phone|as_crispy_field }}
+  </div>
+  <div class="col-md-6 mb-3">
+    {{ form.email_2|as_crispy_field }}
+  </div>
+</div>

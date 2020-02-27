@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}RP | Contatto{%endblock title %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h4><strong>Contatto</strong></h4>
+      {% if submitted %}
+      <div class="alert alert-success" role="alert">
+        <p><strong>Il tuo messaggio è stato inoltrato con successo, grazie!</strong></p>
+        <p>A breve riceverai una risposta via mail.
+        Non è un processo automatico, per cui può richiedere tempo. Nel frattempo
+        ne puoi inviare un altro</p>
+      </div>
+      {% endif %}
+      <p>Non sei un utente riconosciuto. Ti puoi
+        <a href="/registration/">iscrivere </a>
+        al sito oppure effettuare il
+        <a href="/accounts/login/?next=/contacts/">login </a>
+        se sei già registrato. In alternativa riempi il modulo qui sotto e invia.
+      </p>
+      {% if form.errors %}
+        <p class="alert alert-danger" role="alert">
+          Per favore, correggi gli errori qui sotto.
+        </p>
+      {% endif %}
+      <form action="" method="post" novalidate>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    {{ form.nickname|as_crispy_field }}
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    {{ form.email|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-9 mb-3">
+                    {{ form.subject|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 mb-3">
+                    {{ form.body|as_crispy_field }}
+                  </div>
+                </div>
+                <hr class="mb-4">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                      {{ form.privacy|as_crispy_field }}<br>
+                      <a href="/privacy">Informativa per la privacy</a>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    {{ form.captcha }}
+                  </div>
+                </div>
+                {% include 'users/profile_includes/button.html' %}
+        {% csrf_token %}
+      </form>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% load static %}
+<header>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #195905;">
+    <a class="navbar-brand" href="/">
+      <img src="{% static "images/logo_rp.png" %}" width="30" height="30" class="d-inline-block align-top" alt="Logo RP">
+      Rifondazione Podistica
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Corri con noi
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/iscrizioni">Iscrizioni</a>
+            <a class="dropdown-item" href="/convenzioni">Convenzioni</a>
+            <a class="dropdown-item" href="/luoghi/">Dove si corre?</a>
+            <a class="dropdown-item" href="/storia/">Chi siamo</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/calendario/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Calendario
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/calendario/">Calendario</a>
+            <a class="dropdown-item" href="/calendario/?categoria=giovanile">&nbsp;&nbsp;Giovanile</a>
+            <a class="dropdown-item" href="/calendario/?categoria=master">&nbsp;&nbsp;Master</a>
+            <a class="dropdown-item" href="/criterium/">&nbsp;&nbsp;&nbsp;&nbsp;Criterium</a>
+            <a class="dropdown-item" href="/archivio/">Archivio</a>
+            <a class="dropdown-item" href="/archivio/categorie">&nbsp;&nbsp;Categorie</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/articoli/">Approfondimenti</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/contacts" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Contatti
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/contacts">Messaggi</a>
+            <a class="dropdown-item" href="/registration">Richiesta iscrizione</a>
+            <a class="dropdown-item" href="/privacy">Privacy</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'profile' %}" title="Gestisci l'account">
+              Ciao {{ user.member.first_name }}</a>
+          {% else %}
+          <a class="nav-link" href="/accounts/login/?next={{ request.get_full_path }}">Login</a>
+          {% endif %}
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0" action="/search" method="get">
+        <input class="form-control mr-sm-2" name="q" type="search" placeholder="Scrivi qualcosa" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cerca</button>
+      </form>
+    </div>
+  </nav>
+</header>

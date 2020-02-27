@@ -1,0 +1,46 @@
+{% extends 'pagine/event_archive_general.html' %}
+
+{% block title %}RP | Calendario {{ year|date:"Y" }}{% endblock title %}
+{% block event_archive %}
+<h4><strong>
+  Appuntamenti e cronache {{ year|date:"Y" }}
+  {% if tag_filter %} nella categoria: {{ tag_filter|upper }}{% endif %}
+</strong></h4>
+<hr class="mb-4">
+{% if all_events %}
+    {% for event in all_events %}
+      <div class="row row-striped">
+        <div class="col-md-2 text-right">
+          <h1 class="display-4"><span class="badge badge-{{ event.get_badge_color }}">{{ event.date|date:"j" }}</span></h1>
+          <a href="/calendario/{{ event.date|date:"Y/m" }}/"><h4>{{ event.date|date:"M-Y" }}</h4></a>
+        </div>
+        <div class="col-md-10">
+          <h3 class="text-uppercase"><strong><a href="/calendario/{{ event.date|date:"Y/m/d" }}/{{ event.slug }}">{{ event.title }}</a></strong></h3>
+          <ul class="list-inline">
+            <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{ event.date|date:"l" }}</li>
+            <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ event.date|date:"H:i" }}</li>
+            <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> {{ event.location.title }}</li>
+          </ul>
+          <p>{{ event.intro }}</p>
+        </div>
+      </div>
+    {% endfor %}
+{% else %}
+    <div class="col-md-12">
+        <p>Non ci sono eventi in calendario.</p>
+    </div>
+{% endif %}
+<hr class="mb-4">
+{% if is_paginated %}
+  <nav aria-label="Page navigation container">
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PRECEDENTI </a></li>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> PROSSIMI &raquo;</a></li>
+    {% endif %}
+  </ul>
+  </nav>
+{% endif %}
+{% endblock event_archive %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}RP | {{ location.title }}{%endblock title %}
+{% block content %}
+<h4><strong>{{ location.title }}</strong></h4>
+<p>{{ location.body }}</p>
+<hr class="mb-4">
+<div class="row">
+  <div class="col-md-6">
+  {% if location.gmap_embed %}
+    <iframe src="{{ location.gmap_embed }}" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+  {% elif location.gmap_link %}
+    <p><a href="{{ location.gmap_link }}" target="_blank">{{ location.address }}</a></p>
+  {% else %}
+    <p>{{ location.address }}</p>
+  {% endif %}
+  </div>
+  <div class="col-md-6">
+    {% if location.fb_image %}
+    <img src="{{ location.fb_image.url }}" width="100%" alt="{{ location.address }}" />
+    {% endif %}
+  </div>
+</div>
+<hr class="mb-4">
+{% if location.phone %}<p><i class="fa fa-phone" aria-hidden="true"></i>
+  Tel: {{ location.phone }}</p>{% endif %}
+{% if location.website %}
+<p><i class="fa fa-external-link" aria-hidden="true"></i>
+  Web: <a href="{{ location.website }}" target="_blank">{{ location.website }}</a>
+</p>{% endif %}
+{% if location.email %}
+<p><i class="fa fa-envelope-o" aria-hidden="true"></i>
+  Mail: <a href="mailto:{{ location.email }}">{{ location.email }}</a>
+</p>{% endif %}
+{% endblock content %}

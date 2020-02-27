@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h4><strong>Contatto</strong></h4>
+      {% if submitted %}
+      <div class="alert alert-success" role="alert">
+        <p><strong>Il tuo messaggio è stato inoltrato con successo, grazie!</strong></p>
+        <p>A breve riceverai una risposta via mail.
+        Non è un processo automatico, per cui può richiedere tempo. Nel frattempo
+        ne puoi inviare un altro</p>
+      </div>
+      {% endif %}
+
+      <p>Ciao {{ user.member.first_name }}, scrivi qui sotto il tuo messaggio e poi invia.</p>
+      {% if form.errors %}
+        <p class="alert alert-danger" role="alert">
+          Per favore, correggi gli errori qui sotto.
+        </p>
+      {% endif %}
+      <form action="" method="post" enctype="multipart/form-data" novalidate>
+                <div class="row">
+                  <div class="col-md-9 mb-3">
+                    {{ form.subject|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 mb-3">
+                    {{ form.body|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-9 mb-3">
+                    {{ form.attachment|as_crispy_field }}
+                  </div>
+                </div>
+                {% include 'users/profile_includes/button.html' %}
+        {% csrf_token %}
+      </form>
+  </div>
+</div>
+{% endblock content %}

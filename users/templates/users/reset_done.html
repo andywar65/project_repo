@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}RP | Password resettata{%endblock title %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <p class="alert alert-warning" role="alert">
+      Ancora qui? Perché non ti vai a fare un giro?
+    </p>
+    <ul>
+      <li>Modifica il tuo <a href="/accounts/profile/">account</a></li>
+      <li>Esegui il <a href="/accounts/logout/">logout</a></li>
+    </ul>
+    {% else %}
+    <h4><strong>Password resettata</strong></h4>
+    <p class="alert alert-success" role="alert">
+      Ok, la tua password è stata resettata, cerca di non dimenticarla di nuovo!
+    </p>
+    <p>Adesso procedi con il <a href="/accounts/login/">login</a>.</p>
+    {% endif %}
+    <hr class="mb-4">
+  </div>
+</div>
+
+{% endblock content %}

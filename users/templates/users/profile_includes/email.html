@@ -1,0 +1,9 @@
+{% load crispy_forms_tags %}
+<div class="row">
+  <div class="col-md-6 mb-3">
+    {{ form.email|as_crispy_field }}
+  </div>
+  <div class="col-md-6 mb-3">
+      {{ form.no_spam|as_crispy_field }}
+  </div>
+</div>

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}RP | Ricerca{%endblock title %}
+{% block extra-head %}
+{% endblock extra-head %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    {% if success %}
+    <h4><strong>Ricerca per il termine: "{{ search }}"</strong></h4>
+      {% if all_events %}
+        <h5>Eventi</h5>
+        {% for event in all_events %}
+          <ul>
+            <li>
+              <p><a href="{{ event.get_path }}">{{ event.title }}&nbsp;</a>
+              {{ event.date|date:"d M Y" }}</p>
+            </li>
+          </ul>
+        {% endfor %}
+      {% endif %}
+      {% if all_blogs %}
+        <h5>Approfondimenti</h5>
+        {% for blog in all_blogs %}
+          <ul>
+            <li>
+              <p><a href="{{ blog.get_path }}">{{ blog.title }}&nbsp;</a>
+              {{ blog.date|date:"d M Y" }}</p>
+            </li>
+          </ul>
+        {% endfor %}
+      {% endif %}
+    {% else %}
+    <h1>Ricerca nulla</h1>
+    <p>Non abbiamo trovato elementi che soddisfano la tua ricerca</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}
+
+{% block extra-js %}
+{% endblock extra-js %}

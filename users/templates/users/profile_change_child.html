@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}RP | Modifica profilo{%endblock title %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h4><strong>Modifica il profilo di {{ member.get_full_name_reverse }}</strong></h4>
+    <ul>
+      <li>Corre con noi e segue un corso</li>
+      <li>I dettagli di contatto sono quelli del genitore ({{ user.member.get_full_name_reverse }})</li>
+      <li>Tesseramento: {{ member.membership|default_if_none:'--' }}</li>
+      <li>Scadenza CM/CMA: {{ member.mc_expiry|default_if_none:'--' }}
+        ({{ member.mc_state|default_if_none:'--' }})</li>
+      <li>Retta annuale: €{{ member.total_amount|default_if_none:'--' }}</li>
+      <li>In regola con i pagamenti?: {{ member.settled|default_if_none:'--' }}</li>
+    </ul>
+    {% if payments %}
+    <h4>Pagamenti</h4>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Data</th>
+            <th scope="col">Importo €</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for payment in payments %}
+          <tr>
+            <td>{{ payment.date|date:"d/m/Y" }}</td>
+            <td>{{ payment.amount }}</td>
+          </tr>
+          {% endfor %}
+        <tbody>
+      </table>
+    </div>
+    {% endif %}
+    <hr class="mb-4">
+    {% if form.errors %}
+      <p class="alert alert-danger" role="alert">
+        Per favore, correggi gli errori qui sotto.
+      </p>
+    {% endif %}
+    <form action="" method="post" enctype="multipart/form-data" novalidate>
+      <h4>Anagrafica</h4>
+        {% include 'users/profile_includes/avatar.html' %}
+        {% include 'users/profile_includes/name.html' %}
+        {% include 'users/profile_includes/gender.html' %}
+        {% include 'users/profile_includes/fiscal_code.html' %}
+      <hr class="mb-4">
+      <h4>Opzioni corso</h4>
+        {% include 'users/profile_includes/course.html' %}
+      <hr class="mb-4">
+      <h4>Documentazione</h4>
+        {% include 'users/profile_includes/uploads.html' %}
+        {% include 'users/profile_includes/button.html' %}
+      {% csrf_token %}
+    </form>
+  </div>
+</div>
+{% endblock content %}

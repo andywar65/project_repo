@@ -1,0 +1,7 @@
+{% load crispy_forms_tags %}
+<div class="row">
+  <div class="col-md-9 mb-3">
+      {% if member.avatar %}{{ member.get_thumb }}{% endif %}
+    {{ form.avatar|as_crispy_field }}
+  </div>
+</div>

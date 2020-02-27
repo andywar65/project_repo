@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}RP | Dove corriamo{% endblock title %}
+{% block content %}
+<h4><strong>Dove corriamo e altri luoghi</strong></h4>
+  <div class="card-deck">
+  {% for location in all_locations %}
+    <div class="card" style="margin-bottom: 20px; min-width: 18rem;">
+      <div class="card-header">
+        <h4 class="card-title"><i class="fa fa-location-arrow" aria-hidden="true"></i>
+        <a href="/luoghi/{{ location.slug }}">
+          {{ location.title }}</a></h4>
+      </div>
+      <img class="card-img-top" src="{{ location.fb_image.url }}" alt="{{ location.address }}">
+      <div class="card-body">
+        <p><em class="card-text">{{ location.address }}</em></p>
+        {% if location.gmap_link %}
+        <p><i class="fa fa-map-marker" aria-hidden="true"></i>
+        <a href="{{ location.gmap_link }}" class="card-link" target="_blank">Mappa</a></p>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+{% if is_paginated %}
+  <nav aria-label="Page navigation container">
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PRECEDENTI </a></li>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> PROSSIMI &raquo;</a></li>
+    {% endif %}
+  </ul>
+  </nav>
+{% endif %}
+{% endblock content %}
