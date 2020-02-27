@@ -22,10 +22,10 @@ ALLOWED_HOSTS = [
     'www.digitalkomix.com',
 ]
 
-WSGI_APPLICATION = 'rpnew_prog.wsgi_stag.application'
+WSGI_APPLICATION = 'project.wsgi_stag.application'
 
 # Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {

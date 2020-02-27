@@ -22,10 +22,10 @@ ALLOWED_HOSTS = [
     'www.rifondazionepodistica.it',
 ]
 
-WSGI_APPLICATION = 'rpnew_prog.wsgi_prod.application'
+WSGI_APPLICATION = 'project.wsgi_prod.application'
 
 # Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {

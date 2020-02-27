@@ -12,7 +12,7 @@ from .models import (User, Member, MemberPayment, Applicant,
     ApplicantChild, UserMessage, CourseSchedule,)
 from .forms import (ChangeMemberChildForm, ChangeMember0Form,
     ChangeMember1Form, ChangeMember2Form, ChangeMember3Form)
-from rpnew_prog.utils import send_rp_mail
+from project.utils import send_rp_mail
 
 class UserAdmin(UserAdmin):
     list_display = ('username', 'is_staff', 'is_active', 'is_superuser')

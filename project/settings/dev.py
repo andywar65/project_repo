@@ -14,10 +14,10 @@ SERVER_EMAIL = 'me@examplecom'
 DEFAULT_FROM_EMAIL = 'me@examplecom'
 DEFAULT_RECIPIENT = 'rifondazionepodistica96@gmail.com'
 
-WSGI_APPLICATION = 'rpnew_prog.wsgi.application'
+WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -31,7 +31,7 @@ DATABASES = {
 }
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_ROOT = os.path.join(APPLICATION_DIR, 'static')
 STATIC_URL = '/static/'

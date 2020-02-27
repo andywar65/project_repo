@@ -3,7 +3,7 @@ from django.conf import settings
 from users.models import Member
 from .models import ( Location, Event, EventUpgrade, UserUpload, Blog)
 from .forms import EventForm, BlogForm
-from rpnew_prog.utils import send_rp_mail
+from project.utils import send_rp_mail
 
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
