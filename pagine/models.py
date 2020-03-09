@@ -91,7 +91,7 @@ class UserUpload(models.Model):
         null = True, related_name='blog_uploads')
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null = True,
         verbose_name = 'Utente')
-    date = models.DateTimeField('Data', default = now, )
+    date = models.DateTimeField('Data', default = now(), )
     image = models.ImageField('Immagine', blank = True, null = True,
         upload_to = 'uploads/blogs/users/',)
     body = models.TextField('Testo', help_text = "Scrivi qualcosa.", )
