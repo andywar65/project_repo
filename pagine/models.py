@@ -1,13 +1,13 @@
-from PIL import Image
 from datetime import datetime
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.timezone import now
 from django.utils.text import slugify
 from filebrowser.fields import FileBrowseField
 from taggit.managers import TaggableManager
 from streamfield.fields import StreamField
-from streamblocks.models import (IndexedParagraph, CaptionedImage,
-    DownloadableFile, LinkableList, BoxedText, )
+from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
+    LandscapeGallery, DownloadableFile, LinkableList, BoxedText, )
 from users.models import User
 
 def generate_unique_slug(klass, field):
