@@ -28,6 +28,55 @@ class CaptionedImage(models.Model):
         verbose_name="Immagine con didascalia"
         verbose_name_plural="Immagini con didascalia"
 
+class Gallery(models.Model):
+    fb_image = FileBrowseField("Immagine", max_length=200,
+        extensions=[".jpg", ".png", ".jpeg", ".gif", ".tif", ".tiff"],
+        null=True)
+    caption = models.CharField("Didascalia", max_length = 200, blank=True,
+        null=True)
+
+    as_list = True
+
+    def get_caption(self):
+        if self.caption:
+            return self.caption
+        return self.fb_image.filename
+
+    options = {
+        'aspect': {
+            'label': 'Formato',
+            'type': 'select',
+            'default': 'landscape',
+            'options': [
+                {'value': 'landscape', 'name': 'Orizzontale'},
+                {'value': 'portrait', 'name': 'Verticale'},
+                {'value': 'square', 'name': 'Quadrato'},
+            ]
+        }
+    }
+
+    class Meta:
+        verbose_name="Galleria di immagini"
+        verbose_name_plural="Galleria di immagini"
+
+class LandscapeGallery(models.Model):
+    fb_image = FileBrowseField("Immagine", max_length=200,
+        extensions=[".jpg", ".png", ".jpeg", ".gif", ".tif", ".tiff"],
+        null=True)
+    caption = models.CharField("Didascalia", max_length = 200, blank=True,
+        null=True)
+
+    as_list = True
+
+    def get_caption(self):
+        if self.caption:
+            return self.caption
+        return self.fb_image.filename
+
+    class Meta:
+        verbose_name="Galleria di immagini orizzontali"
+        verbose_name_plural="Galleria di immagini orizzontali"
+
 class DownloadableFile(models.Model):
     fb_file = FileBrowseField("File", max_length=200, directory="documents/",
         extensions=[".pdf", ".doc", ".rtf", ".txt", ".xls", ".csv", ".docx"],
@@ -79,6 +128,8 @@ class BoxedText(models.Model):
 STREAMBLOCKS_MODELS = [
     IndexedParagraph,
     CaptionedImage,
+    Gallery,
+    LandscapeGallery,
     DownloadableFile,
     LinkableList,
     BoxedText,
