@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}RP | Ricerca{%endblock title %}
+{% block title %}Prog | Ricerca{%endblock title %}
 {% block extra-head %}
 {% endblock extra-head %}
 
@@ -10,17 +10,6 @@
   <div class="col-md-8">
     {% if success %}
     <h4><strong>Ricerca per il termine: "{{ search }}"</strong></h4>
-      {% if all_events %}
-        <h5>Eventi</h5>
-        {% for event in all_events %}
-          <ul>
-            <li>
-              <p><a href="{{ event.get_path }}">{{ event.title }}&nbsp;</a>
-              {{ event.date|date:"d M Y" }}</p>
-            </li>
-          </ul>
-        {% endfor %}
-      {% endif %}
       {% if all_blogs %}
         <h5>Approfondimenti</h5>
         {% for blog in all_blogs %}
