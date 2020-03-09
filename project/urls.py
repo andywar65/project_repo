@@ -21,8 +21,7 @@ from django.views.generic.base import RedirectView
 from filebrowser.sites import site
 from users import views as user_views
 from pagine.views import HomeTemplateView
-from direzione.views import (PrivacyTemplateView, MembershipTemplateView,
-    AboutTemplateView, InstructionsTemplateView, )#
+from direzione.views import (PrivacyTemplateView, )#
 from . import views
 
 admin.site.site_header = 'Amministrazione RP'
@@ -38,16 +37,7 @@ urlpatterns = [
     path('search/', views.search_results, name='search_results'),
     path('', HomeTemplateView.as_view()),
     path('privacy/', PrivacyTemplateView.as_view(), name='privacy'),
-    path('iscrizioni/', MembershipTemplateView.as_view(), name='membership'),
-    path('istruzioni/', InstructionsTemplateView.as_view(), name='instructions'),
-    path('storia/', AboutTemplateView.as_view(), name='about'),
-    path('convenzioni/', include('direzione.urls.conventions',
-        namespace = 'conventions')),
-    path('calendario/', include('pagine.urls.events', namespace = 'pagine')),
     path('articoli/', include('pagine.urls.posts', namespace = 'blog')),
-    path('luoghi/', include('pagine.urls.locations')),
-    path('criterium/', include('criterium.urls', namespace = 'criterium')),
-    path('archivio/', include('wordpress.urls', namespace = 'wordpress')),
     path('streamfield/', include('streamfield.urls')),
     path('favicon.ico',
         RedirectView.as_view(url=settings.STATIC_ROOT + 'images/favicon.ico')),
