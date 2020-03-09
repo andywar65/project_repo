@@ -27,15 +27,27 @@ def generate_unique_slug(klass, field):
         numb += 1
     return unique_slug
 
+def update_indexed_paragraphs(stream_list, type, id):
+    for block in stream_list:
+        if block['model_name'] == 'IndexedParagraph':
+            par = IndexedParagraph.objects.get(id = block['id'])
+            par.parent_type = type
+            par.parent_id = id
+            par.save()
+
 class Blog(models.Model):
     fb_image = FileBrowseField("Immagine", max_length=200, directory="blogs/",
         extensions=[".jpg", ".png", ".jpeg", ".gif", ".tif", ".tiff"],
         null=True, blank=True)
+    carousel = StreamField(model_list=[ LandscapeGallery, ],
+        null=True, blank=True, verbose_name="Galleria",
+        help_text="Una sola galleria, per favore, larghezza minima immagini 2048px")
     title = models.CharField('Titolo',
         help_text="Il titolo dell'articolo",
         max_length = 50)
     slug = models.SlugField(max_length=50, editable=False, null=True)
-    date = models.DateTimeField('Data', default = now)
+    date = models.DateTimeField('Data', default = now())
+    last_updated = models.DateTimeField(editable=False, null=True)
     intro = models.CharField('Introduzione',
         default = 'Un altro articolo di approfondimento da RP!', max_length = 100)
     stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
@@ -58,7 +70,13 @@ class Blog(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = generate_unique_slug(Blog, self.title)
+        self.last_updated = now()
         super(Blog, self).save(*args, **kwargs)
+        #update parent_type end parent_id in IndexedParagraph streamblocks
+        type = ContentType.objects.get(app_label='pagine', model='blog').id
+        id = self.id
+        stream_list = self.stream.from_json()
+        update_indexed_paragraphs(stream_list, type, id)
 
     def __str__(self):
         return self.title
