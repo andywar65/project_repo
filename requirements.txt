@@ -1,5 +1,5 @@
 Django>=3.0,<3.1
-psycopg2>=2.8,<2.9
+psycopg2-binary>=2.8,<2.9
 django-recaptcha>=2.0.6,<2.1
 pillow>=7.0<7.1
 django-taggit>=1.2<1.3
