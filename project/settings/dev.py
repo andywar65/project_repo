@@ -12,7 +12,7 @@ ALLOWED_HOSTS = ['*']
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SERVER_EMAIL = 'me@examplecom'
 DEFAULT_FROM_EMAIL = 'me@examplecom'
-DEFAULT_RECIPIENT = 'rifondazionepodistica96@gmail.com'
+DEFAULT_RECIPIENT = 'andy.war1965@gmail.com'
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
@@ -22,7 +22,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rpnew_db',
+        'NAME': 'project_db',
         'USER': 'postgres',
         'PASSWORD': '09w5t43w',
         'HOST': 'localhost',
