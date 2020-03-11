@@ -22,17 +22,6 @@ class User(AbstractUser):
                 memb.save()
                 return
 
-class CourseSchedule(models.Model):
-    full = models.CharField(max_length = 32, verbose_name = 'Giorno e ora',)
-    abbrev = models.CharField(max_length = 8, verbose_name = 'Abbreviazione',)
-
-    def __str__(self):
-        return self.full
-
-    class Meta:
-        verbose_name = 'Orario'
-        verbose_name_plural = 'Orari'
-
 class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE,
@@ -158,64 +147,6 @@ class Profile(models.Model):
     class Meta:
         verbose_name = 'Iscritto'
         verbose_name_plural = 'Iscritti'
-
-class ProfilePayment(models.Model):
-    member = models.ForeignKey(Profile, on_delete = models.CASCADE,
-        blank = True, null = True, related_name='member_payments')
-    date = models.DateField( blank=True, null=True, verbose_name = 'Data')
-    amount = models.FloatField( default = 0.00, verbose_name = 'Importo')
-
-    def __str__(self):
-        return 'Pagamento - %s' % (self.id)
-
-    class Meta:
-        verbose_name = 'Pagamento'
-        verbose_name_plural = 'Pagamenti'
-
-class Applicant(models.Model):
-    first_name = models.CharField(max_length = 50,
-        verbose_name = 'Nome',)
-    last_name = models.CharField(max_length = 50,
-        verbose_name = 'Cognome',)
-    email = models.EmailField(verbose_name = 'Indirizzo email', null = True,
-        blank = True, )
-    no_spam = models.BooleanField(default = True,
-        verbose_name = 'Mailing list',
-        help_text = 'Vuoi ricevere notifiche sugli eventi?',)
-    sector = models.CharField(max_length = 4, choices = SECTOR,
-        default = '0-NO', verbose_name = 'Vuoi correre con noi?')
-    children_str = models.TextField(max_length = 200,
-        verbose_name = 'Figli', blank = True, null = True,
-        help_text='Nome e cognome dei figli che si intende iscrivere, separati da una virgola.')
-    parent = models.ForeignKey(User, on_delete = models.SET_NULL,
-        blank = True, null = True, related_name = 'applicant_parent',
-        verbose_name = 'Genitore',
-        help_text = 'Solo se minore')
-    privacy = models.BooleanField( default=False )
-
-    def get_full_name(self):
-        full_name = '%s %s' % (self.last_name, self.first_name)
-        return full_name.strip()
-    get_full_name.short_description = 'Nome'
-
-    def __str__(self):
-        full_name = '%s %s' % (self.last_name, self.first_name)
-        return full_name.strip()
-
-    class Meta:
-        verbose_name = 'Richiedente'
-        verbose_name_plural = 'Richiedenti'
-
-class ApplicantChild(models.Model):
-    parent = models.ForeignKey(Applicant, on_delete = models.CASCADE,
-        related_name='applicant_children', editable=False)
-    first_name = models.CharField(max_length = 50,
-        verbose_name = 'Nome',)
-    last_name = models.CharField(max_length = 50,
-        verbose_name = 'Cognome',)
-    class Meta:
-        verbose_name = 'Figlio'
-        verbose_name_plural = 'Figli'
 
 class UserMessage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,
