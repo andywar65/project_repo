@@ -23,7 +23,7 @@ class BlogAdmin(admin.ModelAdmin):
             message += post.intro + '\n'
             url = settings.BASE_URL + post.get_path()
             message += 'Fai click su questo link: ' + url + '\n'
-            recipients = Member.objects.filter(
+            recipients = Profile.objects.filter(
                 user__is_active = True, no_spam = True, )
             mailto = []
             for recipient in recipients:

@@ -6,7 +6,7 @@ from django.contrib.auth.forms import (AuthenticationForm, UsernameField,
 from django.forms import ModelForm
 from django.forms.widgets import SelectDateWidget, CheckboxSelectMultiple
 from captcha.fields import ReCaptchaField
-from users.models import (Member, Applicant, UserMessage, )#User,
+from users.models import (Profile, Applicant, UserMessage, )#User,
 from users.widgets import SmallClearableFileInput
 from users.choices import *
 from users.validators import validate_codice_fiscale
@@ -142,7 +142,7 @@ class ChangeProfileChildForm(ModelForm):
             pass
 
     class Meta:
-        model = Member
+        model = Profile
         fields = ('avatar', 'first_name', 'last_name',
             'gender', 'date_of_birth', 'place_of_birth', 'nationality',
             'fiscal_code',
@@ -159,7 +159,7 @@ class ChangeProfileChildForm(ModelForm):
 class ChangeProfile0Form(ModelForm):
 
     class Meta:
-        model = Member
+        model = Profile
         fields = ('avatar', 'first_name', 'last_name', 'email', 'no_spam', )
         widgets = {'avatar' : SmallClearableFileInput(),}
 
@@ -186,7 +186,7 @@ class ChangeProfile1Form(ModelForm):
             pass
 
     class Meta:
-        model = Member
+        model = Profile
         fields = ('avatar', 'first_name', 'last_name',
             'gender', 'date_of_birth', 'place_of_birth', 'nationality',
             'fiscal_code',
@@ -211,7 +211,7 @@ class ChangeProfile2Form(ModelForm):
         datetime.now().year-100, -1), attrs={'class': 'form-control'}))
 
     class Meta:
-        model = Member
+        model = Profile
         fields = ('avatar', 'first_name', 'last_name',
             'gender', 'date_of_birth', 'place_of_birth', 'nationality',
             'fiscal_code',
@@ -231,7 +231,7 @@ class ChangeProfile3Form(ModelForm):
         validators=[validate_codice_fiscale])
 
     class Meta:
-        model = Member
+        model = Profile
         fields = ('avatar', 'first_name', 'last_name',
             'email', 'no_spam',
             'address', 'phone', 'email_2',

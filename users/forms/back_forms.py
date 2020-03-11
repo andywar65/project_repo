@@ -4,10 +4,10 @@ from django import forms
     #PasswordResetForm, SetPasswordForm)
 from django.forms import ModelForm
 #from captcha.fields import ReCaptchaField
-from users.models import (User, Member, )#Applicant, UserMessage
+from users.models import (User, Profile, )#Applicant, UserMessage
 #from .choices import *
 
-class ChangeMemberChildForm(ModelForm):
+class ChangeProfileChildForm(ModelForm):
     parent = forms.ModelChoiceField(label="Genitore", required = False,
         queryset = User.objects.filter(member__parent = None,
         is_active = True), help_text = 'Solo se minore')
@@ -34,7 +34,7 @@ class ChangeMemberChildForm(ModelForm):
             pass
 
     class Meta:
-        model = Member
+        model = Profile
         fields = ('sector', 'parent',
             'avatar', 'first_name', 'last_name',
             'gender', 'date_of_birth', 'place_of_birth', 'nationality',
@@ -43,15 +43,15 @@ class ChangeMemberChildForm(ModelForm):
             'sign_up', 'privacy', 'med_cert',
             'membership', 'mc_expiry', 'mc_state', 'total_amount', 'settled')
 
-class ChangeMember0Form(ModelForm):
+class ChangeProfile0Form(ModelForm):
 
     class Meta:
-        model = Member
+        model = Profile
         fields = ('sector',
             'avatar', 'first_name', 'last_name',
             'email', 'no_spam', )
 
-class ChangeMember1Form(ModelForm):
+class ChangeProfile1Form(ModelForm):
 
     def clean(self):
         cd = super().clean()
@@ -68,7 +68,7 @@ class ChangeMember1Form(ModelForm):
             pass
 
     class Meta:
-        model = Member
+        model = Profile
         fields = ('sector',
             'avatar', 'first_name', 'last_name',
             'gender', 'date_of_birth', 'place_of_birth', 'nationality',
@@ -78,10 +78,10 @@ class ChangeMember1Form(ModelForm):
             'sign_up', 'privacy', 'med_cert',
             'membership', 'mc_expiry', 'mc_state', 'total_amount', 'settled')
 
-class ChangeMember2Form(ModelForm):
+class ChangeProfile2Form(ModelForm):
 
     class Meta:
-        model = Member
+        model = Profile
         fields = ('sector',
             'avatar', 'first_name', 'last_name',
             'gender', 'date_of_birth', 'place_of_birth', 'nationality',
@@ -91,10 +91,10 @@ class ChangeMember2Form(ModelForm):
             'sign_up', 'privacy', 'med_cert',
             'membership', 'mc_expiry', 'mc_state', 'total_amount', 'settled')
 
-class ChangeMember3Form(ModelForm):
+class ChangeProfile3Form(ModelForm):
 
     class Meta:
-        model = Member
+        model = Profile
         fields = ('sector',
             'avatar', 'first_name', 'last_name',
             'email', 'no_spam', 'address', 'phone', 'fiscal_code', 'email_2')

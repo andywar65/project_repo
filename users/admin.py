@@ -8,10 +8,10 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import Group
 from django.db.models import Q
 
-from .models import (User, Member, MemberPayment, Applicant,
+from .models import (User, Profile, ProfilePayment, Applicant,
     ApplicantChild, UserMessage, CourseSchedule,)
-from .forms import (ChangeMemberChildForm, ChangeMember0Form,
-    ChangeMember1Form, ChangeMember2Form, ChangeMember3Form)
+from .forms import (ChangeProfileChildForm, ChangeProfile0Form,
+    ChangeProfile1Form, ChangeProfile2Form, ChangeProfile3Form)
 from project.utils import send_rp_mail
 
 class UserAdmin(UserAdmin):
@@ -84,7 +84,7 @@ class ApplicantAdmin(admin.ModelAdmin):
                 hash_password = make_password( password )
                 usr = User.objects.create(username = username,
                     password = hash_password, is_staff = False, )
-            member = Member.objects.get(user_id=usr.id)
+            member = Profile.objects.get(user_id=usr.id)
             member.sector = applicant.sector
             member.first_name = applicant.first_name
             member.last_name = applicant.last_name
@@ -95,7 +95,7 @@ class ApplicantAdmin(admin.ModelAdmin):
                 member.sector = '1-YC'
                 member.email = applicant.parent.member.email
                 if member.parent.member.sector == '0-NO':
-                    parent = Member.objects.get(pk=member.parent.id)
+                    parent = Profile.objects.get(pk=member.parent.id)
                     parent.sector = '3-FI'
                     parent.save()
             children = ApplicantChild.objects.filter(parent=applicant.id)
@@ -109,7 +109,7 @@ class ApplicantAdmin(admin.ModelAdmin):
                 hash_password = make_password('rifondazionepodistica')
                 chd = User.objects.create(username = chd_username,
                     password = hash_password, )
-                member = Member.objects.get(user_id=chd.id)
+                member = Profile.objects.get(user_id=chd.id)
                 member.sector = '1-YC'
                 member.parent = usr
                 member.first_name = child.first_name
@@ -126,13 +126,13 @@ class ApplicantAdmin(admin.ModelAdmin):
         return
     applicant_to_user.short_description = 'Crea Iscritti'
 
-class MemberPaymentInline(admin.TabularInline):
-    model = MemberPayment
+class ProfilePaymentInline(admin.TabularInline):
+    model = ProfilePayment
     fields = ('date', 'amount')
     extra = 0
 
-@admin.register(Member)
-class MemberAdmin(admin.ModelAdmin):
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
     list_display = ('get_thumb', 'get_full_name', 'sector', 'parent',
         'mc_state', 'settled')
     list_filter = ('mc_state', 'settled')
@@ -141,31 +141,31 @@ class MemberAdmin(admin.ModelAdmin):
     actions = ['control_mc', 'reset_all', 'control_pay']
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
-        member = Member.objects.get(user_id=object_id)
+        member = Profile.objects.get(user_id=object_id)
         if member.parent:
-            self.form = ChangeMemberChildForm
+            self.form = ChangeProfileChildForm
             if not request.user.has_perm('users.add_applicant'):
                 self.readonly_fields = ['sector', 'parent', 'membership',
                     'mc_expiry', 'mc_state', 'total_amount', 'settled']
-            self.inlines = [ MemberPaymentInline, ]
+            self.inlines = [ ProfilePaymentInline, ]
         elif member.sector == '0-NO':
-            self.form = ChangeMember0Form
+            self.form = ChangeProfile0Form
             if not request.user.has_perm('users.add_applicant'):
                 self.readonly_fields = ['sector', ]
         elif member.sector == '1-YC':
-            self.form = ChangeMember1Form
+            self.form = ChangeProfile1Form
             if not request.user.has_perm('users.add_applicant'):
                 self.readonly_fields = ['sector', 'membership',
                     'mc_expiry', 'mc_state', 'total_amount', 'settled']
-            self.inlines = [ MemberPaymentInline, ]
+            self.inlines = [ ProfilePaymentInline, ]
         elif member.sector == '2-NC':
-            self.form = ChangeMember2Form
+            self.form = ChangeProfile2Form
             if not request.user.has_perm('users.add_applicant'):
                 self.readonly_fields = ['sector', 'membership',
                     'mc_expiry', 'mc_state', 'total_amount', 'settled']
-            self.inlines = [ MemberPaymentInline, ]
+            self.inlines = [ ProfilePaymentInline, ]
         elif member.sector == '3-FI':
-            self.form = ChangeMember3Form
+            self.form = ChangeProfile3Form
             if not request.user.has_perm('users.add_applicant'):
                 self.readonly_fields = ['sector', ]
         return super().change_view(
@@ -221,7 +221,7 @@ class MemberAdmin(admin.ModelAdmin):
             return
         queryset.update(sign_up='', privacy='', settled='', total_amount=0.00)
         for member in queryset:
-            MemberPayment.objects.filter(member_id = member.pk).delete()
+            ProfilePayment.objects.filter(member_id = member.pk).delete()
     reset_all.short_description = 'Resetta i dati'
 
     def control_pay(self, request, queryset):
@@ -235,7 +235,7 @@ class MemberAdmin(admin.ModelAdmin):
                 member.save()
             else:
                 paid = 0.00
-                payments = MemberPayment.objects.filter(member_id = member.pk)
+                payments = ProfilePayment.objects.filter(member_id = member.pk)
                 for payment in payments:
                     paid += payment.amount
                 if paid >= member.total_amount:

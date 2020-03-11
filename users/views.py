@@ -11,7 +11,7 @@ from .forms import (RegistrationForm, RegistrationLogForm, ContactForm,
     FrontSetPasswordForm, FrontPasswordChangeForm, ChangeProfileChildForm,
     ChangeProfile0Form, ChangeProfile1Form, ChangeProfile2Form,
     ChangeProfile3Form)
-from .models import User, Member, MemberPayment
+from .models import User, Profile, ProfilePayment
 
 class GetMixin:
 
@@ -140,7 +140,7 @@ class FrontPasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
     template_name = 'users/password_change_done.html'
 
 class ProfileChangeUpdateView(LoginRequiredMixin, UpdateView):
-    model = Member
+    model = Profile
 
     def get(self, request, *args, **kwargs):
         member = self.get_object()
@@ -168,7 +168,7 @@ class ProfileChangeUpdateView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['member'] = self.object
-        context['payments'] = MemberPayment.objects.filter(member_id=self.object.pk)
+        context['payments'] = ProfilePayment.objects.filter(member_id=self.object.pk)
         return context
 
     def get_template_names(self):

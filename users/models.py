@@ -11,39 +11,16 @@ def user_directory_path(instance, filename):
 
 class User(AbstractUser):
 
-    def __str__(self):
-        if self.member.last_name and self.member.first_name:
-            return self.member.last_name + ' ' + self.member.first_name
-        else:
-            return self.username
-
-    def get_full_name(self):
-        if self.member.last_name and self.member.first_name:
-            return self.member.last_name + ' ' + self.member.first_name
-        else:
-            return self.username
-
-    def get_full_name_reverse(self):
-        if self.member.last_name and self.member.first_name:
-            return self.member.first_name + ' ' + self.member.last_name
-        else:
-            return self.username
-
     def save(self, *args, **kwargs):
         super(User, self).save(*args, **kwargs)
         if self.is_active:
             try:
-                memb = Member.objects.get(user_id = self.id)
+                memb = Profile.objects.get(user_id = self.id)
                 return
             except:
-                memb = Member.objects.create(user = self)
-                    #first_name = self.first_name, last_name = self.last_name,)
+                memb = Profile.objects.create(user = self)
                 memb.save()
                 return
-        else:
-            children = Member.objects.filter(parent = self.id)
-            if children:
-                children.update(parent = None)
 
 class CourseSchedule(models.Model):
     full = models.CharField(max_length = 32, verbose_name = 'Giorno e ora',)
@@ -56,7 +33,7 @@ class CourseSchedule(models.Model):
         verbose_name = 'Orario'
         verbose_name_plural = 'Orari'
 
-class Member(models.Model):
+class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE,
         primary_key=True, editable=False)
@@ -153,7 +130,7 @@ class Member(models.Model):
         return full_name.strip()
 
     def save(self, *args, **kwargs):
-        super(Member, self).save(*args, **kwargs)
+        super(Profile, self).save(*args, **kwargs)
         if self.avatar:
             url_extension = os.path.splitext(self.avatar.url)
             thumb_name = url_extension[0] + "_thumb" + url_extension[1]
@@ -174,7 +151,7 @@ class Member(models.Model):
                     cropped.thumbnail(size)
                     cropped.save(root_extension[0] + "_thumb" + root_extension[1])
                     self.thumb = thumb_name
-                    super(Member, self).save(*args, **kwargs)
+                    super(Profile, self).save(*args, **kwargs)
                 except:
                     pass
 
@@ -182,8 +159,8 @@ class Member(models.Model):
         verbose_name = 'Iscritto'
         verbose_name_plural = 'Iscritti'
 
-class MemberPayment(models.Model):
-    member = models.ForeignKey(Member, on_delete = models.CASCADE,
+class ProfilePayment(models.Model):
+    member = models.ForeignKey(Profile, on_delete = models.CASCADE,
         blank = True, null = True, related_name='member_payments')
     date = models.DateField( blank=True, null=True, verbose_name = 'Data')
     amount = models.FloatField( default = 0.00, verbose_name = 'Importo')
