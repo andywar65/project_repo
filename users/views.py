@@ -6,12 +6,10 @@ from django.contrib.auth.views import (LoginView, LogoutView, PasswordResetView,
     PasswordResetConfirmView, PasswordChangeView, PasswordChangeDoneView)
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView, UpdateView
-from .forms import (RegistrationForm, RegistrationLogForm, ContactForm,
+from .forms import (RegistrationForm, ContactForm,
     ContactLogForm, FrontAuthenticationForm, FrontPasswordResetForm,
-    FrontSetPasswordForm, FrontPasswordChangeForm, ChangeProfileChildForm,
-    ChangeProfile0Form, ChangeProfile1Form, ChangeProfile2Form,
-    ChangeProfile3Form)
-from .models import User, Profile, ProfilePayment
+    FrontSetPasswordForm, FrontPasswordChangeForm, ChangeProfileForm,)
+from .models import User, Profile
 
 class GetMixin:
 
@@ -26,22 +24,8 @@ class RegistrationFormView(GetMixin, FormView):
     template_name = 'users/registration.html'
     success_url = '/registration?submitted=True'
 
-    def get_form_class(self):
-        if self.request.user.is_authenticated:
-            return RegistrationLogForm
-        return super(RegistrationFormView, self).get_form_class()
-
-    def get_template_names(self):
-        if self.request.user.is_authenticated:
-            return 'users/registration_log.html'
-        return super(RegistrationFormView, self).get_template_names()
-
     def form_valid(self, form):
         applicant = form.save(commit=False)
-        if 'sector' not in form.fields:
-            applicant.parent = self.request.user
-            applicant.email = self.request.user.member.email
-            applicant.sector = '1-YC'
         applicant.save()
         return super(RegistrationFormView, self).form_valid(form)
 
