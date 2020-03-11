@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ( UserUpload, Blog)
+from .models import ( UserUpload, Blog, Institutional)
 from .forms import BlogForm
 
 class UserUploadInline(admin.TabularInline):
@@ -13,3 +13,7 @@ class BlogAdmin(admin.ModelAdmin):
     search_fields = ('title', 'date', 'intro', )
     inlines = [ UserUploadInline,  ]
     form = BlogForm
+
+@admin.register(Institutional)
+class InstitutionalAdmin(admin.ModelAdmin):
+    list_display = ('title', 'type')

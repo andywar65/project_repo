@@ -5,7 +5,7 @@ from django.views.generic import (ListView, DetailView, CreateView,
 from taggit.models import Tag
 
 from .forms import UserUploadForm
-from .models import (UserUpload, Blog)
+from .models import (UserUpload, Blog, Institutional)
 
 class HomeTemplateView(TemplateView):
     template_name = 'home.html'
@@ -57,3 +57,16 @@ class UserUploadCreateView(LoginRequiredMixin, CreateView):
         if 'post_id' in self.request.GET:
             form.instance.post = Blog.objects.get(id=self.request.GET['post_id'])
         return super().form_valid(form)
+
+def get_page(context, type):
+    page = get_object_or_404(Institutional, type=type)
+    context['page'] = page
+    return context
+
+class PrivacyTemplateView(TemplateView):
+    template_name = 'direzione/privacy.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context = get_page(context, '3-PR')
+        return context

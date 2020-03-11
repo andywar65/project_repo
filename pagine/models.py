@@ -9,6 +9,7 @@ from streamfield.fields import StreamField
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     LandscapeGallery, DownloadableFile, LinkableList, BoxedText, )
 from users.models import User
+from .choices import *
 
 def generate_unique_slug(klass, field):
     """
@@ -51,12 +52,19 @@ class Blog(models.Model):
     intro = models.CharField('Introduzione',
         default = 'Un altro articolo di approfondimento da RP!', max_length = 100)
     stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
-            DownloadableFile, LinkableList, BoxedText], verbose_name="Testo" )
+            Gallery, DownloadableFile, LinkableList, BoxedText],
+            verbose_name="Testo" )
     author = models.ForeignKey(User, on_delete=models.SET_NULL,
         blank= True, null=True, verbose_name = 'Autore')
     tags = TaggableManager(verbose_name="Categorie",
         help_text="Lista di categorie separate da virgole",
         through=None, blank=True)
+    notice = models.CharField(max_length = 4, choices = NOTICE,
+        blank = True, null = True, verbose_name = 'Notifica via email',
+        help_text = """Non invia in automatico, per farlo seleziona l'Evento
+            dalla Lista degli Eventi, imposta l'azione 'Invia notifica' e fai
+            clic su 'Vai'.
+            """)
 
     def get_path(self):
         return '/articoli/' + self.slug
@@ -103,3 +111,27 @@ class UserUpload(models.Model):
         verbose_name = 'Contributo'
         verbose_name_plural = 'Contributi'
         ordering = ('-id', )
+
+class Institutional(models.Model):
+    type = models.CharField('Tipo', max_length = 4, choices = TYPE, null = True)
+    title = models.CharField('Titolo', max_length = 50)
+    intro = models.TextField('Introduzione',
+        blank= True, null=True, max_length = 200)
+    stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
+        Gallery, DownloadableFile, LinkableList, BoxedText, ],
+        verbose_name="Testo" )
+
+    def get_paragraphs(self):
+        paragraphs = []
+        for block in self.stream.from_json():
+            if block['model_name'] == 'IndexedParagraph':
+                par = IndexedParagraph.objects.get(id=block['id'])
+                paragraphs.append( (par.get_slug, par.title) )
+        return paragraphs
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Pagina istituzionale'
+        verbose_name_plural = 'Pagine istituzionali'
