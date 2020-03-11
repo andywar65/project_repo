@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.conf import settings
 from django.http import Http404
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -26,7 +27,8 @@ class RegistrationFormView(GetMixin, FormView):
 
     def form_valid(self, form):
         applicant = form.save(commit=False)
-        applicant.save()
+        #save user instance
+        #send username and pw to user
         return super(RegistrationFormView, self).form_valid(form)
 
 class ContactFormView(GetMixin, FormView):
@@ -54,14 +56,25 @@ class ContactFormView(GetMixin, FormView):
         message = form.save(commit=False)
         if self.request.user.is_authenticated:
             message.user = self.request.user
-            message.email = self.request.user.member.email
+            message.email = self.request.user.email
             if 'recipient' in self.request.GET:
                 try:
                     recip = User.objects.get(id=self.request.GET['recipient'])
-                    message.recipient = recip.member.email
+                    message.recipient = recip.email
                 except:
                     pass
         message.save()
+        if not message.recipient:
+            message.recipient = settings.DEFAULT_RECIPIENT
+        subject = message.subject
+        msg = (message.body + '\n\nDa: '+ message.get_full_name() +
+            ' (' + message.get_email() + ')')
+        mailto = [message.recipient, ]
+        email = EmailMessage(subject, msg, settings.SERVER_EMAIL,
+            mailto)
+        if message.attachment:
+            email.attach_file(message.attachment.path)
+        email.send()
         return super(ContactFormView, self).form_valid(form)
 
 class FrontLoginView(LoginView):

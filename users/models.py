@@ -59,8 +59,6 @@ class UserMessage(models.Model):
         upload_to = user_directory_path,
         blank = True, null = True, verbose_name = 'Allegato',
         )
-    notice = models.CharField(max_length = 4, choices = NOTICE,
-        default = 'SPAM', verbose_name = 'Notifica via email')
     privacy = models.BooleanField( default=False )
 
     def get_full_name(self):
@@ -76,25 +74,6 @@ class UserMessage(models.Model):
         else:
             return self.email
     get_email.short_description = 'Indirizzo email'
-
-    def save(self, *args, **kwargs):
-        go_spam = False
-        if not self.recipient:
-            self.recipient = settings.DEFAULT_RECIPIENT
-        if self.notice == 'SPAM':
-            go_spam = True
-            self.notice = 'DONE'
-        super(UserMessage, self).save(*args, **kwargs)
-        if go_spam:
-            subject = self.subject
-            message = (self.body + '\n\nDa: '+ self.get_full_name() +
-                ' (' + self.get_email() + ')')
-            mailto = [self.recipient, ]
-            email = EmailMessage(subject, message, settings.SERVER_EMAIL,
-                mailto)
-            if self.attachment:
-                email.attach_file(self.attachment.path)
-            email.send()
 
     def __str__(self):
         return 'Messaggio - %s' % (self.id)
