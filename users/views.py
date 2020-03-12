@@ -137,51 +137,22 @@ class FrontPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
 class FrontPasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
     template_name = 'users/password_change_done.html'
 
-class ProfileChangeUpdateView(LoginRequiredMixin, UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = Profile
+    form_class = ProfileUpdateForm
+    template_name = 'users/profile_update.html'
 
     def get(self, request, *args, **kwargs):
         member = self.get_object()
         target_id = member.pk
-        if member.parent:
-            target_id = member.parent.pk
         if request.user.id != target_id:
             raise Http404("User is not authorized to manage this profile")
-        return super(ProfileChangeUpdateView, self).get(request, *args, **kwargs)
-
-    def get_form_class(self):
-        member = self.object
-        if member.parent:
-            return ChangeProfileChildForm
-        elif member.sector == '0-NO':
-            return ChangeProfile0Form
-        elif member.sector == '1-YC':
-            return ChangeProfile1Form
-        elif member.sector == '2-NC':
-            return ChangeProfile2Form
-        elif member.sector == '3-FI':
-            return ChangeProfile3Form
-        return super(ProfileChangeUpdateView, self).get_form_class()
+        return super(ProfileUpdateView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['member'] = self.object
-        context['payments'] = ProfilePayment.objects.filter(member_id=self.object.pk)
         return context
-
-    def get_template_names(self):
-        member = self.object
-        if member.parent:
-            return 'users/profile_change_child.html'
-        elif member.sector == '0-NO':
-            return 'users/profile_change_0.html'
-        elif member.sector == '1-YC':
-            return 'users/profile_change_1.html'
-        elif member.sector == '2-NC':
-            return 'users/profile_change_2.html'
-        elif member.sector == '3-FI':
-            return 'users/profile_change_3.html'
-        return super(ProfileChangeUpdateView, self).get_template_names()
 
     def get_success_url(self):
         member = self.object
