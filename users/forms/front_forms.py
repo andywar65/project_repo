@@ -9,27 +9,20 @@ from captcha.fields import ReCaptchaField
 from users.models import (Profile, User, UserMessage, )#User,
 from users.widgets import SmallClearableFileInput
 from users.choices import *
-from users.validators import validate_codice_fiscale
 
 class RegistrationForm(ModelForm):
-    email = forms.EmailField(label = 'Email', required = True,
-        widget=forms.EmailInput(attrs={'autocomplete': 'email',
-            'placeholder': 'you@example.com'}))
-    sector = forms.CharField( required=True, label='Corri con noi?',
-        widget=forms.Select(choices = SECTOR, ),)
+    username = UsernameField(widget=forms.TextInput(attrs={'autofocus': True, }))
+    password = forms.CharField( strip=False, label='Password',
+        widget=forms.PasswordInput(attrs={},
+        help_text=password_validation.password_validators_help_text_html(),),
+    )
     privacy = forms.BooleanField(label="Ho letto l'informativa sulla privacy",
         required=True)
     captcha = ReCaptchaField()
 
     class Meta:
-        model = Applicant
-        fields = ('first_name', 'last_name', 'email', 'no_spam', 'sector',
-            'children_str', 'privacy')
-        widgets = {
-            'first_name': forms.TextInput(attrs={'placeholder': "Nome del genitore"}),
-            'last_name': forms.TextInput(attrs={'placeholder': "Cognome del genitore"}),
-            'children_str': forms.TextInput(attrs={
-                'placeholder': "Nome e cognome figlio 1, nome e cognome figlio 2, ..."}),}
+        model = User
+        fields = ('username', 'password')
 
 class ContactLogForm(ModelForm):
 
