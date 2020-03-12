@@ -2,13 +2,13 @@ from django.urls import path
 from .views import (FrontLoginView, FrontLogoutView, FrontPasswordResetView,
     TemplateResetView, FrontPasswordResetConfirmView, TemplateResetDoneView,
     TemplateAccountView, FrontPasswordChangeView, FrontPasswordChangeDoneView,
-    ProfileChangeUpdateView)
+    ProfileUpdateView)
 
 #namespace is '/accounts/'
 urlpatterns = [
     path('profile/', TemplateAccountView.as_view(),
         name='profile'),
-    path('profile/<int:pk>/change', ProfileChangeUpdateView.as_view(),
+    path('profile/<int:pk>/change', ProfileUpdateView.as_view(),
         name='profile_change'),
     path('login/', FrontLoginView.as_view(),
         name='front_login'),

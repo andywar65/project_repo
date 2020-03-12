@@ -8,13 +8,12 @@ from django.forms.widgets import SelectDateWidget, CheckboxSelectMultiple
 from captcha.fields import ReCaptchaField
 from users.models import (Profile, User, UserMessage, )#User,
 from users.widgets import SmallClearableFileInput
-from users.choices import *
 
 class RegistrationForm(ModelForm):
     username = UsernameField(widget=forms.TextInput(attrs={'autofocus': True, }))
     password = forms.CharField( strip=False, label='Password',
-        widget=forms.PasswordInput(attrs={},
-        help_text=password_validation.password_validators_help_text_html(),),
+        widget=forms.PasswordInput(attrs={}),
+        help_text=password_validation.password_validators_help_text_html(),
     )
     privacy = forms.BooleanField(label="Ho letto l'informativa sulla privacy",
         required=True)

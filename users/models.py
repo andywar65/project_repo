@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import EmailMessage
-from .choices import *
+from filebrowser.fields import FileBrowseField
 
 class User(AbstractUser):
 
@@ -56,7 +56,7 @@ class UserMessage(models.Model):
         verbose_name = 'Soggetto', )
     body = models.TextField(verbose_name = 'Messaggio', )
     attachment = models.FileField(
-        upload_to = user_directory_path,
+        upload_to = 'uploads/users/',
         blank = True, null = True, verbose_name = 'Allegato',
         )
     privacy = models.BooleanField( default=False )

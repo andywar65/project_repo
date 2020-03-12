@@ -47,7 +47,7 @@ class Blog(models.Model):
         help_text="Il titolo dell'articolo",
         max_length = 50)
     slug = models.SlugField(max_length=50, editable=False, null=True)
-    date = models.DateTimeField('Data', default = now())
+    date = models.DateTimeField('Data', default = now, )
     last_updated = models.DateTimeField(editable=False, null=True)
     intro = models.CharField('Introduzione',
         default = 'Un altro articolo di approfondimento da RP!', max_length = 100)
@@ -99,7 +99,7 @@ class UserUpload(models.Model):
         null = True, related_name='blog_uploads')
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null = True,
         verbose_name = 'Utente')
-    date = models.DateTimeField('Data', default = now(), )
+    date = models.DateTimeField('Data', default = now, )
     image = models.ImageField('Immagine', blank = True, null = True,
         upload_to = 'uploads/blogs/users/',)
     body = models.TextField('Testo', help_text = "Scrivi qualcosa.", )
