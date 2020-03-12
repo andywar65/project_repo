@@ -8,6 +8,12 @@ from filebrowser.fields import FileBrowseField
 
 class User(AbstractUser):
 
+    def get_full_name(self):
+        if self.last_name and self.first_name:
+            return self.last_name + ' ' + self.first_name
+        else:
+            return self.username
+
     def save(self, *args, **kwargs):
         super(User, self).save(*args, **kwargs)
         if self.is_active:
