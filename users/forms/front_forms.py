@@ -6,7 +6,7 @@ from django.contrib.auth.forms import (AuthenticationForm, UsernameField,
 from django.forms import ModelForm
 from django.forms.widgets import SelectDateWidget, CheckboxSelectMultiple
 from captcha.fields import ReCaptchaField
-from users.models import (Profile, Applicant, UserMessage, )#User,
+from users.models import (Profile, User, UserMessage, )#User,
 from users.widgets import SmallClearableFileInput
 from users.choices import *
 from users.validators import validate_codice_fiscale
@@ -30,15 +30,6 @@ class RegistrationForm(ModelForm):
             'last_name': forms.TextInput(attrs={'placeholder': "Cognome del genitore"}),
             'children_str': forms.TextInput(attrs={
                 'placeholder': "Nome e cognome figlio 1, nome e cognome figlio 2, ..."}),}
-
-class RegistrationLogForm(ModelForm):
-
-    class Meta:
-        model = Applicant
-        fields = ('first_name', 'last_name', )
-        widgets = {
-            'first_name': forms.TextInput(attrs={'placeholder': "Nome del figlio"}),
-            'last_name': forms.TextInput(attrs={'placeholder': "Cognome del figlio"}), }
 
 class ContactLogForm(ModelForm):
 
@@ -94,7 +85,7 @@ class FrontAuthenticationForm(AuthenticationForm):
 
 class FrontPasswordResetForm(PasswordResetForm):
     email = forms.EmailField(
-        max_length=254, label='Email di registrazione', 
+        max_length=254, label='Email di registrazione',
         widget=forms.EmailInput(attrs={'autocomplete': 'email',
             'class': 'form-control'})
     )

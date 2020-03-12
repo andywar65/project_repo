@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import (LoginView, LogoutView, PasswordResetView,
     PasswordResetConfirmView, PasswordChangeView, PasswordChangeDoneView)
 from django.views.generic import TemplateView
-from django.views.generic.edit import FormView, UpdateView
+from django.views.generic.edit import FormView, UpdateView, CreateView
 from .forms import (RegistrationForm, ContactForm,
     ContactLogForm, FrontAuthenticationForm, FrontPasswordResetForm,
     FrontSetPasswordForm, FrontPasswordChangeForm, ChangeProfileForm,)
@@ -20,7 +20,8 @@ class GetMixin:
             context['submitted'] = request.GET['submitted']
         return self.render_to_response(context)
 
-class RegistrationFormView(GetMixin, FormView):
+class RegistrationFormView(CreateView):
+    model = User
     form_class = RegistrationForm
     template_name = 'users/registration.html'
     success_url = '/registration?submitted=True'
