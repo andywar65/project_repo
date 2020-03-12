@@ -9,7 +9,7 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import FormView, UpdateView, CreateView
 from .forms import (RegistrationForm, ContactForm,
     ContactLogForm, FrontAuthenticationForm, FrontPasswordResetForm,
-    FrontSetPasswordForm, FrontPasswordChangeForm, ChangeProfileForm,)
+    FrontSetPasswordForm, FrontPasswordChangeForm, ProfileUpdateForm,)
 from .models import User, Profile
 
 class GetMixin:
