@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load fb_versions %}
 
 {% block title %}RP | {{ post.title }}{% endblock title %}
 
@@ -9,7 +10,7 @@
       </div>
     {% elif post.fb_image %}
       <div class="row">
-        <img src="{{ post.fb_image.url }}" width="100%" alt="{{ post.intro }}" />
+        <img src="{% version post.fb_image 'wide_landscape' %}" width="100%" alt="{{ post.intro }}" />
       </div>
     {% endif %}
       <div class="row row-striped">
