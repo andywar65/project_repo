@@ -10,18 +10,18 @@ from users.models import (Profile, User, UserMessage, )#User,
 from users.widgets import SmallClearableFileInput
 
 class RegistrationForm(ModelForm):
-    username = UsernameField(widget=forms.TextInput(attrs={'autofocus': True, }))
-    password = forms.CharField( strip=False, label='Password',
-        widget=forms.PasswordInput(attrs={}),
-        help_text=password_validation.password_validators_help_text_html(),
-    )
+    username = UsernameField(label = 'Nome utente', required = True,
+        widget=forms.TextInput(attrs={'autofocus': True, }))
+    email = forms.EmailField(label = 'Email', required = True,
+        widget=forms.EmailInput(attrs={'autocomplete': 'email',
+            'placeholder': 'you@example.com'}))
     privacy = forms.BooleanField(label="Ho letto l'informativa sulla privacy",
         required=True)
     captcha = ReCaptchaField()
 
     class Meta:
         model = User
-        fields = ('username', 'password')
+        fields = ('username', 'email', )
 
 class ContactLogForm(ModelForm):
 
