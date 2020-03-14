@@ -1,16 +1,13 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}RP | Modifica profilo{%endblock title %}
+{% block title %}SP | Modifica profilo{%endblock title %}
 
 {% block content %}
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <h4><strong>Modifica il tuo profilo, {{ member.get_full_name_reverse }}</strong></h4>
-    <ul>
-      <li>Tu non corri con noi, pazienza.</li>
-    </ul>
+    <h4><strong>Modifica il tuo profilo, {{ user.get_full_name }}</strong></h4>
     <hr class="mb-4">
     {% if form.errors %}
       <p class="alert alert-danger" role="alert">
@@ -18,7 +15,6 @@
       </p>
     {% endif %}
     <form action="" method="post" enctype="multipart/form-data" novalidate>
-      <h4>Anagrafica</h4>
         {% include 'users/profile_includes/avatar.html' %}
         {% include 'users/profile_includes/name.html' %}
         {% include 'users/profile_includes/email.html' %}

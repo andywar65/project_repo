@@ -103,6 +103,16 @@ class FrontPasswordChangeForm(FrontSetPasswordForm):
     )
 
 class ProfileChangeForm(forms.Form):
+    avatar = forms.FileField( required = False, widget = SmallClearableFileInput())
+    first_name = forms.CharField( label = 'Nome', required = True,
+        widget = forms.TextInput())
+    last_name = forms.CharField( label = 'Cognome', required = True,
+        widget = forms.TextInput())
+    email = forms.EmailField(label = 'Email', required = True,
+        widget=forms.EmailInput(attrs={'autocomplete': 'email',
+            'placeholder': 'you@example.com'}))
+    no_spam = forms.BooleanField( label="Mailing list", required = False,
+        help_text = "Vuoi ricevere notifiche sui nuovi articoli?")
 
     class Meta:
         model = Profile
