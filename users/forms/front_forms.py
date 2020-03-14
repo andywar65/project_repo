@@ -102,7 +102,7 @@ class FrontPasswordChangeForm(FrontSetPasswordForm):
             'autofocus': True, 'class': 'form-control'}),
     )
 
-class ProfileChangeForm(ModelForm):
+class ProfileChangeForm(forms.Form):
 
     class Meta:
         model = Profile

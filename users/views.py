@@ -160,17 +160,23 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
     template_name = 'users/profile_change.html'
 
     def get(self, request, *args, **kwargs):
-        member = self.get_object()
-        target_id = member.pk
-        if request.user.id != target_id:
+        self.user = request.user
+        if self.user.id != kwargs['pk']:
             raise Http404("User is not authorized to manage this profile")
-        return super(ProfileUpdateView, self).get(request, *args, **kwargs)
+        return super(ProfileChangeView, self).get(request, *args, **kwargs)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['member'] = self.object
-        return context
+    def get_initial(self):
+        initial = super(ProfileChangeView, self).get_initial()
+        initial.update({'first_name': self.user.first_name,
+            'last_name': self.user.last_name,
+            'email': self.user.email,
+            'avatar': self.user.profile.avatar,
+            'no_spam': self.user.profile.no_spam,
+            })
+        return initial
+
+    def form_valid(self, form):
+        return super(ProfileChangeView, self).form_valid(form)
 
     def get_success_url(self):
-        member = self.object
-        return f'/accounts/profile/?submitted={member.get_full_name_reverse()}'
+        return f'/accounts/profile/?submitted={self.user.get_full_name()}'
