@@ -15,7 +15,9 @@
     {% endif %}
     <h4><strong>Account di {{ user.get_full_name }}</strong></h4>
     <p>Da questa pagina si accede ai propri dati personali,
-      si può cambiare la propria password oppure si può effettuare il logout
+      si può cambiare la propria password
+      {% if user.is_staff %}, si può andare in amministrazione{% endif %}
+      oppure si può effettuare il logout
       (consigliabile farlo sempre alla fine della sessione).</p>
       <a class="btn btn-success center" role="button" href="/accounts/profile/{{ user.id }}/change">
         Cambia i tuoi dati</a>
