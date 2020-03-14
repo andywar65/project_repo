@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}RP | Login{%endblock title %}
+{% block title %}SP | Login{%endblock title %}
 
 {% block content %}
 <div class="row">
@@ -41,7 +41,7 @@
                     </div>
                   </div>
                   <hr class="mb-4">
-                  <button class="btn btn-success btn-lg btn-block" type="submit">Invia</button>
+                  <button class="btn btn-primary btn-lg btn-block" type="submit">Invia</button>
                   <small>I campi con l'asterisco (*) sono obbligatori</small><br>
                   <a href="{% url 'front_password_reset' %}">Dimenticato la password?</a>
                   <hr class="mb-4">
