@@ -50,7 +50,7 @@ class Blog(models.Model):
     date = models.DateTimeField('Data', default = now, )
     last_updated = models.DateTimeField(editable=False, null=True)
     intro = models.CharField('Introduzione',
-        default = 'Un altro articolo di approfondimento da RP!', max_length = 100)
+        default = 'Un altro articolo di approfondimento!', max_length = 100)
     stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
             Gallery, DownloadableFile, LinkableList, BoxedText],
             verbose_name="Testo" )
