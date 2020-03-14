@@ -15,12 +15,11 @@ class HomeTemplateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         try:
-            page = HomePage.objects.first()
+            context['page'] = HomePage.objects.first()
         except:
             raise Http404("Non ci sono Home Page")
-        context['page'] = page
         context['posts'] = Blog.objects.all()[:6]
-        actions = page.action.from_json()
+        actions = context['page'].action.from_json()
         for action in actions:
             context['actions'] = LinkableList.objects.filter(id__in = action['id'])[:3]
         return context
