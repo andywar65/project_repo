@@ -148,12 +148,6 @@ class TemplateResetDoneView(TemplateView):
 class TemplateAccountView(LoginRequiredMixin, GetMixin, TemplateView):
     template_name = 'users/account.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['children'] = User.objects.filter(member__parent__id = self.request.user.id ,
-            is_active = True)
-        return context
-
 class FrontPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     template_name = 'users/password_change.html'
     form_class = FrontPasswordChangeForm
