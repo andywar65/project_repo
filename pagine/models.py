@@ -112,6 +112,20 @@ class UserUpload(models.Model):
         verbose_name_plural = 'Contributi'
         ordering = ('-id', )
 
+class HomePage(models.Model):
+
+    carousel = StreamField(model_list=[ LandscapeGallery, ],
+        null=True, blank=True, verbose_name="Galleria",
+        help_text="Una sola galleria, per favore, larghezza minima immagini 2048px")
+    intro = models.CharField('Sottotitolo', max_length = 100,
+        null=True, blank=True, help_text = 'Il sito in due parole')
+    action = StreamField(model_list=[ LinkableList, ],
+        null=True, blank=True, verbose_name="Pulsanti di azione",
+        help_text="Link a pagine sponsorizzate.")
+
+    class Meta:
+        verbose_name = 'Home Page'
+
 class Institutional(models.Model):
     type = models.CharField('Tipo', max_length = 4, choices = TYPE, null = True)
     title = models.CharField('Titolo', max_length = 50)
