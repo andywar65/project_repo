@@ -9,8 +9,8 @@ from filebrowser.fields import FileBrowseField
 class User(AbstractUser):
 
     def get_full_name(self):
-        if self.last_name and self.first_name:
-            return self.last_name + ' ' + self.first_name
+        if self.first_name and self.last_name:
+            return self.first_name + ' ' + self.last_name
         else:
             return self.username
 

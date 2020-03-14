@@ -160,23 +160,31 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
     template_name = 'users/profile_change.html'
 
     def get(self, request, *args, **kwargs):
-        self.user = request.user
-        if self.user.id != kwargs['pk']:
+        if request.user.id != kwargs['pk']:
             raise Http404("User is not authorized to manage this profile")
         return super(ProfileChangeView, self).get(request, *args, **kwargs)
 
     def get_initial(self):
         initial = super(ProfileChangeView, self).get_initial()
-        initial.update({'first_name': self.user.first_name,
-            'last_name': self.user.last_name,
-            'email': self.user.email,
-            'avatar': self.user.profile.avatar,
-            'no_spam': self.user.profile.no_spam,
+        initial.update({'first_name': self.request.user.first_name,
+            'last_name': self.request.user.last_name,
+            'email': self.request.user.email,
+            'avatar': self.request.user.profile.avatar,
+            'no_spam': self.request.user.profile.no_spam,
             })
         return initial
 
     def form_valid(self, form):
+        user = User.objects.get(id = self.request.user.id )
+        profile = Profile.objects.get(pk = user.id)
+        user.first_name = form.cleaned_data['first_name']
+        user.last_name = form.cleaned_data['last_name']
+        user.email = form.cleaned_data['email']
+        profile.avatar = form.cleaned_data['avatar']
+        profile.no_spam = form.cleaned_data['no_spam']
+        user.save()
+        profile.save()
         return super(ProfileChangeView, self).form_valid(form)
 
     def get_success_url(self):
-        return f'/accounts/profile/?submitted={self.user.get_full_name()}'
+        return f'/accounts/profile/?submitted={self.request.user.get_full_name()}'

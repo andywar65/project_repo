@@ -113,7 +113,3 @@ class ProfileChangeForm(forms.Form):
             'placeholder': 'you@example.com'}))
     no_spam = forms.BooleanField( label="Mailing list", required = False,
         help_text = "Vuoi ricevere notifiche sui nuovi articoli?")
-
-    class Meta:
-        model = Profile
-        fields = ('__all__')
