@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (ListView, DetailView, CreateView,
     TemplateView)
@@ -13,7 +14,10 @@ class HomeTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        page = HomePage.objects.first()
+        try:
+            page = HomePage.objects.first()
+        except:
+            raise Http404("Non ci sono Home Page")
         context['page'] = page
         context['posts'] = Blog.objects.all()[:6]
         actions = page.action.from_json()
