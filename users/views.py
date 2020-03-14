@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.mail import EmailMessage
 from django.conf import settings
 from django.http import Http404
 from django.urls import reverse
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import (LoginView, LogoutView, PasswordResetView,
     PasswordResetConfirmView, PasswordChangeView, PasswordChangeDoneView)
@@ -20,16 +22,38 @@ class GetMixin:
             context['submitted'] = request.GET['submitted']
         return self.render_to_response(context)
 
-class RegistrationFormView(CreateView):
-    model = User
+def registration_message( username, password ):
+    message = f"""
+        Ciao {username}! \n
+        Abbiamo ricevuto la tua registrazione al sito di Startup Project.\n
+        Puoi effettuare il Login al seguente link: \n
+        {settings.BASE_URL}/accounts/login/ \n
+        Usa il nome utente da te scelto: {username}
+        e questa password: {password} (possibilmente da cambiare).
+        Una volta effettuato il login potrai gestire il tuo profilo.
+        Grazie.
+        Lo staff di Startup Project \n
+        Link utili:
+        Informativa per la privacy: {settings.BASE_URL}/privacy/
+        Cambio password: {settings.BASE_URL}/accounts/password_change/
+        """
+    return message
+
+class RegistrationFormView(GetMixin, FormView):
     form_class = RegistrationForm
     template_name = 'users/registration.html'
     success_url = '/registration?submitted=True'
 
     def form_valid(self, form):
-        applicant = form.save(commit=False)
-        #save user instance
-        #send username and pw to user
+        user = form.save(commit=False)
+        password = User.objects.make_random_password()
+        user.password = make_password(password)
+        user.save()
+        subject = 'Credenziali di accesso ad RP'
+        body = registration_message(user.username, password)
+        mailto = [ user.email, ]
+        email = EmailMessage(subject, body, settings.SERVER_EMAIL, mailto)
+        email.send()
         return super(RegistrationFormView, self).form_valid(form)
 
 class ContactFormView(GetMixin, FormView):
