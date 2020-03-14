@@ -11,7 +11,7 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import FormView, UpdateView, CreateView
 from .forms import (RegistrationForm, ContactForm,
     ContactLogForm, FrontAuthenticationForm, FrontPasswordResetForm,
-    FrontSetPasswordForm, FrontPasswordChangeForm, ProfileUpdateForm,)
+    FrontSetPasswordForm, FrontPasswordChangeForm, ProfileChangeForm,)
 from .models import User, Profile
 
 class GetMixin:
@@ -155,10 +155,9 @@ class FrontPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
 class FrontPasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
     template_name = 'users/password_change_done.html'
 
-class ProfileUpdateView(LoginRequiredMixin, UpdateView):
-    model = Profile
-    form_class = ProfileUpdateForm
-    template_name = 'users/profile_update.html'
+class ProfileChangeView(LoginRequiredMixin, FormView):
+    form_class = ProfileChangeForm
+    template_name = 'users/profile_change.html'
 
     def get(self, request, *args, **kwargs):
         member = self.get_object()
