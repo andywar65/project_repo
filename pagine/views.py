@@ -3,16 +3,22 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (ListView, DetailView, CreateView,
     TemplateView)
 from taggit.models import Tag
+from streamblocks.models import LinkableList
 
 from .forms import UserUploadForm
-from .models import (UserUpload, Blog, Institutional)
+from .models import (UserUpload, Blog, HomePage, Institutional)
 
 class HomeTemplateView(TemplateView):
     template_name = 'home.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        page = HomePage.objects.first()
+        context['page'] = page
         context['posts'] = Blog.objects.all()[:6]
+        actions = page.action.from_json()
+        for action in actions:
+            context['actions'] = LinkableList.objects.filter(id__in = action['id'])[:3]
         return context
 
 class TagMixin:
@@ -58,6 +64,7 @@ class UserUploadCreateView(LoginRequiredMixin, CreateView):
             form.instance.post = Blog.objects.get(id=self.request.GET['post_id'])
         return super().form_valid(form)
 
+#this is used by different institutional pages depending on type
 def get_page(context, type):
     page = get_object_or_404(Institutional, type=type)
     context['page'] = page

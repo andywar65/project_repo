@@ -42,4 +42,4 @@ class InstitutionalAdmin(admin.ModelAdmin):
 
 @admin.register(HomePage)
 class HomePageAdmin(admin.ModelAdmin):
-    list_display = ('intro')
+    list_display = ('intro', )
