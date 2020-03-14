@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.contrib import admin
-from .models import ( UserUpload, Blog, Institutional)
+from .models import ( UserUpload, Blog, HomePage, Institutional)
 from .forms import BlogForm
 
 class UserUploadInline(admin.TabularInline):
@@ -39,3 +39,7 @@ class BlogAdmin(admin.ModelAdmin):
 @admin.register(Institutional)
 class InstitutionalAdmin(admin.ModelAdmin):
     list_display = ('title', 'type')
+
+@admin.register(HomePage)
+class HomePageAdmin(admin.ModelAdmin):
+    list_display = ('intro')
