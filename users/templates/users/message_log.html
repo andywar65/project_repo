@@ -15,7 +15,7 @@
       </div>
       {% endif %}
 
-      <p>Ciao {{ user.member.first_name }}, scrivi qui sotto il tuo messaggio e poi invia.</p>
+      <p>Ciao {{ user.get_short_name }}, scrivi qui sotto il tuo messaggio e poi invia.</p>
       {% if form.errors %}
         <p class="alert alert-danger" role="alert">
           Per favore, correggi gli errori qui sotto.

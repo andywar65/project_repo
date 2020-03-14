@@ -14,6 +14,12 @@ class User(AbstractUser):
         else:
             return self.username
 
+    def get_short_name(self):
+        if self.first_name:
+            return self.first_name
+        else:
+            return self.username
+
     def save(self, *args, **kwargs):
         super(User, self).save(*args, **kwargs)
         if self.is_active:
