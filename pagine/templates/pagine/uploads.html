@@ -1,7 +1,10 @@
+{% load fb_versions %}
 <div class="card" style="margin-bottom: 20px; min-width: 18rem;">
   <div class="card-header">
-    {% if upload.user.member.avatar %}{{ upload.user.member.get_thumb }}{% endif %}
-    {{ upload.user.get_full_name_reverse }}, caricato il {{ upload.date|date:"d M Y"}}
+    {% if upload.user.profile.avatar %}
+    <img src="{% version upload.user.profile.avatar 'admin_thumbnail' %}" width="32px" class="rounded-circle">
+    {% endif %}
+    {{ upload.user.get_full_name }}, caricato il {{ upload.date|date:"d M Y"}}
   </div>
     {% if upload.image %}
     <img class="card-img-top" src="{{ upload.image.url }}" width="100%" alt="" />
