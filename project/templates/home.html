@@ -1,89 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}RP | Home{%endblock title %}
+{% block title %}SP | Home{%endblock title %}
 {% block extra-head %}
 {% endblock extra-head %}
 
-{% block image_header %}
-<div class="row" style="margin-top: 55px;">
-  <img src="{% static 'images/header_RP_2.png'%}" width="100%" alt="Header RP" />
-</div>
-{% endblock image_header %}
-
 {% block content %}
-<h4 class="text-center"><em>RP, Associazione Sportiva Dilettantistica, scuola di atletica e di vita!</em></h4>
-<div class="card-deck">
-  <div class="card text-center" style="margin-bottom: 20px; min-width: 18rem; ">
-    <div class="card-body">
-      <h4 class="card-title">Corri con noi</h4>
-      <p class="card-text">Come iscriversi, le convenzioni ecc...</p>
-      <a href="/iscrizioni" class="btn btn-success btn-lg btn-block">Vai!</a>
-    </div>
-  </div>
-  <div class="card text-center" style="margin-bottom: 20px; min-width: 18rem; ">
-    <div class="card-body">
-      <h4 class="card-title">Appuntamenti Giovanile</h4>
-      <p class="card-text">Gare, allenamenti e tanto altro...</p>
-      <a href="/calendario/?categoria=giovanile" class="btn btn-success btn-lg btn-block">Vai!</a></div>
-  </div>
-  <div class="card text-center" style="margin-bottom: 20px; min-width: 18rem; ">
-    <div class="card-body">
-      <h4 class="card-title">Criterium</h4>
-      <p class="card-text">La classifica dei vecchietti...</p>
-      <a href="/criterium" class="btn btn-success btn-lg btn-block">Vai!</a>
-    </div>
-  </div>
+<div class="row">
+  {{ page.carousel.render }}
 </div>
-<a href="/calendario/"><h4><strong>Appuntamenti e cronache</strong></h4></a>
-{% if all_events %}
+<h4 class="text-left"><strong><em>{{ page.intro }}</em></strong></h4>
+{% if actions %}
+<hr class="mb-4">
 <div class="card-deck">
-{% for event in all_events %}
-  <div class="card border-{{ event.get_badge_color }}" style="margin-bottom: 20px; min-width: 18rem; ">
-    <div class="card-header">
-      <h1 class="display-4"><span class="badge badge-{{ event.get_badge_color }}">{{ event.date|date:"j" }}</span></h1>
-      <a href="/calendario/{{ event.date|date:"Y/m" }}/"><h4>{{ event.date|date:"M-Y" }}</h4></a>
-    </div>
-    <a href="/calendario/{{ event.date|date:"Y/m/d" }}/{{ event.slug }}">
-      <img class="card-img-top" src="{{ event.get_image.url }}" alt="{{ event.intro }}">
-    </a>
+  {% for action in actions %}
+  <div class="card text-center" style="margin-bottom: 20px; min-width: 18rem; ">
     <div class="card-body">
-      <a href="/calendario/{{ event.date|date:"Y/m/d" }}/{{ event.slug }}">
-        <h4 class="card-title">{{ event.title }}</h4>
-      </a>
-      <em class="card-text">{{ event.intro }}</em>
-      <ul class="list-inline">
-
-        <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{ event.date|date:"l" }}</li>
-        <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ event.date|date:"H:i" }}</li>
-        <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i>
-          <a href="/luoghi/{{ event.location.slug }}">{{ event.location.title }}</a></li>
-        {% if event.manager %}
-          <li class="list-inline-item">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            {% if user.is_authenticated %}
-              <a href="/contacts/?recipient={{ event.manager_id }}">{{ event.manager.get_full_name_reverse }}</a>
-            {% else %}
-              {{ event.manager.get_full_name_reverse }}
-            {% endif %}
-          </li>
-        {% endif %}
-
-        {% if event.get_tags %}
-          <li class="list-inline-item">
-            <i class="fa fa-folder-open" aria-hidden="true"></i>
-            {% for tag in event.get_tags %}
-              <a href="/calendario/?categoria={{ tag }}">{{ tag|upper }}</a>
-            {% endfor %}
-          </li>
-        {% endif %}
-      </ul>
+      <h4 class="card-title">{{ action.text }}</h4>
+      <a href="{{ action.link }}" class="btn btn-primary btn-lg btn-block">Vai!</a>
     </div>
   </div>
-{% endfor %}
+  {% endfor %}
 </div>
-{% else %}
-<p>Non ci sono eventi in calendario</p>
 {% endif %}
 <hr class="mb-4">
 <a href="/articoli/"><h4><strong>Articoli di approfondimento</strong></h4></a>

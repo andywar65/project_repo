@@ -115,7 +115,7 @@ class UserUpload(models.Model):
 class HomePage(models.Model):
 
     carousel = StreamField(model_list=[ LandscapeGallery, ],
-        null=True, blank=True, verbose_name="Galleria",
+        null=True, blank=True, verbose_name="Galleria orizzontale",
         help_text="Una sola galleria, per favore, larghezza minima immagini 2048px")
     intro = models.CharField('Sottotitolo', max_length = 100,
         null=True, blank=True, help_text = 'Il sito in due parole')
