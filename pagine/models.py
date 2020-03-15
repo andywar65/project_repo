@@ -66,6 +66,13 @@ class Blog(models.Model):
             clic su 'Vai'.
             """)
 
+    def get_image(self):
+        if self.carousel:
+            gallery_list = self.carousel.from_json()[0]
+            gallery = LandscapeGallery.objects.filter( id__in = gallery_list['id'] ).first()
+            return gallery.fb_image
+        return
+
     def get_path(self):
         return '/articoli/' + self.slug
 

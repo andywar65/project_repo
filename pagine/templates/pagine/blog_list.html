@@ -26,7 +26,9 @@
       <a href="/articoli/{{ post.slug }}">
         {{ post.title }}</a></h4>
     </div>
-    <img class="card-img-top" src="{{ post.fb_image.url }}" alt="{{ post.intro }}">
+    {% if post.get_image %}
+    <img class="card-img-top" src="{{ post.get_image.url }}" alt="{{ post.intro }}">
+    {% endif %}
     <div class="card-body">
       <em class="card-text">{{ post.intro }}</em>
       <ul class="list-inline">

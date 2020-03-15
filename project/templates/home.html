@@ -34,9 +34,9 @@
       <a href="/articoli/{{ post.slug }}">
         <h4 class="card-title">{{ post.title }}</h4></a>
     </div>
-    <a href="/articoli/{{ post.slug }}">
-      <img class="card-img-top" src="{{ post.fb_image.url }}" alt="{{ post.intro }}">
-    </a>
+    {% if post.get_image %}
+      <img class="card-img-top" src="{{ post.get_image.url }}" alt="{{ post.intro }}">
+    {% endif %}
     <div class="card-body">
       <em class="card-text">{{ post.intro }}</em>
       <ul class="list-inline">
