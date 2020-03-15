@@ -16,7 +16,8 @@
   {% for action in actions %}
   <div class="card text-center" style="margin-bottom: 20px; min-width: 18rem; ">
     <div class="card-body">
-      <h4 class="card-title">{{ action.text }}</h4>
+      <h4 class="card-title">{{ action.title }}</h4>
+      <p class="card-text">{{ action.subtitle }}</p>
       <a href="{{ action.link }}" class="btn btn-primary btn-lg btn-block">Vai!</a>
     </div>
   </div>

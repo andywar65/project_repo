@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (ListView, DetailView, CreateView,
     TemplateView)
 from taggit.models import Tag
-from streamblocks.models import LinkableList
+from streamblocks.models import HomeButton
 
 from .forms import UserUploadForm
 from .models import (UserUpload, Blog, HomePage, Institutional)
@@ -21,7 +21,7 @@ class HomeTemplateView(TemplateView):
         context['posts'] = Blog.objects.all()[:6]
         actions = context['page'].action.from_json()
         for action in actions:
-            context['actions'] = LinkableList.objects.filter(id__in = action['id'])[:3]
+            context['actions'] = HomeButton.objects.filter(id__in = action['id'])[:3]
         return context
 
 class TagMixin:
