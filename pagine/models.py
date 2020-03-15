@@ -1,4 +1,6 @@
 from datetime import datetime
+from django.conf import settings
+from django.core.mail import EmailMessage
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.timezone import now
@@ -83,6 +85,21 @@ class Blog(models.Model):
         if not self.slug:
             self.slug = generate_unique_slug(Blog, self.title)
         self.last_updated = now()
+        if self.notice == 'SPAM':
+            message = self.title + '\n'
+            message += self.intro + '\n'
+            url = settings.BASE_URL + self.get_path()
+            message += 'Fai click su questo link per leggerlo: ' + url + '\n'
+            recipients = User.objects.filter(
+                is_active = True, profile__no_spam = True, )
+            mailto = []
+            for recipient in recipients:
+                mailto.append(recipient.email)
+            subject = 'Nuovo articolo'
+            email = EmailMessage(subject, message, settings.SERVER_EMAIL,
+                [mailto])
+            email.send()
+            self.notice = 'DONE'
         super(Blog, self).save(*args, **kwargs)
         #update parent_type end parent_id in IndexedParagraph streamblocks
         type = ContentType.objects.get(app_label='pagine', model='blog').id

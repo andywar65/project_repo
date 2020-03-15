@@ -16,7 +16,7 @@ class BlogAdmin(admin.ModelAdmin):
     search_fields = ('title', 'date', 'intro', )
     inlines = [ UserUploadInline,  ]
     form = BlogForm
-    actions = ['send_notice', ]
+    #actions = ['send_notice', ]
 
     def send_notice(self, request, queryset):
         for post in queryset:
