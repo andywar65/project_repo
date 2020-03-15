@@ -115,6 +115,17 @@ class LinkableList(models.Model):
         verbose_name="Lista con link"
         verbose_name_plural="Liste con link"
 
+class HomeButton(models.Model):
+    title = models.CharField("Titolo", max_length = 100, null=True )
+    subtitle = models.CharField("Sottotitolo", max_length = 200, null=True )
+    link = models.URLField("Link", max_length = 200, null=True, )
+
+    as_list = True
+
+    class Meta:
+        verbose_name="Pulsante di Home Page"
+        verbose_name_plural="Pulsanti di Home Page"
+
 class BoxedText(models.Model):
     color = models.CharField('Colore', max_length=10, choices = COLOR,
         default='success')
@@ -133,4 +144,5 @@ STREAMBLOCKS_MODELS = [
     DownloadableFile,
     LinkableList,
     BoxedText,
+    HomeButton,
 ]

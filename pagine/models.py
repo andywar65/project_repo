@@ -7,7 +7,7 @@ from filebrowser.fields import FileBrowseField
 from taggit.managers import TaggableManager
 from streamfield.fields import StreamField
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
-    LandscapeGallery, DownloadableFile, LinkableList, BoxedText, )
+    LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
 from users.models import User
 from .choices import *
 
@@ -119,7 +119,7 @@ class HomePage(models.Model):
         help_text="Una sola galleria, per favore, larghezza minima immagini 2048px")
     intro = models.CharField('Sottotitolo', max_length = 100,
         null=True, blank=True, help_text = 'Il sito in due parole')
-    action = StreamField(model_list=[ LinkableList, ],
+    action = StreamField(model_list=[ HomeButton, ],
         null=True, blank=True, verbose_name="Pulsanti di azione",
         help_text="Link a pagine sponsorizzate.")
 
