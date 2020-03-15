@@ -3,6 +3,7 @@ from django.core.mail import EmailMessage
 from django.contrib import admin
 from .models import ( UserUpload, Blog, HomePage, Institutional)
 from .forms import BlogForm
+from users.models import Profile
 
 class UserUploadInline(admin.TabularInline):
     model = UserUpload
@@ -11,7 +12,7 @@ class UserUploadInline(admin.TabularInline):
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('title', 'intro', 'date', 'author', )
+    list_display = ('title', 'date', 'author', 'notice', )
     search_fields = ('title', 'date', 'intro', )
     inlines = [ UserUploadInline,  ]
     form = BlogForm
@@ -22,12 +23,12 @@ class BlogAdmin(admin.ModelAdmin):
             message = post.title + '\n'
             message += post.intro + '\n'
             url = settings.BASE_URL + post.get_path()
-            message += 'Fai click su questo link: ' + url + '\n'
+            message += 'Fai click su questo link per leggerlo: ' + url + '\n'
             recipients = Profile.objects.filter(
                 user__is_active = True, no_spam = True, )
             mailto = []
             for recipient in recipients:
-                mailto.append(recipient.user__email)
+                mailto.append(recipient.user.email)
             subject = 'Nuovo articolo'
             email = EmailMessage(subject, message, settings.SERVER_EMAIL,
                 [mailto])
