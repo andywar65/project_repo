@@ -10,7 +10,7 @@ from .forms import UserUploadForm
 from .models import (UserUpload, Blog, HomePage, Institutional)
 
 class HomeTemplateView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'pagine/home.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -74,7 +74,7 @@ def get_page(context, type):
     return context
 
 class PrivacyTemplateView(TemplateView):
-    template_name = 'direzione/privacy.html'
+    template_name = 'pagine/privacy.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
