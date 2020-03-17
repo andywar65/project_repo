@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import EmailMessage
 from filebrowser.fields import FileBrowseField
+from filebrowser.base import FileObject
 
 class User(AbstractUser):
 
@@ -35,9 +36,8 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE,
         primary_key=True, editable=False)
-    avatar = FileBrowseField("Avatar", max_length=200, directory="users/",
-        extensions=[".jpg", ".png", ".jpeg", ".gif", ".tif", ".tiff"],
-        null=True, blank=True)
+    avatar = models.ImageField(blank = True, null=True,
+        upload_to = 'uploads/users/')
     no_spam = models.BooleanField(default = True,
         verbose_name = 'Mailing list',
         help_text = 'Vuoi ricevere notifiche sugli eventi?',)
@@ -45,6 +45,9 @@ class Profile(models.Model):
     def get_full_name(self):
         return self.user.get_full_name()
     get_full_name.short_description = 'Nome'
+
+    def get_thumb(self):
+        return FileObject(self.avatar.path)
 
     def __str__(self):
         return self.user.get_full_name()
