@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}RP | Informativa sulla privacy{%endblock title %}
+{% block title %}SP | Informativa sulla privacy{%endblock title %}
 {% block extra-head %}
 {% endblock extra-head %}
 
@@ -19,9 +19,9 @@
     </ul>
     <h4 id="dati-generali">Dati generali</h4>
     <ul>
-      <li>Titolare: {{ society.president.get_full_name_reverse }} (Presidente)</li>
-      <li>Sede: {{ society.location.address }}</li>
-      <li>Indirizzo Email: {{ society.location.email }}</li>
+      <li>Titolare: Scrivi qui il nome del titolare</li>
+      <li>Sede: Scrivi qui la sede</li>
+      <li>Indirizzo Email: Scrivi qui l'indirizzo email</li>
     </ul>
     <div>
       {{ page.stream.render }}
