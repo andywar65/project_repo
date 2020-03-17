@@ -18,8 +18,8 @@ def get_secret(setting, secrets=secrets):
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'rifondazionepodistica.it',
-    'www.rifondazionepodistica.it',
+    get_secret('ALLOWED_HOSTS'),
+    'www.' + get_secret('ALLOWED_HOSTS'),
 ]
 
 WSGI_APPLICATION = 'project.wsgi_prod.application'
@@ -29,16 +29,15 @@ WSGI_APPLICATION = 'project.wsgi_prod.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',#this is different!
         'NAME': get_secret('NAME'),
         'USER': get_secret('USER'),
         'PASSWORD': get_secret('PASSWORD'),
         'HOST': get_secret('HOST'),
         'PORT': get_secret('PORT'),
-    }
+    },
 }
 
-#control if you can use same keys as staging
 RECAPTCHA_PUBLIC_KEY = get_secret('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = get_secret('RECAPTCHA_PRIVATE_KEY')
 
@@ -49,23 +48,24 @@ EMAIL_HOST = get_secret('EMAIL_HOST')
 EMAIL_PORT = get_secret('EMAIL_PORT')
 EMAIL_HOST_USER = get_secret('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = get_secret('EMAIL_HOST_PASSWORD')
-SERVER_EMAIL = 'no-reply@rifondazionepodistica.it'
-DEFAULT_FROM_EMAIL = 'no-reply@rifondazionepodistica.it'
-DEFAULT_RECIPIENT = 'rifondazionepodistica96@gmail.com'
+EMAIL_USE_SSL = True
+SERVER_EMAIL = get_secret('SERVER_EMAIL')
+DEFAULT_FROM_EMAIL = get_secret('DEFAULT_FROM_EMAIL')
+DEFAULT_RECIPIENT = get_secret('DEFAULT_RECIPIENT')
 
-STATIC_ROOT = '/home/apperilli/webapps/rpteststatic/'
-STATIC_URL = 'https://rifondazionepodistica.it/static/'
+STATIC_ROOT = get_secret('STATIC_ROOT')# no trailing slash
+STATIC_URL = get_secret('BASE_URL') + '/static/'
 
-MEDIA_ROOT = '/home/apperilli/webapps/rpteststatic/media/'
-MEDIA_URL = 'https://rifondazionepodistica.it/media/'
+MEDIA_ROOT = get_secret('MEDIA_ROOT')# no trailing slash
+MEDIA_URL = get_secret('BASE_URL') + '/media/'
 
 SECRET_KEY = get_secret('SECRET_KEY')
 
-REST_API_TARGET = 'http://???.webfactional.com/wp-json/wp/v2/'
+REST_API_TARGET = get_secret('REST_API_TARGET') + '/wp-json/wp/v2/'
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'https://rifondazionepodistica.it'
+BASE_URL = get_secret('BASE_URL')
 
 try:
     from .local import *

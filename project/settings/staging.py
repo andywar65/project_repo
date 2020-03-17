@@ -18,8 +18,8 @@ def get_secret(setting, secrets=secrets):
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'digitalkomix.com',
-    'www.digitalkomix.com',
+    get_secret('ALLOWED_HOSTS'),
+    'www.' + get_secret('ALLOWED_HOSTS'),
 ]
 
 WSGI_APPLICATION = 'project.wsgi_stag.application'
@@ -49,23 +49,23 @@ EMAIL_PORT = get_secret('EMAIL_PORT')
 EMAIL_HOST_USER = get_secret('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = get_secret('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = True
-SERVER_EMAIL = 'no_reply@rifondazionepodistica.it'
-DEFAULT_FROM_EMAIL = 'no_reply@rifondazionepodistica.it'
-DEFAULT_RECIPIENT = 'rifondazionepodistica96@gmail.com'
+SERVER_EMAIL = get_secret('SERVER_EMAIL')
+DEFAULT_FROM_EMAIL = get_secret('DEFAULT_FROM_EMAIL')
+DEFAULT_RECIPIENT = get_secret('DEFAULT_RECIPIENT')
 
-STATIC_ROOT = '/home/andywar65/apps/rpnew_static'# no trailing slash
-STATIC_URL = 'https://digitalkomix.com/static/'
+STATIC_ROOT = get_secret('STATIC_ROOT')# no trailing slash
+STATIC_URL = get_secret('BASE_URL') + '/static/'
 
-MEDIA_ROOT = '/home/andywar65/apps/rpnew_media'# no trailing slash
-MEDIA_URL = 'https://digitalkomix.com/media/'
+MEDIA_ROOT = get_secret('MEDIA_ROOT')# no trailing slash
+MEDIA_URL = get_secret('BASE_URL') + '/media/'
 
 SECRET_KEY = get_secret('SECRET_KEY')
 
-REST_API_TARGET = 'https://rifondazionepodistica.it/wp-json/wp/v2/'
+REST_API_TARGET = get_secret('REST_API_TARGET') + '/wp-json/wp/v2/'
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'https://digitalkomix.com'
+BASE_URL = get_secret('BASE_URL')
 
 try:
     from .local import *
