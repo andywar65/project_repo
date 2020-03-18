@@ -14,9 +14,8 @@ class HomeTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        try:
-            context['page'] = HomePage.objects.first()
-        except:
+        context['page'] = HomePage.objects.first()
+        if not context['page']:
             raise Http404("Non ci sono Home Page")
         context['posts'] = Blog.objects.all()[:6]
         actions = context['page'].action.from_json()
