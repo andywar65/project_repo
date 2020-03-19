@@ -66,10 +66,11 @@ class Blog(models.Model):
             """)
 
     def get_image(self):
-        if self.carousel:
-            gallery_list = self.carousel.from_json()[0]
-            gallery = LandscapeGallery.objects.filter( id__in = gallery_list['id'] ).first()
-            return gallery.fb_image
+        gallery_list = self.carousel.from_json()
+        if gallery_list:
+            gallery = gallery_list[0]
+            image = LandscapeGallery.objects.filter( id__in = gallery['id'] ).first()
+            return image.fb_image
         return
 
     def get_path(self):
