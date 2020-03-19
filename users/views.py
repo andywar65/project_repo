@@ -23,6 +23,7 @@ class GetMixin:
         return self.render_to_response(context)
 
 def registration_message( username, password ):
+    #TODO have some info in settings
     message = f"""
         Ciao {username}! \n
         Abbiamo ricevuto la tua registrazione al sito di Startup Project.\n
@@ -49,7 +50,7 @@ class RegistrationFormView(GetMixin, FormView):
         password = User.objects.make_random_password()
         user.password = make_password(password)
         user.save()
-        subject = 'Credenziali di accesso ad RP'
+        subject = 'Credenziali di accesso allo SP'#TODO have site name in settings
         body = registration_message(user.username, password)
         mailto = [ user.email, ]
         email = EmailMessage(subject, body, settings.SERVER_EMAIL, mailto)
