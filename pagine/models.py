@@ -60,9 +60,8 @@ class Blog(models.Model):
         through=None, blank=True)
     notice = models.CharField(max_length = 4, choices = NOTICE,
         blank = True, null = True, verbose_name = 'Notifica via email',
-        help_text = """Non invia in automatico, per farlo seleziona l'Evento
-            dalla Lista degli Eventi, imposta l'azione 'Invia notifica' e fai
-            clic su 'Vai'.
+        help_text = """Invia notifica in automatico selezionando
+            'Invia notifica' e salvando l'articolo.
             """)
 
     def get_image(self):
