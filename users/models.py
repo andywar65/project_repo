@@ -47,7 +47,9 @@ class Profile(models.Model):
     get_full_name.short_description = 'Nome'
 
     def get_thumb(self):
-        return FileObject(str(self.avatar))
+        if self.avatar:
+            return FileObject(str(self.avatar))
+        return
 
     def __str__(self):
         return self.user.get_full_name()
