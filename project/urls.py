@@ -23,8 +23,8 @@ from users import views as user_views
 from pagine.views import HomeTemplateView, PrivacyTemplateView
 from . import views
 
-admin.site.site_header = 'Amministrazione RP'
-admin.site.site_title = 'Amministrazione RP'
+admin.site.site_header = 'Amministrazione Startup Project'
+admin.site.site_title = 'Amministrazione Startup Project'
 
 urlpatterns = [
     path('admin/filebrowser/', site.urls),
