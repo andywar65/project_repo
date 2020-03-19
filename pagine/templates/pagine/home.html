@@ -31,7 +31,7 @@
 {% for post in posts %}
   <div class="card" style="margin-bottom: 20px; min-width: 18rem;">
     <div class="card-header">
-      <a href="/articoli/{{ post.slug }}">
+      <a href="/articoli/{{ post.date|date:"Y/m/d" }}/{{ post.slug }}">
         <h4 class="card-title">{{ post.title }}</h4></a>
     </div>
     {% if post.get_image %}
