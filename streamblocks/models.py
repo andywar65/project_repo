@@ -129,7 +129,7 @@ class HomeButton(models.Model):
 class BoxedText(models.Model):
     color = models.CharField('Colore', max_length=10, choices = COLOR,
         default='success')
-    body = models.TextField('Testo', null=True,)
+    body = models.TextField('Testo', null=True, help_text="Accetta tag HTML")
 
     class Meta:
         verbose_name="Testo in un box"
