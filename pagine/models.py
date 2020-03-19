@@ -73,7 +73,7 @@ class Blog(models.Model):
         return
 
     def get_path(self):
-        return '/articoli/' + self.slug
+        return '/articoli/' + self.date.strftime("%Y/%m/%d") + '/' + self.slug
 
     def get_uploads(self):
         return UserUpload.objects.filter(post_id=self.id)
