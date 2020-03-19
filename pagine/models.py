@@ -97,7 +97,7 @@ class Blog(models.Model):
                 mailto.append(recipient.email)
             subject = 'Nuovo articolo'
             email = EmailMessage(subject, message, settings.SERVER_EMAIL,
-                [mailto])
+                mailto)
             email.send()
             self.notice = 'DONE'
         super(Blog, self).save(*args, **kwargs)
