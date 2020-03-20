@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'pagine.apps.PagineConfig',
+    'blog.apps.BlogConfig',
     'streamblocks',
     'streamfield',
     'captcha',
