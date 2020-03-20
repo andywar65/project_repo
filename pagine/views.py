@@ -6,6 +6,7 @@ from django.views.generic import (ListView, DetailView, CreateView,
 from taggit.models import Tag
 from streamblocks.models import HomeButton
 
+from blog.models import Article
 from .models import ( HomePage, Institutional)
 
 class HomeTemplateView(TemplateView):
@@ -16,7 +17,7 @@ class HomeTemplateView(TemplateView):
         context['page'] = HomePage.objects.first()
         if not context['page']:
             raise Http404("Non ci sono Home Page")
-        context['posts'] = Blog.objects.all()[:6]
+        context['posts'] = Article.objects.all()[:6]
         actions = context['page'].action.from_json()
         for action in actions:
             context['actions'] = HomeButton.objects.filter(id__in = action['id'])[:3]
