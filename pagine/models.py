@@ -150,15 +150,15 @@ class HomePage(models.Model):
 class Institutional(models.Model):
     type = models.CharField('Tipo', max_length = 4, choices = TYPE, null = True)
     title = models.CharField('Titolo', max_length = 50)
-    slug = models.SlugField('Slug', max_length=50, null=True, unique = True)
+    slug = models.SlugField('Slug', max_length=50, null=True, unique = True,
+        help_text = """Titolo come appare nell'indirizzo della pagina,
+            solo lettere minuscole e senza spazi""")
     intro = models.TextField('Introduzione',
         blank= True, null=True, max_length = 200)
     stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
         Gallery, DownloadableFile, LinkableList, BoxedText, ],
         verbose_name="Testo" )
-    summary = models.BooleanField('Mostra sommario', default = True,
-        help_text = """Titolo come appare nell'indirizzo della pagina,
-            solo lettere minuscole e senza spazi""")
+    summary = models.BooleanField('Mostra sommario', default = True, )
 
     def get_paragraphs(self):
         paragraphs = []

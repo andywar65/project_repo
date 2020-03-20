@@ -97,16 +97,16 @@ class UserUploadCreateView(LoginRequiredMixin, CreateView):
             form.instance.post = Blog.objects.get(id=self.request.GET['post_id'])
         return super().form_valid(form)
 
-#this is used by different institutional pages depending on type
-def get_page(context, type):
-    page = get_object_or_404(Institutional, type=type)
+#this is used by different institutional pages depending on slug
+def get_page_by_slug(context, slug):
+    page = get_object_or_404(Institutional, slug=slug)
     context['page'] = page
     return context
 
 class PrivacyTemplateView(TemplateView):
-    template_name = 'pagine/privacy.html'
+    template_name = 'pagine/institutional_page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context = get_page(context, '3-PR')
+        context = get_page_by_slug(context, 'privacy')
         return context
