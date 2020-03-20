@@ -27,7 +27,17 @@ def search_results(request):
             Q(intro__icontains=q)|Q(id__in = up_list)|Q(id__in = bl_list))
         if blogs:
             success = True
+        #institutional page content type
+        in_type = ContentType.objects.get(app_label='pagine', model='institutional').id
+        #filter paragraphs by blog type
+        in_paragraphs = paragraphs.filter( parent_type = in_type )
+        #extract list of institutional pages
+        in_list = in_paragraphs.values_list('parent_id', flat = True)
+        inst = Institutional.objects.filter(Q(title__icontains=q)|
+            Q(intro__icontains=q)|Q(id__in = in_list))
+        if inst:
+            success = True
         return render(request, 'search_results.html', {'search': q,
-            'all_blogs': blogs, 'success': success})
+            'all_blogs': blogs, 'pages': inst, 'success': success})
     else:
         return render(request, 'search_results.html', {'success': success, })
