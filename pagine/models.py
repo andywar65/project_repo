@@ -11,7 +11,6 @@ from streamfield.fields import StreamField
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
 from users.models import User
-from .choices import *
 
 def generate_unique_slug(klass, field):
     """

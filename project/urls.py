@@ -36,7 +36,7 @@ urlpatterns = [
     path('search/', views.search_results, name='search_results'),
     path('', HomeTemplateView.as_view()),
     path('privacy/', PrivacyTemplateView.as_view(), name='privacy'),
-    path('articoli/', include('pagine.urls.posts', namespace = 'blog')),
+    path('articoli/', include('blog.urls.posts', namespace = 'blog')),
     path('streamfield/', include('streamfield.urls')),
     path('favicon.ico',
         RedirectView.as_view(url=settings.STATIC_ROOT + 'images/favicon.ico')),
