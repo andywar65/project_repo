@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if tags %}
+  <p>Filtra per categoria:
+  {% for tag_item in tags %}
+    {% if tag_item.name == tag_filter %}
+    {% else %}
+      <a href="{{ request.path }}?categoria={{ tag_item.name }}">{{ tag_item.name|upper }}</a>
+    {% endif %}
+  {% endfor %}
+  </p>
+{% endif %}
+{% block article_archive %}
+{% endblock article_archive %}
+{% endblock content %}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load fb_versions %}
+
+{% block title %}SP | {{ post.title }}{% endblock title %}
+
+{% block content %}
+    {% if post.carousel.render %}
+      <div class="row">
+        {{ post.carousel.render }}
+      </div>
+    {% endif %}
+      <div class="row row-striped">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <h3 class="text-uppercase"><strong>{{ post.title }}</strong></h3>
+          <ul class="list-inline">
+            {% if post.author %}
+            <li class="list-inline-item">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              {% if user.is_authenticated %}
+              <a href="/contacts/?recipient={{ post.author_id }}&subject={{ post.title }}">
+                {{ post.author.get_full_name }}</a>
+              {% else %}
+              {{ post.author.get_full_name }}
+              {% endif %}
+            </li>
+            {% endif %}
+            <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{ post.date|date:"d M Y" }}</li>
+            {% if post.get_tags %}
+              <li class="list-inline-item">
+                <i class="fa fa-folder-open" aria-hidden="true"></i>
+                {% for tag in post.get_tags %}
+                  <a href="/articoli/?categoria={{ tag }}">{{ tag|upper }}</a>
+                {% endfor %}
+              </li>
+            {% endif %}
+            {% if perms.blog.change_article %}
+            <li class="list-inline-item">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+              <a href="/admin/blog/article/{{ post.id }}/change/">Modifica</a>
+            </li>
+            {% endif %}
+          </ul>
+          <p>{{ post.intro }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          {{ post.stream.render }}
+          <hr class="mb-4">
+          {% if user.is_authenticated %}
+            <div class="row">
+              <h4 id="upload-anchor"><strong>Contributi</strong></h4>
+            </div>
+            <div class="row">
+              <a href="/articoli/contributi/?post_id={{ post.id }}">
+              Aggiungi un contributo</a>
+            </div>
+            <hr class="mb-4">
+            {% if post.get_uploads %}
+            <div class="card-deck">
+              {% for upload in post.get_uploads %}
+                {% include 'blog/uploads.html' %}
+              {% endfor %}
+            </div>
+            {% endif %}
+          {% else %}
+            <div class="row">
+              Esegui il <a href="/admin/login/?next={{ request.get_full_path }}">&nbsp;login&nbsp;</a> se vuoi aggiungere un contributo
+            </div>
+            <hr class="mb-4">
+          {% endif %}
+        </div>
+      </div>
+{% endblock content %}

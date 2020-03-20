@@ -1,0 +1,21 @@
+{% extends 'blog/article_archive_tags.html' %}
+
+{% block title %}SP | Articoli {{ day }}{% endblock title %}
+{% block article_archive %}
+<h4><strong>
+  Articoli del {{ day }}
+  {% if tag_filter %} nella categoria: {{ tag_filter|upper }}{% endif %}
+</strong></h4>
+{% include "blog/article_archive_list.html" %}
+<hr class="mb-4">
+  <nav aria-label="Page navigation container">
+  <ul class="pagination justify-content-center">
+    {% if previous_day %}
+    <li><a href="/articoli/{{ previous_day|date:"Y/m/d" }}" class="page-link">&laquo; PRECEDENTE </a></li>
+    {% endif %}
+    {% if next_day %}
+    <li><a href="/articoli/{{ next_day|date:"Y/m/d" }}" class="page-link"> SUCCESSIVO &raquo;</a></li>
+    {% endif %}
+  </ul>
+  </nav>
+{% endblock article_archive %}

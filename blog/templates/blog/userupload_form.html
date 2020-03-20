@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}SP | Aggiungi contributo{% endblock title %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h4><strong>Aggiungi un contributo</strong></h4>
+    <p>Ciao {{ user.get_short_name }}, inserisci qui sotto il tuo contributo e poi invia.</p>
+    <form action="" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
+              <div class="row">
+                <div class="col-md-9 mb-3">
+                  {{ form.image|as_crispy_field }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-9 mb-3">
+                  {{ form.body|as_crispy_field }}
+                </div>
+              </div>
+              {% include 'users/profile_includes/button.html' %}
+      {% csrf_token %}
+    </form>
+  </div>
+</div>
+{% endblock content %}
