@@ -1,11 +1,9 @@
-from datetime import datetime
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.timezone import now
 from django.utils.text import slugify
-from filebrowser.fields import FileBrowseField
 from taggit.managers import TaggableManager
 from streamfield.fields import StreamField
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,

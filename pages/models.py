@@ -1,33 +1,8 @@
-from datetime import datetime
-from django.conf import settings
-from django.core.mail import EmailMessage
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.utils.timezone import now
-from django.utils.text import slugify
-from filebrowser.fields import FileBrowseField
-from taggit.managers import TaggableManager
 from streamfield.fields import StreamField
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
-from users.models import User
-
-def generate_unique_slug(klass, field):
-    """
-    return unique slug if origin slug exists.
-    eg: `foo-bar` => `foo-bar-1`
-
-    :param `klass` is Class model.
-    :param `field` is specific field for title.
-    Thanks to djangosnippets.org!
-    """
-    origin_slug = slugify(field)
-    unique_slug = origin_slug
-    numb = 1
-    while klass.objects.filter(slug=unique_slug).exists():
-        unique_slug = '%s-%d' % (origin_slug, numb)
-        numb += 1
-    return unique_slug
 
 def update_indexed_paragraphs(stream_list, type, id):
     for block in stream_list:
