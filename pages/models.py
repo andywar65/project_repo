@@ -46,7 +46,7 @@ class HomePage(models.Model):
         null=True, blank=True, help_text = 'Il sito in due parole')
     action = StreamField(model_list=[ HomeButton, ],
         null=True, blank=True, verbose_name="Pulsanti di azione",
-        help_text="Link a pagine sponsorizzate.")
+        help_text="Link a pages sponsorizzate.")
 
     class Meta:
         verbose_name = 'Home Page'

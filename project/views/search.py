@@ -3,7 +3,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import render
 from django.db.models import Q
 from blog.models import Article, UserUpload
-from pagine.models import Institutional
+from pages.models import Institutional
 
 class ValidateForm(forms.Form):
     q = forms.CharField(max_length=100)
@@ -29,7 +29,7 @@ def search_results(request):
         if blogs:
             success = True
         #institutional page content type
-        in_type = ContentType.objects.get(app_label='pagine', model='institutional').id
+        in_type = ContentType.objects.get(app_label='pages', model='institutional').id
         #filter paragraphs by blog type
         in_paragraphs = paragraphs.filter( parent_type = in_type )
         #extract list of institutional pages

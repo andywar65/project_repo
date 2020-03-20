@@ -20,7 +20,7 @@ from django.urls import path, include
 from django.views.generic.base import RedirectView
 from filebrowser.sites import site
 from users import views as user_views
-from pagine.views import HomeTemplateView, PrivacyTemplateView
+from pages.views import HomeTemplateView, PrivacyTemplateView
 from . import views
 
 admin.site.site_header = 'Amministrazione Startup Project'
