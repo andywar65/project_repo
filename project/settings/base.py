@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'captcha',
     'taggit',
     'crispy_forms',
+    'treebeard',
 ]
 
 MIDDLEWARE = [
