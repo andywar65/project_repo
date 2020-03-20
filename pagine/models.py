@@ -150,13 +150,15 @@ class HomePage(models.Model):
 class Institutional(models.Model):
     type = models.CharField('Tipo', max_length = 4, choices = TYPE, null = True)
     title = models.CharField('Titolo', max_length = 50)
-    slug = models.SlugField('Slug', max_length=50, null=True)
+    slug = models.SlugField('Slug', max_length=50, null=True, unique = True)
     intro = models.TextField('Introduzione',
         blank= True, null=True, max_length = 200)
     stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
         Gallery, DownloadableFile, LinkableList, BoxedText, ],
         verbose_name="Testo" )
-    summary = models.BooleanField('Mostra sommario', default = True)
+    summary = models.BooleanField('Mostra sommario', default = True,
+        help_text = """Titolo come appare nell'indirizzo della pagina,
+            solo lettere minuscole e senza spazi""")
 
     def get_paragraphs(self):
         paragraphs = []
@@ -168,6 +170,15 @@ class Institutional(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = self.slug.lower()
+        super(Institutional, self).save(*args, **kwargs)
+        #update parent_type end parent_id in IndexedParagraph streamblocks
+        type = ContentType.objects.get(app_label='pagine', model='institutional').id
+        id = self.id
+        stream_list = self.stream.from_json()
+        update_indexed_paragraphs(stream_list, type, id)
 
     class Meta:
         verbose_name = 'Pagina istituzionale'
