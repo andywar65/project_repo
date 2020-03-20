@@ -148,7 +148,6 @@ class HomePage(models.Model):
         verbose_name = 'Home Page'
 
 class Institutional(models.Model):
-    type = models.CharField('Tipo', max_length = 4, choices = TYPE, null = True)
     title = models.CharField('Titolo', max_length = 50)
     slug = models.SlugField('Slug', max_length=50, null=True, unique = True,
         help_text = """Titolo come appare nell'indirizzo della pagina,
