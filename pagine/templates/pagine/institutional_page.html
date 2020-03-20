@@ -8,6 +8,10 @@
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8" style="margin-left: 15px; margin-right: 15px; margin-top: 30px;">
+    {% if perms.pagine.change_institutional %}
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+      <a href="/admin/pagine/institutional/{{ page.id }}/change/">Modifica pagina</a>
+    {% endif %}
     <h4><strong>{{ page.title }}</strong></h4>
     <p id="sommario"><em>{{ page.intro }}</em></p>
     {% if page.summary %}
