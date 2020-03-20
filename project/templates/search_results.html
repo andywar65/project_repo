@@ -9,14 +9,24 @@
   <div class="col-md-2"></div>
   <div class="col-md-8">
     {% if success %}
-    <h4><strong>Ricerca per il termine: "{{ search }}"</strong></h4>
+    <h4><strong>Ricerca di: "{{ search }}"</strong></h4>
       {% if all_blogs %}
-        <h5>Approfondimenti</h5>
+        <h5>Articoli</h5>
         {% for blog in all_blogs %}
           <ul>
             <li>
               <p><a href="{{ blog.get_path }}">{{ blog.title }}&nbsp;</a>
               {{ blog.date|date:"d M Y" }}</p>
+            </li>
+          </ul>
+        {% endfor %}
+      {% endif %}
+      {% if pages %}
+        <h5>Pagine</h5>
+        {% for page in pages %}
+          <ul>
+            <li>
+              <a href="/{{ page.slug }}">{{ page.title }}&nbsp;</a>
             </li>
           </ul>
         {% endfor %}
