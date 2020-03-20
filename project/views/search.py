@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import render
 from django.db.models import Q
-from pagine.models import (Blog, UserUpload)
+from pagine.models import (Blog, Institutional, UserUpload)
 
 class ValidateForm(forms.Form):
     q = forms.CharField(max_length=100)
