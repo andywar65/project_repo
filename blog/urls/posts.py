@@ -3,7 +3,7 @@ from blog.views import (ArticleArchiveIndexView, ArticleYearArchiveView,
     ArticleMonthArchiveView, ArticleDayArchiveView, DetailArticle,
     UserUploadCreateView)
 
-app_name = 'article'
+app_name = 'blog'
 urlpatterns = [
     path('', ArticleArchiveIndexView.as_view(), name = 'post_index'),
     path('<int:year>/', ArticleYearArchiveView.as_view(),

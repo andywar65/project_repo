@@ -37,6 +37,7 @@ urlpatterns = [
     path('', HomeTemplateView.as_view()),
     path('privacy/', PrivacyTemplateView.as_view(), name='privacy'),
     path('articoli/', include('blog.urls.posts', namespace = 'blog')),
+    path('docs/', include('pages.urls.tree_pages', namespace = 'docs')),
     path('streamfield/', include('streamfield.urls')),
     path('favicon.ico',
         RedirectView.as_view(url=settings.STATIC_ROOT + 'images/favicon.ico')),
