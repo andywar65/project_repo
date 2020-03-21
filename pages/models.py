@@ -41,7 +41,7 @@ class TreePage(MP_Node):
     summary = models.BooleanField('Mostra sommario', default = True, )
     last_updated = models.DateTimeField(editable=False, null=True)
 
-    node_order_by = ['title']
+    #node_order_by = ['title']
 
     def get_paragraphs(self):
         paragraphs = []
@@ -55,11 +55,24 @@ class TreePage(MP_Node):
         self.slug = self.slug.lower()
         self.last_updated = now()
         super(TreePage, self).save(*args, **kwargs)
+        #update path in tree page path
+        try:
+            tpp = TreePagePath.objects.get(page_id = self.id)
+        except:
+            tpp = TreePagePath.objects.create(page = self)
+            tpp.save()
+        if self.get_parent():
+            tpp.path = self.get_parent().treepagepath.path + '/' + self.slug
+        else:
+            tpp.path = '/' + self.slug
+        tpp.save()
         #update parent_type end parent_id in IndexedParagraph streamblocks
-        type = ContentType.objects.get(app_label='pages', model='treepage').id
-        id = self.id
-        stream_list = self.stream.from_json()
-        update_indexed_paragraphs(stream_list, type, id)
+        #sometimes from_json not working, hence the if
+        if not isinstance(self.stream, str):
+            type = ContentType.objects.get(app_label='pages', model='treepage').id
+            id = self.id
+            stream_list = self.stream.from_json()
+            update_indexed_paragraphs(stream_list, type, id)
 
     def __str__(self):
         return self.title
@@ -67,6 +80,12 @@ class TreePage(MP_Node):
     class Meta:
         verbose_name = 'Pagina ad albero'
         verbose_name_plural = 'Pagine ad albero'
+
+class TreePagePath(models.Model):
+
+    page = models.OneToOneField(TreePage, on_delete=models.CASCADE,
+        primary_key=True, )
+    path = models.CharField( max_length=100, null=True, )
 
 class Institutional(models.Model):
     title = models.CharField('Titolo', max_length = 50)
