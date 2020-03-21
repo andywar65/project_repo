@@ -1,3 +1,4 @@
+from django.utils.timezone import now
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from treebeard.mp_tree import MP_Node
@@ -29,8 +30,36 @@ class HomePage(models.Model):
 
 class TreePage(MP_Node):
     title = models.CharField('Titolo', max_length = 50)
+    slug = models.SlugField('Slug', max_length=50, null=True, unique = True,
+        help_text = """Titolo come appare nell'indirizzo della pagina,
+            solo lettere minuscole e senza spazi""")
+    intro = models.TextField('Introduzione',
+        blank= True, null=True, max_length = 200)
+    stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
+        Gallery, DownloadableFile, LinkableList, BoxedText, ],
+        verbose_name="Testo" )
+    summary = models.BooleanField('Mostra sommario', default = True, )
+    last_updated = models.DateTimeField(editable=False, null=True)
 
     node_order_by = ['title']
+
+    def get_paragraphs(self):
+        paragraphs = []
+        for block in self.stream.from_json():
+            if block['model_name'] == 'IndexedParagraph':
+                par = IndexedParagraph.objects.get(id=block['id'])
+                paragraphs.append( (par.get_slug, par.title) )
+        return paragraphs
+
+    def save(self, *args, **kwargs):
+        self.slug = self.slug.lower()
+        self.last_updated = now()
+        super(TreePage, self).save(*args, **kwargs)
+        #update parent_type end parent_id in IndexedParagraph streamblocks
+        type = ContentType.objects.get(app_label='pages', model='treepage').id
+        id = self.id
+        stream_list = self.stream.from_json()
+        update_indexed_paragraphs(stream_list, type, id)
 
     def __str__(self):
         return self.title
