@@ -25,7 +25,7 @@
     <div>
       {{ page.stream.render }}
     </div>
-    <a href="#sommario">Torna al sommario</a>
+    {% if page.summary %}<a href="#sommario">Torna al sommario</a>{% endif %}
   </div>
 </div>
 {% endblock content %}
