@@ -1,13 +1,10 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import (ListView, DetailView, CreateView,
-    TemplateView)
-from taggit.models import Tag
+from django.views.generic import ( DetailView, TemplateView )
 from streamblocks.models import HomeButton
 
 from blog.models import Article
-from .models import ( HomePage, Institutional)
+from .models import ( HomePage, TreePage, Institutional)
 
 class HomeTemplateView(TemplateView):
     template_name = 'pages/home.html'
@@ -24,8 +21,8 @@ class HomeTemplateView(TemplateView):
         return context
 
 #this is used by different institutional pages depending on slug
-def get_page_by_slug(context, slug):
-    page = get_object_or_404(Institutional, slug=slug)
+def get_page_by_slug(context, klass, slug):
+    page = get_object_or_404( klass, slug=slug)
     context['page'] = page
     return context
 
@@ -34,5 +31,10 @@ class PrivacyTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context = get_page_by_slug(context, 'privacy')
+        context = get_page_by_slug(context, Institutional, 'privacy')
         return context
+
+class TreePageDetailView(DetailView):
+    model = TreePage
+    context_object_name = 'page'
+    slug_field = 'slug'
