@@ -38,3 +38,4 @@ class TreePageDetailView(DetailView):
     model = TreePage
     context_object_name = 'page'
     slug_field = 'slug'
+    template_name = 'pages/tree_page.html'
