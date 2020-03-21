@@ -1,5 +1,6 @@
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from treebeard.mp_tree import MP_Node
 from streamfield.fields import StreamField
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
@@ -21,10 +22,22 @@ class HomePage(models.Model):
         null=True, blank=True, help_text = 'Il sito in due parole')
     action = StreamField(model_list=[ HomeButton, ],
         null=True, blank=True, verbose_name="Pulsanti di azione",
-        help_text="Link a pages sponsorizzate.")
+        help_text="Link a pagine sponsorizzate.")
 
     class Meta:
         verbose_name = 'Home Page'
+
+class TreePage(MP_Node):
+    title = models.CharField('Titolo', max_length = 50)
+
+    node_order_by = ['title']
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Pagina ad albero'
+        verbose_name_plural = 'Pagine ad albero'
 
 class Institutional(models.Model):
     title = models.CharField('Titolo', max_length = 50)
