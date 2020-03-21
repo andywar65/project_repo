@@ -30,7 +30,7 @@ class HomePage(models.Model):
 
 class TreePage(MP_Node):
     title = models.CharField('Titolo', max_length = 50)
-    slug = models.SlugField('Slug', max_length=50, null=True, unique = True,
+    slug = models.SlugField('Slug', max_length=50, null=True, unique = False,
         help_text = """Titolo come appare nell'indirizzo della pagina,
             solo lettere minuscole e senza spazi""")
     intro = models.TextField('Introduzione',
