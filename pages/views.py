@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, DetailView
 from streamblocks.models import HomeButton
 
 from blog.models import Article
-from .models import ( HomePage, TreePage, Institutional)
+from .models import ( HomePage, TreePage )
 
 class HomeTemplateView(TemplateView):
     template_name = 'pages/home.html'
@@ -20,18 +20,18 @@ class HomeTemplateView(TemplateView):
             context['actions'] = HomeButton.objects.filter(id__in = action['id'])[:3]
         return context
 
-#this is used by different institutional pages depending on slug
+#this is used by different pages depending on slug
 def get_page_by_slug(context, klass, slug):
     page = get_object_or_404( klass, slug=slug)
     context['page'] = page
     return context
 
 class PrivacyTemplateView(TemplateView):
-    template_name = 'pages/institutional_page.html'
+    template_name = 'pages/tree_page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context = get_page_by_slug(context, Institutional, 'privacy')
+        context = get_page_by_slug(context, TreePage, 'privacy')
         return context
 
 class TreePageDetailView(DetailView):
