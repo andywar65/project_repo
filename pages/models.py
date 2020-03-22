@@ -43,6 +43,15 @@ class TreePage(MP_Node):
 
     #node_order_by = ['title']
 
+    def get_path(self):
+        path = '/docs/'
+        ancestors = self.get_ancestors()
+        if ancestors:
+            for ancestor in ancestors:
+                path += ancestor.slug + '/'
+        path += self.slug
+        return path
+
     def get_paragraphs(self):
         paragraphs = []
         for block in self.stream.from_json():
