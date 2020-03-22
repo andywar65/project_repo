@@ -1,0 +1,11 @@
+<h4>Navigazione</h4>
+  <ul>
+    {% with parent=page.get_parent %}{% if parent %}<li>
+      <a href="{{ parent.get_path }}">{{ parent.title }}</a></li>{% endif %}{% endwith %}
+    {% with previous=page.get_previous_sibling %}{% if previous %}<li>
+      <a href="{{ previous.get_path }}">{{ previous.title }}</a></li>{% endif %}{% endwith %}
+    {% with next=page.get_next_sibling %}{% if next %}<li>
+      <a href="{{ next.get_path }}">{{ next.title }}</a></li>{% endif %}{% endwith %}
+    {% with child=page.get_first_child %}{% if child %}<li>
+      <a href="{{ child.get_path }}">{{ child.title }}</a></li>{% endif %}{% endwith %}
+  </ul>
