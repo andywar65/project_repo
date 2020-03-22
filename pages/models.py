@@ -30,7 +30,7 @@ class HomePage(models.Model):
 
 class TreePage(MP_Node):
     title = models.CharField('Titolo', max_length = 50)
-    slug = models.SlugField('Slug', max_length=50, null=True, unique = False,
+    slug = models.SlugField('Slug', max_length=50, null=True, unique = True,
         help_text = """Titolo come appare nell'indirizzo della pagina,
             solo lettere minuscole e senza spazi""")
     intro = models.TextField('Introduzione',
@@ -55,17 +55,6 @@ class TreePage(MP_Node):
         self.slug = self.slug.lower()
         self.last_updated = now()
         super(TreePage, self).save(*args, **kwargs)
-        #update path in tree page path
-        try:
-            tpp = TreePagePath.objects.get(page_id = self.id)
-        except:
-            tpp = TreePagePath.objects.create(page = self)
-            tpp.save()
-        if self.get_parent():
-            tpp.path = self.get_parent().treepagepath.path + '/' + self.slug
-        else:
-            tpp.path = '/' + self.slug
-        tpp.save()
         #update parent_type end parent_id in IndexedParagraph streamblocks
         #sometimes from_json not working, hence the if
         if not isinstance(self.stream, str):
@@ -80,12 +69,6 @@ class TreePage(MP_Node):
     class Meta:
         verbose_name = 'Pagina ad albero'
         verbose_name_plural = 'Pagine ad albero'
-
-class TreePagePath(models.Model):
-
-    page = models.OneToOneField(TreePage, on_delete=models.CASCADE,
-        primary_key=True, )
-    path = models.CharField( max_length=100, null=True, )
 
 class Institutional(models.Model):
     title = models.CharField('Titolo', max_length = 50)
