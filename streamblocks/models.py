@@ -9,6 +9,8 @@ class IndexedParagraph(models.Model):
     title = models.CharField('Titolo', max_length = 100, blank=True, null=True)
     body = models.TextField('Testo', blank=True, null=True,
         help_text="Accetta tag HTML")
+    parent_type = models.IntegerField(null = True, editable = False)
+    parent_id = models.IntegerField(null = True, editable = False)
 
     def get_slug(self):
         return slugify( self.title )
