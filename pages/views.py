@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, ListView
 from streamblocks.models import HomeButton
 
 from blog.models import Article
@@ -33,6 +33,11 @@ class PrivacyTemplateView(TemplateView):
         context = super().get_context_data(**kwargs)
         context = get_page_by_slug(context, TreePage, 'privacy')
         return context
+
+class TreePageListView(ListView):
+    model = TreePage
+    context_object_name = 'pages'
+    template_name = 'pages/tree_page_list.html'
 
 class TreePageDetailView(DetailView):
     model = TreePage
