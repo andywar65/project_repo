@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.db.models import Q
 from blog.models import Article, UserUpload
 from pages.models import TreePage
+from streamblocks.models import IndexedParagraph
 
 class ValidateForm(forms.Form):
     q = forms.CharField(max_length=100)
@@ -23,6 +24,7 @@ def search_results(request):
         #extract list of blogs
         bl_list = bl_paragraphs.values_list('parent_id', flat = True)
         #prepare list of user uploads referenced by blog posts
+        uploads = UserUpload.objects.filter(body__icontains = q)
         up_list = uploads.values_list('post_id', flat = True)
         blogs = Article.objects.filter(Q(title__icontains=q)|
             Q(intro__icontains=q)|Q(id__in = up_list)|Q(id__in = bl_list))
