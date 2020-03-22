@@ -15,7 +15,7 @@ def get_secret(setting, secrets=secrets):
         error_msg = 'Set the {0} environment variable'.format(setting)
         raise ImproperlyConfigured(error_msg)
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     get_secret('ALLOWED_HOSTS'),
