@@ -22,8 +22,13 @@ class HomeTemplateView(TemplateView):
 
 class TreePageListView(ListView):
     model = TreePage
-    context_object_name = 'pages'
+    context_object_name = 'annotated_list'
     template_name = 'pages/tree_page_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['annotated_list'] = TreePage.get_annotated_list()
+        return context
 
 class TreePageDetailView(DetailView):
     model = TreePage

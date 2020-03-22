@@ -9,12 +9,18 @@
   <div class="col-md-2"></div>
   <div class="col-md-8" style="margin-left: 15px; margin-right: 15px; margin-top: 30px;">
     <h4><strong>Documenti</strong></h4>
-    {% if pages %}
-    <ul>
-      {% for page in pages %}
-        <li><a href="{{ page.get_path }}">{{ page.title }}</a></li>
+    {% if annotated_list %}
+      {% for page, info in annotated_list %}
+        {% if info.open %}
+            <ul><li>
+        {% else %}
+            </li><li>
+        {% endif %}
+            <a href="{{ page.get_path }}">{{ page.title }}</a>
+        {% for close in info.close %}
+            </li></ul>
+        {% endfor %}
       {% endfor %}
-    </ul>
     {% else %}
     <p>Non sono presenti documenti</p>
     {% endif %}

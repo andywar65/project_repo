@@ -2,17 +2,10 @@ from django.utils.timezone import now
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from treebeard.mp_tree import MP_Node
+from project.utils import generate_unique_slug, update_indexed_paragraphs
 from streamfield.fields import StreamField
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
-
-def update_indexed_paragraphs(stream_list, type, id):
-    for block in stream_list:
-        if block['model_name'] == 'IndexedParagraph':
-            par = IndexedParagraph.objects.get(id = block['id'])
-            par.parent_type = type
-            par.parent_id = id
-            par.save()
 
 class HomePage(models.Model):
 
@@ -30,7 +23,8 @@ class HomePage(models.Model):
 
 class TreePage(MP_Node):
     title = models.CharField('Titolo', max_length = 50)
-    slug = models.SlugField('Slug', max_length=50, null=True, unique = True,
+    slug = models.SlugField('Slug', max_length=50, null=True, blank=True,
+        unique = True,
         help_text = """Titolo come appare nell'indirizzo della pagina,
             solo lettere minuscole e senza spazi""")
     intro = models.TextField('Introduzione',
@@ -61,7 +55,10 @@ class TreePage(MP_Node):
         return paragraphs
 
     def save(self, *args, **kwargs):
-        self.slug = self.slug.lower()
+        if self.slug:
+            self.slug = self.slug.lower()
+        else:
+            self.slug = generate_unique_slug(TreePage, self.title)
         self.last_updated = now()
         super(TreePage, self).save(*args, **kwargs)
         #update parent_type end parent_id in IndexedParagraph streamblocks
