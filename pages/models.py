@@ -62,12 +62,15 @@ class TreePage(MP_Node):
         self.last_updated = now()
         super(TreePage, self).save(*args, **kwargs)
         #update parent_type end parent_id in IndexedParagraph streamblocks
-        #sometimes from_json not working, hence the if
+        #sometimes self.stream returned as string
         if not isinstance(self.stream, str):
-            type = ContentType.objects.get(app_label='pages', model='treepage').id
-            id = self.id
             stream_list = self.stream.from_json()
-            update_indexed_paragraphs(stream_list, type, id)
+        else:
+            from json import loads
+            stream_list = loads(self.stream)
+        type = ContentType.objects.get(app_label='pages', model='treepage').id
+        id = self.id
+        update_indexed_paragraphs(stream_list, type, id)
 
     def __str__(self):
         return self.title
