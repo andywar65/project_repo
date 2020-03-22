@@ -17,6 +17,7 @@
             </li><li>
         {% endif %}
             <a href="{{ page.get_path }}">{{ page.title }}</a>
+            {% if page.intro %}<em>- {{ page.intro }}</em>{% endif %}
         {% for close in info.close %}
             </li></ul>
         {% endfor %}
