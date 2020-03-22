@@ -35,3 +35,9 @@ class TreePageDetailView(DetailView):
     context_object_name = 'page'
     slug_field = 'slug'
     template_name = 'pages/tree_page.html'
+
+    def get_context_data(self, **kwargs):
+        if not self.object.get_path() == self.request.path:
+            raise Http404("Il request path non corrisponde al get path")
+        context = super().get_context_data(**kwargs)
+        return context

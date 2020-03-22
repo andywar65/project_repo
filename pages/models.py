@@ -43,7 +43,7 @@ class TreePage(MP_Node):
         if ancestors:
             for ancestor in ancestors:
                 path += ancestor.slug + '/'
-        path += self.slug
+        path += self.slug + '/'
         return path
 
     def get_paragraphs(self):
