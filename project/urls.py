@@ -20,7 +20,7 @@ from django.urls import path, include
 from django.views.generic.base import RedirectView
 from filebrowser.sites import site
 from users import views as user_views
-from pages.views import HomeTemplateView, PrivacyTemplateView
+from pages.views import HomeTemplateView
 from . import views
 
 admin.site.site_header = 'Amministrazione Startup Project'
@@ -35,7 +35,6 @@ urlpatterns = [
     path('accounts/', include('users.urls')),
     path('search/', views.search_results, name='search_results'),
     path('', HomeTemplateView.as_view()),
-    path('privacy/', PrivacyTemplateView.as_view(), name='privacy'),
     path('articoli/', include('blog.urls.posts', namespace = 'blog')),
     path('docs/', include('pages.urls.tree_pages', namespace = 'docs')),
     path('streamfield/', include('streamfield.urls')),
