@@ -1,19 +1,32 @@
 <h4>Navigazione</h4>
-  <div class="alert alert-secondary" role="alert">
+  <div class="row justify-content-center">
     {% with parent=page.get_parent %}{% if parent %}
-    <span class="center">
+    <div class="col">
       <i class="fa fa-arrow-up" aria-hidden="true"></i>
-      <a href="{{ parent.get_path }}">{{ parent.title }}</a>{% endif %}{% endwith %}
-    </span>
-      <span>
-    {% with previous=page.get_previous_sibling %}{% if previous %}
-      <i class="fa fa-arrow-left" aria-hidden="true"></i><p class="text-left">
-      <a href="{{ previous.get_path }}">{{ previous.title }}</a></p>{% endif %}{% endwith %}
-    {% with next=page.get_next_sibling %}{% if next %}
-      <i class="fa fa-arrow-right" aria-hidden="true"></i><p class="text-right">
-      <a href="{{ next.get_path }}">{{ next.title }}</a></p>{% endif %}{% endwith %}
-      </span>
-    {% with child=page.get_first_child %}{% if child %}
-      <i class="fa fa-arrow-down" aria-hidden="true"></i><p class="text-center">
-      <a href="{{ child.get_path }}">{{ child.title }}</a></p>{% endif %}{% endwith %}
+      <a class="btn btn-outline-secondary" href="{{ parent.get_path }}">{{ parent.title }}</a>
+    </div>
+    {% endif %}{% endwith %}
   </div>
+  <div class="row justify-content-center">
+    {% with previous=page.get_previous_sibling %}{% if previous %}
+    <div class="col">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      <a class="btn btn-outline-secondary" href="{{ previous.get_path }}">{{ previous.title }}</a>
+    </div>
+    {% endif %}{% endwith %}
+    {% with next=page.get_next_sibling %}{% if next %}
+    <div class="col">
+      <a class="btn btn-outline-secondary" href="{{ next.get_path }}">{{ next.title }}</a>
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    </div>
+    {% endif %}{% endwith %}
+  </div>
+  <div class="row justify-content-center">
+    {% with child=page.get_first_child %}{% if child %}
+    <div class="col">
+      <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      <a class="btn btn-outline-secondary" href="{{ child.get_path }}">{{ child.title }}</a>
+    </div>
+    {% endif %}{% endwith %}
+  </div>
+  
