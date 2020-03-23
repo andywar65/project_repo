@@ -1,32 +1,31 @@
 <h4>Navigazione</h4>
-  <div class="row justify-content-center">
+  <div class="row justify-content-md-center">
     {% with parent=page.get_parent %}{% if parent %}
-    <div class="col">
+    <div class="col col-md-8">
       <i class="fa fa-arrow-up" aria-hidden="true"></i>
       <a class="btn btn-outline-secondary" href="{{ parent.get_path }}">{{ parent.title }}</a>
     </div>
     {% endif %}{% endwith %}
   </div>
-  <div class="row justify-content-center">
-    {% with previous=page.get_previous_sibling %}{% if previous %}
-    <div class="col">
+  <div class="row justify-content-md-center">
+    {% with prev=page.get_prev_sibling %}{% if prev %}
+    <div class="col col-md-4">
       <i class="fa fa-arrow-left" aria-hidden="true"></i>
-      <a class="btn btn-outline-secondary" href="{{ previous.get_path }}">{{ previous.title }}</a>
+      <a class="btn btn-outline-secondary" href="{{ prev.get_path }}">{{ prev.title }}</a>
     </div>
     {% endif %}{% endwith %}
     {% with next=page.get_next_sibling %}{% if next %}
-    <div class="col">
+    <div class="col col-md-4">
       <a class="btn btn-outline-secondary" href="{{ next.get_path }}">{{ next.title }}</a>
-      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      <i class="fa fa-arrow-right" aria-hidden="true"></i>
     </div>
     {% endif %}{% endwith %}
   </div>
-  <div class="row justify-content-center">
+  <div class="row justify-content-md-center">
     {% with child=page.get_first_child %}{% if child %}
-    <div class="col">
+    <div class="col col-md-8">
       <i class="fa fa-arrow-down" aria-hidden="true"></i>
       <a class="btn btn-outline-secondary" href="{{ child.get_path }}">{{ child.title }}</a>
     </div>
     {% endif %}{% endwith %}
   </div>
-  
