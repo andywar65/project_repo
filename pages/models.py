@@ -33,6 +33,7 @@ class TreePage(MP_Node):
         Gallery, DownloadableFile, LinkableList, BoxedText, ],
         verbose_name="Testo" )
     summary = models.BooleanField('Mostra sommario', default = True, )
+    navigation = models.BooleanField('Mostra navigazione', default = True, )
     last_updated = models.DateTimeField(editable=False, null=True)
 
     #node_order_by = ['title']
