@@ -26,7 +26,9 @@
       {{ page.stream.render }}
     </div>
     {% if page.summary %}<a href="#sommario">Torna al sommario</a>{% endif %}
-    {% include "pages/tree_page_nav.html" %}
+    {% if page.navigation %}
+      {% include "pages/tree_page_nav.html" %}
+    {% endif %}
   </div>
 </div>
 {% endblock content %}
