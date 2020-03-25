@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}SP | Cancella profilo{%endblock title %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h4><strong>Cancella il tuo profilo, {{ user.get_short_name }}</strong></h4>
+    <p>Sei sicuro di voler cancellare il tuo profilo? Questa operazione
+      non è reversibile.</p>
+    <hr class="mb-4">
+    {% if form.errors %}
+      <p class="alert alert-danger" role="alert">
+        Per favore, correggi gli errori qui sotto.
+      </p>
+    {% endif %}
+    <form action="" method="post" enctype="multipart/form-data" novalidate>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+            {{ form.delete|as_crispy_field }}
+        </div>
+      </div>
+        {% include 'users/profile_includes/button.html' %}
+      {% csrf_token %}
+    </form>
+  </div>
+</div>
+{% endblock content %}

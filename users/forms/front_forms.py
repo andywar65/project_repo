@@ -113,3 +113,7 @@ class ProfileChangeForm(forms.Form):
             'placeholder': 'you@example.com'}))
     no_spam = forms.BooleanField( label="Mailing list", required = False,
         help_text = "Vuoi ricevere notifiche sui nuovi articoli?")
+
+class ProfileDeleteForm(forms.Form):
+    delete = forms.BooleanField( label="Cancella il profilo", required = True,
+        help_text = """Seleziona per cancellare il profilo.""")

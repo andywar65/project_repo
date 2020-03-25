@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (FrontLoginView, FrontLogoutView, FrontPasswordResetView,
     TemplateResetView, FrontPasswordResetConfirmView, TemplateResetDoneView,
     TemplateAccountView, FrontPasswordChangeView, FrontPasswordChangeDoneView,
-    ProfileChangeView)
+    ProfileChangeView, ProfileDeleteView, TemplateDeletedView)
 
 #namespace is '/accounts/'
 urlpatterns = [
@@ -10,6 +10,10 @@ urlpatterns = [
         name='profile'),
     path('profile/<int:pk>/change', ProfileChangeView.as_view(),
         name='profile_change'),
+    path('profile/<int:pk>/delete', ProfileDeleteView.as_view(),
+        name='profile_delete'),
+    path('profile/deleted', TemplateDeletedView.as_view(),
+        name='profile_deleted'),
     path('login/', FrontLoginView.as_view(),
         name='front_login'),
     path('logout/', FrontLogoutView.as_view(),

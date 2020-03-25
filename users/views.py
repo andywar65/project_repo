@@ -11,7 +11,8 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import FormView, UpdateView, CreateView
 from .forms import (RegistrationForm, ContactForm,
     ContactLogForm, FrontAuthenticationForm, FrontPasswordResetForm,
-    FrontSetPasswordForm, FrontPasswordChangeForm, ProfileChangeForm,)
+    FrontSetPasswordForm, FrontPasswordChangeForm, ProfileChangeForm,
+    ProfileDeleteForm)
 from .models import User, Profile
 
 class GetMixin:
@@ -189,3 +190,26 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
 
     def get_success_url(self):
         return f'/accounts/profile/?submitted={self.request.user.get_full_name()}'
+
+class ProfileDeleteView(LoginRequiredMixin, FormView):
+    form_class = ProfileDeleteForm
+    template_name = 'users/profile_delete.html'
+    success_url = '/accounts/profile/deleted'
+
+    def get(self, request, *args, **kwargs):
+        if request.user.id != kwargs['pk']:
+            raise Http404("User is not authorized to manage this profile")
+        return super(ProfileDeleteView, self).get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        user = User.objects.get(id = self.request.user.id )
+        user.is_active = False
+        user.first_name = ''
+        user.last_name = ''
+        user.save()
+        profile = Profile.objects.get(pk = user.id)
+        profile.delete()
+        return super(ProfileDeleteView, self).form_valid(form)
+
+class TemplateDeletedView(TemplateView):
+    template_name = 'users/profile_deleted.html'
