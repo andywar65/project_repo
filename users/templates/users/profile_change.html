@@ -21,6 +21,8 @@
         {% include 'users/profile_includes/button.html' %}
       {% csrf_token %}
     </form>
+    <p>Puoi anche <a href="/accounts/profile/{{ user.id }}/delete">
+      cancellare il tuo account</a></p>
   </div>
 </div>
 {% endblock content %}
