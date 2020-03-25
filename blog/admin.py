@@ -13,3 +13,20 @@ class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('title', 'date', 'intro', )
     inlines = [ UserUploadInline,  ]
     form = ArticleForm
+
+    fieldsets = (
+        ('Galleria', {
+            'classes': ('collapse',),
+            'fields': ('carousel', ),
+        }),
+        (None, {
+            'fields': ('title', 'date', 'intro'),
+        }),
+        ('Testo', {
+            'classes': ('collapse', 'wide'),
+            'fields': ('stream', ),
+        }),
+        (None, {
+            'fields': ('author', 'tags', 'notice'),
+        }),
+        )
