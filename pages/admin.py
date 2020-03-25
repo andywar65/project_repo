@@ -21,17 +21,17 @@ class HomePageAdmin(admin.ModelAdmin):
 class TreePageAdmin(TreeAdmin):
     form = movenodeform_factory(TreePage)
 
-    fieldsets = (
-        (None, {
-            'fields': ('title', 'slug', 'intro'),
-        }),
-        ('Testo', {
-            'classes': ('collapse', 'wide'),
-            'fields': ('stream', ),
-        }),
-        (None, {
-            'fields': ('summary', 'navigation'),
-        }),
-        )
+    #fieldsets = (
+        #(None, {
+            #'fields': ('title', 'slug', 'intro'),
+        #}),
+        #('Testo', {
+            #'classes': ('collapse', 'wide'),
+            #'fields': ('stream', ),
+        #}),
+        #(None, {
+            #'fields': ('summary', 'navigation'),
+        #}),
+        #)
 
 admin.site.register(TreePage, TreePageAdmin)
