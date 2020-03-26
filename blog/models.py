@@ -63,12 +63,13 @@ class Article(models.Model):
             message += self.intro + '\n'
             url = settings.BASE_URL + self.get_path()
             message += 'Fai click su questo link per leggerlo: ' + url + '\n'
-            recipients = User.objects.filter(
-                is_active = True, profile__no_spam = True, )
+            recipients = User.objects.filter( is_active = True, )
+            #inactive users may not have profile
+            recipients = recipients.filter( profile__no_spam = True, )
             mailto = []
             for recipient in recipients:
                 mailto.append(recipient.email)
-            subject = 'Nuovo articolo'
+            subject = f'Nuovo articolo su {settings.WEBSITE_NAME}'
             email = EmailMessage(subject, message, settings.SERVER_EMAIL,
                 mailto)
             email.send()
