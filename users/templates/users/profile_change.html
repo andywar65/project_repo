@@ -8,6 +8,7 @@
   <div class="col-md-2"></div>
   <div class="col-md-8">
     <h4><strong>Modifica il tuo profilo, {{ user.get_short_name }}</strong></h4>
+    <p>Il tuo nome utente è {{ user.username }} (non modificabile)</p>
     <hr class="mb-4">
     {% if form.errors %}
       <p class="alert alert-danger" role="alert">
@@ -21,8 +22,10 @@
         {% include 'users/profile_includes/button.html' %}
       {% csrf_token %}
     </form>
-    <p>Puoi anche <a href="/accounts/profile/{{ user.id }}/delete">
-      cancellare il tuo account</a></p>
+    <p>Hai dato consenso al trattamento dei dati secondo quanto indicato nella
+      <a href="/docs/privacy/">Informativa della privacy.</a></p>
+    <p>Se decidi di negare il consenso devi <a href="/accounts/profile/{{ user.id }}/delete">
+      cancellare il tuo account.</a></p>
   </div>
 </div>
 {% endblock content %}
