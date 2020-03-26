@@ -126,3 +126,7 @@ USE_L10N = True
 USE_TZ = True
 
 AUTH_USER_MODEL = 'users.User'
+
+#This stuff has nothing to do with django.site
+WEBSITE_NAME = 'Startup Project'
+WEBSITE_ACRO = 'SP'
