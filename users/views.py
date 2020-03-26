@@ -122,21 +122,6 @@ class FrontPasswordResetView(PasswordResetView):
     template_name = 'users/reset_password.html'
     form_class = FrontPasswordResetForm
 
-    def get_users(self, email):
-        """Given an email, return matching user(s) who should receive a reset.
-        I expect problems with that _unicode_ci_compare method.
-        """
-        #email_field_name = UserModel.get_email_field_name()
-        active_users = User.objects.filter(**{
-            'member__email': email,
-            'is_active': True,
-        })
-        return (
-            u for u in active_users
-            if u.has_usable_password() and
-            _unicode_ci_compare(email, getattr(u, email_field_name))
-        )
-
 class TemplateResetView(TemplateView):
     template_name = 'users/reset_password_done.html'
 
