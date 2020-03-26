@@ -206,6 +206,7 @@ class ProfileDeleteView(LoginRequiredMixin, FormView):
         user.is_active = False
         user.first_name = ''
         user.last_name = ''
+        user.email = ''
         user.save()
         profile = Profile.objects.get(pk = user.id)
         profile.delete()
