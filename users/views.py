@@ -112,7 +112,7 @@ class FrontLoginView(LoginView):
         """Avoid going from login to logout"""
         redirect_to = super(FrontLoginView, self).get_redirect_url()
         if redirect_to == reverse('front_logout'):
-            return ''
+            return reverse('profile')
         return redirect_to
 
 class FrontLogoutView(LogoutView):
