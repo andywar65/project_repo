@@ -1,7 +1,15 @@
 <footer class="footer mt-auto">
   <div class="container">
-    <span>Andy War, Copyleft {% now 'Y' %}&nbsp;
-      <a href="https://github.com/andywar65"><i id="social-fb" class="fa fa-github-square fa-2x"></i></a>
+    <span>{{ website.name }} - {% now 'Y' %}&nbsp;
+      {% if website.facebook %}
+        <a href="{{ website.facebook }}"><i id="social-fb" class="fa fa-facebook-square fa-2x"></i></a>
+      {% endif %}
+      {% if website.github %}
+        <a href="{{ website.github }}"><i id="social-git" class="fa fa-github-square fa-2x"></i></a>
+      {% endif %}
+      {% if website.external %}
+        <a href="{{ website.external }}"><i id="social-ext" class="fa fa-external-link-square fa-2x"></i></a>
+      {% endif %}
     </span>
   </div>
 </footer>

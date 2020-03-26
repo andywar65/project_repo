@@ -130,3 +130,8 @@ AUTH_USER_MODEL = 'users.User'
 #This stuff has nothing to do with django.site
 WEBSITE_NAME = 'Startup Project'
 WEBSITE_ACRO = 'SP'
+#footer external links
+#make your own, add them in project.processors.get_global_settings
+FB_LINK = ''
+GITHUB_LINK = 'https://github.com/andywar65/project_repo'
+EXT_LINK = 'https://andywar.net'
