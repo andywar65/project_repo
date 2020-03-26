@@ -109,9 +109,11 @@ class FrontLoginView(LoginView):
     form_class = FrontAuthenticationForm
 
     def get_redirect_url(self):
-        """Avoid going from login to logout"""
+        """Avoid going from login to logout and other ambiguous situations"""
         redirect_to = super(FrontLoginView, self).get_redirect_url()
         if redirect_to == reverse('front_logout'):
+            return reverse('profile')
+        elif redirect_to == reverse('password_reset_done'):
             return reverse('profile')
         return redirect_to
 
