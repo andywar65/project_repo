@@ -27,14 +27,14 @@ def registration_message( username, password ):
     #TODO have some info in settings
     message = f"""
         Ciao {username}! \n
-        Abbiamo ricevuto la tua registrazione al sito di Startup Project.\n
+        Abbiamo ricevuto la tua registrazione al sito {settings.WEBSITE_NAME}.\n
         Puoi effettuare il Login al seguente link: \n
         {settings.BASE_URL}/accounts/login/ \n
         Usa il nome utente da te scelto: {username}
         e questa password: {password} (possibilmente da cambiare).
         Una volta effettuato il login potrai gestire il tuo profilo.
         Grazie.
-        Lo staff di Startup Project \n
+        Lo staff di {settings.WEBSITE_NAME} \n
         Link utili:
         Informativa per la privacy: {settings.BASE_URL}/privacy/
         Cambio password: {settings.BASE_URL}/accounts/password_change/
