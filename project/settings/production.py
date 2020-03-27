@@ -1,19 +1,4 @@
-import os
-import json
-from django.core.exceptions import ImproperlyConfigured
 from .base import *
-
-with open(os.path.join(PROJECT_DIR, 'settings/secrets.json')) as f:
-    secrets = json.loads(f.read())
-
-def get_secret(setting, secrets=secrets):
-    '''Get the secret variable or return explicit exception.
-    Thanks to twoscoopsofdjango'''
-    try:
-        return secrets[setting]
-    except KeyError:
-        error_msg = 'Set the {0} environment variable'.format(setting)
-        raise ImproperlyConfigured(error_msg)
 
 DEBUG = False
 

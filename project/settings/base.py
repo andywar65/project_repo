@@ -11,11 +11,25 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import json
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 APPLICATION_DIR = os.path.dirname(BASE_DIR)
+
+with open(os.path.join(APPLICATION_DIR, 'secrets.json')) as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting, secrets=secrets):
+    '''Get the secret variable or return explicit exception.
+    Thanks to twoscoopsofdjango'''
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = 'Set the {0} environment variable'.format(setting)
+        raise ImproperlyConfigured(error_msg)
 
 
 # Quick-start development settings - unsuitable for production
@@ -128,10 +142,10 @@ USE_TZ = True
 AUTH_USER_MODEL = 'users.User'
 
 #This stuff has nothing to do with django.site
-WEBSITE_NAME = 'Startup Project'
-WEBSITE_ACRO = 'SP'
+WEBSITE_NAME = get_secret('WEBSITE_NAME')
+WEBSITE_ACRO = get_secret('WEBSITE_ACRO')
 #footer external links
 #make your own, add them in project.processors.get_global_settings
-FB_LINK = ''
-GITHUB_LINK = 'https://github.com/andywar65/project_repo'
-EXT_LINK = 'https://andywar.net'
+FB_LINK = get_secret('FB_LINK')
+GITHUB_LINK = get_secret('GITHUB_LINK')
+EXT_LINK = get_secret('EXT_LINK')
