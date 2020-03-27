@@ -11,10 +11,12 @@
       <div class="carousel-item {% if forloop.first %}active{% endif %}">
         <img src="{% version image.fb_image 'wide_landscape' %}"
           class="d-block w-100">
+        {% if image.get_caption %}
           <div class="gradient-mask"></div>
-        <div class="carousel-caption d-none d-md-block">
-          {{ image.get_caption|safe }}
-        </div>
+          <div class="carousel-caption d-none d-md-block">
+            {{ image.get_caption|safe }}
+          </div>
+        {% endif %}
       </div>
     {% endfor %}
   </div>
