@@ -9,7 +9,9 @@
 <div class="row">
   {{ page.carousel.render }}
 </div>
-<h4 class="text-left"><strong><em>{{ page.intro }}</em></strong></h4>
+  {% if page.intro %}
+    <h4 class="text-left"><strong><em>{{ page.intro }}</em></strong></h4>
+  {% endif %}
 {% if actions %}
 <hr class="mb-4">
 <div class="card-deck">

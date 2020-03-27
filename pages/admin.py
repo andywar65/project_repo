@@ -6,7 +6,7 @@ from .models import ( HomePage, TreePage )
 
 @admin.register(HomePage)
 class HomePageAdmin(admin.ModelAdmin):
-    list_display = ('intro', )
+    list_display = ('__str__', )
 
     fieldsets = (
         ('Galleria', {
