@@ -66,14 +66,17 @@ class LandscapeGallery(models.Model):
         extensions=[".jpg", ".png", ".jpeg", ".gif", ".tif", ".tiff"],
         null=True)
     caption = models.CharField("Didascalia", max_length = 200, blank=True,
-        null=True)
+        null=True, help_text="Accetta tag HTML")
 
     as_list = True
 
     def get_caption(self):
         if self.caption:
-            return self.caption
-        return self.fb_image.filename
+            if self.caption.startswith('<'):
+                return self.caption
+            else:
+                return '<p>' + self.caption + '</p>'
+        return ''
 
     class Meta:
         verbose_name="Galleria di immagini orizzontali"
