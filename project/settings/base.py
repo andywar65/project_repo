@@ -129,9 +129,9 @@ FILEBROWSER_VERSIONS = {
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'it'#'en-us'
+LANGUAGE_CODE = get_secret('LANGUAGE_CODE')#'en-us'
 
-TIME_ZONE = 'Europe/Rome'
+TIME_ZONE = get_secret('TIME_ZONE')
 
 USE_I18N = True
 
