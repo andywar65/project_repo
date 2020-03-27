@@ -39,11 +39,6 @@ class Gallery(models.Model):
 
     as_list = True
 
-    def get_caption(self):
-        if self.caption:
-            return self.caption
-        return self.fb_image.filename
-
     options = {
         'aspect': {
             'label': 'Formato',

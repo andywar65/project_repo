@@ -1,12 +1,7 @@
 {% load fb_versions %}
 <div id="gallery-{{ block_unique_id }}" class="carousel slide" data-ride="carousel">
   {% if block_content|length > 1 %}
-    <ol class="carousel-indicators">
-      {% for image in block_content %}
-        <li data-target="#gallery-{{ block_unique_id }}" data-slide-to="{{ forloop.counter0 }}"
-        {% if forloop.first %}class="active"{% endif %}></li>
-      {% endfor %}
-    </ol>
+    {% include "streamblocks/gallery_indicators.html" %}
   {% endif %}
   <div class="carousel-inner">
     {% for image in block_content %}
@@ -23,14 +18,4 @@
       </div>
     {% endfor %}
   </div>
-  {% if block_content|length > 1 %}
-    <a class="carousel-control-prev" href="#gallery-{{ block_unique_id }}" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Precedente</span>
-    </a>
-    <a class="carousel-control-next" href="#gallery-{{ block_unique_id }}" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Prossima</span>
-    </a>
-  {% endif %}
 </div>
