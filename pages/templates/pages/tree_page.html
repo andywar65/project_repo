@@ -8,6 +8,10 @@
 <div id="sommario" class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8" style="margin-left: 15px; margin-right: 15px; margin-top: 30px;">
+    {% if page.navigation %}
+      {% include "pages/tree_page_nav.html" %}
+      <hr class="mb-4">
+    {% endif %}
     {% if perms.pages.change_treepage %}
       <i class="fa fa-pencil" aria-hidden="true"></i>
       <a href="/admin/pages/treepage/{{ page.id }}/change/">Modifica pagina</a>
@@ -27,6 +31,7 @@
     </div>
     {% if page.summary %}<a href="#sommario">Torna al sommario</a>{% endif %}
     {% if page.navigation %}
+      <hr class="mb-4">
       {% include "pages/tree_page_nav.html" %}
     {% endif %}
   </div>

@@ -55,6 +55,26 @@ class TreePage(MP_Node):
                 paragraphs.append( (par.get_slug, par.title) )
         return paragraphs
 
+    def get_next_page(self):
+        if not self.is_root() and self.get_next_sibling():
+            return self.get_next_sibling()
+        elif self.get_first_child():
+            return self.get_first_child()
+        ancestors = self.get_ancestors()
+        for ancestor in reversed(ancestors):
+            if not ancestor.is_root() and ancestor.get_next_sibling():
+                return ancestor.get_next_sibling()
+        return
+
+    def get_previous_page(self):
+        if self.is_root():
+            return
+        elif self.get_prev_sibling():
+            return self.get_prev_sibling()
+        elif self.get_parent():
+            return self.get_parent()
+        return
+
     def save(self, *args, **kwargs):
         if self.slug:
             self.slug = self.slug.lower()
