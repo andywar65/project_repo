@@ -43,8 +43,10 @@ class TreePageDetailView(DetailView):
         if not self.object.get_path() == self.request.path:
             raise Http404("Il request path non corrisponde al get path")
         context = super().get_context_data(**kwargs)
+        context['adjacent'] = self.object.get_adjacent_pages()
         return context
 
+#unable to use class based view!
 def page_by_path(request, path):
     path_list = path.split('/')
     #last element may be trailing slash
@@ -53,4 +55,6 @@ def page_by_path(request, path):
     page = get_object_or_404( TreePage, slug = last )
     if not page.get_path() == request.path:
         raise Http404("Il request path non corrisponde al get path")
-    return render(request, 'pages/tree_page.html', { 'page': page })
+    adjacent = page.get_adjacent_pages()
+    return render(request, 'pages/tree_page.html', { 'page': page,
+        'adjacent': adjacent, })
