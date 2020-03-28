@@ -17,10 +17,9 @@
 <div class="card-deck">
   {% for action in actions %}
   <div class="card text-center" style="margin-bottom: 20px; min-width: 18rem; ">
-    <div class="card-body">
-      <h4 class="card-title">{{ action.title }}</h4>
+    <div class="card-body">  
+      <a href="{{ action.link }}" class="btn btn-secondary btn-lg btn-block">{{ action.title }}</a>
       <p class="card-text">{{ action.subtitle }}</p>
-      <a href="{{ action.link }}" class="btn btn-secondary btn-lg btn-block">Vai!</a>
     </div>
   </div>
   {% endfor %}
