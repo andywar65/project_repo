@@ -56,10 +56,10 @@ class TreePage(MP_Node):
         return paragraphs
 
     def get_next_page(self):
-        if not self.is_root() and self.get_next_sibling():
-            return self.get_next_sibling()
-        elif self.get_first_child():
+        if self.get_first_child():
             return self.get_first_child()
+        elif not self.is_root() and self.get_next_sibling():
+            return self.get_next_sibling()
         ancestors = self.get_ancestors()
         for ancestor in reversed(ancestors):
             if not ancestor.is_root() and ancestor.get_next_sibling():
@@ -70,6 +70,8 @@ class TreePage(MP_Node):
         if self.is_root():
             return
         elif self.get_prev_sibling():
+            if self.get_prev_sibling().get_last_child():
+                return self.get_prev_sibling().get_last_child()
             return self.get_prev_sibling()
         elif self.get_parent():
             return self.get_parent()
