@@ -28,7 +28,7 @@ class TreePageListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['annotated_lists'] = []
-        root_pages = TreePage.objects.filter( depth = 1 )
+        root_pages = TreePage.get_root_nodes()
         for root_page in root_pages:
             context['annotated_lists'].append(TreePage.get_annotated_list(parent=root_page))
         return context
