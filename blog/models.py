@@ -88,11 +88,10 @@ class Article(models.Model):
             email.send()
             self.notice = 'DONE'
         super(Article, self).save(*args, **kwargs)
-        #update parent_type end parent_id in IndexedParagraph streamblocks
+        #update parent_type end parent_id in streamblock helpers
         type = ContentType.objects.get(app_label='blog', model='article').id
         id = self.id
         stream_list = self.stream.from_json()
-        #update_indexed_paragraphs(stream_list, type, id)
         stream_list += self.carousel.from_json()
         update_streamblocks(stream_list, type, id)
 

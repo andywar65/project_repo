@@ -4,6 +4,7 @@ from django.db import models
 from treebeard.mp_tree import MP_Node
 from project.utils import generate_unique_slug, update_indexed_paragraphs
 from streamfield.fields import StreamField
+from helper.models import StreamHelper, update_streamblocks
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
 
@@ -83,7 +84,7 @@ class TreePage(MP_Node):
             self.slug = generate_unique_slug(TreePage, self.title)
         self.last_updated = now()
         super(TreePage, self).save(*args, **kwargs)
-        #update parent_type end parent_id in IndexedParagraph streamblocks
+        #update parent_type end parent_id in streamblocks helper
         #sometimes self.stream returned as string
         if not isinstance(self.stream, str):
             stream_list = self.stream.from_json()
@@ -92,7 +93,7 @@ class TreePage(MP_Node):
             stream_list = loads(self.stream)
         type = ContentType.objects.get(app_label='pages', model='treepage').id
         id = self.id
-        update_indexed_paragraphs(stream_list, type, id)
+        update_streamblocks(stream_list, type, id)
 
     def __str__(self):
         return self.title
