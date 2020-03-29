@@ -6,6 +6,7 @@ from django.utils.timezone import now
 from taggit.managers import TaggableManager
 from project.utils import generate_unique_slug, update_indexed_paragraphs
 from streamfield.fields import StreamField
+from helper.models import StreamHelper, update_streamblocks
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
 from users.models import User
@@ -91,7 +92,9 @@ class Article(models.Model):
         type = ContentType.objects.get(app_label='blog', model='article').id
         id = self.id
         stream_list = self.stream.from_json()
-        update_indexed_paragraphs(stream_list, type, id)
+        #update_indexed_paragraphs(stream_list, type, id)
+        stream_list += self.carousel.from_json()
+        update_streamblocks(stream_list, type, id)
 
     def __str__(self):
         return self.title
