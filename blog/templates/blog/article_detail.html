@@ -47,7 +47,7 @@
       <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-          {{ post.stream.render }}
+          {{ post.stream_rendered|safe }}
           <hr class="mb-4">
           {% if user.is_authenticated %}
             <div class="row">
