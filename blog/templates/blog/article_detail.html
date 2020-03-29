@@ -64,6 +64,7 @@
                 {% include 'blog/uploads.html' %}
               {% endfor %}
             </div>
+            <hr class="mb-4">
             {% endif %}
           {% else %}
             <div class="row">
@@ -71,6 +72,20 @@
             </div>
             <hr class="mb-4">
           {% endif %}
+          <div class="row">
+            <div class="col col-6 text-left">
+            {% with prev=post.get_previous %}{% if prev %}
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+              <a href="{{ prev.get_path }}">{{ prev.title }}</a>
+            {% endif %}{% endwith %}
+            </div>
+            <div class="col col-6 text-right">
+              {% with next=get_next %}{% if next %}
+              <a href="{{ next.get_path }}">{{ next.title }}</a>
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+              {% endif %}{% endwith %}
+            </div>
+          </div>
         </div>
       </div>
 {% endblock content %}

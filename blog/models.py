@@ -54,6 +54,18 @@ class Article(models.Model):
     def get_tags(self):
         return list(self.tags.names())
 
+    def get_previous(self):
+        try:
+            return self.get_previous_by_date()
+        except DoesNotExist:
+            return
+
+    def get_next(self):
+        try:
+            return self.get_next_by_date()
+        except DoesNotExist:
+            return
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = generate_unique_slug(Article, self.title)
