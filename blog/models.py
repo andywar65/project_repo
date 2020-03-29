@@ -3,7 +3,7 @@ from django.core.mail import EmailMessage
 from django.db import models
 from django.utils.timezone import now
 from taggit.managers import TaggableManager
-from project.utils import generate_unique_slug, update_indexed_paragraphs
+from project.utils import generate_unique_slug
 from streamfield.fields import StreamField
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)

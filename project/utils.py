@@ -1,5 +1,4 @@
 from django.utils.text import slugify
-from streamblocks.models import IndexedParagraph
 
 def generate_unique_slug(klass, field):
     """
@@ -17,11 +16,3 @@ def generate_unique_slug(klass, field):
         unique_slug = '%s-%d' % (origin_slug, numb)
         numb += 1
     return unique_slug
-
-def update_indexed_paragraphs(stream_list, type, id):
-    for block in stream_list:
-        if block['model_name'] == 'IndexedParagraph':
-            par = IndexedParagraph.objects.get(id = block['id'])
-            par.parent_type = type
-            par.parent_id = id
-            par.save()
