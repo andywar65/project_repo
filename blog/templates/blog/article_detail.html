@@ -80,7 +80,7 @@
             {% endif %}{% endwith %}
             </div>
             <div class="col col-6 text-right">
-              {% with next=get_next %}{% if next %}
+              {% with next=post.get_next %}{% if next %}
               <a href="{{ next.get_path }}">{{ next.title }}</a>
               <i class="fa fa-arrow-right" aria-hidden="true"></i>
               {% endif %}{% endwith %}

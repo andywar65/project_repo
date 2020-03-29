@@ -57,13 +57,13 @@ class Article(models.Model):
     def get_previous(self):
         try:
             return self.get_previous_by_date()
-        except DoesNotExist:
+        except Article.DoesNotExist:
             return
 
     def get_next(self):
         try:
             return self.get_next_by_date()
-        except DoesNotExist:
+        except Article.DoesNotExist:
             return
 
     def save(self, *args, **kwargs):
