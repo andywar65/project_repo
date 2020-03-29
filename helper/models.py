@@ -1,12 +1,7 @@
 from django.db import models
 
-from blog.models import Article
-from pages.models import TreePage
-
 class StreamHelper(models.Model):
-    article = models.ForeignKey( Article, on_delete = models.CASCADE,
-        null = True, related_name='article_stream_helper' )
-    page = models.ForeignKey( TreePage, on_delete = models.CASCADE,
-        null = True, related_name='page_stream_helper' )
-    stream_type = models.CharField( max_length = 50 )
-    stream_id = models.IntegerField()
+    obj_type = models.IntegerField( null = True, )
+    obj_id = models.IntegerField( null = True, )
+    stream_type = models.CharField( null = True, max_length = 50 )
+    stream_id = models.IntegerField( null = True, )
