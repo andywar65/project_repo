@@ -1,12 +1,10 @@
 from django.conf import settings
 from django.core.mail import EmailMessage
-from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.timezone import now
 from taggit.managers import TaggableManager
 from project.utils import generate_unique_slug, update_indexed_paragraphs
 from streamfield.fields import StreamField
-from helper.models import StreamHelper, update_streamblocks
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
 from users.models import User
@@ -27,6 +25,7 @@ class Article(models.Model):
     stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
             Gallery, DownloadableFile, LinkableList, BoxedText],
             verbose_name="Testo" )
+    stream_rendered = models.TextField(editable=False, null=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL,
         blank= True, null=True, verbose_name = 'Autore')
     tags = TaggableManager(verbose_name="Categorie",
@@ -71,6 +70,7 @@ class Article(models.Model):
         if not self.slug:
             self.slug = generate_unique_slug(Article, self.title)
         self.last_updated = now()
+        self.stream_rendered = self.stream.render
         if self.notice == 'SPAM':
             message = self.title + '\n'
             message += self.intro + '\n'
@@ -88,12 +88,6 @@ class Article(models.Model):
             email.send()
             self.notice = 'DONE'
         super(Article, self).save(*args, **kwargs)
-        #update parent_type end parent_id in streamblock helpers
-        type = ContentType.objects.get(app_label='blog', model='article').id
-        id = self.id
-        stream_list = self.stream.from_json()
-        stream_list += self.carousel.from_json()
-        update_streamblocks(stream_list, type, id)
 
     def __str__(self):
         return self.title

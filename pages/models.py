@@ -1,11 +1,8 @@
 from django.utils.timezone import now
-from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.db.models.signals import post_save
 from treebeard.mp_tree import MP_Node
-from project.utils import generate_unique_slug, update_indexed_paragraphs
+from project.utils import generate_unique_slug
 from streamfield.fields import StreamField
-from helper.models import StreamHelper, update_streamblocks
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
 
@@ -94,17 +91,3 @@ class TreePage(MP_Node):
     class Meta:
         verbose_name = 'Pagina ad albero'
         verbose_name_plural = 'Pagine ad albero'
-
-def update_stream(sender, instance, **kwargs):
-    #update parent_type end parent_id in streamblocks helper
-    #sometimes self.stream returned as string
-    if not isinstance(instance.stream, str):
-        stream_list = instance.stream.from_json()
-    else:
-        from json import loads
-        stream_list = loads(instance.stream)
-    type = ContentType.objects.get(app_label='pages', model='treepage').id
-    id = instance.id
-    update_streamblocks(stream_list, type, id)
-
-post_save.connect(update_stream, sender=TreePage)
