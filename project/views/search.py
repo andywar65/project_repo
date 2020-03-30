@@ -16,11 +16,13 @@ def search_results(request):
         q = SearchQuery(request.GET['q'])
         v = SearchVector('title', 'intro', 'stream_rendered')
         blogs = Article.objects.annotate(rank=SearchRank(v, q))
+        blogs = blogs.filter(rank__gt=0.01)
         if blogs:
             blogs = blogs.order_by('-rank')
             success = True
         #v = SearchVector('title', 'intro', 'stream_rendered')
-        pages = TreePage.objects.annotate(rank=SearchRank(v, q)).order_by('-rank')
+        pages = TreePage.objects.annotate(rank=SearchRank(v, q))
+        pages = pages.filter(rank__gt=0.01)
         if pages:
             pages = pages.order_by('-rank')
             success = True
