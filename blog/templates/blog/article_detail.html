@@ -30,7 +30,7 @@
               <li class="list-inline-item">
                 <i class="fa fa-folder-open" aria-hidden="true"></i>
                 {% for tag in post.get_tags %}
-                  <a href="/articoli/?categoria={{ tag }}">{{ tag|upper }}</a>
+                  <a href="/articoli/?tag={{ tag }}">{{ tag|upper }}</a>
                 {% endfor %}
               </li>
             {% endif %}

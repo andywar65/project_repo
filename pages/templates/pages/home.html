@@ -17,7 +17,7 @@
 <div class="card-deck">
   {% for action in actions %}
   <div class="card text-center" style="margin-bottom: 20px; min-width: 18rem; ">
-    <div class="card-body">  
+    <div class="card-body">
       <a href="{{ action.link }}" class="btn btn-secondary btn-lg btn-block">{{ action.title }}</a>
       <p class="card-text">{{ action.subtitle }}</p>
     </div>
@@ -55,7 +55,7 @@
           <li class="list-inline-item">
             <i class="fa fa-folder-open" aria-hidden="true"></i>
             {% for tag in post.get_tags %}
-              <a href="/articoli/?categoria={{ tag }}">{{ tag|upper }}</a>
+              <a href="/articoli/?tag={{ tag }}">{{ tag|upper }}</a>
             {% endfor %}
           </li>
         {% endif %}

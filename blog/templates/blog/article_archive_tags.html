@@ -6,7 +6,7 @@
   {% for tag_item in tags %}
     {% if tag_item.name == tag_filter %}
     {% else %}
-      <a href="{{ request.path }}?categoria={{ tag_item.name }}">{{ tag_item.name|upper }}</a>
+      <a href="{{ request.path }}?tag={{ tag_item.name }}">{{ tag_item.name|upper }}</a>
     {% endif %}
   {% endfor %}
   </p>

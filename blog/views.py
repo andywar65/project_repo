@@ -14,14 +14,14 @@ class TagMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tags'] = Tag.objects.all()
-        if 'categoria' in self.request.GET:
-            context['tag_filter'] = self.request.GET['categoria']
+        if 'tag' in self.request.GET:
+            context['tag_filter'] = self.request.GET['tag']
         return context
 
     def get_queryset(self):
         qs = super().get_queryset()
-        if 'categoria' in self.request.GET:
-            qs = qs.filter(tags__name=self.request.GET['categoria'])
+        if 'tag' in self.request.GET:
+            qs = qs.filter(tags__name=self.request.GET['tag'])
         return qs
 
 class ArticleArchiveIndexView(TagMixin, ArchiveIndexView):
