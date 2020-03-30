@@ -111,6 +111,8 @@ class ProfileChangeForm(forms.Form):
     email = forms.EmailField(label = 'Email', required = True,
         widget=forms.EmailInput(attrs={'autocomplete': 'email',
             'placeholder': 'you@example.com'}))
+    bio = forms.CharField( label = 'Breve biografia', required = False,
+        widget = forms.Textarea(attrs={'placeholder': "Parlaci un po' di te"}) )
     no_spam = forms.BooleanField( label="Mailing list", required = False,
         help_text = "Vuoi ricevere notifiche sui nuovi articoli?")
 
