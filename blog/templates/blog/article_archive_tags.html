@@ -4,8 +4,7 @@
 {% if tags %}
   <p>Filtra per categoria:
   {% for tag_item in tags %}
-    {% if tag_item.name == tag_filter %}
-    {% else %}
+    {% if tag_item.name != tag_filter %}
       <a href="{{ request.path }}?tag={{ tag_item.name }}">{{ tag_item.name|upper }}</a>
     {% endif %}
   {% endfor %}
