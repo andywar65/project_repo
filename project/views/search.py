@@ -14,7 +14,7 @@ def search_results(request):
     form = ValidateForm(request.GET)
     if form.is_valid():
         q = SearchQuery(request.GET['q'])
-        v = SearchVector('title', 'intro', 'stream_rendered')
+        v = SearchVector('title', 'intro', 'stream_search')
         blogs = Article.objects.annotate(rank=SearchRank(v, q))
         blogs = blogs.filter(rank__gt=0.01)
         if blogs:

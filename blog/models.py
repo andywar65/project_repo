@@ -2,6 +2,7 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.db import models
 from django.utils.timezone import now
+from django.utils.html import strip_tags
 from taggit.managers import TaggableManager
 from project.utils import generate_unique_slug
 from streamfield.fields import StreamField
@@ -25,7 +26,7 @@ class Article(models.Model):
     stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
             Gallery, DownloadableFile, LinkableList, BoxedText],
             verbose_name="Testo" )
-    stream_rendered = models.TextField(editable=False, null=True)
+    stream_search = models.TextField(editable=False, null=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL,
         blank= True, null=True, verbose_name = 'Autore')
     tags = TaggableManager(verbose_name="Categorie",
@@ -70,7 +71,7 @@ class Article(models.Model):
         if not self.slug:
             self.slug = generate_unique_slug(Article, self.title)
         self.last_updated = now()
-        self.stream_rendered = self.stream.render
+        self.stream_search = strip_tags(self.stream.render)
         if self.notice == 'SPAM':
             message = self.title + '\n'
             message += self.intro + '\n'

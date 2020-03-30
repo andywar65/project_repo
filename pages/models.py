@@ -1,4 +1,5 @@
 from django.utils.timezone import now
+from django.utils.html import strip_tags
 from django.db import models
 from treebeard.mp_tree import MP_Node
 from project.utils import generate_unique_slug
@@ -31,7 +32,7 @@ class TreePage(MP_Node):
     stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
         Gallery, DownloadableFile, LinkableList, BoxedText, ],
         verbose_name="Testo" )
-    stream_rendered = models.TextField(editable=False, null=True)
+    stream_search = models.TextField(editable=False, null=True)
     summary = models.BooleanField('Mostra sommario', default = True, )
     navigation = models.BooleanField('Mostra navigazione', default = True, )
     last_updated = models.DateTimeField(editable=False, null=True)
@@ -82,7 +83,7 @@ class TreePage(MP_Node):
         else:
             self.slug = generate_unique_slug(TreePage, self.title)
         self.last_updated = now()
-        self.stream_rendered = self.stream.render
+        self.stream_search = strip_tags(self.stream.render)
         super(TreePage, self).save(*args, **kwargs)
 
     def __str__(self):
