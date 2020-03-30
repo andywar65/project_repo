@@ -1,6 +1,8 @@
 from django import forms
 from django.shortcuts import render
 from django.db.models import Q
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
+
 from blog.models import Article, UserUpload
 from pages.models import TreePage
 
@@ -8,6 +10,27 @@ class ValidateForm(forms.Form):
     q = forms.CharField(max_length=100)
 
 def search_results(request):
+    success = False
+    form = ValidateForm(request.GET)
+    if form.is_valid():
+        q = SearchQuery(request.GET['q'])
+        v = SearchVector('title', 'intro', 'stream_rendered')
+        blogs = Article.objects.annotate(rank=SearchRank(v, q))
+        if blogs:
+            blogs = blogs.order_by('-rank')
+            success = True
+        #v = SearchVector('title', 'intro', 'stream_rendered')
+        pages = TreePage.objects.annotate(rank=SearchRank(v, q)).order_by('-rank')
+        if pages:
+            pages = pages.order_by('-rank')
+            success = True
+        return render(request, 'search_results.html',
+            {'search': request.GET['q'],
+            'all_blogs': blogs, 'pages': pages, 'success': success})
+    else:
+        return render(request, 'search_results.html', {'success': success, })
+
+def old_search_results(request):
     success = False
     form = ValidateForm(request.GET)
     if form.is_valid():
