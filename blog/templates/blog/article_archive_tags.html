@@ -9,8 +9,8 @@
     {% endif %}
   {% endfor %}
   </p>
-  <p><a href="{% url 'blog:article_authors' %}">Lista degli autori</a></p>
 {% endif %}
+  <p><a href="{% url 'blog:post_authors' %}">Lista degli autori</a></p>
 {% block article_archive %}
 {% endblock article_archive %}
 {% endblock content %}

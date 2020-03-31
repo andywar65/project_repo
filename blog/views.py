@@ -129,3 +129,20 @@ class ByAuthorListView(ListView):
         if 'tag' in self.request.GET:
             context['tag_filter'] = self.request.GET['tag']
         return self.render_to_response(context)
+
+class ByUploadListView(ListView):
+    model = UserUpload
+    context_object_name = 'uploads'
+    template_name = 'blog/uploads_by_author.html'
+    paginate_by = 12
+    allow_empty = True
+
+    def get_queryset(self):
+        qs = UserUpload.objects.filter(user_id= self.kwargs['pk'])
+        return qs
+
+    def get(self, request, *args, **kwargs):
+        super(ByUploadListView, self).get(request, *args, **kwargs)
+        context = self.get_context_data()
+        context['author'] = get_object_or_404( User, id = kwargs['pk'] )
+        return self.render_to_response(context)
