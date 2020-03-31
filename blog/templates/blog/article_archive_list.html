@@ -1,3 +1,5 @@
+{% load fb_versions %}
+
 {% if posts %}
 <div class="card-deck">
 {% for post in posts %}
@@ -8,7 +10,7 @@
       {{ post.title }}</a></h4>
   </div>
   {% if post.get_image %}
-  <img class="card-img-top" src="{{ post.get_image.url }}" alt="{{ post.intro }}">
+    <img class="card-img-top" src="{% version post.get_image 'landscape' %}" alt="{{ post.intro }}">
   {% endif %}
   <div class="card-body">
     <em class="card-text">{{ post.intro }}</em>

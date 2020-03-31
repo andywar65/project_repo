@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load fb_versions %}
 
 {% block title %}{{ website.acro }} | Home{%endblock title %}
 {% block extra-head %}
@@ -36,7 +37,7 @@
         <h4 class="card-title">{{ post.title }}</h4></a>
     </div>
     {% if post.get_image %}
-      <img class="card-img-top" src="{{ post.get_image.url }}" alt="{{ post.intro }}">
+      <img class="card-img-top" src="{% version post.get_image 'landscape' %}" alt="{{ post.intro }}">
     {% endif %}
     <div class="card-body">
       <em class="card-text">{{ post.intro }}</em>
