@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load fb_versions %}
+
+{% block title %}{{ website.acro }} | Autori{% endblock title %}
+
+{% block content %}
+<h4><strong>Lista degli autori</strong></h4>
+<hr class="mb-4">
+{% if authors %}
+    {% for author, count in authors.items %}
+      <div class="row row-striped">
+        <div class="col-md-2 text-right">
+          {% if author.profile.avatar %}
+          <img src="{% version author.profile.get_thumb 'admin_thumbnail' %}" class="rounded-circle">
+          {% endif %}<a href="/articoli/autori/{{ author.id }}/"><h4>{{ author.get_full_name }}</h4></a>
+        </div>
+        <div class="col-md-8">
+          <p>{{ author.profile.bio|default_if_none:"Nessuna nota biografica" }}</p>
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <i class="fa fa-folder-open" aria-hidden="true"></i>
+                Numero di articoli: {{ count }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    {% endfor %}
+{% else %}
+    <div class="col-md-12">
+        <p>Non ci sono autori.</p>
+    </div>
+{% endif %}
+<hr class="mb-4">
+{% if is_paginated %}
+  <nav aria-label="Page navigation container">
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PRECEDENTI </a></li>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> PROSSIMI &raquo;</a></li>
+    {% endif %}
+  </ul>
+  </nav>
+{% endif %}
+{% endblock content %}
