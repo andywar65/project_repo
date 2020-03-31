@@ -21,6 +21,17 @@
           </ul>
         {% endfor %}
       {% endif %}
+      {% if all_uploads %}
+        <h5>Articoli per contributo</h5>
+        {% for blog in all_uploads %}
+          <ul>
+            <li>
+              <p><a href="{{ blog.get_path }}">{{ blog.title }}&nbsp;</a>
+              {{ blog.date|date:"d M Y" }}</p>
+            </li>
+          </ul>
+        {% endfor %}
+      {% endif %}
       {% if pages %}
         <h5>Pagine</h5>
         {% for page in pages %}

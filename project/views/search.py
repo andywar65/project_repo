@@ -14,12 +14,22 @@ def search_results(request):
     form = ValidateForm(request.GET)
     if form.is_valid():
         q = SearchQuery(request.GET['q'])
-        v = SearchVector('title', 'intro', 'stream_search')
-        blogs = Article.objects.annotate(rank=SearchRank(v, q))
-        blogs = blogs.filter(rank__gt=0.01)
-        if blogs:
-            blogs = blogs.order_by('-rank')
+        #search in uploads
+        v = SearchVector('body')
+        uploads = UserUpload.objects.annotate(rank=SearchRank(v, q))
+        uploads = uploads.filter(rank__gt=0.01).values_list('post_id',
+            flat = True)
+        article_uploads = Article.objects.filter(id__in = uploads)
+        if article_uploads:
             success = True
+        #search in articles
+        v = SearchVector('title', 'intro', 'stream_search')
+        articles = Article.objects.annotate(rank=SearchRank(v, q))
+        articles = articles.filter(rank__gt=0.01)
+        if articles:
+            articles = articles.order_by('-rank')
+            success = True
+        #search in pages
         #v = SearchVector('title', 'intro', 'stream_rendered')
         pages = TreePage.objects.annotate(rank=SearchRank(v, q))
         pages = pages.filter(rank__gt=0.01)
@@ -27,30 +37,7 @@ def search_results(request):
             pages = pages.order_by('-rank')
             success = True
         return render(request, 'search_results.html',
-            {'search': request.GET['q'],
-            'all_blogs': blogs, 'pages': pages, 'success': success})
-    else:
-        return render(request, 'search_results.html', {'success': success, })
-
-def old_search_results(request):
-    success = False
-    form = ValidateForm(request.GET)
-    if form.is_valid():
-        q = request.GET['q']
-        #prepare list of user uploads referenced by blog posts
-        uploads = UserUpload.objects.filter(body__icontains = q)
-        uploads = uploads.values_list('post_id', flat = True)
-        blogs = Article.objects.filter(Q(title__icontains=q)|
-            Q(intro__icontains=q)|Q(stream_rendered__icontains = q)|
-            Q(id__in = uploads))
-        if blogs:
-            success = True
-        #TreePage page content type
-        pages = TreePage.objects.filter(Q(title__icontains=q)|
-            Q(intro__icontains=q)|Q(stream_rendered__icontains = q))
-        if pages:
-            success = True
-        return render(request, 'search_results.html', {'search': q,
-            'all_blogs': blogs, 'pages': pages, 'success': success})
+            {'search': request.GET['q'], 'all_uploads': article_uploads,
+            'all_blogs': articles, 'pages': pages, 'success': success})
     else:
         return render(request, 'search_results.html', {'success': success, })
