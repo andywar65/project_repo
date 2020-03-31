@@ -102,3 +102,28 @@ class AuthorListView(ListView):
                 author_dict[author]=art_count
         context['authors'] = author_dict
         return context
+
+class ByAuthorListView(ListView):
+    model = Article
+    context_object_name = 'posts'
+    template_name = 'blog/article_archive_authors.html'
+    paginate_by = 12
+    allow_empty = True
+
+    """We cannot subclass TagMixin because queryset is altered (by author), so
+    the TagMixin snippets are included in get_queryset() and get() afterwards"""
+
+    def get_queryset(self):
+        qs = Article.objects.filter(author_id= self.kwargs['pk'])
+        if 'tag' in self.request.GET:
+            qs = qs.filter(tags__name=self.request.GET['tag'])
+        return qs
+
+    def get(self, request, *args, **kwargs):
+        super(ByAuthorListView, self).get(request, *args, **kwargs)
+        context = self.get_context_data()
+        context['author'] = get_object_or_404( User, id = kwargs['pk'] )
+        context['tags'] = Tag.objects.all()
+        if 'tag' in self.request.GET:
+            context['tag_filter'] = self.request.GET['tag']
+        return self.render_to_response(context)

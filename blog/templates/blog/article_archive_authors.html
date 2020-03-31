@@ -1,0 +1,27 @@
+{% extends 'blog/article_archive_tags.html' %}
+
+{% block title %}{{ website.acro }} | Articoli di {{ author.get_full_name }}{% endblock title %}
+{% block article_archive %}
+<h4><strong>
+  Articoli di approfondimento di 
+  {% if tag_filter %}
+  <a href="/articoli/autori/{{ author.id }}/">{{ author.get_full_name }}</a>
+  nella categoria: {{ tag_filter|upper }}
+  {% else %}
+  {{ author.get_full_name }}
+  {% endif %}
+</strong></h4>
+{% include "blog/article_archive_list.html" %}
+{% if is_paginated %}
+<nav aria-label="Page navigation container">
+<ul class="pagination justify-content-center">
+  {% if page_obj.has_previous %}
+  <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PRECEDENTI </a></li>
+  {% endif %}
+  {% if page_obj.has_next %}
+  <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> PROSSIMI &raquo;</a></li>
+  {% endif %}
+</ul>
+</nav>
+{% endif %}
+{% endblock article_archive %}
