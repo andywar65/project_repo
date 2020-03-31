@@ -7,24 +7,34 @@
 <h4><strong>Lista degli autori</strong></h4>
 <hr class="mb-4">
 {% if authors %}
-    {% for author, count in authors.items %}
+  {% with pass=user.is_authenticated %}
+    {% for author, counts in authors.items %}
       <div class="row row-striped">
-        <div class="col-md-2 text-right">
+        <div class="col-md-2 text-center">
           {% if author.profile.avatar %}
           <img src="{% version author.profile.get_thumb 'admin_thumbnail' %}" class="rounded-circle">
-          {% endif %}<a href="/articoli/autori/{{ author.id }}/"><h4>{{ author.get_full_name }}</h4></a>
+          {% endif %}<h5>{{ author.get_full_name }}</h5>
         </div>
         <div class="col-md-8">
           <p>{{ author.profile.bio|default_if_none:"Nessuna nota biografica" }}</p>
           <ul class="list-inline">
-            <li class="list-inline-item">
-              <i class="fa fa-folder-open" aria-hidden="true"></i>
-                Numero di articoli: {{ count }}
-            </li>
+            {% if pass and counts.0 %}
+              <li class="list-inline-item">
+                <i class="fa fa-folder-open" aria-hidden="true"></i>
+                  Numero di <a href="/articoli/autori/{{ author.id }}/">articoli</a>: {{ counts.0 }}
+              </li>
+            {% endif %}
+            {% if pass and counts.1 %}
+              <li class="list-inline-item">
+                <i class="fa fa-upload" aria-hidden="true"></i>
+                  Numero di contributi: {{ counts.1 }}
+              </li>
+            {% endif %}
           </ul>
         </div>
       </div>
     {% endfor %}
+  {% endwith %}
 {% else %}
     <div class="col-md-12">
         <p>Non ci sono autori.</p>

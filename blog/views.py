@@ -95,11 +95,13 @@ class AuthorListView(ListView):
         context = super().get_context_data(**kwargs)
         all_users = context['user_list']
         all_articles = Article.objects.all()
+        all_contrib = UserUpload.objects.all()
         author_dict = {}
         for author in all_users:
             art_count = all_articles.filter(author_id = author.id).count()
-            if art_count:
-                author_dict[author]=art_count
+            contrib_count = all_contrib.filter(user_id = author.id).count()
+            if art_count or contrib_count:
+                author_dict[author]=(art_count, contrib_count)
         context['authors'] = author_dict
         return context
 
