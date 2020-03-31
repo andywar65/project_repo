@@ -84,9 +84,21 @@ class UserUploadCreateView(LoginRequiredMixin, CreateView):
             form.instance.post = Article.objects.get(id=self.request.GET['post_id'])
         return super().form_valid(form)
 
-def AuthorListView(ListView):
+class AuthorListView(ListView):
     model = User
-    context_object_name = 'authors'
+    #context_object_name = 'authors'
     template_name = 'blog/author_list.html'
     paginate_by = 10
     allow_empty = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        all_users = context['user_list']
+        all_articles = Article.objects.all()
+        author_dict = {}
+        for author in all_users:
+            art_count = all_articles.filter(author_id = author.id).count()
+            if art_count:
+                author_dict[author]=art_count
+        context['authors'] = author_dict
+        return context
