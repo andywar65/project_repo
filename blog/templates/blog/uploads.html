@@ -1,15 +1,15 @@
 {% load fb_versions %}
 <div class="card" style="margin-bottom: 20px; min-width: 18rem;">
-  <div class="card-header">
+    {% if upload.image %}
+    <img class="card-img-top" src="{% version upload.image 'large' %}" width="100%" alt="" />
+    {% endif %}
+  <div class="card-body">
+    <p class="card-text">{{ upload.body }}</p>
+  </div>
+  <div class="card-footer">
     {% if upload.user.profile.avatar %}
     <img src="{% version upload.user.profile.get_thumb 'admin_thumbnail' %}" width="32px" class="rounded-circle">
     {% endif %}
     {{ upload.user.get_full_name }}, caricato il {{ upload.date|date:"d M Y"}}
-  </div>
-    {% if upload.image %}
-    <img class="card-img-top" src="{{ upload.image.url }}" width="100%" alt="" />
-    {% endif %}
-  <div class="card-body">
-    <p class="card-text">{{ upload.body }}</p>
   </div>
 </div>
