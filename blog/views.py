@@ -7,6 +7,8 @@ from django.views.generic.dates import (ArchiveIndexView, YearArchiveView,
     MonthArchiveView, DayArchiveView, )
 from taggit.models import Tag
 
+from users.models import User
+
 from .forms import UserUploadForm
 from .models import (UserUpload, Article,)
 
@@ -81,3 +83,10 @@ class UserUploadCreateView(LoginRequiredMixin, CreateView):
         if 'post_id' in self.request.GET:
             form.instance.post = Article.objects.get(id=self.request.GET['post_id'])
         return super().form_valid(form)
+
+def AuthorListView(ListView):
+    model = User
+    context_object_name = 'authors'
+    template_name = 'blog/author_list.html'
+    paginate_by = 10
+    allow_empty = True

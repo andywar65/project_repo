@@ -1,7 +1,7 @@
 from django.urls import path
 from blog.views import (ArticleArchiveIndexView, ArticleYearArchiveView,
     ArticleMonthArchiveView, ArticleDayArchiveView, DetailArticle,
-    UserUploadCreateView)
+    UserUploadCreateView, AuthorListView)
 
 app_name = 'blog'
 urlpatterns = [
@@ -16,4 +16,6 @@ urlpatterns = [
         name = 'post_detail'),
     path('contributi/', UserUploadCreateView.as_view(),
         name = 'post_upload'),
+    path('autori/', AuthorListView.as_view(),
+        name = 'article_authors'),
     ]
