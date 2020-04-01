@@ -15,19 +15,21 @@
         {% for blog in all_blogs %}
           <ul>
             <li>
-              <p><a href="{{ blog.get_path }}">{{ blog.title }}&nbsp;</a>
-              {{ blog.date|date:"d M Y" }}</p>
+              <span><a href="{{ blog.get_path }}">{{ blog.title }}</a>
+                <em>{{ blog.intro }}</em>
+                {{ blog.date|date:"d M Y" }}</span>
             </li>
           </ul>
         {% endfor %}
       {% endif %}
-      {% if all_uploads %}
+      {% if all_uploads and user.is_authenticated %}
         <h5>Articoli per contributo</h5>
         {% for blog in all_uploads %}
           <ul>
             <li>
-              <p><a href="{{ blog.get_path }}">{{ blog.title }}&nbsp;</a>
-              {{ blog.date|date:"d M Y" }}</p>
+              <span><a href="{{ blog.get_path }}">{{ blog.title }}</a>
+                <em>{{ blog.intro }}</em>
+                {{ blog.date|date:"d M Y" }}</span>
             </li>
           </ul>
         {% endfor %}
@@ -37,7 +39,8 @@
         {% for page in pages %}
           <ul>
             <li>
-              <a href="{{ page.get_path }}">{{ page.title }}&nbsp;</a>
+              <a href="{{ page.get_path }}">{{ page.title }}</a>
+              {{ page.intro }}
             </li>
           </ul>
         {% endfor %}
