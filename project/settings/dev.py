@@ -1,3 +1,6 @@
+"""WARNING:
+    Commits to this file may not be cherry-picked by branches"""
+
 from .base import *
 
 # SECURITY WARNING: keep the secret key used in production secret!
