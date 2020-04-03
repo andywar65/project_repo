@@ -39,7 +39,7 @@ class Profile(models.Model):
     avatar = models.ImageField(blank = True, null=True,
         upload_to = 'uploads/users/')
     bio = models.TextField("Breve biografia", null=True, blank=True)
-    no_spam = models.BooleanField(default = True,
+    yes_spam = models.BooleanField(default = False,
         verbose_name = 'Mailing list',
         help_text = 'Vuoi ricevere notifiche sugli eventi?',)
 

@@ -113,7 +113,7 @@ class ProfileChangeForm(forms.Form):
             'placeholder': 'you@example.com'}))
     bio = forms.CharField( label = 'Breve biografia', required = False,
         widget = forms.Textarea(attrs={'placeholder': "Parlaci un po' di te"}) )
-    no_spam = forms.BooleanField( label="Mailing list", required = False,
+    yes_spam = forms.BooleanField( label="Mailing list", required = False,
         help_text = "Vuoi ricevere notifiche sui nuovi articoli?")
 
 class ProfileDeleteForm(forms.Form):
