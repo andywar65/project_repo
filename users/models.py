@@ -14,6 +14,7 @@ class User(AbstractUser):
             return self.first_name + ' ' + self.last_name
         else:
             return self.username
+    get_full_name.short_description = 'Nome'
 
     def get_short_name(self):
         if self.first_name:
