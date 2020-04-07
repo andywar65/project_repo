@@ -5,6 +5,7 @@ def get_global_settings(request):
         'acro': settings.WEBSITE_ACRO,
         'facebook': settings.FB_LINK,
         'insta': settings.INSTA_LINK,
+        'twitter': settings.TWIT_LINK,
         'linked': settings.IN_LINK,
         'github': settings.GITHUB_LINK,
         'external': settings.EXT_LINK,
