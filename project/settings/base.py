@@ -151,6 +151,7 @@ WEBSITE_ACRO = get_secret('WEBSITE_ACRO')
 #make your own, add them in project.processors.get_global_settings
 FB_LINK = get_secret('FB_LINK')
 INSTA_LINK = get_secret('INSTA_LINK')
+TWIT_LINK = get_secret('TWIT_LINK')
 IN_LINK = get_secret('IN_LINK')
 GITHUB_LINK = get_secret('GITHUB_LINK')
 EXT_LINK = get_secret('EXT_LINK')
