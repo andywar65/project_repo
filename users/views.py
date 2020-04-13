@@ -51,7 +51,7 @@ class RegistrationFormView(GetMixin, FormView):
         password = User.objects.make_random_password()
         user.password = make_password(password)
         user.save()
-        subject = 'Credenziali di accesso allo SP'#TODO have site name in settings
+        subject = f'Credenziali di accesso a {settings.WEBSITE_ACRO}'
         body = registration_message(user.username, password)
         mailto = [ user.email, ]
         email = EmailMessage(subject, body, settings.SERVER_EMAIL, mailto)
