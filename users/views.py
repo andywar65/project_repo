@@ -115,6 +115,10 @@ class FrontLoginView(LoginView):
             return reverse('profile')
         elif redirect_to == reverse('password_reset_done'):
             return reverse('profile')
+        elif redirect_to == reverse('profile_deleted'):
+            return reverse('profile')
+        elif redirect_to == reverse('registration'):
+            return reverse('profile')
         return redirect_to
 
 class FrontLogoutView(LogoutView):
