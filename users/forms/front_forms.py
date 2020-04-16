@@ -54,52 +54,38 @@ class ContactForm(ModelForm):
 
 class FrontAuthenticationForm(AuthenticationForm):
     username = UsernameField(widget=forms.TextInput(attrs={'autofocus': True,
-        'class': 'form-control'}))
+        }))
     password = forms.CharField(
         strip=False,
         widget=forms.PasswordInput(attrs={'autocomplete': 'current-password',
-            'class': 'form-control'}),
+            }),
     )
-
-    def clean(self):
-        cd = super().clean()
-        try:
-            username = cd.get('username')
-            user = User.objects.get(username = username)
-            if user.member.parent:
-                self.add_error(None, forms.ValidationError(
-                    """I minori non possono effettuare il login autonomamente!
-                    Il loro account è gestito dai genitori.""",
-                    code='minor_no_login',
-                ))
-        except:
-            pass
 
 class FrontPasswordResetForm(PasswordResetForm):
     email = forms.EmailField(
         max_length=254, label='Email di registrazione',
         widget=forms.EmailInput(attrs={'autocomplete': 'email',
-            'class': 'form-control'})
+            })
     )
 
 class FrontSetPasswordForm(SetPasswordForm):
     new_password1 = forms.CharField(
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password',
-            'class': 'form-control'}),
+            }),
         strip=False, label='Nuova password',
         help_text=password_validation.password_validators_help_text_html(),
     )
     new_password2 = forms.CharField(
         strip=False, label='Ripeti la nuova password',
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password',
-            'class': 'form-control'}),
+            }),
     )
 
 class FrontPasswordChangeForm(FrontSetPasswordForm):
     old_password = forms.CharField(
         strip=False, label='Vecchia password',
         widget=forms.PasswordInput(attrs={'autocomplete': 'current-password',
-            'autofocus': True, 'class': 'form-control'}),
+            'autofocus': True, }),
     )
 
 class ProfileChangeForm(forms.Form):
