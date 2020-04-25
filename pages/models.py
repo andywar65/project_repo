@@ -83,7 +83,9 @@ class TreePage(MP_Node):
         else:
             self.slug = generate_unique_slug(TreePage, self.title)
         self.last_updated = now()
-        self.stream_search = strip_tags(self.stream.render)
+        #sometimes treats stream as str instead of StreamField object
+        if not isinstance(self.stream, str):
+            self.stream_search = strip_tags(self.stream.render)
         super(TreePage, self).save(*args, **kwargs)
 
     def __str__(self):
