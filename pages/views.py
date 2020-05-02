@@ -14,10 +14,14 @@ class HomeTemplateView(TemplateView):
         context['page'] = HomePage.objects.first()
         if not context['page']:
             raise Http404("Non ci sono Home Page")
+        context['all_events'] = Event.objects.all()[:6]
         context['posts'] = Article.objects.all()[:6]
+        context['actions'] = []
         actions = context['page'].action.from_json()
-        for action in actions:
-            context['actions'] = HomeButton.objects.filter(id__in = action['id'])[:3]
+        if actions:
+            id_list = actions[0].get('id')
+            for id in id_list:
+                context['actions'].append(HomeButton.objects.get(id = id))
         return context
 
 class TreePageListView(ListView):
