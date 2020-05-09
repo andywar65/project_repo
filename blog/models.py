@@ -5,6 +5,7 @@ from django.utils.timezone import now
 from django.utils.html import strip_tags
 from taggit.managers import TaggableManager
 from project.utils import generate_unique_slug
+from streamfield.base import StreamObject
 from streamfield.fields import StreamField
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
@@ -73,7 +74,16 @@ class Article(models.Model):
         if not self.slug:
             self.slug = generate_unique_slug(Article, self.title)
         self.last_updated = now()
-        self.stream_search = strip_tags(self.stream.render)
+        #in tests treats stream as str instead of StreamField object
+        #probably should use transaction instaed
+        #but for now this patch works
+        if isinstance(self.stream, str):
+            tmp = StreamObject( value = self.stream,
+                model_list=[ IndexedParagraph, CaptionedImage,
+                    Gallery, DownloadableFile, LinkableList, BoxedText ], )
+            self.stream_search = strip_tags(tmp.render)
+        else:
+            self.stream_search = strip_tags(self.stream.render)
         if self.notice == 'SPAM':
             message = self.title + '\n'
             message += self.intro + '\n'

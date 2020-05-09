@@ -3,6 +3,7 @@ from django.utils.html import strip_tags
 from django.db import models
 from treebeard.mp_tree import MP_Node
 from project.utils import generate_unique_slug
+from streamfield.base import StreamObject
 from streamfield.fields import StreamField
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
@@ -84,7 +85,14 @@ class TreePage(MP_Node):
             self.slug = generate_unique_slug(TreePage, self.title)
         self.last_updated = now()
         #sometimes treats stream as str instead of StreamField object
-        if not isinstance(self.stream, str):
+        #probably should use transaction instaed
+        #but for now this patch works
+        if isinstance(self.stream, str):
+            tmp = StreamObject( value = self.stream,
+                model_list=[ IndexedParagraph, CaptionedImage,
+                    Gallery, DownloadableFile, LinkableList, BoxedText, ], )
+            self.stream_search = strip_tags(tmp.render)
+        else:
             self.stream_search = strip_tags(self.stream.render)
         super(TreePage, self).save(*args, **kwargs)
 
