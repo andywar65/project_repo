@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from users.models import User
-from streamblocks.models import IndexedParagraph
+from streamblocks.models import IndexedParagraph, LandscapeGallery
 from blog.models import Article, UserUpload
 
 class ArticleModelTest(TestCase):
@@ -9,15 +9,23 @@ class ArticleModelTest(TestCase):
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
         IndexedParagraph.objects.create()
+        LandscapeGallery.objects.create(fb_image='uploads/image.jpg')
         Article.objects.create(title='Article 1',
             date = '2020-05-09 15:53:00+02',
-            stream = '[{"unique_id":"4h5dps","model_name":"IndexedParagraph","id":1,"options":{}}]')
+            stream = '[{"unique_id":"4h5dps","model_name":"IndexedParagraph","id":1,"options":{}}]',
+            carousel = '[{"unique_id":"dps4h5","model_name":"LandscapeGallery","id":[1],"options":{}}]'
+            )
         Article.objects.create(title='Article 2',
             date = '2020-05-09 15:58:00+02')
         User.objects.create(username='andywar65', password='P4s5W0r6')
         article = Article.objects.get(id = 1)
         user = User.objects.get(id = 1)
         UserUpload.objects.create(post=article, user=user, body='Foo Bar')
+
+    def test_article_get_image(self):
+        article = Article.objects.get(id = 1)
+        #here I extract the FilObject.path for convenience
+        self.assertEquals(article.get_image().path, 'uploads/image.jpg')
 
     def test_article_str_method(self):
         article = Article.objects.get(id = 1)
