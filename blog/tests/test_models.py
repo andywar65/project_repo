@@ -8,12 +8,13 @@ class ArticleModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        IndexedParagraph.objects.create()
+        IndexedParagraph.objects.create(title='Foo', body='Bar')
         LandscapeGallery.objects.create(fb_image='uploads/image.jpg')
         Article.objects.create(title='Article 1',
             date = '2020-05-09 15:53:00+02',
             stream = '[{"unique_id":"4h5dps","model_name":"IndexedParagraph","id":1,"options":{}}]',
-            carousel = '[{"unique_id":"dps4h5","model_name":"LandscapeGallery","id":[1],"options":{}}]'
+            carousel = '[{"unique_id":"dps4h5","model_name":"LandscapeGallery","id":[1],"options":{}}]',
+            notice = 'SPAM'
             )
         Article.objects.create(title='Article 2',
             date = '2020-05-09 15:58:00+02')
@@ -51,3 +52,12 @@ class ArticleModelTest(TestCase):
         #https://stackoverflow.com/questions/17685023/how-do-i-test-django-querysets-are-equal
         self.assertQuerysetEqual(article.get_uploads(), uploads,
             transform=lambda x: x)
+
+    def test_article_notice_status(self):
+        article = Article.objects.get(id = 1)
+        self.assertEquals(article.notice, 'DONE')
+
+    def test_article_stream_search(self):
+        article = Article.objects.get(id = 1)
+        self.assertEquals(article.stream_search,
+            '\n  \n    Foo\n    \n  \n  \n     Bar \n  \n\n')

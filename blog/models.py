@@ -1,12 +1,16 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.db import models
 from django.utils.timezone import now
 from django.utils.html import strip_tags
+
 from taggit.managers import TaggableManager
-from project.utils import generate_unique_slug
 from streamfield.base import StreamObject
 from streamfield.fields import StreamField
+
+from project.utils import generate_unique_slug
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
 from users.models import User
@@ -50,7 +54,12 @@ class Article(models.Model):
         return
 
     def get_path(self):
-        return '/articoli/' + self.date.strftime("%Y/%m/%d") + '/' + self.slug
+        temp = self.date
+        #conditional added for test to work
+        if isinstance(temp, str):
+            temp = temp.split(' ')[0]
+            temp = datetime.strptime(temp, '%Y-%m-%d')
+        return '/articoli/' + temp.strftime("%Y/%m/%d") + '/' + self.slug
 
     def get_uploads(self):
         return UserUpload.objects.filter(post_id=self.id)
