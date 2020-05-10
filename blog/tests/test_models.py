@@ -61,3 +61,7 @@ class ArticleModelTest(TestCase):
         article = Article.objects.get(id = 1)
         self.assertEquals(article.stream_search,
             '\n  \n    Foo\n    \n  \n  \n     Bar \n  \n\n')
+
+    def test_userupload_str_method(self):
+        upload = UserUpload.objects.get(id = 1)
+        self.assertEquals(upload.__str__(), 'Contributo - 1')
