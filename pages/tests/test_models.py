@@ -10,7 +10,7 @@ class TreePageModelTest(TestCase):
         IndexedParagraph.objects.create(title='Foo', body='Bar')
         TreePage.objects.create(title='Page 1', path = '0001', depth = 1,
             numchild = 2,
-            #stream = '[{"unique_id":"4h5dps","model_name":"IndexedParagraph","id":1,"options":{}}]',
+            stream = '[{"unique_id":"4h5dps","model_name":"IndexedParagraph","id":1,"options":{}}]',
             )
         TreePage.objects.create(title='Child Page', path = '00010001',
             depth = 2,
@@ -46,7 +46,7 @@ class TreePageModelTest(TestCase):
         sibling = TreePage.objects.get(id = 3)
         self.assertEquals(child.get_adjacent_pages(), (parent, sibling))
 
-    #def test_tree_page_stream_search(self):
-        #page = TreePage.objects.get(id = 1)
-        #self.assertEquals(page.stream_search,
-            #'\n  \n    Foo\n    \n  \n  \n     Bar \n  \n\n')
+    def test_tree_page_stream_search(self):
+        page = TreePage.objects.get(id = 1)
+        self.assertEquals(page.stream_search,
+            '\n  \n    Foo\n    \n  \n  \n     Bar \n  \n\n')
