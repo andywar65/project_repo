@@ -22,6 +22,10 @@ class ArticleViewTest(TestCase):
         response = self.client.get(reverse('blog:post_index'))
         self.assertTemplateUsed(response, 'blog/article_archive.html')
 
+    def test_article_archive_index_view_template_tagged(self):
+        response = self.client.get('/articoli/?tag=foo')
+        self.assertTemplateUsed(response, 'blog/article_archive.html')
+
     def test_article_archive_index_view_context_object(self):
         all_posts = Article.objects.all()
         response = self.client.get(reverse('blog:post_index'))
@@ -98,4 +102,10 @@ class ArticleViewTest(TestCase):
             kwargs={'year': 2020, 'month': 5, 'day': 10, 'slug': 'article-3'}))
         self.assertEqual(response.context['post'], article )
 
-    #TODO test tags, test UserUpload
+    def test_user_upload_create_view_status_code_not_logged(self):
+        response = self.client.get(reverse('blog:post_upload'))
+        self.assertEqual(response.status_code, 302)
+
+    def test_user_upload_create_view_template_not_logged(self):
+        response = self.client.get(reverse('blog:post_upload'))
+        self.assertTemplateNotUsed(response, 'blog/userupload_form.html')
