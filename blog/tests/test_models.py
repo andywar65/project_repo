@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from users.models import User
+from users.models import User, Profile
 from streamblocks.models import IndexedParagraph, LandscapeGallery
 from blog.models import Article, UserUpload
 
@@ -8,6 +8,18 @@ class ArticleModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
+        User.objects.create(username='andywar65', password='P4s5W0r6',
+            email='andy@war.com')
+        user = User.objects.get(username='andywar65')
+        profile = Profile.objects.get(pk=user.id)
+        profile.yes_spam = True
+        profile.save()
+        User.objects.create(username='recipient', password='P4s5W0r6',
+            email='recipient@war.com')
+        recipient = User.objects.get(username='recipient')
+        profile = Profile.objects.get(pk=recipient.id)
+        profile.yes_spam = True
+        profile.save()
         IndexedParagraph.objects.create(id=47, title='Foo', body='Bar')
         LandscapeGallery.objects.create(id=48, fb_image='uploads/image.jpg')
         Article.objects.create(title='Article 1',
@@ -18,9 +30,7 @@ class ArticleModelTest(TestCase):
             )
         Article.objects.create(title='Article 2',
             date = '2020-05-09 15:58:00+02')
-        User.objects.create(username='andywar65', password='P4s5W0r6')
         article = Article.objects.get(slug='article-1')
-        user = User.objects.get(username='andywar65')
         UserUpload.objects.create(id=49, post=article, user=user,
             body='Foo Bar')
 
@@ -45,6 +55,10 @@ class ArticleModelTest(TestCase):
         article = Article.objects.get(slug='article-1')
         article_2 = Article.objects.get(slug='article-2')
         self.assertEquals(article.get_next(), article_2)
+
+    def test_article_get_next_missing(self):
+        article_2 = Article.objects.get(slug='article-2')
+        self.assertEquals(article_2.get_next(), None)
 
     def test_article_get_uploads(self):
         article = Article.objects.get(slug='article-1')
