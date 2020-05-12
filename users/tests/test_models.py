@@ -6,13 +6,14 @@ class UserModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        User.objects.create(username='andy.war65', password='P4s5W0r6',
+        user = User.objects.create(username='andy.war65', password='P4s5W0r6',
             first_name='Andrea', last_name='Guerra', email='andy@war.com')
-        User.objects.create(username='rawydna56', password='P4s5W0r6',)
-        user = User.objects.get(username='andy.war65')
+        #next save is just for coverage purposes
+        user.save()
         profile = Profile.objects.get(pk=user.id)
         profile.avatar = 'uploads/users/avatar.jpg'
         profile.save()
+        User.objects.create(username='rawydna56', password='P4s5W0r6',)
         UserMessage.objects.create(id=17, user=user, subject='Foo', body='Bar')
         UserMessage.objects.create(id=18, nickname='Nick Name',
             email='me@example.com', subject='Foo', body='Bar')

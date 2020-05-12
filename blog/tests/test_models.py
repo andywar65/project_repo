@@ -8,21 +8,19 @@ class ArticleModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        User.objects.create(username='andywar65', password='P4s5W0r6',
+        user = User.objects.create(username='andywar65', password='P4s5W0r6',
             email='andy@war.com')
-        user = User.objects.get(username='andywar65')
         profile = Profile.objects.get(pk=user.id)
         profile.yes_spam = True
         profile.save()
-        User.objects.create(username='recipient', password='P4s5W0r6',
+        recipient = User.objects.create(username='recipient', password='P4s5W0r6',
             email='recipient@war.com')
-        recipient = User.objects.get(username='recipient')
         profile = Profile.objects.get(pk=recipient.id)
         profile.yes_spam = True
         profile.save()
         IndexedParagraph.objects.create(id=47, title='Foo', body='Bar')
         LandscapeGallery.objects.create(id=48, fb_image='uploads/image.jpg')
-        Article.objects.create(title='Article 1',
+        article = Article.objects.create(title='Article 1',
             date = '2020-05-09 15:53:00+02',
             stream = '[{"unique_id":"4h5dps","model_name":"IndexedParagraph","id":47,"options":{}}]',
             carousel = '[{"unique_id":"dps4h5","model_name":"LandscapeGallery","id":[48],"options":{}}]',
@@ -30,7 +28,6 @@ class ArticleModelTest(TestCase):
             )
         Article.objects.create(title='Article 2',
             date = '2020-05-09 15:58:00+02')
-        article = Article.objects.get(slug='article-1')
         UserUpload.objects.create(id=49, post=article, user=user,
             body='Foo Bar')
 
