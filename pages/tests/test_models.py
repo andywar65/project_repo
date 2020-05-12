@@ -7,10 +7,10 @@ class TreePageModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        IndexedParagraph.objects.create(title='Foo', body='Bar')
+        IndexedParagraph.objects.create(id=61, title='Foo', body='Bar')
         TreePage.objects.create(title='Page 1', path = '0001', depth = 1,
             numchild = 2,
-            stream = '[{"unique_id":"4h5dps","model_name":"IndexedParagraph","id":1,"options":{}}]',
+            stream = '[{"unique_id":"4h5dps","model_name":"IndexedParagraph","id":61,"options":{}}]',
             )
         TreePage.objects.create(title='Child Page', path = '00010001',
             depth = 2,
@@ -22,31 +22,31 @@ class TreePageModelTest(TestCase):
             )
 
     def test_tree_page_str_method(self):
-        page = TreePage.objects.get(id = 1)
+        page = TreePage.objects.get(slug = 'page-1')
         self.assertEquals(page.__str__(), 'Page 1')
 
     def test_tree_page_get_path(self):
-        page = TreePage.objects.get(id = 1)
+        page = TreePage.objects.get(slug = 'page-1')
         #this test also generate unique slug
         self.assertEquals(page.get_path(), '/docs/page-1/')
 
     def test_child_tree_page_get_path(self):
-        page = TreePage.objects.get(id = 2)
+        page = TreePage.objects.get(slug = 'child-page')
         #this test also generate unique slug
         self.assertEquals(page.get_path(), '/docs/page-1/child-page/')
 
     def test_tree_page_get_adjacent_pages(self):
-        page = TreePage.objects.get(id = 1)
-        child = TreePage.objects.get(id = 2)
+        page = TreePage.objects.get(slug = 'page-1')
+        child = TreePage.objects.get(slug = 'child-page')
         self.assertEquals(page.get_adjacent_pages(), (None, child))
 
     def test_child_tree_page_get_adjacent_pages(self):
-        parent = TreePage.objects.get(id = 1)
-        child = TreePage.objects.get(id = 2)
-        sibling = TreePage.objects.get(id = 3)
+        parent = TreePage.objects.get(slug = 'page-1')
+        child = TreePage.objects.get(slug = 'child-page')
+        sibling = TreePage.objects.get(slug = 'second-child-page')
         self.assertEquals(child.get_adjacent_pages(), (parent, sibling))
 
     def test_tree_page_stream_search(self):
-        page = TreePage.objects.get(id = 1)
+        page = TreePage.objects.get(slug = 'page-1')
         self.assertEquals(page.stream_search,
             '\n  \n    Foo\n    \n  \n  \n     Bar \n  \n\n')
