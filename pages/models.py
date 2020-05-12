@@ -54,7 +54,7 @@ class TreePage(MP_Node):
         for block in self.stream.from_json():
             if block['model_name'] == 'IndexedParagraph':
                 par = IndexedParagraph.objects.get(id=block['id'])
-                paragraphs.append( (par.get_slug, par.title) )
+                paragraphs.append( (par.get_slug(), par.title) )
         return paragraphs
 
     def get_adjacent_pages(self):
