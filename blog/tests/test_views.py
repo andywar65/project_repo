@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-#from users.models import User
+from users.models import User
 from blog.models import Article, UserUpload
 
 class ArticleViewTest(TestCase):
@@ -109,3 +109,30 @@ class ArticleViewTest(TestCase):
     def test_user_upload_create_view_template_not_logged(self):
         response = self.client.get(reverse('blog:post_upload'))
         self.assertTemplateNotUsed(response, 'blog/userupload_form.html')
+
+    def test_user_upload_create_view_redirect_not_logged(self):
+        response = self.client.get('/articoli/contributi/?post_id=3')
+        self.assertRedirects(response,
+            '/accounts/login/?next=/articoli/contributi/%3Fpost_id%3D3')
+
+#class UserUploadTestCase(TestCase):
+    #def SetUp(self):
+        #usr = User.objects.create_user(username='logged_in',
+            #password='P4s5W0r6')
+        #usr.save()
+
+    #def test_user_is_logged_in(self):
+        #self.user = User.objects.get(username='logged_in')
+        #login = self.client.login(username='logged_in', password='P4s5W0r6')
+        #response = self.client.get(reverse('blog:post_upload'))
+        #self.assertEqual(str(response.context['user']), 'logged_in')
+
+    #def test_user_upload_create_view_status_code(self):
+        #login = self.client.login(username='logged_in', password='P4s5W0r6')
+        #response = self.client.get(reverse('blog:post_upload'))
+        #self.assertEqual(response.status_code, 200)
+
+    #def test_user_upload_create_view_template(self):
+        #login = self.client.login(username='logged_in', password='P4s5W0r6')
+        #response = self.client.get(reverse('blog:post_upload'))
+        #self.assertTemplateUsed(response, 'blog/userupload_form.html')
