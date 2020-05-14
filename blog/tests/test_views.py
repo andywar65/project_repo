@@ -8,12 +8,14 @@ class ArticleViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        Article.objects.create(id=34, title='Article 3',
-            date = '2020-05-10 15:53:00+02',
+        usr = User.objects.create_user(username='logged_in',
+            password='P4s5W0r6')
+        article = Article.objects.create(id=34, title='Article 3',
+            date = '2020-05-10 15:53:00+02', author = usr
             )
         Article.objects.create(title='Article 4',
             date = '2020-05-10 15:58:00+02')
-        User.objects.create_user(username='logged_in', password='P4s5W0r6')
+        UserUpload.objects.create(user=usr, post=article, body='Foo Bar')
 
     def test_article_archive_index_view_status_code(self):
         response = self.client.get(reverse('blog:post_index'))
@@ -102,6 +104,66 @@ class ArticleViewTest(TestCase):
         response = self.client.get(reverse('blog:post_detail',
             kwargs={'year': 2020, 'month': 5, 'day': 10, 'slug': 'article-3'}))
         self.assertEqual(response.context['post'], article )
+
+    def test_author_list_view_status_code(self):
+        response = self.client.get(reverse('blog:post_authors'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_author_list_view_template(self):
+        response = self.client.get(reverse('blog:post_authors'))
+        self.assertTemplateUsed(response, 'blog/author_list.html')
+
+    def test_author_list_view_context_object(self):
+        all_users = User.objects.all()
+        response = self.client.get(reverse('blog:post_authors'))
+        self.assertQuerysetEqual(response.context['user_list'], all_users,
+            transform=lambda x: x )
+
+    def test_author_list_view_context_authors(self):
+        usr = User.objects.get(username='logged_in')
+        response = self.client.get(reverse('blog:post_authors'))
+        #here we have only one author
+        self.assertEqual(response.context['authors'], {usr: (1,1)} )
+
+    def test_by_author_list_view_status_code(self):
+        usr = User.objects.get(username='logged_in')
+        response = self.client.get(reverse('blog:post_by_author',
+            kwargs={ 'pk' : usr.id }))
+        self.assertEqual(response.status_code, 200)
+
+    def test_by_author_list_view_template(self):
+        usr = User.objects.get(username='logged_in')
+        response = self.client.get(reverse('blog:post_by_author',
+            kwargs={ 'pk' : usr.id }))
+        self.assertTemplateUsed(response, 'blog/article_archive_authors.html')
+
+    def test_by_author_list_view_context_object(self):
+        usr = User.objects.get(username='logged_in')
+        posts = Article.objects.filter( author_id=usr.id )
+        response = self.client.get(reverse('blog:post_by_author',
+            kwargs={ 'pk' : usr.id }))
+        self.assertQuerysetEqual(response.context['posts'], posts,
+            transform=lambda x: x )
+
+    def test_by_upload_list_view_status_code(self):
+        usr = User.objects.get(username='logged_in')
+        response = self.client.get(reverse('blog:upload_by_author',
+            kwargs={ 'pk' : usr.id }))
+        self.assertEqual(response.status_code, 200)
+
+    def test_by_upload_list_view_template(self):
+        usr = User.objects.get(username='logged_in')
+        response = self.client.get(reverse('blog:upload_by_author',
+            kwargs={ 'pk' : usr.id }))
+        self.assertTemplateUsed(response, 'blog/uploads_by_author.html')
+
+    def test_by_upload_list_view_context_object(self):
+        usr = User.objects.get(username='logged_in')
+        uploads = UserUpload.objects.filter( user_id=usr.id )
+        response = self.client.get(reverse('blog:upload_by_author',
+            kwargs={ 'pk' : usr.id }))
+        self.assertQuerysetEqual(response.context['uploads'], uploads,
+            transform=lambda x: x )
 
     def test_user_upload_create_view_redirect_not_logged(self):
         response = self.client.get('/articoli/contributi/?post_id=34')
