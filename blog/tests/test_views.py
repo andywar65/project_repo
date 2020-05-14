@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from taggit.models import Tag
+
 from users.models import User
 from blog.models import Article, UserUpload
 
@@ -8,11 +10,13 @@ class ArticleViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
+        tag = Tag.objects.create( name='foo' )
         usr = User.objects.create_user(username='logged_in',
             password='P4s5W0r6')
         article = Article.objects.create(id=34, title='Article 3',
             date = '2020-05-10 15:53:00+02', author = usr
             )
+        article.tags.add('foo')
         Article.objects.create(title='Article 4',
             date = '2020-05-10 15:58:00+02')
         UserUpload.objects.create(user=usr, post=article, body='Foo Bar')
@@ -32,6 +36,14 @@ class ArticleViewTest(TestCase):
     def test_article_archive_index_view_context_object(self):
         all_posts = Article.objects.all()
         response = self.client.get(reverse('blog:post_index'))
+        #workaround found in
+        #https://stackoverflow.com/questions/17685023/how-do-i-test-django-querysets-are-equal
+        self.assertQuerysetEqual(response.context['posts'], all_posts,
+            transform=lambda x: x)
+
+    def test_article_archive_index_view_context_object_tagged(self):
+        all_posts = Article.objects.filter( tags__name='foo' )
+        response = self.client.get('/articoli/?tag=foo')
         #workaround found in
         #https://stackoverflow.com/questions/17685023/how-do-i-test-django-querysets-are-equal
         self.assertQuerysetEqual(response.context['posts'], all_posts,
@@ -142,6 +154,13 @@ class ArticleViewTest(TestCase):
         posts = Article.objects.filter( author_id=usr.id )
         response = self.client.get(reverse('blog:post_by_author',
             kwargs={ 'pk' : usr.id }))
+        self.assertQuerysetEqual(response.context['posts'], posts,
+            transform=lambda x: x )
+
+    def test_by_author_list_view_context_object_tagged(self):
+        usr = User.objects.get(username='logged_in')
+        posts = Article.objects.filter( author_id=usr.id, tags__name='foo' )
+        response = self.client.get(f'/articoli/autori/{usr.id}/?tag=foo')
         self.assertQuerysetEqual(response.context['posts'], posts,
             transform=lambda x: x )
 
