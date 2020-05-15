@@ -44,9 +44,11 @@
               {{ form.privacy|as_crispy_field }}<br>
               <a href="/docs/privacy/">Informativa per la privacy</a>
           </div>
+          {% if website.recaptcha_test_mode == False %}
           <div class="col-md-6 mb-3">
             {{ form.captcha }}
           </div>
+          {% endif %}
         </div>
         {% include 'users/profile_includes/button.html' %}
         {% csrf_token %}

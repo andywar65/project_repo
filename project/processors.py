@@ -9,5 +9,6 @@ def get_global_settings(request):
         'linked': settings.IN_LINK,
         'github': settings.GITHUB_LINK,
         'external': settings.EXT_LINK,
+        'recaptcha_test_mode': settings.RECAPTCHA_TEST_MODE, 
         }
     return {'website': website, }

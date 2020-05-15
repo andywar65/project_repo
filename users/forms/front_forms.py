@@ -1,5 +1,6 @@
 from datetime import datetime
 from django import forms
+from django.conf import settings
 from django.contrib.auth import (password_validation, )
 from django.contrib.auth.forms import (AuthenticationForm, UsernameField,
     PasswordResetForm, SetPasswordForm)
@@ -17,7 +18,8 @@ class RegistrationForm(ModelForm):
             'placeholder': 'you@example.com'}))
     privacy = forms.BooleanField(label="Ho letto l'informativa sulla privacy",
         required=True)
-    captcha = ReCaptchaField()
+    if settings.RECAPTCHA_TEST_MODE == False:
+        captcha = ReCaptchaField()
 
     class Meta:
         model = User
