@@ -36,7 +36,7 @@ def registration_message( username, password ):
         Grazie.
         Lo staff di {settings.WEBSITE_NAME} \n
         Link utili:
-        Informativa per la privacy: {settings.BASE_URL}/docs/privacy/
+        Informativa sulla privacy: {settings.BASE_URL}/docs/privacy/
         Cambio password: {settings.BASE_URL}/accounts/password_change/
         """
     return message
