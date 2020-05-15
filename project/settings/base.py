@@ -144,6 +144,8 @@ USE_TZ = True
 
 AUTH_USER_MODEL = 'users.User'
 
+RECAPTCHA_TEST_MODE = False
+
 #This stuff has nothing to do with django.site
 WEBSITE_NAME = get_secret('WEBSITE_NAME')
 WEBSITE_ACRO = get_secret('WEBSITE_ACRO')
