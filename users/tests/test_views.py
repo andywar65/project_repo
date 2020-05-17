@@ -18,6 +18,7 @@ class UserViewTest(TestCase):
         response = self.client.get(reverse('registration'))
         self.assertTemplateUsed(response, 'users/registration.html')
 
+    #not working (user not created)
     def test_registration_view_post_status_code(self):
         with self.settings(RECAPTCHA_TEST_MODE = True):
             response = self.client.post('/registration/', {'username':'new_guy',
@@ -85,13 +86,41 @@ class UserViewTest(TestCase):
             'password':'P4s5W0r6'})
         usr = User.objects.get(username='existing')
         response = self.client.get(reverse('profile_change',
-            kwargs={'pk': usr.id}), {'bio': 'Foo Bar'})
+            kwargs={'pk': usr.id}))
         self.assertEqual(response.status_code, 200)
+
+    def test_change_profile_view_post_status_code(self):
+        self.client.post('/accounts/login/', {'username':'existing',
+            'password':'P4s5W0r6'})
+        usr = User.objects.get(username='existing')
+        response = self.client.post(reverse('profile_change',
+            kwargs={'pk': usr.id}), {'first_name': 'Existing',
+            'last_name': 'Guy', 'email': 'me@existing.com', 'avatar': '',
+            'bio': 'Foo Bar', 'yes_spam': True})
+        self.assertEqual(response.status_code, 302)
+
+    def test_change_profile_view_post_redirects(self):
+        self.client.post('/accounts/login/', {'username':'existing',
+            'password':'P4s5W0r6'})
+        usr = User.objects.get(username='existing')
+        response = self.client.post(reverse('profile_change',
+            kwargs={'pk': usr.id}), {'first_name': 'Existing',
+            'last_name': 'Guy', 'email': 'me@existing.com', 'avatar': '',
+            'bio': 'Foo Bar', 'yes_spam': True})
+        self.assertRedirects(response,
+            '/accounts/profile/?submitted=existing')
+
+    def test_change_profile_view_template(self):
+        self.client.post('/accounts/login/', {'username':'existing',
+            'password':'P4s5W0r6'})
+        usr = User.objects.get(username='existing')
+        response = self.client.get(reverse('profile_change',
+            kwargs={'pk': usr.id}))
+        self.assertTemplateUsed(response, 'users/profile_change.html')
 
     def test_change_profile_view_denied(self):
         self.client.post('/accounts/login/', {'username':'existing',
             'password':'P4s5W0r6'})
-        usr = User.objects.get(username='existing')
         response = self.client.get(reverse('profile_change',
             kwargs={'pk': 74}))
         self.assertEqual(response.status_code, 404)
@@ -104,10 +133,26 @@ class UserViewTest(TestCase):
             kwargs={'pk': usr.id}))
         self.assertEqual(response.status_code, 200)
 
-    def test_delete_profile_view_denied(self):
+    def test_delete_profile_view_template(self):
         self.client.post('/accounts/login/', {'username':'existing',
             'password':'P4s5W0r6'})
         usr = User.objects.get(username='existing')
         response = self.client.get(reverse('profile_delete',
+            kwargs={'pk': usr.id}))
+        self.assertTemplateUsed(response, 'users/profile_delete.html')
+
+    def test_delete_profile_view_denied(self):
+        self.client.post('/accounts/login/', {'username':'existing',
+            'password':'P4s5W0r6'})
+        response = self.client.get(reverse('profile_delete',
             kwargs={'pk': 74}))
         self.assertEqual(response.status_code, 404)
+
+    #let this be the last test
+    def test_delete_profile_view_post_redirect(self):
+        self.client.post('/accounts/login/', {'username':'existing',
+            'password':'P4s5W0r6'})
+        usr = User.objects.get(username='existing')
+        response = self.client.post(reverse('profile_delete',
+            kwargs={'pk': usr.id}), {'delete': True})
+        self.assertRedirects(response, '/accounts/profile/deleted')
