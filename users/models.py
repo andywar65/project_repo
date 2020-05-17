@@ -33,6 +33,9 @@ class User(AbstractUser):
                 memb.save()
                 return
 
+    class Meta:
+        ordering = ('last_name', 'first_name', 'username')
+
 class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE,
