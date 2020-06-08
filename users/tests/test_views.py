@@ -18,12 +18,20 @@ class UserViewTest(TestCase):
         response = self.client.get(reverse('registration'))
         self.assertTemplateUsed(response, 'users/registration.html')
 
-    #not working (user not created)
     def test_registration_view_post_status_code(self):
-        with self.settings(RECAPTCHA_TEST_MODE = True):
-            response = self.client.post('/registration/', {'username':'new_guy',
-                'email':'new@guy.com', 'privacy': True, })
-            self.assertEqual(response.status_code, 200 )
+        """Solved thanks to @MrValdez in https://stackoverflow.com/questions/
+        3159284/how-to-unit-test-a-form-with-a-captcha-field-in-django
+        """
+        response = self.client.post('/registration/', {'username':'new_guy',
+            'email':'new@guy.com', 'privacy': True,
+            "g-recaptcha-response": "PASSED"})
+        self.assertEqual(response.status_code, 302 )
+
+    def test_registration_view_post_redirects(self):
+        response = self.client.post('/registration/', {'username':'new_guy',
+            'email':'new@guy.com', 'privacy': True,
+            "g-recaptcha-response": "PASSED"}, follow=True)
+        self.assertRedirects(response, '/registration/?submitted=True' )
 
     def test_contact_view_status_code(self):
         response = self.client.get(reverse('contacts'))
@@ -32,6 +40,18 @@ class UserViewTest(TestCase):
     def test_contact_view_template_not_logged(self):
         response = self.client.get(reverse('contacts'))
         self.assertTemplateUsed(response, 'users/message.html')
+
+    def test_contact_view_message_not_logged_post_status_code(self):
+        response = self.client.post(reverse('contacts'), {'subject': 'Foo',
+            'body': 'Bar', 'nickname': 'Nick', 'email': 'me@example.com',
+            'privacy': True, "g-recaptcha-response": "PASSED"})
+        self.assertEqual(response.status_code, 302 )
+
+    def test_contact_view_message_not_logged_post_redirects(self):
+        response = self.client.post(reverse('contacts'), {'subject': 'Foo',
+            'body': 'Bar', 'nickname': 'Nick', 'email': 'me@example.com',
+            'privacy': True, "g-recaptcha-response": "PASSED"}, follow=True)
+        self.assertRedirects(response, '/contacts/?submitted=True' )
 
     def test_contact_view_template_logged(self):
         self.client.post('/accounts/login/', {'username':'existing',
