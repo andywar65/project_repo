@@ -13,6 +13,11 @@ class ArticleViewTest(TestCase):
         tag = Tag.objects.create( name='foo' )
         usr = User.objects.create_user(username='logged_in',
             password='P4s5W0r6')
+        profile = usr.profile
+        profile.is_trusted = True
+        profile.save()
+        User.objects.create_user(username='untrusted',
+            password='P4s5W0r6')
         article = Article.objects.create(id=34, title='Article 3',
             date = '2020-05-10 15:53:00+02', author = usr
             )
@@ -194,6 +199,18 @@ class ArticleViewTest(TestCase):
             'password':'P4s5W0r6'})
         response = self.client.get(reverse('blog:post_upload'))
         self.assertEqual(response.status_code, 200)
+
+    def test_user_upload_create_view_status_code_untrusted(self):
+        self.client.post('/accounts/login/', {'username':'untrusted',
+            'password':'P4s5W0r6'})
+        response = self.client.get(reverse('blog:post_upload'))
+        self.assertEqual(response.status_code, 404)
+
+    def test_user_upload_create_view_status_code_untrusted_explicit(self):
+        self.client.post('/accounts/login/', {'username':'untrusted',
+            'password':'P4s5W0r6'})
+        response = self.client.get('/articoli/contributi/?post_id=34')
+        self.assertEqual(response.status_code, 404)
 
     def test_user_upload_create_view_template(self):
         self.client.post('/accounts/login/', {'username':'logged_in',
