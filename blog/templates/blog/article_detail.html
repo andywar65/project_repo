@@ -49,7 +49,7 @@
         <div class="col-md-8">
           {{ post.stream.render }}
           <hr class="mb-4">
-          {% if user.is_authenticated %}
+          {% if user.is_authenticated and user.profile.is_trusted %}
             <div class="row">
               <h4 id="upload-anchor"><strong>Contributi</strong></h4>
             </div>

@@ -72,6 +72,12 @@ class UserUploadCreateView(LoginRequiredMixin, CreateView):
     model = UserUpload
     form_class = UserUploadForm
 
+    def get(self, request, *args, **kwargs):
+        usr = self.request.user
+        if not usr.profile.is_trusted:
+            raise Http404("User is not trusted")
+        return super(UserUploadCreateView, self).get(request, *args, **kwargs)
+
     def get_success_url(self):
         if 'post_id' in self.request.GET:
             pst = Article.objects.get(id=self.request.GET['post_id'])
