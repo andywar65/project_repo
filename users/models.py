@@ -46,6 +46,8 @@ class Profile(models.Model):
     yes_spam = models.BooleanField(default = False,
         verbose_name = 'Mailing list',
         help_text = 'Vuoi ricevere notifiche sugli eventi?',)
+    is_trusted = models.BooleanField(default = False,
+        verbose_name = 'Di fiducia',)
 
     def get_full_name(self):
         return self.user.get_full_name()

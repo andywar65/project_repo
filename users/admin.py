@@ -16,4 +16,5 @@ class UserMessageAdmin(admin.ModelAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('get_full_name', )
+    list_display = ('get_full_name', 'is_trusted')
+    list_editable = ('is_trusted', )
