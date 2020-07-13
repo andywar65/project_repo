@@ -9,12 +9,12 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-"""WARNING:
-    Commits to this file may not be cherry-picked by branches"""
 
 import os
 import json
 from django.core.exceptions import ImproperlyConfigured
+
+from project.external_resources import EXTERNAL_INSTALLED_APPS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'treebeard',
 ]
+
+INSTALLED_APPS.extend(EXTERNAL_INSTALLED_APPS)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

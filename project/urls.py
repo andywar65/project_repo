@@ -13,14 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-"""WARNING:
-    Commits to this file may not be cherry-picked by branches"""
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import RedirectView
+
 from filebrowser.sites import site
+
+from project.external_resources import EXTERNAL_URLPATTERNS
 from users import views as user_views
 from pages.views import HomeTemplateView
 from . import views
@@ -43,6 +44,8 @@ urlpatterns = [
     path('favicon.ico',
         RedirectView.as_view(url=settings.STATIC_ROOT + 'images/favicon.ico')),
 ]
+
+urlpatterns.extend(EXTERNAL_URLPATTERNS)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
