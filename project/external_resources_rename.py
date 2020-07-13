@@ -1,3 +1,5 @@
+from django.urls import path, include
+
 EXTERNAL_INSTALLED_APPS = [
     #list of other installed apps
     ]
