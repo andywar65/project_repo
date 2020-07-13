@@ -1,6 +1,3 @@
-"""WARNING:
-    Commits to this file may not be cherry-picked by branches"""
-
 from .base import *
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -25,7 +22,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project_db',
+        'NAME': get_secret('DEV_DB_NAME'),
         'USER': 'postgres',
         'PASSWORD': '09w5t43w',
         'HOST': 'localhost',
