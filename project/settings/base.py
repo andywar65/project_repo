@@ -37,6 +37,7 @@ def get_secret(setting, secrets=secrets):
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
+SECRET_KEY = get_secret('SECRET_KEY')
 
 # Application definition
 
