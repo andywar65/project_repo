@@ -14,7 +14,7 @@ import os
 import json
 from django.core.exceptions import ImproperlyConfigured
 
-from project.external_resources import EXTERNAL_INSTALLED_APPS
+from .external_resources import EXTERNAL_INSTALLED_APPS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

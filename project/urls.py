@@ -21,7 +21,7 @@ from django.views.generic.base import RedirectView
 
 from filebrowser.sites import site
 
-from project.external_resources import EXTERNAL_URLPATTERNS
+from project.settings.external_resources import EXTERNAL_URLPATTERNS
 from users import views as user_views
 from pages.views import HomeTemplateView
 from . import views
