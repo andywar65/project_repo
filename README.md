@@ -12,4 +12,5 @@ urlpatterns. In project/static do the same for base.css, favicon.ico and
 logo.png for custom styles. Migrate, collectstatic and createsuperuser.
 Stash your customizations before pulling.
 ## Deployment
-In production use manpro.py instead of manage.py and point server to wsgi_prod.py instead of wsgi.py.
+In production use manpro.py instead of manage.py and point server to
+wsgi_prod.py instead of wsgi.py.
