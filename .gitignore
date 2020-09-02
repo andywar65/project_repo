@@ -56,7 +56,8 @@ coverage.xml
 secrets.json
 accounting/
 db.sqlite3
-external_resources.py
+project/settings/base.py
+project/urls.py
 
 # Flask stuff:
 instance/
