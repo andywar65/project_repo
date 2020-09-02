@@ -21,7 +21,6 @@ from django.views.generic.base import RedirectView
 
 from filebrowser.sites import site
 
-from project.settings.external_resources import EXTERNAL_URLPATTERNS
 from users import views as user_views
 from pages.views import HomeTemplateView
 from . import views
@@ -44,8 +43,6 @@ urlpatterns = [
     path('favicon.ico',
         RedirectView.as_view(url=settings.STATIC_ROOT + 'images/favicon.ico')),
 ]
-
-urlpatterns.extend(EXTERNAL_URLPATTERNS)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
