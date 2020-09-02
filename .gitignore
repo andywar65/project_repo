@@ -53,8 +53,6 @@ coverage.xml
 
 # Django stuff:
 *.log
-secrets.json
-accounting/
 db.sqlite3
 project/settings/base.py
 project/urls.py
