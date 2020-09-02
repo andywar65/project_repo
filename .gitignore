@@ -55,6 +55,7 @@ coverage.xml
 *.log
 db.sqlite3
 project/settings/base.py
+project/static/css/base.css
 project/urls.py
 
 # Flask stuff:
