@@ -1,9 +1,13 @@
 import os
-from PIL import Image
+
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import EmailMessage
+from django.utils.crypto import get_random_string
+
+from PIL import Image
+from private_storage.fields import PrivateFileField
 from filebrowser.fields import FileBrowseField
 from filebrowser.base import FileObject
 
@@ -65,6 +69,12 @@ class Profile(models.Model):
         verbose_name = 'Profilo'
         verbose_name_plural = 'Profili'
 
+def user_private_directory_path(instance, filename):
+    root = os.path.splitext(filename)[0]
+    ext = os.path.splitext(filename)[1]
+    filename = '%s_%s%s' % (root, get_random_string(7), ext)
+    return 'users/{0}/{1}'.format(instance.user.username, filename)
+
 class UserMessage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,
         related_name='user_message', blank=True, null=True,
@@ -78,8 +88,8 @@ class UserMessage(models.Model):
     subject = models.CharField(max_length = 200,
         verbose_name = 'Soggetto', )
     body = models.TextField(verbose_name = 'Messaggio', )
-    attachment = models.FileField(
-        upload_to = 'uploads/users/',
+    attachment = PrivateFileField(
+        upload_to = user_private_directory_path,
         blank = True, null = True, verbose_name = 'Allegato',
         )
     privacy = models.BooleanField( default=False )
