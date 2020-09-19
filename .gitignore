@@ -54,11 +54,11 @@ coverage.xml
 # Django stuff:
 *.log
 db.sqlite3
-project/settings/base.py
-project/static/css/base.css
-project/static/images/favicon.ico
-project/static/images/logo.png
-project/urls.py
+/project/settings/base.py
+/project/static/css/base.css
+/project/static/images/favicon.ico
+/project/static/images/logo.png
+/project/urls.py
 
 # Flask stuff:
 instance/
