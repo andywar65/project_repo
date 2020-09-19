@@ -41,6 +41,8 @@ urlpatterns = [
     path('articoli/', include('blog.urls.posts', namespace = 'blog')),
     path('docs/', include('pages.urls.tree_pages', namespace = 'docs')),
     path('streamfield/', include('streamfield.urls')),
+    path('fatture/', include('accounting.urls.invoices',
+        namespace = 'invoices')),
     path('favicon.ico',
         RedirectView.as_view(url=settings.STATIC_ROOT + 'images/favicon.ico')),
     re_path('^private-media/', include(private_storage.urls)),

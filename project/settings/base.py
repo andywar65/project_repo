@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
     'blog.apps.BlogConfig',
+    'accounting.apps.AccountingConfig',
     'streamblocks',
     'streamfield',
     'captcha',
