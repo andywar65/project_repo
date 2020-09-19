@@ -9,7 +9,9 @@ Clone the repository, use requirements.txt to install dependencies. Copy secrets
 in the global settings. Duplicate project/settings/base_sample.py and
 project/urls_sample.py renaming to base.py and urls.py, add other installed apps
 and urlpatterns. In project/static do the same for base.css, favicon.ico and
-logo.png for custom styles. Migrate, collectstatic and createsuperuser.
+logo.png for custom styles. Remember to stash your new files before pulling,
+then stash pop them back.
+Migrate, collectstatic and createsuperuser.
 ## Deployment
 In production use manpro.py instead of manage.py and point server to
 wsgi_prod.py instead of wsgi.py.
