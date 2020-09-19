@@ -54,8 +54,6 @@ coverage.xml
 # Django stuff:
 *.log
 db.sqlite3
-/project/static/images/favicon.ico
-/project/static/images/logo.png
 
 # Flask stuff:
 instance/
