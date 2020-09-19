@@ -16,10 +16,11 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.views.generic.base import RedirectView
 
 from filebrowser.sites import site
+import private_storage.urls
 
 from users import views as user_views
 from pages.views import HomeTemplateView
@@ -42,6 +43,7 @@ urlpatterns = [
     path('streamfield/', include('streamfield.urls')),
     path('favicon.ico',
         RedirectView.as_view(url=settings.STATIC_ROOT + 'images/favicon.ico')),
+    re_path('^private-media/', include(private_storage.urls)),
 ]
 
 if settings.DEBUG:
