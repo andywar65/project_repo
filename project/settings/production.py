@@ -44,6 +44,9 @@ STATIC_URL = get_secret('BASE_URL') + '/static/'
 MEDIA_ROOT = get_secret('MEDIA_ROOT')# no trailing slash
 MEDIA_URL = get_secret('BASE_URL') + '/media/'
 
+PRIVATE_STORAGE_ROOT = get_secret('PRIVATE_STORAGE_ROOT')
+PRIVATE_STORAGE_AUTH_FUNCTION = get_secret('PRIVATE_STORAGE_AUTH_FUNCTION')
+
 REST_API_TARGET = get_secret('REST_API_TARGET') + '/wp-json/wp/v2/'
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
