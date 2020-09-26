@@ -10,16 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os
+from pathlib import Path
 import json
+
 from django.core.exceptions import ImproperlyConfigured
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = os.path.dirname(PROJECT_DIR)
-APPLICATION_DIR = os.path.dirname(BASE_DIR)
+PROJECT_DIR = Path(__file__).resolve(strict=True).parent.parent
+BASE_DIR = Path(PROJECT_DIR).resolve(strict=True).parent
+APPLICATION_DIR = Path(BASE_DIR).resolve(strict=True).parent
 
-with open(os.path.join(APPLICATION_DIR, 'secrets.json')) as f:
+with open(APPLICATION_DIR / 'secrets.json') as f:
     secrets = json.loads(f.read())
 
 def get_secret(setting, secrets=secrets):
@@ -75,7 +75,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(PROJECT_DIR, 'templates')],
+        'DIRS': [PROJECT_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, "static"),
+    PROJECT_DIR / "static",
 ]
 
 TAGGIT_CASE_INSENSITIVE = True

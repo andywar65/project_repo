@@ -30,13 +30,13 @@ DATABASES = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(APPLICATION_DIR, 'static')
+STATIC_ROOT = APPLICATION_DIR / 'static'
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(APPLICATION_DIR, 'media')
+MEDIA_ROOT = APPLICATION_DIR / 'media'
 MEDIA_URL = '/media/'
 
-PRIVATE_STORAGE_ROOT = os.path.join(APPLICATION_DIR, 'private-media')
+PRIVATE_STORAGE_ROOT = APPLICATION_DIR / 'private-media'
 PRIVATE_STORAGE_AUTH_FUNCTION = 'private_storage.permissions.allow_authenticated'
 
 REST_API_TARGET = 'https://rifondazionepodistica.it/wp-json/wp/v2/'
