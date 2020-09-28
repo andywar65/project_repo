@@ -1,6 +1,6 @@
-from django.http import Http404
+#from django.http import Http404
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import (ListView, DetailView, CreateView,
     TemplateView)
 from django.views.generic.dates import (ArchiveIndexView, YearArchiveView,
@@ -68,15 +68,16 @@ class DetailArticle(DetailView):
     context_object_name = 'post'
     slug_field = 'slug'
 
-class UserUploadCreateView(LoginRequiredMixin, CreateView):
+class UserUploadCreateView(PermissionRequiredMixin, CreateView):
     model = UserUpload
     form_class = UserUploadForm
+    permission_required = 'blog.add_userupload'
 
-    def get(self, request, *args, **kwargs):
-        usr = self.request.user
-        if not usr.profile.is_trusted:
-            raise Http404("User is not trusted")
-        return super(UserUploadCreateView, self).get(request, *args, **kwargs)
+    #def get(self, request, *args, **kwargs):
+        #usr = self.request.user
+        #if not usr.profile.is_trusted:
+            #raise Http404("User is not trusted")
+        #return super(UserUploadCreateView, self).get(request, *args, **kwargs)
 
     def get_success_url(self):
         if 'post_id' in self.request.GET:
