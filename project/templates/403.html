@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ website.acro }} | Accesso vietato{% endblock title %}
+{% block content %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h4><strong>Accesso vietato</strong></h4>
+    <div class="alert alert-danger" role="alert">
+      <p>Non hai le credenziali per accedere a questa pagina.</p>
+      <p>Forse devi ancora effettuare il <a href="/accounts/login/">login</a>,</p>
+      <p>oppure utilizza questo <a href="/contacts">modulo</a> per richiedere le credenziali.</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}
