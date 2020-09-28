@@ -49,14 +49,16 @@
         <div class="col-md-8">
           {{ post.stream.render }}
           <hr class="mb-4">
-          {% if user.is_authenticated and user.profile.is_trusted %}
+          {% if user.is_authenticated %}
             <div class="row">
               <h4 id="upload-anchor"><strong>Contributi</strong></h4>
             </div>
-            <div class="row">
-              <a href="/articoli/contributi/?post_id={{ post.id }}">
-              Aggiungi un contributo</a>
-            </div>
+            {% if perms.blog.add_userupload %}
+              <div class="row">
+                <a href="/articoli/contributi/?post_id={{ post.id }}">
+                Aggiungi un contributo</a>
+              </div>
+            {% endif %}
             <hr class="mb-4">
             {% if post.get_uploads %}
             <div class="card-deck">
