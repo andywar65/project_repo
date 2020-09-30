@@ -11,3 +11,6 @@ custom branding. Migrate, collectstatic and createsuperuser.
 ## Deployment
 In production use manpro.py instead of manage.py and point server to
 wsgi_prod.py instead of wsgi.py.
+## User management
+New users must be granted 'Can add user upload' permission to comment blog
+articles.
