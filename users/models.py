@@ -34,6 +34,7 @@ class User(AbstractUser):
                 return
             except:
                 memb = Profile.objects.create(user = self)
+                memb.is_trusted = settings.PROFILE_IS_TRUSTED_BY_DEFAULT
                 memb.save()
                 return
 
