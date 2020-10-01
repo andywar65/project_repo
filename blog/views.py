@@ -69,22 +69,9 @@ class DetailArticle(DetailView):
     slug_field = 'slug'
 
 class UserUploadCreateView(PermissionRequiredMixin, CreateView):
-    """This view requires user to be granted 'Add user upload' permission.
-    In alternative, change PermissionRequiredMixin to LoginRequiredMixin,
-    remove the required permission (1) and uncomment get method (2). This may be
-    handy if staff can manage Profiles but not permissions.
-    """
     model = UserUpload
     form_class = UserUploadForm
-    #1) remove next line if you want to use the is_trusted profile attribute
     permission_required = 'blog.add_userupload'
-
-    #2) Uncomment following if you want is_trusted profile attribute to work
-    #def get(self, request, *args, **kwargs):
-        #usr = self.request.user
-        #if not usr.profile.is_trusted:
-            #raise Http404("User is not trusted")
-        #return super(UserUploadCreateView, self).get(request, *args, **kwargs)
 
     def get_success_url(self):
         if 'post_id' in self.request.GET:
