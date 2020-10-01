@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import EmailMessage
 from django.utils.crypto import get_random_string
+from django.contrib.auth.models import Group
 
 from PIL import Image
 from private_storage.fields import PrivateFileField
@@ -29,14 +30,18 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         super(User, self).save(*args, **kwargs)
         if self.is_active:
-            try:
-                memb = Profile.objects.get(user_id = self.id)
-                return
-            except:
-                memb = Profile.objects.create(user = self)
+            memb, created = Profile.objects.get_or_create(user_id = self.id)
+            if created:
                 memb.is_trusted = settings.PROFILE_IS_TRUSTED_BY_DEFAULT
                 memb.save()
-                return
+            #try:
+                #memb = Profile.objects.get(user_id = self.id)
+                #return
+            #except:
+                #memb = Profile.objects.create(user = self)
+                #memb.is_trusted = settings.PROFILE_IS_TRUSTED_BY_DEFAULT
+                #memb.save()
+                #return
 
     class Meta:
         ordering = ('last_name', 'first_name', 'username')
