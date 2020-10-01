@@ -12,5 +12,10 @@ custom branding. Migrate, collectstatic and createsuperuser.
 In production use manpro.py instead of manage.py and point server to
 wsgi_prod.py instead of wsgi.py.
 ## User management
-New users must be granted 'Can add user upload' permission to comment blog
-articles.
+User is extended by a Profile model with additional info. New users must be
+granted 'Can add user upload' permission to comment blog articles. 'Trusted'
+group with such permission is created on setup (add your own permissions to
+this group). If staff member has access to Profile but not to User, he can still
+add user to 'Trusted' group by flagging Profile to is_trusted. This attribute is
+false by default, but you can change this globally for newly created users
+changing the IS TRUSTED BY DEFAULT setting.
