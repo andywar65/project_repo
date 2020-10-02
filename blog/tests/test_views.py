@@ -204,13 +204,13 @@ class ArticleViewTest(TestCase):
         self.client.post('/accounts/login/', {'username':'untrusted',
             'password':'P4s5W0r6'})
         response = self.client.get(reverse('blog:post_upload'))
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 403)
 
     def test_user_upload_create_view_status_code_untrusted_explicit(self):
         self.client.post('/accounts/login/', {'username':'untrusted',
             'password':'P4s5W0r6'})
         response = self.client.get('/articoli/contributi/?post_id=34')
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 403)
 
     def test_user_upload_create_view_template(self):
         self.client.post('/accounts/login/', {'username':'logged_in',
