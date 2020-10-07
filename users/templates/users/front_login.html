@@ -11,7 +11,7 @@
 
     {% if user.is_authenticated %}
       <p class="alert alert-warning" role="alert">
-      Guarda che sei già autenticato come {{ user.member.first_name }}.
+      Guarda che sei già autenticato come {{ user.username }}.
       Se vuoi fare il login con un account diverso devi prima
       <a href="{% url 'front_logout' %}">uscire dall'account</a>.
       </p>
