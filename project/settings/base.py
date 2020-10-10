@@ -148,6 +148,9 @@ PROFILE_IS_TRUSTED_BY_DEFAULT = False
 
 RECAPTCHA_TEST_MODE = False
 
+INVOICE_EMAIL = get_secret('INVOICE_EMAIL')
+INVOICE_PWD = get_secret('INVOICE_PWD')
+
 #This stuff has nothing to do with django.site
 WEBSITE_NAME = get_secret('WEBSITE_NAME')
 WEBSITE_ACRO = get_secret('WEBSITE_ACRO')
