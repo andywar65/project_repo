@@ -149,10 +149,11 @@ PROFILE_IS_TRUSTED_BY_DEFAULT = False
 RECAPTCHA_TEST_MODE = False
 
 #this is for the accounting email receiver module
-INVOICE_EMAIL = get_secret('INVOICE_EMAIL')
-INVOICE_PWD = get_secret('INVOICE_PWD')
-INVOICE_PORT = get_secret('INVOICE_PORT')
-INVOICE_FROM = get_secret('INVOICE_FROM')
+IMAP_HOST = get_secret('IMAP_HOST')
+IMAP_USER = get_secret('IMAP_USER')
+IMAP_PWD = get_secret('IMAP_PWD')
+IMAP_PORT = get_secret('IMAP_PORT')
+IMAP_FROM = get_secret('IMAP_FROM')
 
 #This stuff has nothing to do with django.site
 WEBSITE_NAME = get_secret('WEBSITE_NAME')
