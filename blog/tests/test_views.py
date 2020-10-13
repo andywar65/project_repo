@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.auth.models import Group
 
 from taggit.models import Tag
 
@@ -13,9 +14,9 @@ class ArticleViewTest(TestCase):
         tag = Tag.objects.create( name='foo' )
         usr = User.objects.create_user(username='logged_in',
             password='P4s5W0r6')
-        profile = usr.profile
-        profile.is_trusted = True
-        profile.save()
+        group = Group.objects.get(name='Trusted')
+        usr.groups.add(group)
+
         User.objects.create_user(username='untrusted',
             password='P4s5W0r6')
         article = Article.objects.create(id=34, title='Article 3',

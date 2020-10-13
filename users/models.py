@@ -31,9 +31,6 @@ class User(AbstractUser):
         super(User, self).save(*args, **kwargs)
         if self.is_active:
             memb, created = Profile.objects.get_or_create(user_id = self.id)
-            if created:
-                memb.is_trusted = settings.PROFILE_IS_TRUSTED_BY_DEFAULT
-                memb.save()
 
     class Meta:
         ordering = ('last_name', 'first_name', 'username')
@@ -48,8 +45,6 @@ class Profile(models.Model):
     yes_spam = models.BooleanField(default = False,
         verbose_name = 'Mailing list',
         help_text = 'Vuoi ricevere notifiche sugli eventi?',)
-    is_trusted = models.BooleanField(default = False,
-        verbose_name = 'Di fiducia',)
 
     def get_full_name(self):
         return self.user.get_full_name()
@@ -62,15 +57,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.get_full_name()
-
-    def save(self, *args, **kwargs):
-        super(Profile, self).save(*args, **kwargs)
-        grp = Group.objects.get(name='Trusted')
-        usr = self.user
-        if self.is_trusted:
-            usr.groups.add(grp)
-        else:
-            usr.groups.remove(grp)
 
     class Meta:
         verbose_name = 'Profilo'
