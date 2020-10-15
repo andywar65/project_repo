@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'treebeard',
     'private_storage',
-    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -92,8 +91,6 @@ TEMPLATES = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-CRONJOBS = [ ('*/10 * * * *', 'accounting.cron.fetch_csvinvoice_attachments'),]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
