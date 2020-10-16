@@ -31,6 +31,7 @@ admin.site.site_title = 'Amministrazione ' + settings.WEBSITE_NAME
 
 urlpatterns = [
     path('admin/filebrowser/', site.urls),
+    path('grappelli/', include('grappelli.urls')), # grappelli URLS
     path('admin/', admin.site.urls),
     path('registration/', user_views.RegistrationFormView.as_view(),
         name='registration'),

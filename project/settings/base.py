@@ -40,6 +40,7 @@ SECRET_KEY = get_secret('SECRET_KEY')
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'filebrowser',
     'django.contrib.admin',
     'django.contrib.auth',
