@@ -125,7 +125,7 @@ FILEBROWSER_VERSIONS = {
     'medium': {'verbose_name': 'Medium (4col )', 'width': 300, 'height': '', 'opts': ''},
     'big': {'verbose_name': 'Big (6 col)', 'width': 460, 'height': '', 'opts': ''},
     'large': {'verbose_name': 'Large (8 col)', 'width': 680, 'height': '', 'opts': ''},
-    'wide_landscape': {'verbose_name': 'Orizzontale', 'width': 2048, 'height': 1024, 'opts': 'crop'},
+    'wide_landscape': {'verbose_name': 'Orizzontale', 'width': 1600, 'height': 800, 'opts': 'crop'},
     'landscape': {'verbose_name': 'Orizzontale', 'width': 1280, 'height': 720, 'opts': 'crop'},
     'portrait': {'verbose_name': 'Verticale', 'width': 768, 'height': 1024, 'opts': 'crop'},
     'square': {'verbose_name': 'Quadrato', 'width': 768, 'height': 768, 'opts': 'crop'},
