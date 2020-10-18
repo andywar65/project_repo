@@ -4,6 +4,7 @@ from django.views.generic import TemplateView, DetailView, ListView
 from streamblocks.models import HomeButton
 
 from blog.models import Article
+from portfolio.models import Project
 from .models import ( HomePage, TreePage )
 
 class HomeTemplateView(TemplateView):
@@ -15,6 +16,7 @@ class HomeTemplateView(TemplateView):
         if not context['page']:
             raise Http404("Non ci sono Home Page")
         context['posts'] = Article.objects.all()[:6]
+        context['progs'] = Project.objects.all()[:6]
         context['actions'] = []
         actions = context['page'].action.from_json()
         if actions:

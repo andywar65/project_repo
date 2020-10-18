@@ -27,6 +27,13 @@
 </div>
 {% endif %}
 <hr class="mb-4">
+<a href="/progetti/"><h4><strong>Progetti</strong></h4></a>
+{% if progs %}
+  {% include 'portfolio/project_list_loop.html' %}
+{% else %}
+<p>Non ci sono progetti disponibili</p>
+{% endif %}
+<hr class="mb-4">
 <a href="/articoli/"><h4><strong>Articoli di approfondimento</strong></h4></a>
 {% if posts %}
 <div class="card-deck">
