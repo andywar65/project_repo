@@ -17,7 +17,7 @@ class HomePage(models.Model):
 
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField('Titolo',
-        help_text="Non appare sul sito",
+        help_text="Compare sulla prima immagine",
         max_length = 50, null=True, blank=True)
     intro = models.CharField('Sottotitolo', max_length = 100,
         null=True, blank=True, help_text = 'Il sito in due parole')

@@ -7,9 +7,7 @@
 {% endblock extra-head %}
 
 {% block content %}
-<div class="row">
-  {{ page.carousel.render }}
-</div>
+{% include 'pages/gallery.html' %}
 <hr class="mb-4">
 {% if actions %}
 <div class="card-deck">
