@@ -5,7 +5,7 @@ from streamblocks.models import HomeButton
 
 from blog.models import Article
 from portfolio.models import Project
-from .models import ( HomePage, TreePage )
+from .models import ( HomePage, GalleryImage, HomeButton, TreePage )
 
 class HomeTemplateView(TemplateView):
     template_name = 'pages/home.html'
@@ -15,14 +15,11 @@ class HomeTemplateView(TemplateView):
         context['page'] = HomePage.objects.first()
         if not context['page']:
             raise Http404("Non ci sono Home Page")
+        context['uuid'] = context['page'].uuid
+        context['images'] = GalleryImage.objects.filter(home_id=context['uuid'])
+        context['actions'] = HomeButton.objects.filter(home_id=context['uuid'])[:3]
         context['posts'] = Article.objects.all()[:6]
         context['progs'] = Project.objects.all()[:6]
-        context['actions'] = []
-        actions = context['page'].action.from_json()
-        if actions:
-            id_list = actions[0].get('id')
-            for id in id_list:
-                context['actions'].append(HomeButton.objects.get(id = id))
         return context
 
 class TreePageListView(ListView):

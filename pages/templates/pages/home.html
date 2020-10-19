@@ -30,7 +30,7 @@
       <h4 class="text-left"><strong><em>{{ page.intro }}</em></strong></h4>
     {% endif %}
     {% if page.body %}
-      <p class="text-left">{{ page.body }}</p>
+      <p class="text-left">{{ page.body|safe }}</p>
     {% endif %}
   </div>
 </div>
