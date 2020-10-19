@@ -15,6 +15,8 @@ class HomePage(models.Model):
         help_text="Una sola galleria, per favore, larghezza minima immagini 2048px")
     intro = models.CharField('Sottotitolo', max_length = 100,
         null=True, blank=True, help_text = 'Il sito in due parole')
+    body = models.TextField('Testo',
+        null=True, blank=True, help_text = 'Un testo di presentazione')
     action = StreamField(model_list=[ HomeButton, ],
         null=True, blank=True, verbose_name="Pulsanti di azione",
         help_text="Link a pagine sponsorizzate.")

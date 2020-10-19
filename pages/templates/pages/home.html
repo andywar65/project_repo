@@ -10,11 +10,8 @@
 <div class="row">
   {{ page.carousel.render }}
 </div>
-  {% if page.intro %}
-    <h4 class="text-left"><strong><em>{{ page.intro }}</em></strong></h4>
-  {% endif %}
-{% if actions %}
 <hr class="mb-4">
+{% if actions %}
 <div class="card-deck">
   {% for action in actions %}
   <div class="card text-center" style="margin-bottom: 20px; min-width: 18rem; ">
@@ -26,6 +23,17 @@
   {% endfor %}
 </div>
 {% endif %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    {% if page.intro %}
+      <h4 class="text-left"><strong><em>{{ page.intro }}</em></strong></h4>
+    {% endif %}
+    {% if page.body %}
+      <p class="text-left">{{ page.body }}</p>
+    {% endif %}
+  </div>
+</div>
 <hr class="mb-4">
 <a href="/progetti/"><h4><strong>Progetti</strong></h4></a>
 {% if progs %}

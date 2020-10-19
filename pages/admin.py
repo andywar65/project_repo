@@ -14,9 +14,15 @@ class HomePageAdmin(admin.ModelAdmin):
             'fields': ('carousel', ),
         }),
         (None, {
-            'fields': ('intro', 'action'),
+            'fields': ('intro', 'body', 'action'),
         }),
         )
+
+    #class Media:
+        #js = [
+            #'/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            #'/static/js/tinymce_setup.js',
+        #]
 
 class TreePageAdmin(TreeAdmin):
     form = movenodeform_factory(TreePage)
