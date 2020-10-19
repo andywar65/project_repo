@@ -1,7 +1,12 @@
+import uuid
+
 from django.utils.timezone import now
 from django.utils.html import strip_tags
 from django.db import models
+
+from filebrowser.fields import FileBrowseField
 from treebeard.mp_tree import MP_Node
+
 from project.utils import generate_unique_slug
 from streamfield.base import StreamObject
 from streamfield.fields import StreamField
@@ -10,19 +15,48 @@ from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
 
 class HomePage(models.Model):
 
-    carousel = StreamField(model_list=[ LandscapeGallery, ],
-        null=True, blank=True, verbose_name="Galleria orizzontale",
-        help_text="Una sola galleria, per favore, larghezza minima immagini 2048px")
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    title = models.CharField('Titolo',
+        help_text="Non appare sul sito",
+        max_length = 50, null=True, blank=True)
     intro = models.CharField('Sottotitolo', max_length = 100,
         null=True, blank=True, help_text = 'Il sito in due parole')
     body = models.TextField('Testo',
         null=True, blank=True, help_text = 'Un testo di presentazione')
-    action = StreamField(model_list=[ HomeButton, ],
-        null=True, blank=True, verbose_name="Pulsanti di azione",
-        help_text="Link a pagine sponsorizzate.")
+    date = models.DateTimeField('Data:', default = now, )
+
+    def __str__(self):
+        return self.title if self.title else str(self.uuid)
 
     class Meta:
         verbose_name = 'Home Page'
+        ordering = ('-date', )
+
+class GalleryImage(models.Model):
+    home = models.ForeignKey(HomePage, null=True, editable=False,
+        on_delete = models.CASCADE, related_name='home_image')
+    fb_image = FileBrowseField("Immagine", max_length=200,
+        extensions=[".jpg", ".png", ".jpeg", ".gif", ".tif", ".tiff"],
+        null=True)
+    caption = models.CharField("Didascalia", max_length = 200, blank=True,
+        null=True)
+    position = models.PositiveSmallIntegerField("Posizione", null=True)
+
+    class Meta:
+        verbose_name="Immagine"
+        verbose_name_plural="Immagini"
+
+class HomeButton(models.Model):
+    home = models.ForeignKey(HomePage, null=True, editable=False,
+        on_delete = models.CASCADE, related_name='home_button')
+    title = models.CharField("Titolo", max_length = 100, null=True )
+    subtitle = models.CharField("Sottotitolo", max_length = 200, null=True )
+    link = models.URLField("Link", max_length = 200, null=True, )
+    position = models.PositiveSmallIntegerField("Posizione", null=True)
+
+    class Meta:
+        verbose_name="Pulsante di Home Page"
+        verbose_name_plural="Pulsanti di Home Page"
 
 class TreePage(MP_Node):
     title = models.CharField('Titolo', max_length = 50)
