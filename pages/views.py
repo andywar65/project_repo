@@ -15,8 +15,10 @@ class HomeTemplateView(TemplateView):
         context['page'] = HomePage.objects.first()
         if not context['page']:
             raise Http404("Non ci sono Home Page")
+        #we add this context to feed the standard gallery
         context['uuid'] = context['page'].uuid
         context['title'] = context['page'].title
+        #context for the page
         context['images'] = GalleryImage.objects.filter(home_id=context['uuid'])
         context['actions'] = HomeButton.objects.filter(home_id=context['uuid'])[:3]
         context['posts'] = Article.objects.all()[:6]
