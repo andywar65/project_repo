@@ -39,10 +39,10 @@ class GalleryImage(models.Model):
     prog = models.ForeignKey(Project, null=True, editable=False,
         on_delete = models.CASCADE, related_name='project_image')
     image = models.ImageField("Immagine", max_length=200, editable = False,
-        null=True, upload_to='uploads/images/')
+        null=True, upload_to='uploads/images/galleries/')
     fb_image = FileBrowseField("Immagine", max_length=200,
         extensions=[".jpg", ".png", ".jpeg", ".gif", ".tif", ".tiff"],
-        null=True)
+        null=True, directory='images/galleries/')
     caption = models.CharField("Didascalia", max_length = 200, blank=True,
         null=True)
     position = models.PositiveSmallIntegerField("Posizione", null=True)
