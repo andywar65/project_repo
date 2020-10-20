@@ -39,7 +39,7 @@ class GalleryImage(models.Model):
     prog = models.ForeignKey(Project, null=True, editable=False,
         on_delete = models.CASCADE, related_name='project_image')
     image = models.ImageField("Immagine", max_length=200, editable = False,
-        null=True, upload_to='uploads/portfolio/projects/')
+        null=True, upload_to='uploads/images/')
     fb_image = FileBrowseField("Immagine", max_length=200,
         extensions=[".jpg", ".png", ".jpeg", ".gif", ".tif", ".tiff"],
         null=True)

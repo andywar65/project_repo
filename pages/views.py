@@ -22,7 +22,11 @@ class HomeTemplateView(TemplateView):
         context['images'] = GalleryImage.objects.filter(home_id=context['uuid'])
         context['actions'] = HomeButton.objects.filter(home_id=context['uuid'])[:3]
         context['posts'] = Article.objects.all()[:6]
-        context['progs'] = Project.objects.all()[:6]
+        progs = Project.objects.all()[:6]
+        context['prog_image'] = {}
+        for prog in progs:
+            image = GalleryImage.objects.filter(prog_id=prog.id).first()
+            context['prog_image'][prog] = image
         return context
 
 class TreePageListView(ListView):
