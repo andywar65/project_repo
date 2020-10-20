@@ -8,6 +8,7 @@ from filebrowser.fields import FileBrowseField
 from treebeard.mp_tree import MP_Node
 
 from project.utils import generate_unique_slug
+from portfolio.models import Project
 from streamfield.base import StreamObject
 from streamfield.fields import StreamField
 from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
@@ -35,6 +36,10 @@ class HomePage(models.Model):
 class GalleryImage(models.Model):
     home = models.ForeignKey(HomePage, null=True, editable=False,
         on_delete = models.CASCADE, related_name='home_image')
+    prog = models.ForeignKey(Project, null=True, editable=False,
+        on_delete = models.CASCADE, related_name='project_image')
+    image = models.ImageField("Immagine", max_length=200, editable = False,
+        null=True, upload_to='uploads/portfolio/projects/')
     fb_image = FileBrowseField("Immagine", max_length=200,
         extensions=[".jpg", ".png", ".jpeg", ".gif", ".tif", ".tiff"],
         null=True)
