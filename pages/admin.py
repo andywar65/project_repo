@@ -30,13 +30,19 @@ class HomePageAdmin(admin.ModelAdmin):
 class TreePageAdmin(TreeAdmin):
     form = movenodeform_factory(TreePage)
 
+    class Media:
+        js = [
+            '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            '/static/js/tinymce_setup.js',
+        ]
+
     fieldsets = (
         (None, {
             'fields': ('title', 'slug', 'intro'),
         }),
         ('Testo', {
-            'classes': ('collapse', 'wide'),
-            'fields': ('stream', ),
+            'classes': ('grp-collapse grp-closed', ),
+            'fields': ('body', ),
         }),
         (None, {
             'fields': ('summary', 'navigation'),

@@ -72,7 +72,7 @@ class TreePage(MP_Node):
         unique = True,
         help_text = """Titolo come appare nell'indirizzo della pagina,
             solo lettere minuscole e senza spazi""")
-    intro = models.TextField('Introduzione',
+    intro = models.CharField('Introduzione',
         blank= True, null=True, max_length = 200)
     body = models.TextField('Testo', null=True, blank=True,)
     #stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
