@@ -10,10 +10,10 @@ from treebeard.mp_tree import MP_Node
 from project.utils import generate_unique_slug
 from portfolio.models import Project
 from blog.models import Article
-from streamfield.base import StreamObject
-from streamfield.fields import StreamField
-from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
-    LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
+#from streamfield.base import StreamObject
+#from streamfield.fields import StreamField
+#from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
+    #LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
 
 class HomePage(models.Model):
 
@@ -96,10 +96,10 @@ class TreePage(MP_Node):
 
     def get_paragraphs(self):
         paragraphs = []
-        for block in self.stream.from_json():
-            if block['model_name'] == 'IndexedParagraph':
-                par = IndexedParagraph.objects.get(id=block['id'])
-                paragraphs.append( (par.get_slug(), par.title) )
+        #for block in self.stream.from_json():
+            #if block['model_name'] == 'IndexedParagraph':
+                #par = IndexedParagraph.objects.get(id=block['id'])
+                #paragraphs.append( (par.get_slug(), par.title) )
         return paragraphs
 
     def get_adjacent_pages(self):

@@ -27,7 +27,7 @@
     </ul>
     {% endif %}
     <div>
-      {{ page.stream.render }}
+      {{ page.body|safe }}
     </div>
     {% if page.summary %}<a href="#sommario">Torna al sommario</a>{% endif %}
     {% if page.navigation %}
