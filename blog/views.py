@@ -68,6 +68,16 @@ class DetailArticle(DetailView):
     context_object_name = 'post'
     slug_field = 'slug'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        #we add the following to feed standardized gallery
+        context['uuid'] = self.object.uuid
+        context['title'] = self.object.title
+        #gallery images
+        context['images'] = self.object.article_image.all()
+
+        return context
+
 class UserUploadCreateView(PermissionRequiredMixin, CreateView):
     model = UserUpload
     form_class = UserUploadForm
