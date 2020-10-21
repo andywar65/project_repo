@@ -74,10 +74,11 @@ class TreePage(MP_Node):
             solo lettere minuscole e senza spazi""")
     intro = models.TextField('Introduzione',
         blank= True, null=True, max_length = 200)
-    stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
-        Gallery, DownloadableFile, LinkableList, BoxedText, ],
-        verbose_name="Testo" )
-    stream_search = models.TextField(editable=False, null=True)
+    body = models.TextField('Testo', null=True, blank=True,)
+    #stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
+        #Gallery, DownloadableFile, LinkableList, BoxedText, ],
+        #verbose_name="Testo" )
+    #stream_search = models.TextField(editable=False, null=True)
     summary = models.BooleanField('Mostra sommario', default = True, )
     navigation = models.BooleanField('Mostra navigazione', default = True, )
     last_updated = models.DateTimeField(editable=False, null=True)
@@ -131,13 +132,13 @@ class TreePage(MP_Node):
         #sometimes treats stream as str instead of StreamField object
         #probably should use transaction instaed
         #but for now this patch works
-        if isinstance(self.stream, str):
-            tmp = StreamObject( value = self.stream,
-                model_list=[ IndexedParagraph, CaptionedImage,
-                    Gallery, DownloadableFile, LinkableList, BoxedText, ], )
-            self.stream_search = strip_tags(tmp.render)
-        else:
-            self.stream_search = strip_tags(self.stream.render)
+        #if isinstance(self.stream, str):
+            #tmp = StreamObject( value = self.stream,
+                #model_list=[ IndexedParagraph, CaptionedImage,
+                    #Gallery, DownloadableFile, LinkableList, BoxedText, ], )
+            #self.stream_search = strip_tags(tmp.render)
+        #else:
+            #self.stream_search = strip_tags(self.stream.render)
         super(TreePage, self).save(*args, **kwargs)
 
     def __str__(self):
