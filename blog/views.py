@@ -75,14 +75,14 @@ class UserUploadCreateView(PermissionRequiredMixin, CreateView):
 
     def get_success_url(self):
         if 'post_id' in self.request.GET:
-            pst = Article.objects.get(id=self.request.GET['post_id'])
+            pst = Article.objects.get(uuid=self.request.GET['post_id'])
             return pst.get_path() + '/#upload-anchor'
         return super(UserUploadCreateView, self).get_success_url(self)
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         if 'post_id' in self.request.GET:
-            form.instance.post = Article.objects.get(id=self.request.GET['post_id'])
+            form.instance.post = Article.objects.get(uuid=self.request.GET['post_id'])
         return super().form_valid(form)
 
 class AuthorListView(ListView):
