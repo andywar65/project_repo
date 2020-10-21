@@ -5,16 +5,15 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.db import models
 from django.utils.timezone import now
-from django.utils.html import strip_tags
+#from django.utils.html import strip_tags
 from django.utils.text import slugify
 
 from taggit.managers import TaggableManager
-from streamfield.base import StreamObject
-from streamfield.fields import StreamField
+#from streamfield.base import StreamObject
+#from streamfield.fields import StreamField
 
-from project.utils import generate_unique_slug
-from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
-    LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
+#from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
+    #LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
 from users.models import User
 from .choices import *
 
