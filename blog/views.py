@@ -71,7 +71,7 @@ class DetailArticle(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         #we add the following to feed standardized gallery
-        context['uuid'] = self.object.uuid
+        context['slug'] = self.object.slug
         context['title'] = self.object.title
         #gallery images
         context['images'] = self.object.article_image.all()

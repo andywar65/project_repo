@@ -6,7 +6,7 @@ from django.core.mail import EmailMessage
 from django.db import models
 from django.utils.timezone import now
 #from django.utils.html import strip_tags
-from django.utils.text import slugify
+#from django.utils.text import slugify
 
 from taggit.managers import TaggableManager
 #from streamfield.base import StreamObject
@@ -14,6 +14,7 @@ from taggit.managers import TaggableManager
 
 #from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
     #LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
+from project.utils import generate_unique_slug
 from users.models import User
 from .choices import *
 
@@ -85,7 +86,7 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = f'{slugify(self.title)}-{str(self.uuid)}'
+            self.slug = generate_unique_slug(Article, self.title)
         self.last_updated = now()
         #in tests treats stream as str instead of StreamField object
         #probably should use transaction instaed
