@@ -16,7 +16,7 @@ class HomeTemplateView(TemplateView):
         if not context['page']:
             raise Http404("Non ci sono Home Page")
         #we add this context to feed the standard gallery
-        context['uuid'] = context['page'].uuid
+        context['slug'] = str(context['page'].uuid)[:8]
         context['title'] = context['page'].title
         #context for the page
         context['images'] = context['page'].home_image.all()
