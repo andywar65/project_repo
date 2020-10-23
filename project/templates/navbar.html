@@ -17,11 +17,14 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="/articoli" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Materiali
+            Documenti
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/articoli/">Articoli</a>
             <a class="dropdown-item" href="/docs/">Documenti</a>
+            {% if perms.accounting.view_invoice %}
+              <a class="dropdown-item" href="/fatture/">Fatture</a>
+            {% endif %}
           </div>
         </li>
         <li class="nav-item dropdown">
