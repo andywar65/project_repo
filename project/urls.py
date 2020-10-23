@@ -41,7 +41,7 @@ urlpatterns = [
     path('', HomeTemplateView.as_view()),
     path('articoli/', include('blog.urls.posts', namespace = 'blog')),
     path('docs/', include('pages.urls.tree_pages', namespace = 'docs')),
-    path('streamfield/', include('streamfield.urls')),
+    #path('streamfield/', include('streamfield.urls')),
     path('fatture/', include('accounting.urls.invoices',
         namespace = 'invoices')),
     path('progetti/', include('portfolio.urls', namespace = 'portfolio')),

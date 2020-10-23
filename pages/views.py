@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, DetailView, ListView
-from streamblocks.models import HomeButton
+#from streamblocks.models import HomeButton
 
 from blog.models import Article
 from portfolio.models import Project
