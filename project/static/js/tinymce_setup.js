@@ -50,7 +50,7 @@ tinyMCE.init({
     // style formsts overrides theme_advanced_styles
     // see http://www.tinymce.com/wiki.php/Configuration:style_formats
     style_formats: [
-        {title: 'Paragraph Small', block : 'p', classes: 'p_small'},
+        {title: 'Paragraph Small', block : 'p', classes: 'small'},
         {title: 'Paragraph ImageCaption', block : 'p', classes: 'p_caption'},
         {title: 'Clearfix', block : 'p', classes: 'clearfix'},
         {title: 'Code', block : 'p', classes: 'pre'},
