@@ -1,4 +1,3 @@
-#from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import (ListView, DetailView, CreateView,
@@ -13,6 +12,7 @@ from users.models import User
 
 from .forms import UserUploadForm
 from .models import (UserUpload, Article,)
+from .management.commands.fetch_article_emails import do_command
 
 class TagMixin:
     def get_context_data(self, **kwargs):
@@ -35,6 +35,10 @@ class ArticleArchiveIndexView(TagMixin, ArchiveIndexView):
     context_object_name = 'posts'
     paginate_by = 12
     allow_empty = True
+
+    def setup(self, request, *args, **kwargs):
+        super(ArticleArchiveIndexView, self).setup(request, *args, **kwargs)
+        do_command()
 
 class ArticleYearArchiveView(TagMixin, YearArchiveView):
     model = Article
