@@ -1,4 +1,5 @@
 import uuid
+import json
 
 from django.utils.timezone import now
 from django.utils.html import strip_tags
@@ -82,6 +83,7 @@ class TreePage(MP_Node):
     summary = models.BooleanField('Mostra sommario', default = True, )
     navigation = models.BooleanField('Mostra navigazione', default = True, )
     last_updated = models.DateTimeField(editable=False, null=True)
+    paragraphs = models.JSONField(editable=False, null=True, )
 
     #node_order_by = ['title']
 
@@ -129,16 +131,15 @@ class TreePage(MP_Node):
         else:
             self.slug = generate_unique_slug(TreePage, self.title)
         self.last_updated = now()
-        #sometimes treats stream as str instead of StreamField object
-        #probably should use transaction instaed
-        #but for now this patch works
-        #if isinstance(self.stream, str):
-            #tmp = StreamObject( value = self.stream,
-                #model_list=[ IndexedParagraph, CaptionedImage,
-                    #Gallery, DownloadableFile, LinkableList, BoxedText, ], )
-            #self.stream_search = strip_tags(tmp.render)
-        #else:
-            #self.stream_search = strip_tags(self.stream.render)
+        count = self.body.count('class="indexed_paragraph">')
+        txt = self.body
+        for c in range(count):
+            txt = txt.split('class="indexed_paragraph">', 1)[1]
+            self.paragraphs[c] = txt.split('</h4>', 1)[0]
+            txt = txt.split('</h4>', 1)[1]
+            self.body = self.body.replace('class="indexed_paragraph"',
+                f'id="paragraph-{c}"', c+1)
+        print(self.paragraphs, )
         super(TreePage, self).save(*args, **kwargs)
 
     def __str__(self):
