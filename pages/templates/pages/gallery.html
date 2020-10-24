@@ -1,19 +1,19 @@
 {% load fb_versions %}
 
 <div class="row">
-  <div id="gallery-{{ slug }}" class="carousel slide" data-ride="carousel">
+  <div id="gallery-{{ main_gal_slug }}" class="carousel slide" data-ride="carousel">
     {% if images|length > 1 %}
       <ol class="carousel-indicators">
       {% for image in images %}
-        <li data-target="#gallery-{{ slug }}" data-slide-to="{{ forloop.counter0 }}"
+        <li data-target="#gallery-{{ main_gal_slug }}" data-slide-to="{{ forloop.counter0 }}"
         {% if forloop.first %}class="active"{% endif %}></li>
       {% endfor %}
       </ol>
-      <a class="carousel-control-prev" href="#gallery-{{ slug }}" role="button" data-slide="prev">
+      <a class="carousel-control-prev" href="#gallery-{{ main_gal_slug }}" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Precedente</span>
       </a>
-      <a class="carousel-control-next" href="#gallery-{{ slug }}" role="button" data-slide="next">
+      <a class="carousel-control-next" href="#gallery-{{ main_gal_slug }}" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Prossima</span>
       </a>

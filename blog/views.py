@@ -5,6 +5,8 @@ from django.views.generic import (ListView, DetailView, CreateView,
     TemplateView)
 from django.views.generic.dates import (ArchiveIndexView, YearArchiveView,
     MonthArchiveView, DayArchiveView, )
+from django.utils.crypto import get_random_string
+
 from taggit.models import Tag
 
 from users.models import User
@@ -71,7 +73,7 @@ class DetailArticle(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         #we add the following to feed standardized gallery
-        context['slug'] = self.object.slug
+        context['main_gall_slug'] = get_random_string(7)
         context['title'] = self.object.title
         #gallery images
         context['images'] = self.object.article_image.all()

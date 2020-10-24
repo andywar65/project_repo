@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, DetailView, ListView
+from django.utils.crypto import get_random_string
 #from streamblocks.models import HomeButton
 
 from blog.models import Article
@@ -16,7 +17,7 @@ class HomeTemplateView(TemplateView):
         if not context['page']:
             raise Http404("Non ci sono Home Page")
         #we add this context to feed the standard gallery
-        context['slug'] = str(context['page'].uuid)[:8]
+        context['main_gall_slug'] = get_random_string(7)
         context['title'] = context['page'].title
         #context for the page
         context['images'] = context['page'].home_image.all()
