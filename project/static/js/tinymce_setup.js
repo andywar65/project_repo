@@ -53,7 +53,7 @@ tinyMCE.init({
         {title: 'Paragraph Small', block : 'p', classes: 'p_small'},
         {title: 'Paragraph ImageCaption', block : 'p', classes: 'p_caption'},
         {title: 'Clearfix', block : 'p', classes: 'clearfix'},
-        {title: 'Code', block : 'code'},
+        {title: 'Code', block : 'p', classes: 'pre'},
         {title: 'Danger Box', block : 'p', classes: 'alert alert-danger', role: 'alert'},
         {title: 'Warning Box', block : 'p', classes: 'alert alert-warning', role: 'alert'},
         {title: 'Success Box', block : 'p', classes: 'alert alert-success', role: 'alert'}
