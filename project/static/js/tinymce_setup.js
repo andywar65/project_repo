@@ -56,7 +56,8 @@ tinyMCE.init({
         {title: 'Code', block : 'p', classes: 'pre'},
         {title: 'Danger Box', block : 'p', classes: 'alert alert-danger', role: 'alert'},
         {title: 'Warning Box', block : 'p', classes: 'alert alert-warning', role: 'alert'},
-        {title: 'Success Box', block : 'p', classes: 'alert alert-success', role: 'alert'}
+        {title: 'Success Box', block : 'p', classes: 'alert alert-success', role: 'alert'},
+        {title: 'Indexed Paragraph', block : 'h4', classes: 'indexed_paragraph'}
     ],
     verify_html: true,
 
