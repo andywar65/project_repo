@@ -131,15 +131,17 @@ class TreePage(MP_Node):
         else:
             self.slug = generate_unique_slug(TreePage, self.title)
         self.last_updated = now()
-        count = self.body.count('class="indexed_paragraph">')
+        for c in range(99):#very quick and dirty, should learn regex!
+            if f'id="paragraph-{c}" ' in self.body:
+                self.body = self.body.replace(f'id="paragraph-{c}" ', '')
         txt = self.body
+        count = txt.count('class="indexed_paragraph">')
         for c in range(count):
             txt = txt.split('class="indexed_paragraph">', 1)[1]
             self.paragraphs[c] = txt.split('</h4>', 1)[0]
             txt = txt.split('</h4>', 1)[1]
             self.body = self.body.replace('class="indexed_paragraph"',
-                f'id="paragraph-{c}"', c+1)
-        print(self.paragraphs, )
+                f'id="paragraph-{c}" class="indexed_paragraph"', c+1)
         super(TreePage, self).save(*args, **kwargs)
 
     def __str__(self):
