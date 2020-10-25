@@ -97,6 +97,7 @@ class TreePage(MP_Node):
         return path
 
     def get_paragraphs(self):
+        #serve paragraphs without touching body
         txt = self.body
         for num, title in self.paragraphs.items():
             txt = txt.replace('class="indexed_paragraph"',
@@ -130,6 +131,7 @@ class TreePage(MP_Node):
         else:
             self.slug = generate_unique_slug(TreePage, self.title)
         self.last_updated = now()
+        #prepare paragraphs without touching body
         self.paragraphs = {}
         txt = self.body
         count = txt.count('class="indexed_paragraph">')
