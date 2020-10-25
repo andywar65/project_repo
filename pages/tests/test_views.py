@@ -1,28 +1,28 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from streamblocks.models import HomeButton
+#from streamblocks.models import HomeButton
 from blog.models import Article
-from pages.models import TreePage, HomePage
+from pages.models import TreePage, HomePage, HomeButton
 
 class TreePageModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        HomeButton.objects.create( id=51 )
-        HomePage.objects.create(
-            action = '[{"unique_id":"4h5dps","model_name":"HomeButton","id":[51],"options":{}}]',
+        home = HomePage.objects.create(
+            #action = '[{"unique_id":"4h5dps","model_name":"HomeButton","id":[51],"options":{}}]',
             )
+        HomeButton.objects.create( home_id = home.uuid )
         TreePage.objects.create(title='Page 1', path = '0001', depth = 1,
-            numchild = 1,
+            numchild = 1, body='Foo'
             )
         TreePage.objects.create(title='Child Page', path = '00010001',
             depth = 2,
             numchild = 0,
-            slug = 'Child-Page'
+            slug = 'Child-Page', body='Bar'
             )
         Article.objects.create(title='Article 5',
-            date = '2020-05-13 15:58:00+02')
+            date = '2020-05-13')
 
     def test_home_template_view_status_code(self):
         response = self.client.get('/')
