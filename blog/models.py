@@ -9,6 +9,7 @@ from django.utils.timezone import now
 #from django.utils.text import slugify
 
 from taggit.managers import TaggableManager
+from taggit.models import GenericUUIDTaggedItemBase, TaggedItemBase
 #from streamfield.base import StreamObject
 #from streamfield.fields import StreamField
 
@@ -17,6 +18,15 @@ from taggit.managers import TaggableManager
 from project.utils import generate_unique_slug
 from users.models import User
 from .choices import *
+
+class UUIDTaggedItem(GenericUUIDTaggedItemBase, TaggedItemBase):
+    # If you only inherit GenericUUIDTaggedItemBase, you need to define
+    # a tag field. e.g.
+    # tag = models.ForeignKey(Tag, related_name="uuid_tagged_items", on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Categoria"
+        verbose_name_plural = "Categorie"
 
 class Article(models.Model):
     #carousel = StreamField(model_list=[ LandscapeGallery, ],
@@ -41,7 +51,7 @@ class Article(models.Model):
         blank= True, null=True, verbose_name = 'Autore')
     tags = TaggableManager(verbose_name="Categorie",
         help_text="Lista di categorie separate da virgole",
-        through=None, blank=True)
+        through=UUIDTaggedItem, blank=True)
     notice = models.CharField(max_length = 4, choices = NOTICE,
         blank = True, null = True, verbose_name = 'Notifica via email',
         help_text = """Invia notifica in automatico selezionando
