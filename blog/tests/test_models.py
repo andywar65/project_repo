@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from users.models import User, Profile
-from streamblocks.models import IndexedParagraph, LandscapeGallery
+from pages.models import GalleryImage
 from blog.models import Article, UserUpload
 
 class ArticleModelTest(TestCase):
@@ -18,23 +18,22 @@ class ArticleModelTest(TestCase):
         profile = Profile.objects.get(pk=recipient.id)
         profile.yes_spam = True
         profile.save()
-        IndexedParagraph.objects.create(id=47, title='Foo', body='Bar')
-        LandscapeGallery.objects.create(id=48, fb_image='uploads/image.jpg')
         article = Article.objects.create(title='Article 1',
-            date = '2020-05-09 15:53:00+02',
-            stream = '[{"unique_id":"4h5dps","model_name":"IndexedParagraph","id":47,"options":{}}]',
-            carousel = '[{"unique_id":"dps4h5","model_name":"LandscapeGallery","id":[48],"options":{}}]',
+            date = '2020-05-09',
+            body = 'Foo Bar',
             notice = 'SPAM'
             )
+        #GalleryImage.objects.create(post_id=article.uuid, fb_image='uploads/image.jpg')
+        #GalleryImage.objects.create(post_id=article.uuid, fb_image='uploads/image2.jpg')
         Article.objects.create(title='Article 2',
-            date = '2020-05-09 15:58:00+02')
+            date = '2020-05-10')
         UserUpload.objects.create(id=49, post=article, user=user,
             body='Foo Bar')
 
-    def test_article_get_image(self):
-        article = Article.objects.get(slug='article-1')
+    #def test_article_get_image(self):
+        #article = Article.objects.get(slug='article-1')
         #here I extract the FilObject.path for convenience
-        self.assertEquals(article.get_image().path, 'uploads/image.jpg')
+        #self.assertEquals(article.get_image().path, 'uploads/image.jpg')
 
     def test_article_str_method(self):
         article = Article.objects.get(slug='article-1')
@@ -59,7 +58,7 @@ class ArticleModelTest(TestCase):
 
     def test_article_get_uploads(self):
         article = Article.objects.get(slug='article-1')
-        uploads = UserUpload.objects.filter(post_id=article.id)
+        uploads = UserUpload.objects.filter(post_id=article.uuid)
         #workaround found in
         #https://stackoverflow.com/questions/17685023/how-do-i-test-django-querysets-are-equal
         self.assertQuerysetEqual(article.get_uploads(), uploads,
@@ -69,10 +68,10 @@ class ArticleModelTest(TestCase):
         article = Article.objects.get(slug='article-1')
         self.assertEquals(article.notice, 'DONE')
 
-    def test_article_stream_search(self):
-        article = Article.objects.get(slug='article-1')
-        self.assertEquals(article.stream_search,
-            '\n  \n    Foo\n    \n  \n  \n     Bar \n  \n\n')
+    #def test_article_stream_search(self):
+        #article = Article.objects.get(slug='article-1')
+        #self.assertEquals(article.stream_search,
+            #'\n  \n    Foo\n    \n  \n  \n     Bar \n  \n\n')
 
     def test_userupload_str_method(self):
         upload = UserUpload.objects.get(id = 49)
