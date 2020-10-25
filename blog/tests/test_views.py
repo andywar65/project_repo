@@ -19,12 +19,12 @@ class ArticleViewTest(TestCase):
 
         User.objects.create_user(username='untrusted',
             password='P4s5W0r6')
-        article = Article.objects.create(id=34, title='Article 3',
-            date = '2020-05-10 15:53:00+02', author = usr
+        article = Article.objects.create(title='Article 3',
+            date = '2020-05-10', author = usr
             )
-        article.tags.add('foo')
+        #article.tags.add('foo')
         Article.objects.create(title='Article 4',
-            date = '2020-05-10 15:58:00+02')
+            date = '2020-05-10')
         UserUpload.objects.create(user=usr, post=article, body='Foo Bar')
 
     def test_article_archive_index_view_status_code(self):
@@ -222,7 +222,8 @@ class ArticleViewTest(TestCase):
     def test_user_upload_create_view_success_url(self):
         self.client.post('/accounts/login/', {'username':'logged_in',
             'password':'P4s5W0r6'})
-        response = self.client.post('/articoli/contributi/?post_id=34',
+        article = Article.objects.get(slug='article-3')
+        response = self.client.post(f'/articoli/contributi/?post_id={article.uuid}',
             {'body': 'Foo Bar'})
         self.assertRedirects(response,
             '/articoli/2020/05/10/article-3/#upload-anchor')
