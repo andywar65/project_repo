@@ -19,6 +19,10 @@
           {% endif %}
               <a href="{{ page.get_path }}">{{ page.title }}</a>
               {% if page.intro %}<em>- {{ page.intro }}</em>{% endif %}
+                {% if page.paragraphs %}<ol>{% for num, title in page.paragraphs.items %}
+                  <small><li><a href="{{ page.get_path }}#paragraph-{{ num }}">
+                    {{ title }}</a></li></small>
+                {% endfor %}</ol>{% endif %}
           {% for close in info.close %}
               </li></ul>
           {% endfor %}
