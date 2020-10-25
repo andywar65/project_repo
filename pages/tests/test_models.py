@@ -1,29 +1,32 @@
 from django.test import TestCase
 
-from streamblocks.models import IndexedParagraph
+#from streamblocks.models import IndexedParagraph
 from pages.models import TreePage
 
 class TreePageModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        IndexedParagraph.objects.create(id=61, title='Foo', body='Bar')
+        #IndexedParagraph.objects.create(id=61, title='Foo', body='Bar')
         TreePage.objects.create(title='Page 1', path = '0001', depth = 1,
             numchild = 2,
-            stream = '[{"unique_id":"4h5dps","model_name":"IndexedParagraph","id":61,"options":{}}]',
+            body = 'Bar',
             )
         TreePage.objects.create(title='Child Page', path = '00010001',
             depth = 2,
             numchild = 0,
-            slug = 'Child-Page'
+            slug = 'Child-Page',
+            body = 'Foo Bar',
             )
         TreePage.objects.create(title='Second Child Page', path = '00010002',
             depth = 2,
             numchild = 0,
+            body = 'Foo Bar Bar',
             )
         TreePage.objects.create(title='Lonely Page', path = '0002',
             depth = 1,
             numchild = 0,
+            body = 'Foo Foo Bar',
             )
 
     def test_tree_page_str_method(self):
@@ -55,11 +58,11 @@ class TreePageModelTest(TestCase):
         sibling = TreePage.objects.get(slug = 'second-child-page')
         self.assertEquals(child.get_adjacent_pages(), (parent, sibling))
 
-    def test_tree_page_stream_search(self):
-        page = TreePage.objects.get(slug = 'page-1')
-        self.assertEquals(page.stream_search,
-            '\n  \n    Foo\n    \n  \n  \n     Bar \n  \n\n')
+    #def test_tree_page_stream_search(self):
+        #page = TreePage.objects.get(slug = 'page-1')
+        #self.assertEquals(page.stream_search,
+            #'\n  \n    Foo\n    \n  \n  \n     Bar \n  \n\n')
 
     def test_tree_page_get_paragraphs(self):
         page = TreePage.objects.get(slug = 'page-1')
-        self.assertEquals(page.get_paragraphs(), [('foo', 'Foo')])
+        self.assertEquals(page.get_paragraphs(), 'Bar')
