@@ -97,12 +97,11 @@ class TreePage(MP_Node):
         return path
 
     def get_paragraphs(self):
-        paragraphs = []
-        #for block in self.stream.from_json():
-            #if block['model_name'] == 'IndexedParagraph':
-                #par = IndexedParagraph.objects.get(id=block['id'])
-                #paragraphs.append( (par.get_slug(), par.title) )
-        return paragraphs
+        txt = self.body
+        for num, title in self.paragraphs.items():
+            txt = txt.replace('class="indexed_paragraph"',
+                f'id="paragraph-{num}"', 1)
+        return txt
 
     def get_adjacent_pages(self):
         root = self.get_root()
@@ -131,17 +130,13 @@ class TreePage(MP_Node):
         else:
             self.slug = generate_unique_slug(TreePage, self.title)
         self.last_updated = now()
-        for c in range(99):#very quick and dirty, should learn regex!
-            if f'id="paragraph-{c}" ' in self.body:
-                self.body = self.body.replace(f'id="paragraph-{c}" ', '')
+        self.paragraphs = {}
         txt = self.body
         count = txt.count('class="indexed_paragraph">')
         for c in range(count):
             txt = txt.split('class="indexed_paragraph">', 1)[1]
             self.paragraphs[c] = txt.split('</h4>', 1)[0]
             txt = txt.split('</h4>', 1)[1]
-            self.body = self.body.replace('class="indexed_paragraph"',
-                f'id="paragraph-{c}" class="indexed_paragraph"', c+1)
         super(TreePage, self).save(*args, **kwargs)
 
     def __str__(self):
