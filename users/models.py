@@ -1,4 +1,5 @@
 import os
+import uuid
 
 from django.conf import settings
 from django.db import models
@@ -13,6 +14,8 @@ from filebrowser.fields import FileBrowseField
 from filebrowser.base import FileObject
 
 class User(AbstractUser):
+
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     def get_full_name(self):
         if self.first_name and self.last_name:
@@ -38,7 +41,7 @@ class User(AbstractUser):
 class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE,
-        primary_key=True, editable=False)
+        primary_key=True, editable=False )
     avatar = models.ImageField(blank = True, null=True,
         upload_to = 'uploads/users/')
     bio = models.TextField("Breve biografia", null=True, blank=True)
