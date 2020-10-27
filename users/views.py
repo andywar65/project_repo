@@ -86,7 +86,7 @@ class ContactFormView(GetMixin, FormView):
             message.email = self.request.user.email
             if 'recipient' in self.request.GET:
                 try:
-                    recip = User.objects.get(id=self.request.GET['recipient'])
+                    recip = User.objects.get(uuid=self.request.GET['recipient'])
                     message.recipient = recip.email
                 except:
                     pass
@@ -169,7 +169,7 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
         return initial
 
     def form_valid(self, form):
-        user = User.objects.get(id = self.request.user.uuid )
+        user = User.objects.get(uuid = self.request.user.uuid )
         profile = Profile.objects.get(pk = user.uuid)
         user.first_name = form.cleaned_data['first_name']
         user.last_name = form.cleaned_data['last_name']
@@ -195,7 +195,7 @@ class ProfileDeleteView(LoginRequiredMixin, FormView):
         return super(ProfileDeleteView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        user = User.objects.get(id = self.request.user.uuid )
+        user = User.objects.get(uuid = self.request.user.uuid )
         user.is_active = False
         user.first_name = ''
         user.last_name = ''
