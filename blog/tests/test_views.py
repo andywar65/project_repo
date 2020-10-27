@@ -146,47 +146,47 @@ class ArticleViewTest(TestCase):
     def test_by_author_list_view_status_code(self):
         usr = User.objects.get(username='logged_in')
         response = self.client.get(reverse('blog:post_by_author',
-            kwargs={ 'pk' : usr.id }))
+            kwargs={ 'pk' : usr.uuid }))
         self.assertEqual(response.status_code, 200)
 
     def test_by_author_list_view_template(self):
         usr = User.objects.get(username='logged_in')
         response = self.client.get(reverse('blog:post_by_author',
-            kwargs={ 'pk' : usr.id }))
+            kwargs={ 'pk' : usr.uuid }))
         self.assertTemplateUsed(response, 'blog/article_archive_authors.html')
 
     def test_by_author_list_view_context_object(self):
         usr = User.objects.get(username='logged_in')
-        posts = Article.objects.filter( author_id=usr.id )
+        posts = Article.objects.filter( author_id=usr.uuid )
         response = self.client.get(reverse('blog:post_by_author',
-            kwargs={ 'pk' : usr.id }))
+            kwargs={ 'pk' : usr.uuid }))
         self.assertQuerysetEqual(response.context['posts'], posts,
             transform=lambda x: x )
 
     def test_by_author_list_view_context_object_tagged(self):
         usr = User.objects.get(username='logged_in')
-        posts = Article.objects.filter( author_id=usr.id, tags__name='foo' )
-        response = self.client.get(f'/articoli/autori/{usr.id}/?tag=foo')
+        posts = Article.objects.filter( author_id=usr.uuid, tags__name='foo' )
+        response = self.client.get(f'/articoli/autori/{usr.uuid}/?tag=foo')
         self.assertQuerysetEqual(response.context['posts'], posts,
             transform=lambda x: x )
 
     def test_by_upload_list_view_status_code(self):
         usr = User.objects.get(username='logged_in')
         response = self.client.get(reverse('blog:upload_by_author',
-            kwargs={ 'pk' : usr.id }))
+            kwargs={ 'pk' : usr.uuid }))
         self.assertEqual(response.status_code, 200)
 
     def test_by_upload_list_view_template(self):
         usr = User.objects.get(username='logged_in')
         response = self.client.get(reverse('blog:upload_by_author',
-            kwargs={ 'pk' : usr.id }))
+            kwargs={ 'pk' : usr.uuid }))
         self.assertTemplateUsed(response, 'blog/uploads_by_author.html')
 
     def test_by_upload_list_view_context_object(self):
         usr = User.objects.get(username='logged_in')
-        uploads = UserUpload.objects.filter( user_id=usr.id )
+        uploads = UserUpload.objects.filter( user_id=usr.uuid )
         response = self.client.get(reverse('blog:upload_by_author',
-            kwargs={ 'pk' : usr.id }))
+            kwargs={ 'pk' : usr.uuid }))
         self.assertQuerysetEqual(response.context['uploads'], uploads,
             transform=lambda x: x )
 

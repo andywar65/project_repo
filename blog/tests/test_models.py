@@ -10,7 +10,7 @@ class ArticleModelTest(TestCase):
         # Set up non-modified objects used by all test methods
         user = User.objects.create(username='andywar65', password='P4s5W0r6',
             email='andy@war.com')
-        profile = Profile.objects.get(pk=user.id)
+        profile = Profile.objects.get(pk=user.uuid)
         profile.yes_spam = True
         profile.save()
         recipient = User.objects.create(username='recipient', password='P4s5W0r6',

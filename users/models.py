@@ -33,7 +33,7 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         super(User, self).save(*args, **kwargs)
         if self.is_active:
-            memb, created = Profile.objects.get_or_create(user_id = self.id)
+            memb, created = Profile.objects.get_or_create(user_id = self.uuid)
 
     class Meta:
         ordering = ('last_name', 'first_name', 'username')

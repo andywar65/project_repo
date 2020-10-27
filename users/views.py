@@ -153,7 +153,7 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
     template_name = 'users/profile_change.html'
 
     def get(self, request, *args, **kwargs):
-        if request.user.id != kwargs['pk']:
+        if request.user.uuid != kwargs['pk']:
             raise Http404("User is not authorized to manage this profile")
         return super(ProfileChangeView, self).get(request, *args, **kwargs)
 
@@ -169,8 +169,8 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
         return initial
 
     def form_valid(self, form):
-        user = User.objects.get(id = self.request.user.id )
-        profile = Profile.objects.get(pk = user.id)
+        user = User.objects.get(id = self.request.user.uuid )
+        profile = Profile.objects.get(pk = user.uuid)
         user.first_name = form.cleaned_data['first_name']
         user.last_name = form.cleaned_data['last_name']
         user.email = form.cleaned_data['email']
@@ -190,18 +190,18 @@ class ProfileDeleteView(LoginRequiredMixin, FormView):
     success_url = '/accounts/profile/deleted'
 
     def get(self, request, *args, **kwargs):
-        if request.user.id != kwargs['pk']:
+        if request.user.uuid != kwargs['pk']:
             raise Http404("User is not authorized to manage this profile")
         return super(ProfileDeleteView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        user = User.objects.get(id = self.request.user.id )
+        user = User.objects.get(id = self.request.user.uuid )
         user.is_active = False
         user.first_name = ''
         user.last_name = ''
         user.email = ''
         user.save()
-        profile = Profile.objects.get(pk = user.id)
+        profile = Profile.objects.get(pk = user.uuid)
         profile.delete()
         return super(ProfileDeleteView, self).form_valid(form)
 

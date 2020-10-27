@@ -19,7 +19,7 @@
       {% if user.is_staff %}, si può andare in amministrazione{% endif %}
       oppure si può effettuare il logout
       (consigliabile farlo sempre alla fine della sessione).</p>
-      <a class="btn btn-success center" role="button" href="/accounts/profile/{{ user.id }}/change">
+      <a class="btn btn-success center" role="button" href="/accounts/profile/{{ user.uuid }}/change">
         Cambia i tuoi dati</a>
         <a class="btn btn-warning" role="button" href="{% url 'password_change' %}">
           Cambia la tua password</a>
