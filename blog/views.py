@@ -115,8 +115,8 @@ class AuthorListView(ListView):
         all_contrib = UserUpload.objects.all()
         author_dict = {}
         for author in all_users:
-            art_count = all_articles.filter(author_id = author.id).count()
-            contrib_count = all_contrib.filter(user_id = author.id).count()
+            art_count = all_articles.filter(author_id = author.uuid).count()
+            contrib_count = all_contrib.filter(user_id = author.uuid).count()
             if art_count or contrib_count:
                 author_dict[author]=(art_count, contrib_count)
         context['authors'] = author_dict
@@ -141,7 +141,7 @@ class ByAuthorListView(ListView):
     def get(self, request, *args, **kwargs):
         super(ByAuthorListView, self).get(request, *args, **kwargs)
         context = self.get_context_data()
-        context['author'] = get_object_or_404( User, id = kwargs['pk'] )
+        context['author'] = get_object_or_404( User, uuid = kwargs['pk'] )
         context['tags'] = Tag.objects.all()
         if 'tag' in self.request.GET:
             context['tag_filter'] = self.request.GET['tag']
@@ -161,5 +161,5 @@ class ByUploadListView(ListView):
     def get(self, request, *args, **kwargs):
         super(ByUploadListView, self).get(request, *args, **kwargs)
         context = self.get_context_data()
-        context['author'] = get_object_or_404( User, id = kwargs['pk'] )
+        context['author'] = get_object_or_404( User, uuid = kwargs['pk'] )
         return self.render_to_response(context)
