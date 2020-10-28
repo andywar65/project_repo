@@ -15,7 +15,7 @@ class ArticleModelTest(TestCase):
         profile.save()
         recipient = User.objects.create(username='recipient', password='P4s5W0r6',
             email='recipient@war.com')
-        profile = Profile.objects.get(pk=recipient.id)
+        profile = Profile.objects.get(pk=recipient.uuid)
         profile.yes_spam = True
         profile.save()
         article = Article.objects.create(title='Article 1',
