@@ -9,6 +9,7 @@ class UserViewTest(TestCase):
         # Set up non-modified objects used by all test methods
         User.objects.create_user(username='existing', password='P4s5W0r6',
             email='me@existing.com')
+        User.objects.create_user(username='otherguy', password='P4s5W0r6',)
 
     def test_registration_view_status_code(self):
         response = self.client.get(reverse('registration'))
@@ -141,8 +142,9 @@ class UserViewTest(TestCase):
     def test_change_profile_view_denied(self):
         self.client.post('/accounts/login/', {'username':'existing',
             'password':'P4s5W0r6'})
+        other = User.objects.get(username='otherguy')
         response = self.client.get(reverse('profile_change',
-            kwargs={'pk': 74}))
+            kwargs={'pk': other.uuid}))
         self.assertEqual(response.status_code, 404)
 
     def test_delete_profile_view_status_code(self):
@@ -164,8 +166,9 @@ class UserViewTest(TestCase):
     def test_delete_profile_view_denied(self):
         self.client.post('/accounts/login/', {'username':'existing',
             'password':'P4s5W0r6'})
+        other = User.objects.get(username='otherguy')
         response = self.client.get(reverse('profile_delete',
-            kwargs={'pk': 74}))
+            kwargs={'pk': other.uuid}))
         self.assertEqual(response.status_code, 404)
 
     #let this be the last test
