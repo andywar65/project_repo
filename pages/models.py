@@ -9,7 +9,7 @@ from filebrowser.fields import FileBrowseField
 from treebeard.mp_tree import MP_Node
 
 from project.utils import generate_unique_slug
-from portfolio.models import Project
+#from portfolio.models import Project
 from blog.models import Article
 #from streamfield.base import StreamObject
 #from streamfield.fields import StreamField
@@ -38,8 +38,8 @@ class HomePage(models.Model):
 class GalleryImage(models.Model):
     home = models.ForeignKey(HomePage, null=True, editable=False,
         on_delete = models.CASCADE, related_name='home_image')
-    prog = models.ForeignKey(Project, null=True, editable=False,
-        on_delete = models.CASCADE, related_name='project_image')
+    #prog = models.ForeignKey(Project, null=True, editable=False,
+        #on_delete = models.CASCADE, related_name='project_image')
     post = models.ForeignKey(Article, null=True, editable=False,
         on_delete = models.CASCADE, related_name='article_image')
     image = models.ImageField("Immagine", max_length=200, editable = False,
