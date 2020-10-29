@@ -1,7 +1,9 @@
 from django.urls import path
+
 from blog.views import (ArticleArchiveIndexView, ArticleYearArchiveView,
     ArticleMonthArchiveView, ArticleDayArchiveView, DetailArticle,
     UserUploadCreateView, AuthorListView, ByAuthorListView, ByUploadListView)
+from blog.api.views import ArticleListCreateAPIView
 
 app_name = 'blog'
 urlpatterns = [
@@ -24,4 +26,6 @@ urlpatterns = [
         name = 'post_by_author'),
     path('uploads/<uuid:pk>/', ByUploadListView.as_view(),
         name = 'upload_by_author'),
+    path(route='api/', view=ArticleListCreateAPIView.as_view(),
+        name='post_api_index')
     ]
