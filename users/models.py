@@ -61,6 +61,15 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.get_full_name()
 
+    def save(self, *args, **kwargs):
+        super(Profile, self).save(*args, **kwargs)
+        grp = Group.objects.get(name='Trusted')
+        usr = self.user
+        if self.is_trusted:
+            usr.groups.add(grp)
+        else:
+            usr.groups.remove(grp)
+
     class Meta:
         verbose_name = 'Profilo'
         verbose_name_plural = 'Profili'

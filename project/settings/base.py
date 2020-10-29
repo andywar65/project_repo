@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 from pathlib import Path
 import json
+
 from django.core.exceptions import ImproperlyConfigured
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_DIR = Path(__file__).resolve(strict=True).parent.parent
 BASE_DIR = Path(PROJECT_DIR).resolve(strict=True).parent
 APPLICATION_DIR = Path(BASE_DIR).resolve(strict=True).parent
@@ -145,6 +145,7 @@ USE_L10N = True
 USE_TZ = True
 
 AUTH_USER_MODEL = 'users.User'
+PROFILE_IS_TRUSTED_BY_DEFAULT = False
 
 RECAPTCHA_TEST_MODE = False
 
