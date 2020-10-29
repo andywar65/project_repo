@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from streamblocks.models import IndexedParagraph
+#from streamblocks.models import IndexedParagraph
 from blog.models import Article, UserUpload
 from pages.models import TreePage
 from users.models import User
@@ -12,7 +12,7 @@ class UtilsTest(TestCase):
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
         Article.objects.create(title='Existing article',
-            date = '2020-05-13 15:58:00+02')
+            date = '2020-05-13')
 
     def test_generate_unique_slug(self):
         self.assertEqual(generate_unique_slug(Article, 'Article 7'),
@@ -25,17 +25,17 @@ class UtilsTest(TestCase):
 class SearchTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        IndexedParagraph.objects.create(id=77, title='Foo', body='Bar')
+        #IndexedParagraph.objects.create(id=77, title='Foo', body='Bar')
         usr = User.objects.create_user(username='odysseus',
             password='P4s5W0r6')
         article = Article.objects.create(title='Article 4',
-            date = '2020-05-10 15:53:00+02',
-            stream = '[{"unique_id":"4h7dps","model_name":"IndexedParagraph","id":77,"options":{}}]',
+            date = '2020-05-10',
+            body = 'Foo',
             )
         UserUpload.objects.create(user=usr, post=article, body='Foo Bar?')
         TreePage.objects.create(title='Page 2', path = '0001', depth = 1,
             numchild = 0,
-            stream = '[{"unique_id":"4h6dps","model_name":"IndexedParagraph","id":77,"options":{}}]',
+            body = 'Foo',
             )
 
     def test_search_results_view_status_code(self):

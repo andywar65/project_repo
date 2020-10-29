@@ -18,18 +18,19 @@
     {% endif %}
     <h4><strong>{{ page.title }}</strong></h4>
     <p><em>{{ page.intro }}</em></p>
-    {% if page.summary %}
+    {% if page.summary and page.paragraphs %}
     <h4>Sommario</h4>
     <ul>
-      {% with paragraphs=page.get_paragraphs %}{% for paragraph in paragraphs %}
-        <li><a href="#{{ paragraph.0 }}">{{ paragraph.1 }}</a></li>
-      {% endfor %}{% endwith %}
+      {% for num, title in page.paragraphs.items %}
+        <li><a href="#paragraph-{{ num }}">{{ title }}</a></li>
+      {% endfor %}
     </ul>
     {% endif %}
     <div>
-      {{ page.stream.render }}
+      {{ page.get_paragraphs|safe }}
     </div>
-    {% if page.summary %}<a href="#sommario">Torna al sommario</a>{% endif %}
+    {% if page.summary and page.paragraphs %}
+      <a href="#sommario">Torna al sommario</a>{% endif %}
     {% if page.navigation %}
       <hr class="mb-4">
       {% include "pages/tree_page_nav.html" %}

@@ -1,10 +1,12 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, DetailView, ListView
-from streamblocks.models import HomeButton
+from django.utils.crypto import get_random_string
+#from streamblocks.models import HomeButton
 
 from blog.models import Article
-from .models import ( HomePage, TreePage )
+from portfolio.models import Project
+from .models import ( HomePage, GalleryImage, HomeButton, TreePage )
 
 class HomeTemplateView(TemplateView):
     template_name = 'pages/home.html'
@@ -14,13 +16,14 @@ class HomeTemplateView(TemplateView):
         context['page'] = HomePage.objects.first()
         if not context['page']:
             raise Http404("Non ci sono Home Page")
+        #we add this context to feed the standard gallery
+        context['main_gall_slug'] = get_random_string(7)
+        context['title'] = context['page'].title
+        #context for the page
+        context['images'] = context['page'].home_image.all()
+        context['actions'] = context['page'].home_button.all()[:3]
         context['posts'] = Article.objects.all()[:6]
-        context['actions'] = []
-        actions = context['page'].action.from_json()
-        if actions:
-            id_list = actions[0].get('id')
-            for id in id_list:
-                context['actions'].append(HomeButton.objects.get(id = id))
+        context['progs'] = Project.objects.all()[:6]
         return context
 
 class TreePageListView(ListView):

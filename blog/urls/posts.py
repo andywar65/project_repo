@@ -20,8 +20,8 @@ urlpatterns = [
         name = 'post_authors'),
     path('uploads/', AuthorListView.as_view(),
         name = 'post_uploads'),
-    path('autori/<int:pk>/', ByAuthorListView.as_view(),
+    path('autori/<uuid:pk>/', ByAuthorListView.as_view(),
         name = 'post_by_author'),
-    path('uploads/<int:pk>/', ByUploadListView.as_view(),
+    path('uploads/<uuid:pk>/', ByUploadListView.as_view(),
         name = 'upload_by_author'),
     ]

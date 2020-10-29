@@ -1,16 +1,18 @@
-#from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import (ListView, DetailView, CreateView,
     TemplateView)
 from django.views.generic.dates import (ArchiveIndexView, YearArchiveView,
     MonthArchiveView, DayArchiveView, )
+from django.utils.crypto import get_random_string
+
 from taggit.models import Tag
 
 from users.models import User
 
 from .forms import UserUploadForm
 from .models import (UserUpload, Article,)
+from .management.commands.fetch_article_emails import do_command
 
 class TagMixin:
     def get_context_data(self, **kwargs):
@@ -33,6 +35,10 @@ class ArticleArchiveIndexView(TagMixin, ArchiveIndexView):
     context_object_name = 'posts'
     paginate_by = 12
     allow_empty = True
+
+    def setup(self, request, *args, **kwargs):
+        super(ArticleArchiveIndexView, self).setup(request, *args, **kwargs)
+        do_command()
 
 class ArticleYearArchiveView(TagMixin, YearArchiveView):
     model = Article
@@ -68,6 +74,16 @@ class DetailArticle(DetailView):
     context_object_name = 'post'
     slug_field = 'slug'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        #we add the following to feed standardized gallery
+        context['main_gall_slug'] = get_random_string(7)
+        context['title'] = self.object.title
+        #gallery images
+        context['images'] = self.object.article_image.all()
+
+        return context
+
 class UserUploadCreateView(PermissionRequiredMixin, CreateView):
     model = UserUpload
     form_class = UserUploadForm
@@ -75,14 +91,14 @@ class UserUploadCreateView(PermissionRequiredMixin, CreateView):
 
     def get_success_url(self):
         if 'post_id' in self.request.GET:
-            pst = Article.objects.get(id=self.request.GET['post_id'])
+            pst = Article.objects.get(uuid=self.request.GET['post_id'])
             return pst.get_path() + '/#upload-anchor'
         return super(UserUploadCreateView, self).get_success_url(self)
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         if 'post_id' in self.request.GET:
-            form.instance.post = Article.objects.get(id=self.request.GET['post_id'])
+            form.instance.post = Article.objects.get(uuid=self.request.GET['post_id'])
         return super().form_valid(form)
 
 class AuthorListView(ListView):
@@ -99,8 +115,8 @@ class AuthorListView(ListView):
         all_contrib = UserUpload.objects.all()
         author_dict = {}
         for author in all_users:
-            art_count = all_articles.filter(author_id = author.id).count()
-            contrib_count = all_contrib.filter(user_id = author.id).count()
+            art_count = all_articles.filter(author_id = author.uuid).count()
+            contrib_count = all_contrib.filter(user_id = author.uuid).count()
             if art_count or contrib_count:
                 author_dict[author]=(art_count, contrib_count)
         context['authors'] = author_dict
@@ -125,7 +141,7 @@ class ByAuthorListView(ListView):
     def get(self, request, *args, **kwargs):
         super(ByAuthorListView, self).get(request, *args, **kwargs)
         context = self.get_context_data()
-        context['author'] = get_object_or_404( User, id = kwargs['pk'] )
+        context['author'] = get_object_or_404( User, uuid = kwargs['pk'] )
         context['tags'] = Tag.objects.all()
         if 'tag' in self.request.GET:
             context['tag_filter'] = self.request.GET['tag']
@@ -145,5 +161,5 @@ class ByUploadListView(ListView):
     def get(self, request, *args, **kwargs):
         super(ByUploadListView, self).get(request, *args, **kwargs)
         context = self.get_context_data()
-        context['author'] = get_object_or_404( User, id = kwargs['pk'] )
+        context['author'] = get_object_or_404( User, uuid = kwargs['pk'] )
         return self.render_to_response(context)

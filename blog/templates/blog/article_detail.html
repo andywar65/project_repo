@@ -4,10 +4,8 @@
 {% block title %}{{ website.acro }} | {{ post.title }}{% endblock title %}
 
 {% block content %}
-    {% if post.carousel.render %}
-      <div class="row">
-        {{ post.carousel.render }}
-      </div>
+    {% if images %}
+      {% include 'pages/gallery.html' %}
     {% endif %}
       <div class="row row-striped">
         <div class="col-md-2"></div>
@@ -37,7 +35,7 @@
             {% if perms.blog.change_article %}
             <li class="list-inline-item">
               <i class="fa fa-pencil" aria-hidden="true"></i>
-              <a href="/admin/blog/article/{{ post.id }}/change/">Modifica</a>
+              <a href="/admin/blog/article/{{ post.uuid }}/change/">Modifica</a>
             </li>
             {% endif %}
           </ul>
@@ -47,7 +45,7 @@
       <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-          {{ post.stream.render }}
+          {{ post.body|safe }}
           <hr class="mb-4">
           {% if user.is_authenticated %}
             <div class="row">

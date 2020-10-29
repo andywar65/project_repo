@@ -31,6 +31,7 @@ admin.site.site_title = 'Amministrazione ' + settings.WEBSITE_NAME
 
 urlpatterns = [
     path('admin/filebrowser/', site.urls),
+    path('grappelli/', include('grappelli.urls')), # grappelli URLS
     path('admin/', admin.site.urls),
     path('registration/', user_views.RegistrationFormView.as_view(),
         name='registration'),
@@ -40,7 +41,10 @@ urlpatterns = [
     path('', HomeTemplateView.as_view()),
     path('articoli/', include('blog.urls.posts', namespace = 'blog')),
     path('docs/', include('pages.urls.tree_pages', namespace = 'docs')),
-    path('streamfield/', include('streamfield.urls')),
+    #path('streamfield/', include('streamfield.urls')),
+    path('fatture/', include('accounting.urls.invoices',
+        namespace = 'invoices')),
+    path('progetti/', include('portfolio.urls', namespace = 'portfolio')),
     path('favicon.ico',
         RedirectView.as_view(url=settings.STATIC_ROOT / 'images/favicon.ico')),
     re_path('^private-media/', include(private_storage.urls)),

@@ -1,57 +1,46 @@
+import uuid
 from datetime import datetime
 
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.db import models
 from django.utils.timezone import now
-from django.utils.html import strip_tags
 
 from taggit.managers import TaggableManager
-from streamfield.base import StreamObject
-from streamfield.fields import StreamField
+from taggit.models import GenericUUIDTaggedItemBase, TaggedItemBase
 
 from project.utils import generate_unique_slug
-from streamblocks.models import (IndexedParagraph, CaptionedImage, Gallery,
-    LandscapeGallery, DownloadableFile, LinkableList, BoxedText, HomeButton)
 from users.models import User
 from .choices import *
 
+class UUIDTaggedItem(GenericUUIDTaggedItemBase, TaggedItemBase):
+
+    class Meta:
+        verbose_name = "Categoria"
+        verbose_name_plural = "Categorie"
+
 class Article(models.Model):
-    carousel = StreamField(model_list=[ LandscapeGallery, ],
-        null=True, blank=True, verbose_name="Galleria",
-        help_text="Una sola galleria, per favore, larghezza minima immagini 2048px")
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.SlugField(max_length=50, editable=False, null=True)
     title = models.CharField('Titolo',
         help_text="Il titolo dell'articolo",
         max_length = 50)
-    slug = models.SlugField(max_length=50, editable=False, null=True)
-    date = models.DateTimeField('Data', default = now, )
-    last_updated = models.DateTimeField(editable=False, null=True)
     intro = models.CharField('Introduzione',
-        default = 'Un altro articolo di approfondimento!', max_length = 100)
-    stream = StreamField( model_list=[ IndexedParagraph, CaptionedImage,
-            Gallery, DownloadableFile, LinkableList, BoxedText],
-            verbose_name="Testo" )
-    stream_search = models.TextField(editable=False, null=True)
+        default = f'Un altro articolo di approfondimento da {settings.WEBSITE_NAME}!',
+        max_length = 100)
+    body = models.TextField('Testo', null=True)
+    date = models.DateField('Data', default = now, )
+    last_updated = models.DateTimeField(editable=False, null=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL,
         blank= True, null=True, verbose_name = 'Autore')
     tags = TaggableManager(verbose_name="Categorie",
         help_text="Lista di categorie separate da virgole",
-        through=None, blank=True)
+        through=UUIDTaggedItem, blank=True)
     notice = models.CharField(max_length = 4, choices = NOTICE,
         blank = True, null = True, verbose_name = 'Notifica via email',
         help_text = """Invia notifica in automatico selezionando
             'Invia notifica' e salvando l'articolo.
             """)
-
-    def get_image(self):
-        image = None
-        gallery_list = self.carousel.from_json()
-        if gallery_list:
-            gallery = gallery_list[0]
-            image = LandscapeGallery.objects.filter( id__in = gallery['id'] ).first()
-        if image:
-            return image.fb_image
-        return
 
     def get_path(self):
         temp = self.date
@@ -62,7 +51,7 @@ class Article(models.Model):
         return '/articoli/' + temp.strftime("%Y/%m/%d") + '/' + self.slug
 
     def get_uploads(self):
-        return UserUpload.objects.filter(post_id=self.id)
+        return self.article_uploads.all()
 
     def get_tags(self):
         return list(self.tags.names())
@@ -83,16 +72,6 @@ class Article(models.Model):
         if not self.slug:
             self.slug = generate_unique_slug(Article, self.title)
         self.last_updated = now()
-        #in tests treats stream as str instead of StreamField object
-        #probably should use transaction instaed
-        #but for now this patch works
-        if isinstance(self.stream, str):
-            tmp = StreamObject( value = self.stream,
-                model_list=[ IndexedParagraph, CaptionedImage,
-                    Gallery, DownloadableFile, LinkableList, BoxedText ], )
-            self.stream_search = strip_tags(tmp.render)
-        else:
-            self.stream_search = strip_tags(self.stream.render)
         if self.notice == 'SPAM':
             message = self.title + '\n'
             message += self.intro + '\n'

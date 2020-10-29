@@ -40,6 +40,7 @@ SECRET_KEY = get_secret('SECRET_KEY')
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'filebrowser',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,8 +52,10 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
     'blog.apps.BlogConfig',
-    'streamblocks',
-    'streamfield',
+    'accounting.apps.AccountingConfig',
+    'portfolio.apps.PortfolioConfig',
+    #'streamblocks',
+    #'streamfield',
     'captcha',
     'taggit',
     'crispy_forms',
@@ -91,7 +94,6 @@ TEMPLATES = [
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -123,7 +125,7 @@ FILEBROWSER_VERSIONS = {
     'medium': {'verbose_name': 'Medium (4col )', 'width': 300, 'height': '', 'opts': ''},
     'big': {'verbose_name': 'Big (6 col)', 'width': 460, 'height': '', 'opts': ''},
     'large': {'verbose_name': 'Large (8 col)', 'width': 680, 'height': '', 'opts': ''},
-    'wide_landscape': {'verbose_name': 'Orizzontale', 'width': 2048, 'height': 1024, 'opts': 'crop'},
+    'wide_landscape': {'verbose_name': 'Orizzontale', 'width': 1600, 'height': 800, 'opts': 'crop'},
     'landscape': {'verbose_name': 'Orizzontale', 'width': 1280, 'height': 720, 'opts': 'crop'},
     'portrait': {'verbose_name': 'Verticale', 'width': 768, 'height': 1024, 'opts': 'crop'},
     'square': {'verbose_name': 'Quadrato', 'width': 768, 'height': 768, 'opts': 'crop'},
@@ -146,6 +148,13 @@ AUTH_USER_MODEL = 'users.User'
 PROFILE_IS_TRUSTED_BY_DEFAULT = False
 
 RECAPTCHA_TEST_MODE = False
+
+#this is for the accounting email receiver module
+IMAP_HOST = get_secret('IMAP_HOST')
+IMAP_USER = get_secret('IMAP_USER')
+IMAP_PWD = get_secret('IMAP_PWD')
+IMAP_PORT = get_secret('IMAP_PORT')
+IMAP_FROM = get_secret('IMAP_FROM')
 
 #This stuff has nothing to do with django.site
 WEBSITE_NAME = get_secret('WEBSITE_NAME')

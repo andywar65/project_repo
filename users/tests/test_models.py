@@ -10,7 +10,7 @@ class UserModelTest(TestCase):
             first_name='Andrea', last_name='Guerra', email='andy@war.com')
         #next save is just for coverage purposes
         user.save()
-        profile = Profile.objects.get(pk=user.id)
+        profile = Profile.objects.get(pk=user.uuid)
         profile.avatar = 'uploads/users/avatar.jpg'
         profile.save()
         User.objects.create(username='rawydna56', password='P4s5W0r6',)
@@ -36,33 +36,33 @@ class UserModelTest(TestCase):
 
     def test_profile_get_full_name(self):
         user = User.objects.get(username='andy.war65')
-        profile = Profile.objects.get(pk=user.id)
+        profile = Profile.objects.get(pk=user.uuid)
         self.assertEquals(profile.get_full_name(), 'Andrea Guerra')
 
     def test_profile_get_full_username(self):
         user = User.objects.get(username='rawydna56')
-        profile = Profile.objects.get(pk=user.id)
+        profile = Profile.objects.get(pk=user.uuid)
         self.assertEquals(profile.get_full_name(), 'rawydna56')
 
     def test_profile_str_full_name(self):
         user = User.objects.get(username='andy.war65')
-        profile = Profile.objects.get(pk=user.id)
+        profile = Profile.objects.get(pk=user.uuid)
         self.assertEquals(profile.__str__(), 'Andrea Guerra')
 
     def test_profile_str_username(self):
         user = User.objects.get(username='rawydna56')
-        profile = Profile.objects.get(pk=user.id)
+        profile = Profile.objects.get(pk=user.uuid)
         self.assertEquals(profile.__str__(), 'rawydna56')
 
     def test_profile_get_thumb(self):
         user = User.objects.get(username='andy.war65')
-        profile = Profile.objects.get(pk=user.id)
+        profile = Profile.objects.get(pk=user.uuid)
         # here extracting path from FileObject for convenience
         self.assertEquals(profile.get_thumb().path, 'uploads/users/avatar.jpg')
 
     def test_profile_get_no_thumb(self):
         user = User.objects.get(username='rawydna56')
-        profile = Profile.objects.get(pk=user.id)
+        profile = Profile.objects.get(pk=user.uuid)
         self.assertEquals(profile.get_thumb(), None)
 
     def test_user_message_get_full_name(self):

@@ -45,6 +45,17 @@
           </ul>
         {% endfor %}
       {% endif %}
+      {% if progs %}
+        <h5>Progetti</h5>
+        {% for prog in progs %}
+          <ul>
+            <li>
+              <a href="{{ prog.get_full_path }}">{{ prog.title }}</a>
+              {{ prog.intro }}
+            </li>
+          </ul>
+        {% endfor %}
+      {% endif %}
     {% else %}
     <h1>Ricerca nulla</h1>
     <p>Non abbiamo trovato elementi che soddisfano la tua ricerca</p>

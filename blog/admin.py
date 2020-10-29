@@ -1,6 +1,8 @@
 from django.contrib import admin
+
 from .models import ( UserUpload, Article )
 from .forms import ArticleForm
+from pages.admin import GalleryImageInline
 
 class UserUploadInline(admin.TabularInline):
     model = UserUpload
@@ -11,20 +13,22 @@ class UserUploadInline(admin.TabularInline):
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'date', 'author', 'notice', )
     search_fields = ('title', 'date', 'intro', )
-    inlines = [ UserUploadInline,  ]
+    inlines = [ GalleryImageInline, UserUploadInline,  ]
     form = ArticleForm
 
+    class Media:
+        js = [
+            '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            '/static/js/tinymce_setup.js',
+        ]
+
     fieldsets = (
-        ('Galleria', {
-            'classes': ('collapse',),
-            'fields': ('carousel', ),
-        }),
         (None, {
             'fields': ('title', 'date', 'intro'),
         }),
         ('Testo', {
-            'classes': ('collapse', 'wide'),
-            'fields': ('stream', ),
+            'classes': ('grp-collapse grp-closed', ),
+            'fields': ('body', ),
         }),
         (None, {
             'fields': ('author', 'tags', 'notice'),

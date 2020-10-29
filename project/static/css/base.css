@@ -11,7 +11,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
-  background-color: #f5f5f5;
+  background-color: #f9f2ea;
 }
 .footer {
   position: absolute;
@@ -35,6 +35,26 @@ main > .container {
 .row-striped:nth-of-type(odd){
   background-color: #dddddd;
   border-left: 4px #000000 solid;
+}
+
+/* LINKS */
+
+a:link, a:visited {
+    color: #774e24;
+    text-decoration: none;
+}
+
+a.btn:link, a.btn:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    color: #5b4d3e;
+}
+
+a:focus {
+    text-decoration: underline;
 }
 
 .row-striped:nth-of-type(even){

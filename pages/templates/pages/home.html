@@ -7,14 +7,9 @@
 {% endblock extra-head %}
 
 {% block content %}
-<div class="row">
-  {{ page.carousel.render }}
-</div>
-  {% if page.intro %}
-    <h4 class="text-left"><strong><em>{{ page.intro }}</em></strong></h4>
-  {% endif %}
-{% if actions %}
+{% include 'pages/gallery.html' %}
 <hr class="mb-4">
+{% if actions %}
 <div class="card-deck">
   {% for action in actions %}
   <div class="card text-center" style="margin-bottom: 20px; min-width: 18rem; ">
@@ -26,48 +21,27 @@
   {% endfor %}
 </div>
 {% endif %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    {% if page.intro %}
+      <h4 class="text-left"><strong><em>{{ page.intro }}</em></strong></h4>
+    {% endif %}
+    {% if page.body %}
+      <p class="text-left">{{ page.body|safe }}</p>
+    {% endif %}
+  </div>
+</div>
+<hr class="mb-4">
+<a href="/progetti/"><h4><strong>Progetti</strong></h4></a>
+{% if progs %}
+  {% include 'portfolio/project_list_loop.html' %}
+{% else %}
+<p>Non ci sono progetti disponibili</p>
+{% endif %}
 <hr class="mb-4">
 <a href="/articoli/"><h4><strong>Articoli di approfondimento</strong></h4></a>
-{% if posts %}
-<div class="card-deck">
-{% for post in posts %}
-  <div class="card" style="margin-bottom: 20px; min-width: 18rem;">
-    <div class="card-header">
-      <a href="/articoli/{{ post.date|date:"Y/m/d" }}/{{ post.slug }}">
-        <h4 class="card-title">{{ post.title }}</h4></a>
-    </div>
-    {% if post.get_image %}
-      <img class="card-img-top" src="{% version post.get_image 'landscape' %}" alt="{{ post.intro }}">
-    {% endif %}
-    <div class="card-body">
-      <em class="card-text">{{ post.intro }}</em>
-      <ul class="list-inline">
-        <li class="list-inline-item">
-          {% if post.author %}
-          <i class="fa fa-user" aria-hidden="true"></i>
-          {{ post.author.get_full_name }}
-          {% endif %}
-        </li>
-        <li class="list-inline-item">
-          <i class="fa fa-calendar-o" aria-hidden="true"></i>
-          {{ post.date|date:"d M Y" }}
-        </li>
-        {% if post.get_tags %}
-          <li class="list-inline-item">
-            <i class="fa fa-folder-open" aria-hidden="true"></i>
-            {% for tag in post.get_tags %}
-              <a href="/articoli/?tag={{ tag }}">{{ tag|upper }}</a>
-            {% endfor %}
-          </li>
-        {% endif %}
-      </ul>
-    </div>
-  </div>
-{% endfor %}
-</div>
-{% else %}
-<p>Non sono disponibili articoli</p>
-{% endif %}
+  {% include 'blog/article_archive_list.html' %}
 {% endblock content %}
 
 {% block extra-js %}

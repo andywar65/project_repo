@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.auth.models import Group
 
 from taggit.models import Tag
 
@@ -13,17 +14,17 @@ class ArticleViewTest(TestCase):
         tag = Tag.objects.create( name='foo' )
         usr = User.objects.create_user(username='logged_in',
             password='P4s5W0r6')
-        profile = usr.profile
-        profile.is_trusted = True
-        profile.save()
+        group = Group.objects.get(name='Trusted')
+        usr.groups.add(group)
+
         User.objects.create_user(username='untrusted',
             password='P4s5W0r6')
-        article = Article.objects.create(id=34, title='Article 3',
-            date = '2020-05-10 15:53:00+02', author = usr
+        article = Article.objects.create(title='Article 3',
+            date = '2020-05-10', author = usr
             )
-        article.tags.add('foo')
+        #article.tags.add('foo')
         Article.objects.create(title='Article 4',
-            date = '2020-05-10 15:58:00+02')
+            date = '2020-05-10')
         UserUpload.objects.create(user=usr, post=article, body='Foo Bar')
 
     def test_article_archive_index_view_status_code(self):
@@ -145,47 +146,47 @@ class ArticleViewTest(TestCase):
     def test_by_author_list_view_status_code(self):
         usr = User.objects.get(username='logged_in')
         response = self.client.get(reverse('blog:post_by_author',
-            kwargs={ 'pk' : usr.id }))
+            kwargs={ 'pk' : usr.uuid }))
         self.assertEqual(response.status_code, 200)
 
     def test_by_author_list_view_template(self):
         usr = User.objects.get(username='logged_in')
         response = self.client.get(reverse('blog:post_by_author',
-            kwargs={ 'pk' : usr.id }))
+            kwargs={ 'pk' : usr.uuid }))
         self.assertTemplateUsed(response, 'blog/article_archive_authors.html')
 
     def test_by_author_list_view_context_object(self):
         usr = User.objects.get(username='logged_in')
-        posts = Article.objects.filter( author_id=usr.id )
+        posts = Article.objects.filter( author_id=usr.uuid )
         response = self.client.get(reverse('blog:post_by_author',
-            kwargs={ 'pk' : usr.id }))
+            kwargs={ 'pk' : usr.uuid }))
         self.assertQuerysetEqual(response.context['posts'], posts,
             transform=lambda x: x )
 
     def test_by_author_list_view_context_object_tagged(self):
         usr = User.objects.get(username='logged_in')
-        posts = Article.objects.filter( author_id=usr.id, tags__name='foo' )
-        response = self.client.get(f'/articoli/autori/{usr.id}/?tag=foo')
+        posts = Article.objects.filter( author_id=usr.uuid, tags__name='foo' )
+        response = self.client.get(f'/articoli/autori/{usr.uuid}/?tag=foo')
         self.assertQuerysetEqual(response.context['posts'], posts,
             transform=lambda x: x )
 
     def test_by_upload_list_view_status_code(self):
         usr = User.objects.get(username='logged_in')
         response = self.client.get(reverse('blog:upload_by_author',
-            kwargs={ 'pk' : usr.id }))
+            kwargs={ 'pk' : usr.uuid }))
         self.assertEqual(response.status_code, 200)
 
     def test_by_upload_list_view_template(self):
         usr = User.objects.get(username='logged_in')
         response = self.client.get(reverse('blog:upload_by_author',
-            kwargs={ 'pk' : usr.id }))
+            kwargs={ 'pk' : usr.uuid }))
         self.assertTemplateUsed(response, 'blog/uploads_by_author.html')
 
     def test_by_upload_list_view_context_object(self):
         usr = User.objects.get(username='logged_in')
-        uploads = UserUpload.objects.filter( user_id=usr.id )
+        uploads = UserUpload.objects.filter( user_id=usr.uuid )
         response = self.client.get(reverse('blog:upload_by_author',
-            kwargs={ 'pk' : usr.id }))
+            kwargs={ 'pk' : usr.uuid }))
         self.assertQuerysetEqual(response.context['uploads'], uploads,
             transform=lambda x: x )
 
@@ -221,7 +222,8 @@ class ArticleViewTest(TestCase):
     def test_user_upload_create_view_success_url(self):
         self.client.post('/accounts/login/', {'username':'logged_in',
             'password':'P4s5W0r6'})
-        response = self.client.post('/articoli/contributi/?post_id=34',
+        article = Article.objects.get(slug='article-3')
+        response = self.client.post(f'/articoli/contributi/?post_id={article.uuid}',
             {'body': 'Foo Bar'})
         self.assertRedirects(response,
             '/articoli/2020/05/10/article-3/#upload-anchor')

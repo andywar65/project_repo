@@ -1,4 +1,5 @@
 import os
+import uuid
 
 from django.conf import settings
 from django.db import models
@@ -13,6 +14,8 @@ from filebrowser.fields import FileBrowseField
 from filebrowser.base import FileObject
 
 class User(AbstractUser):
+
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     def get_full_name(self):
         if self.first_name and self.last_name:
@@ -30,10 +33,7 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         super(User, self).save(*args, **kwargs)
         if self.is_active:
-            memb, created = Profile.objects.get_or_create(user_id = self.id)
-            if created:
-                memb.is_trusted = settings.PROFILE_IS_TRUSTED_BY_DEFAULT
-                memb.save()
+            memb, created = Profile.objects.get_or_create(user_id = self.uuid)
 
     class Meta:
         ordering = ('last_name', 'first_name', 'username')
@@ -41,15 +41,13 @@ class User(AbstractUser):
 class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE,
-        primary_key=True, editable=False)
+        primary_key=True, editable=False )
     avatar = models.ImageField(blank = True, null=True,
         upload_to = 'uploads/users/')
     bio = models.TextField("Breve biografia", null=True, blank=True)
     yes_spam = models.BooleanField(default = False,
         verbose_name = 'Mailing list',
         help_text = 'Vuoi ricevere notifiche sugli eventi?',)
-    is_trusted = models.BooleanField(default = False,
-        verbose_name = 'Di fiducia',)
 
     def get_full_name(self):
         return self.user.get_full_name()
