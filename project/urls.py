@@ -46,7 +46,7 @@ urlpatterns = [
         namespace = 'invoices')),
     path('progetti/', include('portfolio.urls', namespace = 'portfolio')),
     path('favicon.ico',
-        RedirectView.as_view(url=settings.STATIC_ROOT / 'images/favicon.ico')),
+        RedirectView.as_view(url=str(settings.STATIC_ROOT) + 'images/favicon.ico')),
     re_path('^private-media/', include(private_storage.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
