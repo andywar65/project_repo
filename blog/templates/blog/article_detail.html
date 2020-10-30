@@ -53,7 +53,7 @@
             </div>
             {% if perms.blog.add_userupload %}
               <div class="row">
-                <a href="/articoli/contributi/?post_id={{ post.id }}">
+                <a href="/articoli/contributi/?post_id={{ post.slug }}">
                 Aggiungi un contributo</a>
               </div>
             {% endif %}
