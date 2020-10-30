@@ -19,6 +19,9 @@ class UUIDTaggedItem(GenericUUIDTaggedItemBase, TaggedItemBase):
         verbose_name = "Categoria"
         verbose_name_plural = "Categorie"
 
+def default_intro():
+    return f'Un altro articolo di approfondimento da {settings.WEBSITE_NAME}!'
+
 class Article(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     slug = models.SlugField(max_length=50, editable=False, null=True)
@@ -26,7 +29,7 @@ class Article(models.Model):
         help_text="Il titolo dell'articolo",
         max_length = 50)
     intro = models.CharField('Introduzione',
-        default = f'Un altro articolo di approfondimento da {settings.WEBSITE_NAME}!',
+        default = default_intro,
         max_length = 100)
     body = models.TextField('Testo', null=True)
     date = models.DateField('Data', default = now, )
@@ -106,7 +109,8 @@ class UserUpload(models.Model):
     date = models.DateTimeField('Data', default = now, )
     image = models.ImageField('Immagine', blank = True, null = True,
         upload_to = 'uploads/articles/users/',)
-    body = models.TextField('Testo', help_text = "Scrivi qualcosa.", )
+    body = models.CharField('Testo', help_text = "Scrivi qualcosa.",
+        max_length=500)
 
     def __str__(self):
         return 'Contributo - ' + str(self.id)
