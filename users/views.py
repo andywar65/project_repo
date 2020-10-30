@@ -86,7 +86,7 @@ class ContactFormView(GetMixin, FormView):
             message.email = self.request.user.email
             if 'recipient' in self.request.GET:
                 try:
-                    recip = User.objects.get(uuid=self.request.GET['recipient'])
+                    recip = User.objects.get(username=self.request.GET['recipient'])
                     message.recipient = recip.email
                 except:
                     pass
