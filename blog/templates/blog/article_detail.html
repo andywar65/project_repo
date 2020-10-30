@@ -16,7 +16,7 @@
             <li class="list-inline-item">
               <i class="fa fa-user" aria-hidden="true"></i>
               {% if user.is_authenticated and post.author.is_active %}
-              <a href="/contacts/?recipient={{ post.author_id }}&subject={{ post.title }}">
+              <a href="/contacts/?recipient={{ post.author }}&subject={{ post.title }}">
                 {{ post.author.get_full_name }}</a>
               {% else %}
               {{ post.author.get_full_name }}
