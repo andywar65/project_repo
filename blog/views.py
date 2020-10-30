@@ -91,15 +91,15 @@ class UserUploadCreateView(PermissionRequiredMixin, CreateView):
 
     def get_success_url(self):
         if 'post_id' in self.request.GET:
-            pst = Article.objects.get(uuid=self.request.GET['post_id'])
-            return pst.get_path() + '/#upload-anchor'
+            post = Article.objects.get(slug=self.request.GET['post_id'])
+            return post.get_path() + '/#upload-anchor'
         return super(UserUploadCreateView, self).get_success_url(self)
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         if 'post_id' in self.request.GET:
-            form.instance.post = Article.objects.get(uuid=self.request.GET['post_id'])
-        return super().form_valid(form)
+            form.instance.post = Article.objects.get(slug=self.request.GET['post_id'])
+        return super(UserUploadCreateView, self).form_valid(form)
 
 class AuthorListView(ListView):
     model = User
@@ -133,7 +133,7 @@ class ByAuthorListView(ListView):
     the TagMixin snippets are included in get_queryset() and get() afterwards"""
 
     def get_queryset(self):
-        qs = Article.objects.filter(author_id= self.kwargs['pk'])
+        qs = Article.objects.filter(author__username= self.kwargs['username'])
         if 'tag' in self.request.GET:
             qs = qs.filter(tags__name=self.request.GET['tag'])
         return qs
@@ -141,7 +141,7 @@ class ByAuthorListView(ListView):
     def get(self, request, *args, **kwargs):
         super(ByAuthorListView, self).get(request, *args, **kwargs)
         context = self.get_context_data()
-        context['author'] = get_object_or_404( User, uuid = kwargs['pk'] )
+        context['author'] = get_object_or_404( User, username = kwargs['username'] )
         context['tags'] = Tag.objects.all()
         if 'tag' in self.request.GET:
             context['tag_filter'] = self.request.GET['tag']
@@ -155,11 +155,11 @@ class ByUploadListView(ListView):
     allow_empty = True
 
     def get_queryset(self):
-        qs = UserUpload.objects.filter(user_id= self.kwargs['pk'])
+        qs = UserUpload.objects.filter(user_id__username= self.kwargs['username'])
         return qs
 
     def get(self, request, *args, **kwargs):
         super(ByUploadListView, self).get(request, *args, **kwargs)
         context = self.get_context_data()
-        context['author'] = get_object_or_404( User, uuid = kwargs['pk'] )
+        context['author'] = get_object_or_404( User, username = kwargs['username'] )
         return self.render_to_response(context)

@@ -21,13 +21,13 @@
             {% if pass and counts.0 %}
               <li class="list-inline-item">
                 <i class="fa fa-folder-open" aria-hidden="true"></i>
-                  Numero di <a href="/articoli/autori/{{ author.id }}/">articoli</a>: {{ counts.0 }}
+                  Numero di <a href="/articoli/autori/{{ author }}/">articoli</a>: {{ counts.0 }}
               </li>
             {% endif %}
             {% if pass and counts.1 %}
               <li class="list-inline-item">
                 <i class="fa fa-upload" aria-hidden="true"></i>
-                  Numero di <a href="/articoli/uploads/{{ author.id }}/">contributi</a>: {{ counts.1 }}
+                  Numero di <a href="/articoli/uploads/{{ author }}/">contributi</a>: {{ counts.1 }}
               </li>
             {% endif %}
           </ul>

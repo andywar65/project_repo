@@ -3,9 +3,9 @@
 {% block title %}{{ website.acro }} | Articoli di {{ author.get_full_name }}{% endblock title %}
 {% block article_archive %}
 <h4><strong>
-  Articoli di approfondimento di 
+  Articoli di approfondimento di
   {% if tag_filter %}
-  <a href="/articoli/autori/{{ author.id }}/">{{ author.get_full_name }}</a>
+  <a href="/articoli/autori/{{ author }}/">{{ author.get_full_name }}</a>
   nella categoria: {{ tag_filter|upper }}
   {% else %}
   {{ author.get_full_name }}
