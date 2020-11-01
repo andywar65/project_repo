@@ -7,7 +7,9 @@ def create_app_related_groups(sender, **kwargs):
     if created:
         permissions = Permission.objects.filter(codename__in=('view_homepage',
          'add_homepage', 'change_homepage', 'delete_homepage', 'view_treepage',
-         'add_treepage', 'change_treepage', 'delete_treepage'))
+         'add_treepage', 'change_treepage', 'delete_treepage',
+         'view_galleryimage', 'add_galleryimage', 'change_galleryimage',
+         'delete_galleryimage'))
         grp.permissions.set(permissions)
 
 class PagesConfig(AppConfig):

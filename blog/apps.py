@@ -11,7 +11,9 @@ def create_app_related_groups(sender, **kwargs):
     if created:
         permissions = Permission.objects.filter(codename__in=('view_article',
          'add_article', 'change_article', 'delete_article', 'view_userupload',
-         'add_userupload', 'change_userupload', 'delete_userupload'))
+         'add_userupload', 'change_userupload', 'delete_userupload',
+         'view_galleryimage', 'add_galleryimage', 'change_galleryimage',
+         'delete_galleryimage'))
         grp.permissions.set(permissions)
 
 class BlogConfig(AppConfig):
