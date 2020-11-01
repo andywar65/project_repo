@@ -139,6 +139,8 @@ FILEBROWSER_VERSIONS = {
     'square': {'verbose_name': 'Quadrato', 'width': 768, 'height': 768, 'opts': 'crop'},
     }
 
+FETCH_EMAILS = True
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 

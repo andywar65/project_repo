@@ -14,6 +14,9 @@ from users.models import User
 
 def do_command():
 
+    if not settings.FETCH_EMAILS:
+        return
+
     HOST = settings.IMAP_HOST
     USER = settings.IMAP_USER
     PASSWORD = settings.IMAP_PWD
