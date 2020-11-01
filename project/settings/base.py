@@ -120,6 +120,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly', ],
 }
 
+FETCH_EMAILS = True
+
 STATICFILES_DIRS = [
     PROJECT_DIR / "static",
 ]
