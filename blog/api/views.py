@@ -1,6 +1,6 @@
 from rest_framework.generics import ( ListCreateAPIView,
     RetrieveUpdateDestroyAPIView)
-from rest_framework.permissions import IsAuthenticated
+#from rest_framework.permissions import IsAuthenticated
 
 from blog.models import Article
 from .serializers import ArticleSerializer
