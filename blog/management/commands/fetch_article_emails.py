@@ -35,8 +35,8 @@ def do_command():
                 continue
             msg = message.text
             d = {'title': _('TITLE['), 'intro': _('DESCRIPTION['),
-                'body': _('TEXT['),
-                'date': _('DATE['), 'tags': _('CATEGORIES['), }
+                'body': _('TEXT['), 'date': _('DATE['),
+                'tags': _('CATEGORIES['), 'notice': _('SPAM[')}
             for key, value in d.items():
                 msg = msg.replace(value, '')
                 d[key] = msg.split(']', 1)[0].replace('\r\n', '')
@@ -46,7 +46,7 @@ def do_command():
             except:
                 d['date'] = now()
             post = Article(title=d['title'], intro=d['intro'], body=d['body'],
-                date=d['date'], tags=d['tags'], author=usr, )
+                date=d['date'], tags=d['tags'], author=usr, notice=d['notice'] )
             try:
                 post.save()
             except:
