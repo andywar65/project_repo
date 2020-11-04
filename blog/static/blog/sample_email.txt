@@ -3,12 +3,12 @@ DESCRIPTION[Write here the intro]
 TEXT[Write here the body of the article]
 DATE[dd/mm/yy]
 TAGS[comma, separated, list, of, keywords]
-SPAM[True/False]
+NOTICE[SPAM]
 
 From now on you can delete, the beef is above.
 Write only inside square brackets.
 The date is when the article has been issued (defaults to now).
-Set SPAM to True if you want to notify new post to all Users.
+Leave SPAM in notice if you want to notify new post to all Users.
 
 Attach images with following filename pattern:
 

@@ -36,7 +36,7 @@ def do_command():
             msg = message.text
             d = {'title': _('TITLE['), 'intro': _('DESCRIPTION['),
                 'body': _('TEXT['), 'date': _('DATE['),
-                'tags': _('CATEGORIES['), 'notice': _('SPAM[')}
+                'tags': _('CATEGORIES['), 'notice': _('NOTICE[')}
             for key, value in d.items():
                 msg = msg.replace(value, '')
                 d[key] = msg.split(']', 1)[0].replace('\r\n', '')
