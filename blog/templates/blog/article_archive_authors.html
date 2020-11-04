@@ -1,12 +1,13 @@
 {% extends 'blog/article_archive_tags.html' %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Articoli di {{ author.get_full_name }}{% endblock title %}
+{% block title %}{{ website.acro }} | {% translate 'Articles by' %} {{ author.get_full_name }}{% endblock title %}
 {% block article_archive %}
 <h4><strong>
-  Articoli di approfondimento di
+  {% translate 'In depth articles by' %}
   {% if tag_filter %}
-  <a href="/articoli/autori/{{ author }}/">{{ author.get_full_name }}</a>
-  nella categoria: {{ tag_filter|upper }}
+  <a href="{% url 'blog:post_by_author' author.username %}">{{ author.get_full_name }}</a>
+  {% translate 'in category:' %} {{ tag_filter|upper }}
   {% else %}
   {{ author.get_full_name }}
   {% endif %}
@@ -16,10 +17,10 @@
 <nav aria-label="Page navigation container">
 <ul class="pagination justify-content-center">
   {% if page_obj.has_previous %}
-  <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PRECEDENTI </a></li>
+  <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; {% translate 'PREVIOUS' %} </a></li>
   {% endif %}
   {% if page_obj.has_next %}
-  <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> PROSSIMI &raquo;</a></li>
+  <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> {% translate 'NEXT' %} &raquo;</a></li>
   {% endif %}
 </ul>
 </nav>
