@@ -4,6 +4,7 @@ from django.core.management.base import BaseCommand
 from django.utils.timezone import now
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.utils.translation import gettext as _
 
 from imap_tools import MailBox, AND
 from filebrowser.base import FileObject
@@ -24,7 +25,7 @@ def do_command():
     FROM = settings.IMAP_FROM
 
     with MailBox(HOST).login(USER, PASSWORD, 'INBOX') as mailbox:
-        for message in mailbox.fetch(AND(seen=False, subject='articolii', ),
+        for message in mailbox.fetch(AND(seen=False, subject=_('articles'), ),
             mark_seen=True):
             try:
                 usr = User.objects.get(email=message.from_)
@@ -33,8 +34,9 @@ def do_command():
             except:
                 continue
             msg = message.text
-            d = {'title': 'TITLE[', 'intro': 'DESCRIPTION[', 'body': 'TEXT[',
-                'date': 'DATE[', 'tags': 'CATEGORIES[', }
+            d = {'title': _('TITLE['), 'intro': _('DESCRIPTION['),
+                'body': _('TEXT['),
+                'date': _('DATE['), 'tags': _('CATEGORIES['), }
             for key, value in d.items():
                 msg = msg.replace(value, '')
                 d[key] = msg.split(']', 1)[0].replace('\r\n', '')
