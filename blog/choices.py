@@ -1,2 +1,4 @@
-NOTICE = [('NOSP', 'Non inviare'), ('SPAM', 'Da inviare'),
-    ('DONE', 'Già inviata'), ]
+from django.utils.translation import gettext as _
+
+NOTICE = [('NOSP', _('Do not send')), ('SPAM', _('To be sent')),
+    ('DONE', _('Already sent')), ]
