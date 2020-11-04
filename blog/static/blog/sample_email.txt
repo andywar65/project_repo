@@ -1,0 +1,24 @@
+TITLE[Write here article title]
+DESCRIPTION[Write here the intro]
+TEXT[Write here the body of the article]
+DATE[dd/mm/yy]
+TAGS[comma, separated, list, of, keywords]
+SPAM[True/False]
+
+From now on you can delete, the beef is above.
+Write only inside square brackets.
+The date is when the article has been issued (defaults to now).
+Set SPAM to True if you want to notify new post to all Users.
+
+Attach images with following filename pattern:
+
+0-Caption first image.jpg
+1-Caption second image.jpg
+2-etc...
+
+You can upload jpg, png etc., landscape layout and
+at least 1600 pixel wide (it's the WhatsApp image standard).
+
+Write "articles" in the subject and send to:
+<email address associated to mailbox USER = settings.IMAP_USER>
+from <email address of User with add articles permission>
