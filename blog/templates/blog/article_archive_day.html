@@ -1,20 +1,21 @@
 {% extends 'blog/article_archive_tags.html' %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Articoli {{ day }}{% endblock title %}
+{% block title %}{{ website.acro }} | {% translate 'Articles of' %} {{ day }}{% endblock title %}
 {% block article_archive %}
 <h4><strong>
-  Articoli del {{ day }}
-  {% if tag_filter %} nella categoria: {{ tag_filter|upper }}{% endif %}
+  {% translate 'Articles of' %} {{ day }}
+  {% if tag_filter %} {% translate 'in category:' %} {{ tag_filter|upper }}{% endif %}
 </strong></h4>
 {% include "blog/article_archive_list.html" %}
 <hr class="mb-4">
   <nav aria-label="Page navigation container">
   <ul class="pagination justify-content-center">
     {% if previous_day %}
-    <li><a href="/articoli/{{ previous_day|date:"Y/m/d" }}" class="page-link">&laquo; PRECEDENTE </a></li>
+    <li><a href="{% url 'blog:post_day' previous_day.year previous_day.month previous_day.day %}" class="page-link">&laquo; {% translate 'PREVIOUS' %} </a></li>
     {% endif %}
     {% if next_day %}
-    <li><a href="/articoli/{{ next_day|date:"Y/m/d" }}" class="page-link"> SUCCESSIVO &raquo;</a></li>
+    <li><a href="{% url 'blog:post_day' next_day.year next_day.month next_day.day %}" class="page-link"> {% translate 'NEXT' %} &raquo;</a></li>
     {% endif %}
   </ul>
   </nav>
