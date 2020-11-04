@@ -33,8 +33,8 @@ def do_command():
             except:
                 continue
             msg = message.text
-            d = {'title': 'TITOLO[', 'intro': 'DESCRIZIONE[', 'body': 'TESTO[',
-                'date': 'DATA[', 'tags': 'CATEGORIE[', }
+            d = {'title': 'TITLE[', 'intro': 'DESCRIPTION[', 'body': 'TEXT[',
+                'date': 'DATE[', 'tags': 'CATEGORIES[', }
             for key, value in d.items():
                 msg = msg.replace(value, '')
                 d[key] = msg.split(']', 1)[0].replace('\r\n', '')
