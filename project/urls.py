@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic.base import RedirectView
+from django.utils.translation import gettext as _
 
 from filebrowser.sites import site
 import private_storage.urls
@@ -39,7 +40,7 @@ urlpatterns = [
     path('accounts/', include('users.urls')),
     path('search/', views.search_results, name='search_results'),
     path('', HomeTemplateView.as_view()),
-    path('articoli/', include('blog.urls.posts', namespace = 'blog')),
+    path(_('articles/'), include('blog.urls.posts', namespace = 'blog')),
     path('docs/', include('pages.urls.tree_pages', namespace = 'docs')),
     #path('streamfield/', include('streamfield.urls')),
     #path('fatture/', include('accounting.urls.invoices',

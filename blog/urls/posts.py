@@ -1,4 +1,5 @@
 from django.urls import path
+from django.utils.translation import gettext as _
 
 from blog.views import (ArticleArchiveIndexView, ArticleYearArchiveView,
     ArticleMonthArchiveView, ArticleDayArchiveView, DetailArticle,
@@ -17,15 +18,15 @@ urlpatterns = [
         name = 'post_day'),
     path('<int:year>/<int:month>/<int:day>/<slug>/', DetailArticle.as_view(),
         name = 'post_detail'),
-    path('contributi/', UserUploadCreateView.as_view(),
+    path(_('contributions/'), UserUploadCreateView.as_view(),
         name = 'post_upload'),
-    path('autori/', AuthorListView.as_view(),
+    path(_('authors/'), AuthorListView.as_view(),
         name = 'post_authors'),
-    path('uploads/', AuthorListView.as_view(),
+    path(_('uploads/'), AuthorListView.as_view(),
         name = 'post_uploads'),
-    path('autori/<username>/', ByAuthorListView.as_view(),
+    path(_('authors/<username>/'), ByAuthorListView.as_view(),
         name = 'post_by_author'),
-    path('uploads/<username>/', ByUploadListView.as_view(),
+    path(_('uploads/<username>/'), ByUploadListView.as_view(),
         name = 'upload_by_author'),
     path(route='api/', view=ArticleListCreateAPIView.as_view(),
         name='post_api_list_create'),
