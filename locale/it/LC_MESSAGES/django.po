@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-05 22:54+0100\n"
+"POT-Creation-Date: 2020-11-05 23:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,8 +174,6 @@ msgid "Contributions"
 msgstr "Contributi"
 
 #: .\blog\templates\blog\article_archive.html:7
-#, fuzzy
-#| msgid "In depth articles by"
 msgid "In-depth articles"
 msgstr "Articoli di approfondimento"
 
@@ -221,16 +219,12 @@ msgid "No articles available"
 msgstr "Nessun articolo disponibile"
 
 #: .\blog\templates\blog\article_archive_tags.html:6
-#, fuzzy
-#| msgid "in category:"
 msgid "Filter by category:"
 msgstr "Filtra per categoria:"
 
 #: .\blog\templates\blog\article_archive_tags.html:14
 #: .\blog\templates\blog\author_list.html:8
 #: .\blog\templates\blog\uploads_by_author.html:7
-#, fuzzy
-#| msgid "authors/"
 msgid "List of authors"
 msgstr "Lista degli autori"
 
@@ -240,8 +234,6 @@ msgstr "Modifica"
 
 #: .\blog\templates\blog\article_detail.html:58
 #: .\blog\templates\blog\userupload_form.html:11
-#, fuzzy
-#| msgid "contributions/"
 msgid "Add a contribution"
 msgstr "Aggiungi un contributo"
 
@@ -254,8 +246,6 @@ msgid "if you want to add a contribution"
 msgstr "se vuoi aggiungere un contributo"
 
 #: .\blog\templates\blog\author_list.html:5
-#, fuzzy
-#| msgid "Author"
 msgid "Authors"
 msgstr "Autori"
 
@@ -269,8 +259,6 @@ msgid "Number of"
 msgstr "Numero di"
 
 #: .\blog\templates\blog\author_list.html:32
-#, fuzzy
-#| msgid "contributions/"
 msgid "contributions"
 msgstr "contributi"
 
@@ -279,15 +267,11 @@ msgid "No authors available."
 msgstr "Nessun autore disponibile."
 
 #: .\blog\templates\blog\uploads.html:15
-#, fuzzy
-#| msgid "uploads/"
 msgid "uploaded on"
 msgstr "caricato il"
 
 #: .\blog\templates\blog\uploads_by_author.html:5
 #: .\blog\templates\blog\uploads_by_author.html:9
-#, fuzzy
-#| msgid "Contributions"
 msgid "Contributions by"
 msgstr "Contributi di"
 
@@ -296,8 +280,6 @@ msgid "Uploaded on"
 msgstr "Caricato il"
 
 #: .\blog\templates\blog\userupload_form.html:5
-#, fuzzy
-#| msgid "contributions/"
 msgid "Add contribution"
 msgstr "Aggiungi contributo"
 
@@ -330,8 +312,6 @@ msgid "uploads/<username>/"
 msgstr "upload/<username>/"
 
 #: .\project\urls.py:39
-#, fuzzy
-#| msgid "contributions/"
 msgid "contacts/"
 msgstr "contatti/"
 
