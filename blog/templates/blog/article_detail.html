@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load fb_versions %}
+{% load i18n %}
 
 {% block title %}{{ website.acro }} | {{ post.title }}{% endblock title %}
 
@@ -16,7 +17,7 @@
             <li class="list-inline-item">
               <i class="fa fa-user" aria-hidden="true"></i>
               {% if user.is_authenticated and post.author.is_active %}
-              <a href="/contacts/?recipient={{ post.author }}&subject={{ post.title }}">
+              <a href="{% url 'contacts' %}?recipient={{ post.author }}&subject={{ post.title }}">
                 {{ post.author.get_full_name }}</a>
               {% else %}
               {{ post.author.get_full_name }}
@@ -28,14 +29,14 @@
               <li class="list-inline-item">
                 <i class="fa fa-folder-open" aria-hidden="true"></i>
                 {% for tag in post.get_tags %}
-                  <a href="/articoli/?tag={{ tag }}">{{ tag|upper }}</a>
+                  <a href="{% url 'blog:post_index' %}?tag={{ tag }}">{{ tag|upper }}</a>
                 {% endfor %}
               </li>
             {% endif %}
             {% if perms.blog.change_article %}
             <li class="list-inline-item">
               <i class="fa fa-pencil" aria-hidden="true"></i>
-              <a href="/admin/blog/article/{{ post.uuid }}/change/">Modifica</a>
+              <a href="/admin/blog/article/{{ post.uuid }}/change/">{% translate 'Modify' %}</a>
             </li>
             {% endif %}
           </ul>
@@ -49,12 +50,12 @@
           <hr class="mb-4">
           {% if user.is_authenticated %}
             <div class="row">
-              <h4 id="upload-anchor"><strong>Contributi</strong></h4>
+              <h4 id="upload-anchor"><strong>{% translate 'Contributions' %}</strong></h4>
             </div>
             {% if perms.blog.add_userupload %}
               <div class="row">
-                <a href="/articoli/contributi/?post_id={{ post.slug }}">
-                Aggiungi un contributo</a>
+                <a href="{% url 'blog:post_upload' %}?post_id={{ post.slug }}">
+                {% translate 'Add a contribution' %}</a>
               </div>
             {% endif %}
             <hr class="mb-4">
@@ -68,7 +69,7 @@
             {% endif %}
           {% else %}
             <div class="row">
-              Esegui il <a href="/accounts/login/?next={{ request.get_full_path }}">&nbsp;login&nbsp;</a> se vuoi aggiungere un contributo
+              <a href="{% url 'front_login' %}?next={{ request.get_full_path }}">{% translate 'Login' %}&nbsp;</a> {% translate 'if you want to add a contribution' %}
             </div>
             <hr class="mb-4">
           {% endif %}

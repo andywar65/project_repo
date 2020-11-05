@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 {% if tags %}
-  <p>Filtra per categoria:
+  <p>{% translate 'Filter by category:' %}
   {% for tag_item in tags %}
     {% if tag_item.name != tag_filter %}
       <a href="{{ request.path }}?tag={{ tag_item.name }}">{{ tag_item.name|upper }}</a>
@@ -10,7 +11,7 @@
   {% endfor %}
   </p>
 {% endif %}
-  <p><a href="{% url 'blog:post_authors' %}">Lista degli autori</a></p>
+  <p><a href="{% url 'blog:post_authors' %}">{% translate 'List of authors' %}</a></p>
 {% block article_archive %}
 {% endblock article_archive %}
 {% endblock content %}

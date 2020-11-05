@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Aggiungi contributo{% endblock title %}
+{% block title %}{{ website.acro }} | {% translate 'Add contribution' %}{% endblock title %}
 
 {% block content %}
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <h4><strong>Aggiungi un contributo</strong></h4>
-    <p>Ciao {{ user.get_short_name }}, inserisci qui sotto il tuo contributo e poi invia.</p>
+    <h4><strong>{% translate 'Add a contribution' %}</strong></h4>
+    <p>{% translate 'Hello' %} {{ user.get_short_name }}, {% translate 'add here your contribution, then submit' %}.</p>
     <form action="" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
               <div class="row">
                 <div class="col-md-9 mb-3">

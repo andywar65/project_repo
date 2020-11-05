@@ -36,7 +36,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('registration/', user_views.RegistrationFormView.as_view(),
         name='registration'),
-    path('contacts/', user_views.ContactFormView.as_view(), name='contacts'),
+    path(_('contacts/'), user_views.ContactFormView.as_view(), name='contacts'),
     path('accounts/', include('users.urls')),
     path('search/', views.search_results, name='search_results'),
     path('', HomeTemplateView.as_view()),

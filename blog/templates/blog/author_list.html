@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load fb_versions %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Autori{% endblock title %}
+{% block title %}{{ website.acro }} | {% translate 'Authors' %}{% endblock title %}
 
 {% block content %}
-<h4><strong>Lista degli autori</strong></h4>
+<h4><strong>{% translate 'List of authors' %}</strong></h4>
 <hr class="mb-4">
 {% if authors %}
   {% with pass=user.is_authenticated %}
@@ -16,18 +17,19 @@
           {% endif %}<h5>{{ author.get_full_name }}</h5>
         </div>
         <div class="col-md-8">
-          <p>{{ author.profile.bio|default_if_none:"Nessuna nota biografica" }}</p>
+          {% translate "No biographical notes" as trans01 %}
+          <p>{{ author.profile.bio|default_if_none:trans01 }}</p>
           <ul class="list-inline">
             {% if pass and counts.0 %}
               <li class="list-inline-item">
                 <i class="fa fa-folder-open" aria-hidden="true"></i>
-                  Numero di <a href="/articoli/autori/{{ author }}/">articoli</a>: {{ counts.0 }}
+                  {% translate "Number of" %} <a href="{% url 'blog:post_by_author' author.username %}">{% translate "articles" %}</a>: {{ counts.0 }}
               </li>
             {% endif %}
             {% if pass and counts.1 %}
               <li class="list-inline-item">
                 <i class="fa fa-upload" aria-hidden="true"></i>
-                  Numero di <a href="/articoli/uploads/{{ author }}/">contributi</a>: {{ counts.1 }}
+                  {% translate "Number of" %} <a href="{% url 'blog:upload_by_author' author.username %}">{% translate "contributions" %}</a>: {{ counts.1 }}
               </li>
             {% endif %}
           </ul>
@@ -37,20 +39,11 @@
   {% endwith %}
 {% else %}
     <div class="col-md-12">
-        <p>Non ci sono autori.</p>
+        <p>{% translate "No authors available." %}</p>
     </div>
 {% endif %}
 <hr class="mb-4">
 {% if is_paginated %}
-  <nav aria-label="Page navigation container">
-  <ul class="pagination justify-content-center">
-    {% if page_obj.has_previous %}
-    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PRECEDENTI </a></li>
-    {% endif %}
-    {% if page_obj.has_next %}
-    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> PROSSIMI &raquo;</a></li>
-    {% endif %}
-  </ul>
-  </nav>
+  {% include 'blog/article_pagination.html' %}
 {% endif %}
 {% endblock content %}

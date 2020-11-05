@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load fb_versions %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Contributi di {{ author.get_full_name }} {% endblock title %}
+{% block title %}{{ website.acro }} | {% translate 'Contributions by' %} {{ author.get_full_name }} {% endblock title %}
 {% block content %}
-<p><a href="{% url 'blog:post_authors' %}">Lista degli autori</a></p>
+<p><a href="{% url 'blog:post_authors' %}">{% translate 'List of authors' %}</a></p>
 <h4><strong>
-  Contributi di {{ author.get_full_name }}
+  {% translate 'Contributions by' %} {{ author.get_full_name }}
   {% if author.profile.avatar %}
   <img src="{% version author.profile.get_thumb 'admin_thumbnail' %}" class="rounded-circle">
   {% endif %}
@@ -20,22 +21,13 @@
         <p class="card-text">{{ upload.body }}</p>
       </div>
       <div class="card-footer">
-        Caricato il {{ upload.date|date:"d M Y"}} in
+        {% translate 'Uploaded on' %} {{ upload.date|date:"d M Y"}} in
           <a href="{{ upload.post.get_path }}">{{ upload.post.title }}</a>
       </div>
     </div>
     {% endfor %}
   </div>
 {% if is_paginated %}
-<nav aria-label="Page navigation container">
-<ul class="pagination justify-content-center">
-  {% if page_obj.has_previous %}
-  <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PRECEDENTI </a></li>
-  {% endif %}
-  {% if page_obj.has_next %}
-  <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> PROSSIMI &raquo;</a></li>
-  {% endif %}
-</ul>
-</nav>
+  {% include 'blog/article_pagination.html' %}
 {% endif %}
 {% endblock content %}

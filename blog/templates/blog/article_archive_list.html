@@ -1,4 +1,5 @@
 {% load fb_versions %}
+{% load i18n %}
 
 {% if posts %}
 <div class="card-deck">
@@ -6,7 +7,7 @@
 <div class="card" style="margin-bottom: 20px; min-width: 18rem;">
   <div class="card-header">
     <h4 class="card-title">
-    <a href="/articoli/{{ post.date|date:"Y/m/d" }}/{{ post.slug }}">
+    <a href="{% url 'blog:post_detail' post.date.year post.date.month post.date.day post.slug %}">
       {{ post.title }}</a></h4>
   </div>
   {% if post.article_image.first %}
@@ -41,5 +42,5 @@
 {% endfor %}
 </div>
 {% else %}
-<p>Non sono disponibili articoli</p>
+<p>{% translate 'No articles available' %}</p>
 {% endif %}
