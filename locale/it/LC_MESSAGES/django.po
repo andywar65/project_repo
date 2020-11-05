@@ -1,0 +1,220 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-05 15:46+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\blog\apps.py:7
+msgid "Trusted"
+msgstr ""
+
+#: .\blog\apps.py:11
+msgid "Editors"
+msgstr ""
+
+#: .\blog\choices.py:3
+msgid "Do not send"
+msgstr ""
+
+#: .\blog\choices.py:3
+msgid "To be sent"
+msgstr ""
+
+#: .\blog\choices.py:4
+msgid "Already sent"
+msgstr ""
+
+#: .\blog\forms.py:9 .\blog\models.py:35 .\blog\models.py:113
+msgid "Text"
+msgstr ""
+
+#: .\blog\forms.py:10
+msgid "Leave here your message"
+msgstr ""
+
+#: .\blog\forms.py:16 .\blog\models.py:39
+msgid "Author"
+msgstr ""
+
+#: .\blog\management\commands\fetch_article_emails.py:28
+msgid "articles"
+msgstr ""
+
+#: .\blog\management\commands\fetch_article_emails.py:37
+msgid "TITLE["
+msgstr ""
+
+#: .\blog\management\commands\fetch_article_emails.py:37
+msgid "DESCRIPTION["
+msgstr ""
+
+#: .\blog\management\commands\fetch_article_emails.py:38
+msgid "TEXT["
+msgstr ""
+
+#: .\blog\management\commands\fetch_article_emails.py:38
+msgid "DATE["
+msgstr ""
+
+#: .\blog\management\commands\fetch_article_emails.py:39
+msgid "CATEGORIES["
+msgstr ""
+
+#: .\blog\management\commands\fetch_article_emails.py:39
+msgid "NOTICE["
+msgstr ""
+
+#: .\blog\models.py:20
+msgid "Category"
+msgstr ""
+
+#: .\blog\models.py:21 .\blog\models.py:40
+msgid "Categories"
+msgstr ""
+
+#: .\blog\models.py:24
+#, python-format
+msgid "Another article by %(name)s!"
+msgstr ""
+
+#: .\blog\models.py:29
+msgid "Title"
+msgstr ""
+
+#: .\blog\models.py:30
+msgid "The title of the article"
+msgstr ""
+
+#: .\blog\models.py:32
+msgid "Introduction"
+msgstr ""
+
+#: .\blog\models.py:36 .\blog\models.py:110
+msgid "Date"
+msgstr ""
+
+#: .\blog\models.py:41
+msgid "Comma separated list of categories"
+msgstr ""
+
+#: .\blog\models.py:44
+msgid "Notify by email"
+msgstr ""
+
+#: .\blog\models.py:45
+msgid ""
+"Send automatic notification by selecting\n"
+"            'Send notification' and saving the article.\n"
+"            "
+msgstr ""
+
+#: .\blog\models.py:55
+msgid "/articles/"
+msgstr ""
+
+#: .\blog\models.py:83
+msgid "Follow this link to read it: "
+msgstr ""
+
+#: .\blog\models.py:90
+#, python-format
+msgid "New article on %(name)s "
+msgstr ""
+
+#: .\blog\models.py:101
+msgid "Article"
+msgstr ""
+
+#: .\blog\models.py:102
+msgid "Articles"
+msgstr ""
+
+#: .\blog\models.py:109
+msgid "User"
+msgstr ""
+
+#: .\blog\models.py:111
+msgid "Image"
+msgstr ""
+
+#: .\blog\models.py:113
+msgid "Write something."
+msgstr ""
+
+#: .\blog\models.py:117
+msgid "Contribution - "
+msgstr ""
+
+#: .\blog\models.py:120
+msgid "Contribution"
+msgstr ""
+
+#: .\blog\models.py:121
+msgid "Contributions"
+msgstr ""
+
+#: .\blog\templates\blog\article_archive_authors.html:4
+msgid "Articles by"
+msgstr ""
+
+#: .\blog\templates\blog\article_archive_authors.html:7
+msgid "In depth articles by"
+msgstr ""
+
+#: .\blog\templates\blog\article_archive_authors.html:10
+#: .\blog\templates\blog\article_archive_day.html:8
+msgid "in category:"
+msgstr ""
+
+#: .\blog\templates\blog\article_archive_authors.html:20
+#: .\blog\templates\blog\article_archive_day.html:15
+msgid "PREVIOUS"
+msgstr ""
+
+#: .\blog\templates\blog\article_archive_authors.html:23
+#: .\blog\templates\blog\article_archive_day.html:18
+msgid "NEXT"
+msgstr ""
+
+#: .\blog\templates\blog\article_archive_day.html:4
+#: .\blog\templates\blog\article_archive_day.html:7
+msgid "Articles of"
+msgstr ""
+
+#: .\blog\urls\posts.py:21
+msgid "contributions/"
+msgstr ""
+
+#: .\blog\urls\posts.py:23
+msgid "authors/"
+msgstr ""
+
+#: .\blog\urls\posts.py:25
+msgid "uploads/"
+msgstr ""
+
+#: .\blog\urls\posts.py:27
+msgid "authors/<username>/"
+msgstr ""
+
+#: .\blog\urls\posts.py:29
+msgid "uploads/<username>/"
+msgstr ""
+
+#: .\project\urls.py:43
+msgid "articles/"
+msgstr ""
