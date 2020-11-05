@@ -122,8 +122,8 @@ msgid ""
 "            "
 msgstr ""
 "Invia una notifica automatica selezionando\n"
-"'Invia notifica' e salvando l'articolo\n"
-""
+"            'Invia notifica' e salvando l'articolo\n"
+"            "
 
 #: .\blog\models.py:55
 msgid "/articles/"
