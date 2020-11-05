@@ -20,100 +20,100 @@ msgstr ""
 
 #: .\blog\apps.py:7
 msgid "Trusted"
-msgstr ""
+msgstr "Di fiducia"
 
 #: .\blog\apps.py:11
 msgid "Editors"
-msgstr ""
+msgstr "Editor"
 
 #: .\blog\choices.py:3
 msgid "Do not send"
-msgstr ""
+msgstr "Non inviare"
 
 #: .\blog\choices.py:3
 msgid "To be sent"
-msgstr ""
+msgstr "Da inviare"
 
 #: .\blog\choices.py:4
 msgid "Already sent"
-msgstr ""
+msgstr "Già inviata"
 
 #: .\blog\forms.py:9 .\blog\models.py:35 .\blog\models.py:113
 msgid "Text"
-msgstr ""
+msgstr "Testo"
 
 #: .\blog\forms.py:10
 msgid "Leave here your message"
-msgstr ""
+msgstr "Scrivi qui il tuo messaggio"
 
 #: .\blog\forms.py:16 .\blog\models.py:39
 msgid "Author"
-msgstr ""
+msgstr "Autore"
 
 #: .\blog\management\commands\fetch_article_emails.py:28
 msgid "articles"
-msgstr ""
+msgstr "articoli"
 
 #: .\blog\management\commands\fetch_article_emails.py:37
 msgid "TITLE["
-msgstr ""
+msgstr "TITOLO["
 
 #: .\blog\management\commands\fetch_article_emails.py:37
 msgid "DESCRIPTION["
-msgstr ""
+msgstr "DESCRIZIONE["
 
 #: .\blog\management\commands\fetch_article_emails.py:38
 msgid "TEXT["
-msgstr ""
+msgstr "TESTO["
 
 #: .\blog\management\commands\fetch_article_emails.py:38
 msgid "DATE["
-msgstr ""
+msgstr "DATA["
 
 #: .\blog\management\commands\fetch_article_emails.py:39
 msgid "CATEGORIES["
-msgstr ""
+msgstr "CATEGORIE["
 
 #: .\blog\management\commands\fetch_article_emails.py:39
 msgid "NOTICE["
-msgstr ""
+msgstr "NOTIFICA["
 
 #: .\blog\models.py:20
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #: .\blog\models.py:21 .\blog\models.py:40
 msgid "Categories"
-msgstr ""
+msgstr "Categorie"
 
 #: .\blog\models.py:24
 #, python-format
 msgid "Another article by %(name)s!"
-msgstr ""
+msgstr "Un nuovo articolo di %(name)s!"
 
 #: .\blog\models.py:29
 msgid "Title"
-msgstr ""
+msgstr "Titolo"
 
 #: .\blog\models.py:30
 msgid "The title of the article"
-msgstr ""
+msgstr "Il titolo dell'articolo"
 
 #: .\blog\models.py:32
 msgid "Introduction"
-msgstr ""
+msgstr "Introduzione"
 
 #: .\blog\models.py:36 .\blog\models.py:110
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: .\blog\models.py:41
 msgid "Comma separated list of categories"
-msgstr ""
+msgstr "Lista di categorie separate da virgole"
 
 #: .\blog\models.py:44
 msgid "Notify by email"
-msgstr ""
+msgstr "Notifica per email"
 
 #: .\blog\models.py:45
 msgid ""
@@ -121,100 +121,103 @@ msgid ""
 "            'Send notification' and saving the article.\n"
 "            "
 msgstr ""
+"Invia una notifica automatica selezionando\n"
+"'Invia notifica' e salvando l'articolo\n"
+""
 
 #: .\blog\models.py:55
 msgid "/articles/"
-msgstr ""
+msgstr "/articoli/"
 
 #: .\blog\models.py:83
 msgid "Follow this link to read it: "
-msgstr ""
+msgstr "Segui questo link per leggerlo: "
 
 #: .\blog\models.py:90
 #, python-format
 msgid "New article on %(name)s "
-msgstr ""
+msgstr "Nuovo articolo su %(name)s "
 
 #: .\blog\models.py:101
 msgid "Article"
-msgstr ""
+msgstr "Articolo"
 
 #: .\blog\models.py:102
 msgid "Articles"
-msgstr ""
+msgstr "Articoli"
 
 #: .\blog\models.py:109
 msgid "User"
-msgstr ""
+msgstr "Utente"
 
 #: .\blog\models.py:111
 msgid "Image"
-msgstr ""
+msgstr "Immagine"
 
 #: .\blog\models.py:113
 msgid "Write something."
-msgstr ""
+msgstr "Scrivi qualcosa"
 
 #: .\blog\models.py:117
 msgid "Contribution - "
-msgstr ""
+msgstr "Contributo - "
 
 #: .\blog\models.py:120
 msgid "Contribution"
-msgstr ""
+msgstr "Contributo"
 
 #: .\blog\models.py:121
 msgid "Contributions"
-msgstr ""
+msgstr "Contributi"
 
 #: .\blog\templates\blog\article_archive_authors.html:4
 msgid "Articles by"
-msgstr ""
+msgstr "Articoli di"
 
 #: .\blog\templates\blog\article_archive_authors.html:7
 msgid "In depth articles by"
-msgstr ""
+msgstr "Articoli di approfondimento di"
 
 #: .\blog\templates\blog\article_archive_authors.html:10
 #: .\blog\templates\blog\article_archive_day.html:8
 msgid "in category:"
-msgstr ""
+msgstr "nella categoria"
 
 #: .\blog\templates\blog\article_archive_authors.html:20
 #: .\blog\templates\blog\article_archive_day.html:15
 msgid "PREVIOUS"
-msgstr ""
+msgstr "PRECEDENTE"
 
 #: .\blog\templates\blog\article_archive_authors.html:23
 #: .\blog\templates\blog\article_archive_day.html:18
 msgid "NEXT"
-msgstr ""
+msgstr "PROSSIMO"
 
 #: .\blog\templates\blog\article_archive_day.html:4
 #: .\blog\templates\blog\article_archive_day.html:7
 msgid "Articles of"
-msgstr ""
+msgstr "Articoli di"
 
 #: .\blog\urls\posts.py:21
 msgid "contributions/"
-msgstr ""
+msgstr "contributi/"
 
 #: .\blog\urls\posts.py:23
 msgid "authors/"
-msgstr ""
+msgstr "autori/"
 
 #: .\blog\urls\posts.py:25
 msgid "uploads/"
-msgstr ""
+msgstr "upload/"
 
 #: .\blog\urls\posts.py:27
 msgid "authors/<username>/"
-msgstr ""
+msgstr "autori/<username>/"
 
 #: .\blog\urls\posts.py:29
 msgid "uploads/<username>/"
-msgstr ""
+msgstr "upload/<username>/"
 
 #: .\project\urls.py:43
 msgid "articles/"
-msgstr ""
+msgstr "articoli/"
