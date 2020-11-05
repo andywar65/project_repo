@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-05 23:15+0100\n"
+"POT-Creation-Date: 2020-11-05 23:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -284,12 +284,9 @@ msgid "Add contribution"
 msgstr "Aggiungi contributo"
 
 #: .\blog\templates\blog\userupload_form.html:12
-msgid "Hello"
-msgstr "Ciao"
-
-#: .\blog\templates\blog\userupload_form.html:12
-msgid "add here your contribution, then submit"
-msgstr "aggiungi qui il tuo contributo, poi invia"
+#, python-format
+msgid "Hello %(name)s, add here your contribution, then submit"
+msgstr "Ciao %(name)s, aggiungi qui il tuo contributo, poi invia"
 
 #: .\blog\urls\posts.py:21
 msgid "contributions/"
@@ -318,3 +315,6 @@ msgstr "contatti/"
 #: .\project\urls.py:43
 msgid "articles/"
 msgstr "articoli/"
+
+#~ msgid "Hello"
+#~ msgstr "Ciao"

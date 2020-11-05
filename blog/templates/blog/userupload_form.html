@@ -9,19 +9,19 @@
   <div class="col-md-2"></div>
   <div class="col-md-8">
     <h4><strong>{% translate 'Add a contribution' %}</strong></h4>
-    <p>{% translate 'Hello' %} {{ user.get_short_name }}, {% translate 'add here your contribution, then submit' %}.</p>
+    <p>{% blocktranslate with name=user.get_short_name %}Hello {{ name }}, add here your contribution, then submit{% endblocktranslate %}.</p>
     <form action="" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
-              <div class="row">
-                <div class="col-md-9 mb-3">
-                  {{ form.image|as_crispy_field }}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-9 mb-3">
-                  {{ form.body|as_crispy_field }}
-                </div>
-              </div>
-              {% include 'users/profile_includes/button.html' %}
+        <div class="row">
+          <div class="col-md-9 mb-3">
+            {{ form.image|as_crispy_field }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9 mb-3">
+            {{ form.body|as_crispy_field }}
+          </div>
+        </div>
+        {% include 'users/profile_includes/button.html' %}
       {% csrf_token %}
     </form>
   </div>
