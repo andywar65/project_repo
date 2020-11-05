@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-05 15:46+0100\n"
+"POT-Creation-Date: 2020-11-05 22:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,6 +51,7 @@ msgid "Author"
 msgstr "Autore"
 
 #: .\blog\management\commands\fetch_article_emails.py:28
+#: .\blog\templates\blog\author_list.html:26
 msgid "articles"
 msgstr "articoli"
 
@@ -142,7 +143,9 @@ msgstr "Nuovo articolo su %(name)s "
 msgid "Article"
 msgstr "Articolo"
 
-#: .\blog\models.py:102
+#: .\blog\models.py:102 .\blog\templates\blog\article_archive.html:4
+#: .\blog\templates\blog\article_archive_month.html:4
+#: .\blog\templates\blog\article_archive_year.html:4
 msgid "Articles"
 msgstr "Articoli"
 
@@ -166,9 +169,23 @@ msgstr "Contributo - "
 msgid "Contribution"
 msgstr "Contributo"
 
-#: .\blog\models.py:121
+#: .\blog\models.py:121 .\blog\templates\blog\article_detail.html:53
 msgid "Contributions"
 msgstr "Contributi"
+
+#: .\blog\templates\blog\article_archive.html:7
+#, fuzzy
+#| msgid "In depth articles by"
+msgid "In-depth articles"
+msgstr "Articoli di approfondimento"
+
+#: .\blog\templates\blog\article_archive.html:8
+#: .\blog\templates\blog\article_archive_authors.html:10
+#: .\blog\templates\blog\article_archive_day.html:8
+#: .\blog\templates\blog\article_archive_month.html:8
+#: .\blog\templates\blog\article_archive_year.html:8
+msgid "in category:"
+msgstr "nella categoria"
 
 #: .\blog\templates\blog\article_archive_authors.html:4
 msgid "Articles by"
@@ -178,25 +195,119 @@ msgstr "Articoli di"
 msgid "In depth articles by"
 msgstr "Articoli di approfondimento di"
 
-#: .\blog\templates\blog\article_archive_authors.html:10
-#: .\blog\templates\blog\article_archive_day.html:8
-msgid "in category:"
-msgstr "nella categoria"
+#: .\blog\templates\blog\article_archive_day.html:4
+#: .\blog\templates\blog\article_archive_day.html:7
+#: .\blog\templates\blog\article_archive_month.html:7
+#: .\blog\templates\blog\article_archive_year.html:7
+msgid "Articles of"
+msgstr "Articoli di"
 
-#: .\blog\templates\blog\article_archive_authors.html:20
 #: .\blog\templates\blog\article_archive_day.html:15
+#: .\blog\templates\blog\article_archive_month.html:15
+#: .\blog\templates\blog\article_archive_year.html:15
+#: .\blog\templates\blog\article_pagination.html:6
 msgid "PREVIOUS"
 msgstr "PRECEDENTE"
 
-#: .\blog\templates\blog\article_archive_authors.html:23
 #: .\blog\templates\blog\article_archive_day.html:18
+#: .\blog\templates\blog\article_archive_month.html:18
+#: .\blog\templates\blog\article_archive_year.html:18
+#: .\blog\templates\blog\article_pagination.html:9
 msgid "NEXT"
 msgstr "PROSSIMO"
 
-#: .\blog\templates\blog\article_archive_day.html:4
-#: .\blog\templates\blog\article_archive_day.html:7
-msgid "Articles of"
-msgstr "Articoli di"
+#: .\blog\templates\blog\article_archive_list.html:45
+msgid "No articles available"
+msgstr "Nessun articolo disponibile"
+
+#: .\blog\templates\blog\article_archive_tags.html:6
+#, fuzzy
+#| msgid "in category:"
+msgid "Filter by category:"
+msgstr "Filtra per categoria:"
+
+#: .\blog\templates\blog\article_archive_tags.html:14
+#: .\blog\templates\blog\author_list.html:8
+#: .\blog\templates\blog\uploads_by_author.html:7
+#, fuzzy
+#| msgid "authors/"
+msgid "List of authors"
+msgstr "Lista degli autori"
+
+#: .\blog\templates\blog\article_detail.html:39
+msgid "Modify"
+msgstr "Modifica"
+
+#: .\blog\templates\blog\article_detail.html:58
+#: .\blog\templates\blog\userupload_form.html:11
+#, fuzzy
+#| msgid "contributions/"
+msgid "Add a contribution"
+msgstr "Aggiungi un contributo"
+
+#: .\blog\templates\blog\article_detail.html:72
+msgid "Login"
+msgstr "Effettua il login"
+
+#: .\blog\templates\blog\article_detail.html:72
+msgid "if you want to add a contribution"
+msgstr "se vuoi aggiungere un contributo"
+
+#: .\blog\templates\blog\author_list.html:5
+#, fuzzy
+#| msgid "Author"
+msgid "Authors"
+msgstr "Autori"
+
+#: .\blog\templates\blog\author_list.html:20
+msgid "No biographical notes"
+msgstr "Nessuna nota biografica"
+
+#: .\blog\templates\blog\author_list.html:26
+#: .\blog\templates\blog\author_list.html:32
+msgid "Number of"
+msgstr "Numero di"
+
+#: .\blog\templates\blog\author_list.html:32
+#, fuzzy
+#| msgid "contributions/"
+msgid "contributions"
+msgstr "contributi"
+
+#: .\blog\templates\blog\author_list.html:42
+msgid "No authors available."
+msgstr "Nessun autore disponibile."
+
+#: .\blog\templates\blog\uploads.html:15
+#, fuzzy
+#| msgid "uploads/"
+msgid "uploaded on"
+msgstr "caricato il"
+
+#: .\blog\templates\blog\uploads_by_author.html:5
+#: .\blog\templates\blog\uploads_by_author.html:9
+#, fuzzy
+#| msgid "Contributions"
+msgid "Contributions by"
+msgstr "Contributi di"
+
+#: .\blog\templates\blog\uploads_by_author.html:24
+msgid "Uploaded on"
+msgstr "Caricato il"
+
+#: .\blog\templates\blog\userupload_form.html:5
+#, fuzzy
+#| msgid "contributions/"
+msgid "Add contribution"
+msgstr "Aggiungi contributo"
+
+#: .\blog\templates\blog\userupload_form.html:12
+msgid "Hello"
+msgstr "Ciao"
+
+#: .\blog\templates\blog\userupload_form.html:12
+msgid "add here your contribution, then submit"
+msgstr "aggiungi qui il tuo contributo, poi invia"
 
 #: .\blog\urls\posts.py:21
 msgid "contributions/"
@@ -217,6 +328,12 @@ msgstr "autori/<username>/"
 #: .\blog\urls\posts.py:29
 msgid "uploads/<username>/"
 msgstr "upload/<username>/"
+
+#: .\project\urls.py:39
+#, fuzzy
+#| msgid "contributions/"
+msgid "contacts/"
+msgstr "contatti/"
 
 #: .\project\urls.py:43
 msgid "articles/"
