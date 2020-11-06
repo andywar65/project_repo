@@ -68,7 +68,7 @@ class TreePage(MP_Node):
     slug = models.SlugField(_('Slug'), max_length=50, null=True, blank=True,
         unique = True,
         help_text = _("""Title as it appears in the address bar,
-            only lowercas, no blank spaces"""))
+            only lowercase, no blank spaces"""))
     intro = models.CharField(_('Introduction'),
         blank= True, null=True, max_length = 200)
     body = models.TextField(_('Text'), null=True, blank=True,)

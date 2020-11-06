@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-05 23:35+0100\n"
+"POT-Creation-Date: 2020-11-06 21:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,6 +39,7 @@ msgid "Already sent"
 msgstr "Già inviata"
 
 #: .\blog\forms.py:9 .\blog\models.py:35 .\blog\models.py:113
+#: .\pages\models.py:23 .\pages\models.py:74
 msgid "Text"
 msgstr "Testo"
 
@@ -92,7 +93,8 @@ msgstr "Categorie"
 msgid "Another article by %(name)s!"
 msgstr "Un nuovo articolo di %(name)s!"
 
-#: .\blog\models.py:29
+#: .\blog\models.py:29 .\pages\models.py:18 .\pages\models.py:57
+#: .\pages\models.py:67
 msgid "Title"
 msgstr "Titolo"
 
@@ -100,7 +102,7 @@ msgstr "Titolo"
 msgid "The title of the article"
 msgstr "Il titolo dell'articolo"
 
-#: .\blog\models.py:32
+#: .\blog\models.py:32 .\pages\models.py:72
 msgid "Introduction"
 msgstr "Introduzione"
 
@@ -153,7 +155,7 @@ msgstr "Articoli"
 msgid "User"
 msgstr "Utente"
 
-#: .\blog\models.py:111
+#: .\blog\models.py:111 .\pages\models.py:51
 msgid "Image"
 msgstr "Immagine"
 
@@ -174,6 +176,7 @@ msgid "Contributions"
 msgstr "Contributi"
 
 #: .\blog\templates\blog\article_archive.html:7
+#: .\pages\templates\pages\home.html:37
 msgid "In-depth articles"
 msgstr "Articoli di approfondimento"
 
@@ -307,6 +310,133 @@ msgstr "autori/<username>/"
 #: .\blog\urls\posts.py:29
 msgid "uploads/<username>/"
 msgstr "upload/<username>/"
+
+#: .\pages\apps.py:7
+msgid "Page Makers"
+msgstr "Impaginatori"
+
+#: .\pages\models.py:19
+msgid "Appears on first image"
+msgstr "Appare nella prima immagine"
+
+#: .\pages\models.py:21 .\pages\models.py:58
+#, fuzzy
+#| msgid "Title"
+msgid "Subtitle"
+msgstr "Titolo"
+
+#: .\pages\models.py:22
+msgid "Website in few words"
+msgstr "Il sito in quattro parole"
+
+#: .\pages\models.py:24
+msgid "Talk about this website"
+msgstr "Parla di questo sito"
+
+#: .\pages\models.py:25
+#, fuzzy
+#| msgid "Date"
+msgid "Date:"
+msgstr "Data:"
+
+#: .\pages\models.py:31
+msgid "Home Page"
+msgstr "Home Page"
+
+#: .\pages\models.py:41 .\pages\models.py:43 .\pages\models.py:52
+#, fuzzy
+#| msgid "Image"
+msgid "Images"
+msgstr "Immagine"
+
+#: .\pages\models.py:46
+msgid "Caption"
+msgstr "Didascalia"
+
+#: .\pages\models.py:48 .\pages\models.py:60
+msgid "Position"
+msgstr "Posizione"
+
+#: .\pages\models.py:59
+msgid "Link"
+msgstr "Link"
+
+#: .\pages\models.py:63
+msgid "Home Page button"
+msgstr "Pulsante di Home Page"
+
+#: .\pages\models.py:64
+msgid "Home Page buttons"
+msgstr "Bottoni di Home Page"
+
+#: .\pages\models.py:68
+msgid "Slug"
+msgstr "Slug"
+
+#: .\pages\models.py:70
+msgid ""
+"Title as it appears in the address bar,\n"
+"            only lowercase, no blank spaces"
+msgstr ""
+"Titolo così come appare nella barra degli indirizzi,\n"
+"            solo minuscole, senza spazi bianchi"
+
+#: .\pages\models.py:75
+msgid "Show summary"
+msgstr "Mostra il sommario"
+
+#: .\pages\models.py:76
+msgid "Show navigation"
+msgstr "Mostra la navigazione"
+
+#: .\pages\models.py:140
+msgid "Tree page"
+msgstr "Pagina ad albero"
+
+#: .\pages\models.py:141
+msgid "Tree pages"
+msgstr "Pagine ad albero"
+
+#: .\pages\templates\pages\gallery.html:15
+msgid "Previous"
+msgstr "Precedente"
+
+#: .\pages\templates\pages\gallery.html:19
+msgid "Next"
+msgstr "Prossimo"
+
+#: .\pages\templates\pages\home.html:6
+msgid "Home"
+msgstr "Home"
+
+#: .\pages\templates\pages\tree_page.html:18
+msgid "Modify page"
+msgstr "Modifica la pagina"
+
+#: .\pages\templates\pages\tree_page.html:23
+msgid "Summary"
+msgstr "Sommario"
+
+#: .\pages\templates\pages\tree_page.html:34
+msgid "Back to summary"
+msgstr "Torna al sommario"
+
+#: .\pages\templates\pages\tree_page_list.html:4
+#: .\pages\templates\pages\tree_page_list.html:12
+msgid "Documents"
+msgstr "Documenti"
+
+#: .\pages\templates\pages\tree_page_list.html:34
+msgid "No documents available"
+msgstr "Nessun documento disponibile"
+
+#: .\pages\views.py:17
+msgid "No Home Pages available"
+msgstr "Nessuna Home Page disponibile"
+
+#: .\pages\views.py:48 .\pages\views.py:61
+msgid "Request path is different from GET path"
+msgstr "Il request path è diverso dal GET path"
 
 #: .\project\urls.py:39
 msgid "contacts/"

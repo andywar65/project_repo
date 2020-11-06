@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}{{ website.acro }} | {{ page.title }}{%endblock title %}
 {% block extra-head %}
 {% endblock extra-head %}
 
 {% block content %}
-<div id="sommario" class="row">
+<div id="summary" class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8" style="margin-left: 15px; margin-right: 15px; margin-top: 30px;">
     {% if page.navigation %}
@@ -14,12 +15,12 @@
     {% endif %}
     {% if perms.pages.change_treepage %}
       <i class="fa fa-pencil" aria-hidden="true"></i>
-      <a href="/admin/pages/treepage/{{ page.id }}/change/">Modifica pagina</a>
+      <a href="/admin/pages/treepage/{{ page.id }}/change/">{% translate 'Modify page' %}</a>
     {% endif %}
     <h4><strong>{{ page.title }}</strong></h4>
     <p><em>{{ page.intro }}</em></p>
     {% if page.summary and page.paragraphs %}
-    <h4>Sommario</h4>
+    <h4>{% translate 'Summary' %}</h4>
     <ul>
       {% for num, title in page.paragraphs.items %}
         <li><a href="#paragraph-{{ num }}">{{ title }}</a></li>
@@ -30,7 +31,7 @@
       {{ page.get_paragraphs|safe }}
     </div>
     {% if page.summary and page.paragraphs %}
-      <a href="#sommario">Torna al sommario</a>{% endif %}
+      <a href="#summary">{% translate 'Back to summary' %}</a>{% endif %}
     {% if page.navigation %}
       <hr class="mb-4">
       {% include "pages/tree_page_nav.html" %}
