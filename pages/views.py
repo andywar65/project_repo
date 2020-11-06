@@ -2,10 +2,9 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, DetailView, ListView
 from django.utils.crypto import get_random_string
-#from streamblocks.models import HomeButton
+from django.utils.translation import gettext as _
 
 from blog.models import Article
-#from portfolio.models import Project
 from .models import ( HomePage, GalleryImage, HomeButton, TreePage )
 
 class HomeTemplateView(TemplateView):
@@ -15,7 +14,7 @@ class HomeTemplateView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['page'] = HomePage.objects.first()
         if not context['page']:
-            raise Http404("Non ci sono Home Page")
+            raise Http404(_("No Home Pages available"))
         #we add this context to feed the standard gallery
         context['main_gall_slug'] = get_random_string(7)
         context['title'] = context['page'].title
@@ -23,7 +22,6 @@ class HomeTemplateView(TemplateView):
         context['images'] = context['page'].home_image.all()
         context['actions'] = context['page'].home_button.all()[:3]
         context['posts'] = Article.objects.all()[:6]
-        #context['progs'] = Project.objects.all()[:6]
         return context
 
 class TreePageListView(ListView):
@@ -47,7 +45,7 @@ class TreePageDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         if not self.object.get_path() == self.request.path:
-            raise Http404("Il request path non corrisponde al get path")
+            raise Http404(_("Request path is different from GET path"))
         context = super().get_context_data(**kwargs)
         context['adjacent'] = self.object.get_adjacent_pages()
         return context
@@ -60,7 +58,7 @@ def page_by_path(request, path):
         last = path_list.pop()
     page = get_object_or_404( TreePage, slug = last )
     if not page.get_path() == request.path:
-        raise Http404("Il request path non corrisponde al get path")
+        raise Http404(_("Request path is different from GET path"))
     adjacent = page.get_adjacent_pages()
     return render(request, 'pages/tree_page.html', { 'page': page,
         'adjacent': adjacent, })
