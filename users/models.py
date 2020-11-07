@@ -7,6 +7,7 @@ from django.contrib.auth.models import AbstractUser
 from django.core.mail import EmailMessage
 from django.utils.crypto import get_random_string
 from django.contrib.auth.models import Group
+from django.utils.translation import gettext as _
 
 from PIL import Image
 from private_storage.fields import PrivateFileField
@@ -22,7 +23,7 @@ class User(AbstractUser):
             return self.first_name + ' ' + self.last_name
         else:
             return self.username
-    get_full_name.short_description = 'Nome'
+    get_full_name.short_description = _('Name')
 
     def get_short_name(self):
         if self.first_name:
@@ -44,14 +45,14 @@ class Profile(models.Model):
         primary_key=True, editable=False )
     avatar = models.ImageField(blank = True, null=True,
         upload_to = 'uploads/users/')
-    bio = models.TextField("Breve biografia", null=True, blank=True)
+    bio = models.TextField(_("Short bio"), null=True, blank=True)
     yes_spam = models.BooleanField(default = False,
-        verbose_name = 'Mailing list',
-        help_text = 'Vuoi ricevere notifiche sugli eventi?',)
+        verbose_name = _('Mailing list'),
+        help_text = _("Do you want to be notified on new articles?"),)
 
     def get_full_name(self):
         return self.user.get_full_name()
-    get_full_name.short_description = 'Nome'
+    get_full_name.short_description = _('Name')
 
     def get_thumb(self):
         if self.avatar:
@@ -62,8 +63,8 @@ class Profile(models.Model):
         return self.user.get_full_name()
 
     class Meta:
-        verbose_name = 'Profilo'
-        verbose_name_plural = 'Profili'
+        verbose_name = _('Profile')
+        verbose_name_plural = _('Profiles')
 
 def user_private_directory_path(instance, filename):
     root = os.path.splitext(filename)[0]
@@ -74,39 +75,39 @@ def user_private_directory_path(instance, filename):
 class UserMessage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,
         related_name='user_message', blank=True, null=True,
-        verbose_name = 'Utente', )
+        verbose_name = _('User'), )
     nickname = models.CharField(max_length = 50,
-        verbose_name = 'Nome', blank=True, null=True,)
+        verbose_name = _('Name'), blank=True, null=True,)
     email = models.EmailField(blank=True, null=True,
-        verbose_name = 'Inviato da',)
+        verbose_name = _('From'),)
     recipient = models.EmailField(blank=True, null=True,
-        verbose_name = 'Destinatario')
+        verbose_name = _('To'))
     subject = models.CharField(max_length = 200,
-        verbose_name = 'Soggetto', )
-    body = models.TextField(verbose_name = 'Messaggio', )
+        verbose_name = _('Subject'), )
+    body = models.TextField(verbose_name = _('Text'), )
     attachment = PrivateFileField(
         upload_to = user_private_directory_path,
-        blank = True, null = True, verbose_name = 'Allegato',
+        blank = True, null = True, verbose_name = _('Attachment'),
         )
-    privacy = models.BooleanField( default=False )
+    privacy = models.BooleanField( _('Privacy'), default=False )
 
     def get_full_name(self):
         if self.user:
             return self.user.get_full_name()
         else:
             return self.nickname
-    get_full_name.short_description = 'Nome'
+    get_full_name.short_description = _('Name')
 
     def get_email(self):
         if self.user:
             return self.user.email
         else:
             return self.email
-    get_email.short_description = 'Indirizzo email'
+    get_email.short_description = _('Email address')
 
     def __str__(self):
-        return 'Messaggio - %s' % (self.id)
+        return _('Message - %(id)d') % {'id': self.id}
 
     class Meta:
-        verbose_name = 'Messaggio'
-        verbose_name_plural = 'Messaggi'
+        verbose_name = _('Message')
+        verbose_name_plural = _('Messages')
