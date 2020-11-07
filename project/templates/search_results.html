@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Ricerca{%endblock title %}
+{% block title %}{{ website.acro }} | {% translate 'Search' %}{%endblock title %}
 {% block extra-head %}
 {% endblock extra-head %}
 
@@ -9,9 +10,9 @@
   <div class="col-md-2"></div>
   <div class="col-md-8">
     {% if success %}
-    <h4><strong>Ricerca di: "{{ search }}"</strong></h4>
+    <h4><strong>{% translate 'Search' %}: "{{ search }}"</strong></h4>
       {% if all_blogs %}
-        <h5>Articoli</h5>
+        <h5>{% translate 'Articles' %}</h5>
         {% for blog in all_blogs %}
           <ul>
             <li>
@@ -23,7 +24,7 @@
         {% endfor %}
       {% endif %}
       {% if all_uploads and user.is_authenticated %}
-        <h5>Articoli per contributo</h5>
+        <h5>{% translate 'Articles by contribution' %}</h5>
         {% for blog in all_uploads %}
           <ul>
             <li>
@@ -35,7 +36,7 @@
         {% endfor %}
       {% endif %}
       {% if pages %}
-        <h5>Pagine</h5>
+        <h5>{% translate 'Pages' %}</h5>
         {% for page in pages %}
           <ul>
             <li>
@@ -45,20 +46,9 @@
           </ul>
         {% endfor %}
       {% endif %}
-      {% if progs %}
-        <h5>Progetti</h5>
-        {% for prog in progs %}
-          <ul>
-            <li>
-              <a href="{{ prog.get_full_path }}">{{ prog.title }}</a>
-              {{ prog.intro }}
-            </li>
-          </ul>
-        {% endfor %}
-      {% endif %}
     {% else %}
-    <h1>Ricerca nulla</h1>
-    <p>Non abbiamo trovato elementi che soddisfano la tua ricerca</p>
+    <h1>{% translate 'Null search' %}</h1>
+    <p>{% translate "We didn't find elements that satisfy your search" %}</p>
     {% endif %}
   </div>
 </div>

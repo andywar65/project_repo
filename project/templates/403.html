@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Accesso vietato{% endblock title %}
+{% block title %}{{ website.acro }} | {% translate 'Access denied' %}{% endblock title %}
 {% block content %}
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <h4><strong>Accesso vietato</strong></h4>
+    <h4><strong>{% translate 'Access denied' %}</strong></h4>
     <div class="alert alert-danger" role="alert">
-      <p>Non hai le credenziali per accedere a questa pagina.</p>
-      <p>Forse devi ancora effettuare il <a href="/accounts/login/">login</a>,
-      oppure utilizza questo <a href="/contacts">modulo</a> per richiedere le credenziali.</p>
+      <p>{% translate "You don't have permissions to access this page" %}.</p>
+      <p>{% translate "Maybe you still have to" %} <a href="{% url 'front_login' %}">{% translate "login" %}</a>,
+      {% translate "otherwise use this" %} <a href="{% url 'contacts' %}">{% translate "form" %}</a>
+      {% translate "to request permissions" %}.</p>
     </div>
   </div>
 </div>

@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Pagina non trovata{% endblock title %}
+{% block title %}{{ website.acro }} | {% translate 'Page not found' %}{% endblock title %}
 {% block content %}
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <h4><strong>Pagina non trovata</strong></h4>
+    <h4><strong>{% translate 'Page not found' %}</strong></h4>
     <div class="alert alert-danger" role="alert">
-      <p>Può essere che la pagina non esista più, oppure che il link sia sbagliato.</p>
-      <p>Accertati di non aver inserito un indirizzo inesistente.</p>
+      <p>{% translate "Maybe this page no more exists, or the address is wrong" %}.</p>
+      <p>{% translate "Double check the address you inserted" %}.</p>
     </div>
-    <p>Utilizza questo <a href="/contacts">modulo</a> per notificare l'inconveniente.</p>
+    <p>{% translate "Use this" %} <a href="{% url 'contacts' %}">{% translate "form" %}</a>
+    {% translate "to notify the incovenience" %}.</p>
   </div>
 </div>
 {% endblock content %}
