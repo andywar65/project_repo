@@ -101,8 +101,9 @@ class ContactFormView(GetMixin, FormView):
         if not message.recipient:
             message.recipient = settings.DEFAULT_RECIPIENT
         subject = message.subject
-        msg = (message.body + '\n\n' + _('From') + ': ' +
-            message.get_full_name() + ' (' + message.get_email() + ')')
+        msg = '%(body)s\n\n%(from)s: %(full)s (%(email)s)' % {
+            'body': message.body, 'from': _('From'),
+            'full': message.get_full_name(), 'email': message.get_email()}
         mailto = [message.recipient, ]
         email = EmailMessage(subject, msg, settings.SERVER_EMAIL,
             mailto)
@@ -201,7 +202,7 @@ class ProfileDeleteView(LoginRequiredMixin, FormView):
 
     def get(self, request, *args, **kwargs):
         if request.user.uuid != kwargs['pk']:
-            raise Http404("User is not authorized to manage this profile")
+            raise Http404(_("User is not authorized to manage this profile"))
         return super(ProfileDeleteView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
