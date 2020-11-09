@@ -50,19 +50,21 @@ def registration_message( username, password ):
 class RegistrationFormView(GetMixin, FormView):
     form_class = RegistrationForm
     template_name = 'users/registration.html'
-    success_url = '/account/registrazione?submitted=True'#can't reverse this one
 
     def form_valid(self, form):
         user = form.save(commit=False)
         password = User.objects.make_random_password()
         user.password = make_password(password)
         user.save()
-        subject = f'Credenziali di accesso a {settings.WEBSITE_ACRO}'
+        subject = _('Access credentials to %(acro)s') % {'acro': settings.WEBSITE_ACRO}
         body = registration_message(user.username, password)
         mailto = [ user.email, ]
         email = EmailMessage(subject, body, settings.SERVER_EMAIL, mailto)
         email.send()
         return super(RegistrationFormView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('account:registration') + '?submitted=True'
 
 class ContactFormView(GetMixin, FormView):
     form_class = ContactForm
@@ -100,8 +102,8 @@ class ContactFormView(GetMixin, FormView):
         if not message.recipient:
             message.recipient = settings.DEFAULT_RECIPIENT
         subject = message.subject
-        msg = (message.body + '\n\nDa: '+ message.get_full_name() +
-            ' (' + message.get_email() + ')')
+        msg = (message.body + '\n\n' + _('From') + ': ' +
+            message.get_full_name() + ' (' + message.get_email() + ')')
         mailto = [message.recipient, ]
         email = EmailMessage(subject, msg, settings.SERVER_EMAIL,
             mailto)
@@ -117,14 +119,14 @@ class FrontLoginView(LoginView):
     def get_redirect_url(self):
         """Avoid going from login to logout and other ambiguous situations"""
         redirect_to = super(FrontLoginView, self).get_redirect_url()
-        if redirect_to == reverse('front_logout'):
-            return reverse('profile')
-        elif redirect_to == reverse('password_reset_done'):
-            return reverse('profile')
-        elif redirect_to == reverse('profile_deleted'):
-            return reverse('profile')
-        elif redirect_to == reverse('registration'):
-            return reverse('profile')
+        if redirect_to == reverse('account:front_logout'):
+            return reverse('account:profile')
+        elif redirect_to == reverse('account:password_reset_done'):
+            return reverse('account:profile')
+        elif redirect_to == reverse('account:profile_deleted'):
+            return reverse('account:profile')
+        elif redirect_to == reverse('account:registration'):
+            return reverse('account:profile')
         return redirect_to
 
 class FrontLogoutView(LogoutView):
@@ -188,7 +190,8 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
         return super(ProfileChangeView, self).form_valid(form)
 
     def get_success_url(self):
-        return f'/account/profile/?submitted={self.request.user.get_full_name()}'
+        return (reverse('account:profile') +
+            f'?submitted={self.request.user.get_full_name()}')
 
 class ProfileDeleteView(LoginRequiredMixin, FormView):
     form_class = ProfileDeleteForm
