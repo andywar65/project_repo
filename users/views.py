@@ -41,16 +41,16 @@ def registration_message( username, password ):
         Privacy agreement: %(privacy)s
         Change password: %(change_pwd)s
         """) % {'username': username, 'site_name': settings.WEBSITE_NAME,
-        'login': str(settings.BASE_URL) + reverse('front_login'),
+        'login': str(settings.BASE_URL) + reverse('account:front_login'),
         'password': password,
         'privacy': str(settings.BASE_URL) + reverse('docs:page_list') + 'privacy/',
-        'change_pwd': str(settings.BASE_URL) + reverse('password_change')}
+        'change_pwd': str(settings.BASE_URL) + reverse('account:password_change')}
     return message
 
 class RegistrationFormView(GetMixin, FormView):
     form_class = RegistrationForm
     template_name = 'users/registration.html'
-    success_url = '/account/registration?submitted=True'
+    success_url = '/account/registrazione?submitted=True'#can't reverse this one
 
     def form_valid(self, form):
         user = form.save(commit=False)
