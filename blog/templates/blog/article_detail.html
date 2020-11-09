@@ -69,7 +69,7 @@
             {% endif %}
           {% else %}
             <div class="row">
-              <a href="{% url 'front_login' %}?next={{ request.get_full_path }}">{% translate 'Login' %}&nbsp;</a> {% translate 'if you want to add a contribution' %}
+              <a href="{% url 'account:front_login' %}?next={{ request.get_full_path }}">{% translate 'Login' %}&nbsp;</a> {% translate 'if you want to add a contribution' %}
             </div>
             <hr class="mb-4">
           {% endif %}
