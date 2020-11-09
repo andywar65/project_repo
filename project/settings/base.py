@@ -121,10 +121,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly', ],
 }
 
-LOCALE_PATHS = [
-    BASE_DIR / 'locale',
-]
-
 STATICFILES_DIRS = [
     PROJECT_DIR / "static",
 ]
@@ -148,6 +144,10 @@ FETCH_EMAILS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 LANGUAGE_CODE = get_secret('LANGUAGE_CODE')#'en-us'
 
