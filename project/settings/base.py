@@ -164,7 +164,7 @@ PROFILE_IS_TRUSTED_BY_DEFAULT = False
 
 RECAPTCHA_TEST_MODE = False
 
-#this is for the accounting email receiver module
+#this is for the blog email receiver module
 IMAP_HOST = get_secret('IMAP_HOST')
 IMAP_USER = get_secret('IMAP_USER')
 IMAP_PWD = get_secret('IMAP_PWD')
