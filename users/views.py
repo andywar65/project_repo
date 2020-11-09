@@ -69,7 +69,7 @@ class RegistrationFormView(GetMixin, FormView):
 class ContactFormView(GetMixin, FormView):
     form_class = ContactForm
     template_name = 'users/message.html'
-    success_url = '/contacts?submitted=True'
+    #success_url = '/contacts?submitted=True'
 
     def get_initial(self):
         initial = super(ContactFormView, self).get_initial()
@@ -111,6 +111,9 @@ class ContactFormView(GetMixin, FormView):
             email.attach_file(message.attachment.path)
         email.send()
         return super(ContactFormView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('contacts') + '?submitted=True'
 
 class FrontLoginView(LoginView):
     template_name = 'users/front_login.html'
