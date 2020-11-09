@@ -4,7 +4,8 @@ from django.utils.translation import gettext as _
 from .views import (FrontLoginView, FrontLogoutView, FrontPasswordResetView,
     TemplateResetView, FrontPasswordResetConfirmView, TemplateResetDoneView,
     TemplateAccountView, FrontPasswordChangeView, FrontPasswordChangeDoneView,
-    ProfileChangeView, ProfileDeleteView, TemplateDeletedView)
+    ProfileChangeView, ProfileDeleteView, TemplateDeletedView,
+    RegistrationFormView)
 
 urlpatterns = [
     path(_('profile/'), TemplateAccountView.as_view(),
@@ -15,6 +16,8 @@ urlpatterns = [
         name='profile_delete'),
     path(_('profile/deleted'), TemplateDeletedView.as_view(),
         name='profile_deleted'),
+    path(_('registration/'), RegistrationFormView.as_view(),
+        name='registration'),
     path(_('login/'), FrontLoginView.as_view(),
         name='front_login'),
     path(_('logout/'), FrontLogoutView.as_view(),

@@ -9,6 +9,8 @@ from django.contrib.auth.views import (LoginView, LogoutView, PasswordResetView,
     PasswordResetConfirmView, PasswordChangeView, PasswordChangeDoneView)
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView, UpdateView, CreateView
+from django.utils.translation import gettext as _
+
 from .forms import (RegistrationForm, ContactForm,
     ContactLogForm, FrontAuthenticationForm, FrontPasswordResetForm,
     FrontSetPasswordForm, FrontPasswordChangeForm, ProfileChangeForm,
@@ -25,26 +27,30 @@ class GetMixin:
 
 def registration_message( username, password ):
     #TODO have some info in settings
-    message = f"""
-        Ciao {username}! \n
-        Abbiamo ricevuto la tua registrazione al sito {settings.WEBSITE_NAME}.\n
-        Puoi effettuare il Login al seguente link: \n
-        {settings.BASE_URL}/accounts/login/ \n
-        Usa il nome utente da te scelto: {username}
-        e questa password: {password} (possibilmente da cambiare).
-        Una volta effettuato il login potrai gestire il tuo profilo.
-        Grazie.
-        Lo staff di {settings.WEBSITE_NAME} \n
-        Link utili:
-        Informativa sulla privacy: {settings.BASE_URL}/docs/privacy/
-        Cambio password: {settings.BASE_URL}/accounts/password_change/
-        """
+    message = _("""
+        Hello %(username)s! \n
+        We have received your registration to %(site_name)s.\n
+        You can login at following link: \n
+        %(login)s \n
+        Use the username that you chose: %(username)s
+        This is the password: %(password)s (change it!).
+        After login you can manage your profile.
+        Thanks.
+        The staff of %(site_name)s \n
+        Useful links:
+        Privacy agreement: %(privacy)s
+        Change password: %(change_pwd)s
+        """) % {'username': username, 'site_name': settings.WEBSITE_NAME,
+        'login': str(settings.BASE_URL) + reverse('front_login'),
+        'password': password,
+        'privacy': str(settings.BASE_URL) + reverse('docs:page_list') + 'privacy/',
+        'change_pwd': str(settings.BASE_URL) + reverse('password_change')}
     return message
 
 class RegistrationFormView(GetMixin, FormView):
     form_class = RegistrationForm
     template_name = 'users/registration.html'
-    success_url = '/registration?submitted=True'
+    success_url = '/account/registration?submitted=True'
 
     def form_valid(self, form):
         user = form.save(commit=False)
@@ -182,12 +188,12 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
         return super(ProfileChangeView, self).form_valid(form)
 
     def get_success_url(self):
-        return f'/accounts/profile/?submitted={self.request.user.get_full_name()}'
+        return f'/account/profile/?submitted={self.request.user.get_full_name()}'
 
 class ProfileDeleteView(LoginRequiredMixin, FormView):
     form_class = ProfileDeleteForm
     template_name = 'users/profile_delete.html'
-    success_url = '/accounts/profile/deleted'
+    success_url = '/account/profile/deleted'
 
     def get(self, request, *args, **kwargs):
         if request.user.uuid != kwargs['pk']:
