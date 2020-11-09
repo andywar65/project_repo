@@ -23,7 +23,7 @@ from django.utils.translation import gettext_lazy as _
 from filebrowser.sites import site
 import private_storage.urls
 
-from users import views as user_views
+from users.views import ContactFormView
 from pages.views import HomeTemplateView
 from . import views
 
@@ -34,8 +34,8 @@ urlpatterns = [
     path('admin/filebrowser/', site.urls),
     path('grappelli/', include('grappelli.urls')), # grappelli URLS
     path('admin/', admin.site.urls),
-    path(_('contacts/'), user_views.ContactFormView.as_view(), name='contacts'),
-    path(_('account/'), include('users.urls'), namespace = 'account' ),
+    path(_('contacts/'), ContactFormView.as_view(), name='contacts'),
+    path(_('account/'), include('users.urls', namespace = 'account') ),
     path(_('search/'), views.search_results, name='search_results'),
     path('', HomeTemplateView.as_view()),
     path(_('articles/'), include('blog.urls.posts', namespace = 'blog')),
