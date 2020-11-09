@@ -69,7 +69,6 @@ class RegistrationFormView(GetMixin, FormView):
 class ContactFormView(GetMixin, FormView):
     form_class = ContactForm
     template_name = 'users/message.html'
-    #success_url = '/contacts?submitted=True'
 
     def get_initial(self):
         initial = super(ContactFormView, self).get_initial()
@@ -165,7 +164,7 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
 
     def get(self, request, *args, **kwargs):
         if request.user.uuid != kwargs['pk']:
-            raise Http404("User is not authorized to manage this profile")
+            raise Http404(_("User is not authorized to manage this profile"))
         return super(ProfileChangeView, self).get(request, *args, **kwargs)
 
     def get_initial(self):
@@ -199,7 +198,6 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
 class ProfileDeleteView(LoginRequiredMixin, FormView):
     form_class = ProfileDeleteForm
     template_name = 'users/profile_delete.html'
-    success_url = '/account/profile/deleted'
 
     def get(self, request, *args, **kwargs):
         if request.user.uuid != kwargs['pk']:
@@ -216,6 +214,9 @@ class ProfileDeleteView(LoginRequiredMixin, FormView):
         profile = Profile.objects.get(pk = user.uuid)
         profile.delete()
         return super(ProfileDeleteView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('account:profile_deleted')
 
 class TemplateDeletedView(TemplateView):
     template_name = 'users/profile_deleted.html'
