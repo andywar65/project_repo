@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Account{%endblock title %}
+{% block title %}{{ website.acro }} | {% translate 'Account' %}{%endblock title %}
 
 {% block content %}
 
@@ -10,30 +11,30 @@
   <div class="col-md-8">
     {% if submitted %}
     <p class="alert alert-success" role="alert">
-      Il profilo di {{ submitted }} è stato modificato con successo!
+      {% blocktranslate with name=submitted %}
+      {{ name }}'s profile has been successfully modified!
+      {% endblocktranslate %}
     </p>
     {% endif %}
-    <h4><strong>Account di {{ user.get_full_name }}</strong></h4>
-    <p>Da questa pagina si accede ai propri dati personali,
-      si può cambiare la propria password
-      {% if user.is_staff %}, si può andare in amministrazione{% endif %}
-      oppure si può effettuare il logout
-      (consigliabile farlo sempre alla fine della sessione).</p>
-      <a class="btn btn-success center" role="button" href="/accounts/profile/{{ user.uuid }}/change">
-        Cambia i tuoi dati</a>
-        <a class="btn btn-warning" role="button" href="{% url 'password_change' %}">
-          Cambia la tua password</a>
+    <h4><strong>{% translate 'Account of' %} {{ user.get_full_name }}</strong></h4>
+    <p>{% translate "From here you can change your profile and your password" %}
+      {% if user.is_staff %}, {% translate "you can go to the backend" %}{% endif %}
+      {% translate "or you can logout (it's always better to logout at the end of the session)" %}.</p>
+      <a class="btn btn-success center" role="button" href="{% url 'account:profile_change' user.uuid %}">
+        {% translate "Change profile" %}</a>
+        <a class="btn btn-warning" role="button" href="{% url 'account:password_change' %}">
+          {% translate "Change password" %}</a>
       {% if user.is_staff %}
         <a class="btn btn-primary" role="button" href="/admin/">
-          Vai all'amministrazione</a>
+          {% translate "Go to admin" %}</a>
       {% endif %}
-        <a class="btn btn-danger" role="button" href="{% url 'front_logout' %}">
-          Effettua il logout</a>
+        <a class="btn btn-danger" role="button" href="{% url 'account:front_logout' %}">
+          {% translate "Logout" %}</a>
     {% else %}
     <p class="alert alert-danger" role="alert">
-      ATTENZIONE! Per accedere a quest'area bisogna essere autenticati.
+      {% translate "WARNING! To access this area you must login" %}.
     </p>
-    <p>Fai clic qui per effettuare il <a href="{% url 'account:front_login' %}">login</a>.</p>
+    <p>{% translate "Click here to" %} <a href="{% url 'account:front_login' %}">{% translate "login" %}</a>.</p>
     {% endif %}
     <hr class="mb-4">
   </div>
