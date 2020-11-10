@@ -1,4 +1,5 @@
 from datetime import datetime
+
 from django import forms
 from django.conf import settings
 from django.contrib.auth import (password_validation, )
@@ -6,17 +7,20 @@ from django.contrib.auth.forms import (AuthenticationForm, UsernameField,
     PasswordResetForm, SetPasswordForm)
 from django.forms import ModelForm
 from django.forms.widgets import SelectDateWidget, CheckboxSelectMultiple
+from django.utils.translation import gettext as _
+
 from captcha.fields import ReCaptchaField
-from users.models import (Profile, User, UserMessage, )#User,
+
+from users.models import (Profile, User, UserMessage, )
 from users.widgets import SmallClearableFileInput
 
 class RegistrationForm(ModelForm):
-    username = UsernameField(label = 'Nome utente', required = True,
+    username = UsernameField(label = _('Username'), required = True,
         widget=forms.TextInput(attrs={'autofocus': True, }))
     email = forms.EmailField(label = 'Email', required = True,
         widget=forms.EmailInput(attrs={'autocomplete': 'email',
             'placeholder': 'you@example.com'}))
-    privacy = forms.BooleanField(label="Ho letto l'informativa sulla privacy",
+    privacy = forms.BooleanField(label=_("I subscribe the privacy agreement"),
         required=True)
     if settings.RECAPTCHA_TEST_MODE == False:
         captcha = ReCaptchaField()
@@ -31,17 +35,17 @@ class ContactLogForm(ModelForm):
         model = UserMessage
         fields = ('user', 'email', 'subject', 'body', 'attachment', 'recipient')
         widgets = {
-            'subject': forms.TextInput(attrs={'placeholder': "Scrivi qui il soggetto"}),
-            'body': forms.Textarea(attrs={'placeholder': "Scrivi qui il messaggio"}),
+            'subject': forms.TextInput(attrs={'placeholder': _("Write here the subject")}),
+            'body': forms.Textarea(attrs={'placeholder': _("Write here the message")}),
             'attachment' : SmallClearableFileInput(),}
 
 class ContactForm(ModelForm):
-    nickname = forms.CharField(label = 'Nome', required = True,
+    nickname = forms.CharField(label = _('Nome'), required = True,
         widget=forms.TextInput(attrs={'autofocus': True,}))
-    email = forms.EmailField(label = 'Email', required = True,
+    email = forms.EmailField(label = _('Email'), required = True,
         widget=forms.EmailInput(attrs={'autocomplete': 'email',
             'placeholder': 'you@example.com'}))
-    privacy = forms.BooleanField(label="Ho letto l'informativa sulla privacy",
+    privacy = forms.BooleanField(label=_("I subscribe the privacy agreement"),
         required=True)
 
     captcha = ReCaptchaField()
@@ -50,8 +54,8 @@ class ContactForm(ModelForm):
         model = UserMessage
         fields = ('nickname', 'email', 'subject', 'body', 'privacy')
         widgets = {
-            'subject': forms.TextInput(attrs={'placeholder': "Scrivi qui il soggetto"}),
-            'body': forms.Textarea(attrs={'placeholder': "Scrivi qui il messaggio"}),
+            'subject': forms.TextInput(attrs={'placeholder': _("Write here the subject")}),
+            'body': forms.Textarea(attrs={'placeholder': _("Write here the message")}),
             }
 
 class FrontAuthenticationForm(AuthenticationForm):
@@ -65,7 +69,7 @@ class FrontAuthenticationForm(AuthenticationForm):
 
 class FrontPasswordResetForm(PasswordResetForm):
     email = forms.EmailField(
-        max_length=254, label='Email di registrazione',
+        max_length=254, label=_('Signup email'),
         widget=forms.EmailInput(attrs={'autocomplete': 'email',
             })
     )
@@ -74,36 +78,36 @@ class FrontSetPasswordForm(SetPasswordForm):
     new_password1 = forms.CharField(
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password',
             }),
-        strip=False, label='Nuova password',
+        strip=False, label=_('New password'),
         help_text=password_validation.password_validators_help_text_html(),
     )
     new_password2 = forms.CharField(
-        strip=False, label='Ripeti la nuova password',
+        strip=False, label=_('Repeat new password'),
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password',
             }),
     )
 
 class FrontPasswordChangeForm(FrontSetPasswordForm):
     old_password = forms.CharField(
-        strip=False, label='Vecchia password',
+        strip=False, label=_('Old password'),
         widget=forms.PasswordInput(attrs={'autocomplete': 'current-password',
             'autofocus': True, }),
     )
 
 class ProfileChangeForm(forms.Form):
     avatar = forms.FileField( required = False, widget = SmallClearableFileInput())
-    first_name = forms.CharField( label = 'Nome', required = True,
+    first_name = forms.CharField( label = _('First name'), required = True,
         widget = forms.TextInput())
-    last_name = forms.CharField( label = 'Cognome', required = True,
+    last_name = forms.CharField( label = _('Last name'), required = True,
         widget = forms.TextInput())
-    email = forms.EmailField(label = 'Email', required = True,
+    email = forms.EmailField(label = _('Email'), required = True,
         widget=forms.EmailInput(attrs={'autocomplete': 'email',
             'placeholder': 'you@example.com'}))
-    bio = forms.CharField( label = 'Breve biografia', required = False,
-        widget = forms.Textarea(attrs={'placeholder': "Parlaci un po' di te"}) )
-    yes_spam = forms.BooleanField( label="Mailing list", required = False,
-        help_text = "Vuoi ricevere notifiche sui nuovi articoli?")
+    bio = forms.CharField( label = _('Short bio'), required = False,
+        widget = forms.Textarea(attrs={'placeholder': _("Talk about yourself")}) )
+    yes_spam = forms.BooleanField( label=_("Mailing list"), required = False,
+        help_text = _("Want to receive notifications about new articles?"))
 
 class ProfileDeleteForm(forms.Form):
-    delete = forms.BooleanField( label="Cancella il profilo", required = True,
-        help_text = """Seleziona per cancellare il profilo.""")
+    delete = forms.BooleanField( label=_("Delete the profile"), required = True,
+        help_text = _("Check to delete the profile."))
