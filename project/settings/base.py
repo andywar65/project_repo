@@ -14,6 +14,7 @@ from pathlib import Path
 import json
 
 from django.core.exceptions import ImproperlyConfigured
+from django.utils.translation import gettext as _
 
 PROJECT_DIR = Path(__file__).resolve(strict=True).parent.parent
 BASE_DIR = Path(PROJECT_DIR).resolve(strict=True).parent
@@ -134,10 +135,10 @@ FILEBROWSER_VERSIONS = {
     'medium': {'verbose_name': 'Medium (4col )', 'width': 300, 'height': '', 'opts': ''},
     'big': {'verbose_name': 'Big (6 col)', 'width': 460, 'height': '', 'opts': ''},
     'large': {'verbose_name': 'Large (8 col)', 'width': 680, 'height': '', 'opts': ''},
-    'wide_landscape': {'verbose_name': 'Orizzontale', 'width': 1600, 'height': 800, 'opts': 'crop'},
-    'landscape': {'verbose_name': 'Orizzontale', 'width': 1280, 'height': 720, 'opts': 'crop'},
-    'portrait': {'verbose_name': 'Verticale', 'width': 768, 'height': 1024, 'opts': 'crop'},
-    'square': {'verbose_name': 'Quadrato', 'width': 768, 'height': 768, 'opts': 'crop'},
+    'wide_landscape': {'verbose_name': _('Landscape 2:1'), 'width': 1600, 'height': 800, 'opts': 'crop'},
+    'landscape': {'verbose_name': _('Landscape 4:3'), 'width': 1280, 'height': 720, 'opts': 'crop'},
+    'portrait': {'verbose_name': _('Portrait'), 'width': 768, 'height': 1024, 'opts': 'crop'},
+    'square': {'verbose_name': _('Square'), 'width': 768, 'height': 768, 'opts': 'crop'},
     }
 
 FETCH_EMAILS = True
@@ -153,7 +154,7 @@ LANGUAGE_CODE = get_secret('LANGUAGE_CODE')#'en-us'
 
 TIME_ZONE = get_secret('TIME_ZONE')
 
-USE_I18N = True
+USE_I18N = False
 
 USE_L10N = True
 
