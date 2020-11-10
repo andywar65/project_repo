@@ -1,26 +1,28 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Contatto{%endblock title %}
+{% block title %}{{ website.acro }} | {% translate "Contact" %}{%endblock title %}
 
 {% block content %}
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <h4><strong>Contatto</strong></h4>
+    <h4><strong>{% translate "Contact" %}</strong></h4>
       {% if submitted %}
       <div class="alert alert-success" role="alert">
-        <p><strong>Il tuo messaggio è stato inoltrato con successo, grazie!</strong></p>
-        <p>A breve riceverai una risposta via mail.
-        Non è un processo automatico, per cui può richiedere tempo. Nel frattempo
-        ne puoi inviare un altro</p>
+        <p><strong>{% translate "Thank you, your message was successfully submitted" %}!</strong></p>
+        <p>{% translate "We will get in touch by email" %}.
+        {% translate "It's not an automatic process, it may take some time" %}.
+        {% translate "In the meanwhile you can send another" %}</p>
       </div>
       {% endif %}
-
-      <p>Ciao {{ user.get_short_name }}, scrivi qui sotto il tuo messaggio e poi invia.</p>
+      <p>{% blocktranslate with name=user.get_short_name %}
+        Hello {{ name }}, write down your message, then submit.
+        {% endblocktranslate %}</p>
       {% if form.errors %}
         <p class="alert alert-danger" role="alert">
-          Per favore, correggi gli errori qui sotto.
+          {% translate "Fix the errors below, please" %}.
         </p>
       {% endif %}
       <form action="" method="post" enctype="multipart/form-data" novalidate>

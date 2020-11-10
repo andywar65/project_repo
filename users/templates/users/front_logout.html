@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Logout{%endblock title %}
+{% block title %}{{ website.acro }} | {% translate 'Logout' %}{%endblock title %}
 
 {% block content %}
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <h4><strong>Logout effettuato</strong></h4>
+    <h4><strong>{% translate "Successful logout" %}</strong></h4>
     <p class="alert alert-success" role="alert">
-      Il logout è stato eseguito con successo.
+      {% translate "Logout was successful" %}.
     </p>
-    <p>Se vuoi, puoi procedere ad un nuovo <a href="/accounts/login/">login</a>.</p>
+    <p>{% translate "You can perform a new" %} <a href="{% url 'account:front_login' %}">{% translate "login" %}</a>.</p>
     <hr class="mb-4">
   </div>
 </div>
