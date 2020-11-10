@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Password resettata{%endblock title %}
+{% block title %}{{ website.acro }} | {% translate "Password resetted" %}{%endblock title %}
 
 {% block content %}
 
@@ -9,18 +10,18 @@
   <div class="col-md-8">
     {% if user.is_authenticated %}
     <p class="alert alert-success" role="alert">
-      Visto che hai effettuato il login potresti fare le seguenti cose:
+      {% translate "Now that you're logged in you could do the following" %}:
     </p>
     <ul>
-      <li>Modifica il tuo <a href="/accounts/profile/">account</a></li>
-      <li>Esegui il <a href="/accounts/logout/">logout</a></li>
+      <li>{% translate "Modify your" %} <a href="{% url 'account:profile' %}">{% translate "account" %}</a></li>
+      <li>{% translate "Just" %} <a href="{% url 'account:front_logout' %}">{% translate "logout" %}</a></li>
     </ul>
     {% else %}
-    <h4><strong>Password resettata</strong></h4>
+    <h4><strong>{% translate "Password resetted" %}</strong></h4>
     <p class="alert alert-success" role="alert">
-      Ok, la tua password è stata resettata, cerca di non dimenticarla di nuovo!
+      {% translate "Your password has been resetted, try not to forget it again" %}!
     </p>
-    <p>Adesso procedi con il <a href="/accounts/login/">login</a>.</p>
+    <p>{% translate "Now just" %} <a href="{% url 'account:front_login' %}">{% translate "login" %}</a>.</p>
     {% endif %}
     <hr class="mb-4">
   </div>
