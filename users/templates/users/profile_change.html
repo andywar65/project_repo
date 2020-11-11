@@ -1,18 +1,21 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Modifica profilo{%endblock title %}
+{% block title %}{{ website.acro }} | {% translate "Change profile" %}{%endblock title %}
 
 {% block content %}
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <h4><strong>Modifica il tuo profilo, {{ user.get_short_name }}</strong></h4>
-    <p>Il tuo nome utente è {{ user.username }} (non modificabile)</p>
+    <h4><strong>{% translate "Change your profile" %}, {{ user.get_short_name }}</strong></h4>
+    <p>{% blocktranslate with name=user.username %}
+      Your username is {{ name }} (can't change that)
+    {% endblocktranslate %}</p>
     <hr class="mb-4">
     {% if form.errors %}
       <p class="alert alert-danger" role="alert">
-        Per favore, correggi gli errori qui sotto.
+        {% translate "Fix the errors below, please" %}.
       </p>
     {% endif %}
     <form action="" method="post" enctype="multipart/form-data" novalidate>
@@ -27,10 +30,11 @@
         {% include 'users/profile_includes/button.html' %}
       {% csrf_token %}
     </form>
-    <p>Hai dato consenso al trattamento dei dati secondo quanto indicato nella
-      <a href="/docs/privacy/">Informativa sulla privacy.</a></p>
-    <p>Se decidi di negare il consenso devi <a href="/accounts/profile/{{ user.uuid }}/delete">
-      cancellare il tuo account.</a></p>
+    <p>{% translate "You have subscribed to the" %}
+      <a href="{% url 'docs:page_list' %}privacy/">{% translate "Privacy agreement" %}.</a></p>
+    <p>{% translate "If you want to unsubscribe you have to" %}
+      <a href="{% url 'account:profile_delete' user.uuid %}">
+      {% translate "delete your account" %}.</a></p>
   </div>
 </div>
 {% endblock content %}

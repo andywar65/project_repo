@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Cancella profilo{%endblock title %}
+{% block title %}{{ website.acro }} | {% translate "Delete profile" %}{%endblock title %}
 
 {% block content %}
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <h4><strong>Cancella il tuo profilo, {{ user.get_short_name }}</strong></h4>
-    <p>Sei sicuro di voler cancellare il tuo profilo? Questa operazione
-      è irreversibile.</p>
+    <h4><strong>{% translate "Delete your profile" %}, {{ user.get_short_name }}</strong></h4>
+    <p>{% translate "Are you sure you want to delete your profile? There's no way back" %}.</p>
     <hr class="mb-4">
     {% if form.errors %}
       <p class="alert alert-danger" role="alert">
-        Per favore, correggi gli errori qui sotto.
+        {% translate "Fix the errors below, please" %}.
       </p>
     {% endif %}
     <form action="" method="post" enctype="multipart/form-data" novalidate>

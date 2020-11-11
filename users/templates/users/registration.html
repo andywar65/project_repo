@@ -1,32 +1,36 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Richiesta di iscrizione{%endblock title %}
+{% block title %}{{ website.acro }} | {% translate "Signup request" %}{%endblock title %}
 
 {% block content %}
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <h4><strong>Richiesta di iscrizione</strong></h4>
+    <h4><strong>{% translate "Signup request" %}</strong></h4>
       {% if submitted %}
       <div class="alert alert-success" role="alert">
-        <p><strong>La tua richiesta è stata inoltrata con successo, grazie!</strong></p>
-        <p>A breve riceverai una mail con le credenziali di accesso.
-        Effettua il login e cambia la password generata automaticamente.
-        Ricorda che hai dato il consenso al trattamento dei dati, secondo
-        quanto indicato nella <a href="/docs/privacy/">Informativa sulla privacy.</a>
+        <p><strong>{% translate "Your request was forwarded successfully, thanks!" %}</strong></p>
+        <p>{% blocktranslate %}
+          You will soon receive a mail with access credentials.
+          Login and change the automatic password.
+          Remember that you subscribed to the
+        {% endblocktranslate %}
+        <a href="{% url 'docs:page_list' %}privacy/">{% translate "Privacy agreement" %}.</a>
         </p>
       </div>
       {% endif %}
-      <p>Questo modulo serve per iscriversi a {{ website.name }}. Gli iscritti
-        hanno accesso a contenuti extra e possono interagire con il sito.
-        Se vuoi semplicemente inviarci un messaggio, usa quest'altro
-        <a href="/contacts/">modulo.</a></p>
-      <p>Se invece sei già registrato, effettua il
-        <a href="/accounts/login/?next=/registration">login.</a></p>
+      <p>{% blocktranslate with name=website.name %}
+        Fill in the form to signup to {{ name }}. Registered users get access to
+        extra content and can interact with the website. If you just want to
+        send us a word use this other{% endblocktranslate %}
+        <a href="{% url 'contacts' %}">{% translate "Privacy agreement" %}.</a></p>
+      <p>{% translate "If you are a registered user just" %}
+        <a href="{% url 'account:front_login' %}?next={% translate '/registration' %}">{% translate "login" %}.</a></p>
         {% if form.errors %}
           <p class="alert alert-danger" role="alert">
-            Per favore, correggi gli errori qui sotto.
+            {% translate "Fix the errors below, please" %}.
           </p>
         {% endif %}
       <form action="" method="post" novalidate>
@@ -42,7 +46,7 @@
         <div class="row">
           <div class="col-md-6 mb-3">
               {{ form.privacy|as_crispy_field }}<br>
-              <a href="/docs/privacy/">Informativa sulla privacy</a>
+              <a href="/docs/privacy/">{% translate "Privacy agreement" %}</a>
           </div>
           {% if website.recaptcha_test_mode == False %}
           <div class="col-md-6 mb-3">

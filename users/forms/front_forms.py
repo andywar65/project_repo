@@ -40,7 +40,7 @@ class ContactLogForm(ModelForm):
             'attachment' : SmallClearableFileInput(),}
 
 class ContactForm(ModelForm):
-    nickname = forms.CharField(label = _('Nome'), required = True,
+    nickname = forms.CharField(label = _('Name'), required = True,
         widget=forms.TextInput(attrs={'autofocus': True,}))
     email = forms.EmailField(label = _('Email'), required = True,
         widget=forms.EmailInput(attrs={'autocomplete': 'email',

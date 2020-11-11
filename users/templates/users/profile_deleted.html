@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}{{ website.acro }} | Profilo cancellato{%endblock title %}
+{% block title %}{{ website.acro }} | {% translate "Profile deleted" %}{%endblock title %}
 
 {% block content %}
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <h4><strong>Profilo cancellato</strong></h4>
+    <h4><strong>{% translate "Profile deleted" %}</strong></h4>
     <p class="alert alert-success" role="alert">
-      Il tuo profilo è stato cancellato. Grazie comunque per esserti
-      iscritto a {{ website.name }}!
+      {% translate "Your profile was deleted. Thanks anyway for subscribing to" %}
+      {{ website.name }}!
     </p>
     <hr class="mb-4">
   </div>
