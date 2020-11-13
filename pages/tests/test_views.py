@@ -5,6 +5,12 @@ from django.urls import reverse
 from blog.models import Article
 from pages.models import TreePage, HomePage, HomeButton
 
+class HomePageModelTest(TestCase):
+
+    def test_home_template_view_status_code(self):
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 404)
+
 class TreePageModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
