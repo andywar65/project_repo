@@ -23,16 +23,17 @@ class UserViewTest(TestCase):
         """Solved thanks to @MrValdez in https://stackoverflow.com/questions/
         3159284/how-to-unit-test-a-form-with-a-captcha-field-in-django
         """
-        response = self.client.post('/registration/', {'username':'new_guy',
+        response = self.client.post(reverse('registration'), {'username':'new_guy',
             'email':'new@guy.com', 'privacy': True,
             "g-recaptcha-response": "PASSED"})
         self.assertEqual(response.status_code, 302 )
 
     def test_registration_view_post_redirects(self):
-        response = self.client.post('/registration/', {'username':'new_guy',
+        response = self.client.post(reverse('registration'), {'username':'new_guy',
             'email':'new@guy.com', 'privacy': True,
             "g-recaptcha-response": "PASSED"}, follow=True)
-        self.assertRedirects(response, '/registration/?submitted=True' )
+        self.assertRedirects(response, reverse('registration')+
+            '?submitted=True' )
 
     def test_contact_view_status_code(self):
         response = self.client.get(reverse('contacts'))
@@ -52,58 +53,62 @@ class UserViewTest(TestCase):
         response = self.client.post(reverse('contacts'), {'subject': 'Foo',
             'body': 'Bar', 'nickname': 'Nick', 'email': 'me@example.com',
             'privacy': True, "g-recaptcha-response": "PASSED"}, follow=True)
-        self.assertRedirects(response, '/contacts/?submitted=True' )
+        self.assertRedirects(response, reverse('contacts')+'?submitted=True' )
 
     def test_contact_view_template_logged(self):
-        self.client.post('/accounts/login/', {'username':'existing',
+        self.client.post(reverse('front_login'), {'username':'existing',
             'password':'P4s5W0r6'})
         response = self.client.get(reverse('contacts'))
         self.assertTemplateUsed(response, 'users/message_log.html')
 
     def test_contact_view_message_logged_post_status_code(self):
-        self.client.post('/accounts/login/', {'username':'existing',
+        self.client.post(reverse('front_login'), {'username':'existing',
             'password':'P4s5W0r6'})
         response = self.client.post(reverse('contacts'), {'subject': 'Foo',
             'body': 'Bar'})
         self.assertEqual(response.status_code, 302 )
 
     def test_contact_view_message_logged_post_status_code_subject(self):
-        self.client.post('/accounts/login/', {'username':'existing',
+        self.client.post(reverse('front_login'), {'username':'existing',
             'password':'P4s5W0r6'})
-        response = self.client.post('/contacts/?subject=Foo', {
+        response = self.client.post(reverse('contacts')+'?subject=Foo', {
             'body': 'Bar'})
         self.assertEqual(response.status_code, 200 )
 
     def test_contact_view_message_logged_post_status_code_recipient(self):
-        self.client.post('/accounts/login/', {'username':'existing',
+        self.client.post(reverse('front_login'), {'username':'existing',
             'password':'P4s5W0r6'})
         usr = User.objects.get(username='existing')
-        response = self.client.post(f'/contacts/?recipient={usr.uuid}', {
-            'subject': 'Foo', 'body': 'Bar'})
+        response = self.client.post(reverse('contacts')+
+            f'?recipient={usr.uuid}', { 'subject': 'Foo', 'body': 'Bar'})
         self.assertEqual(response.status_code, 302 )
 
     def test_login_view_next_logout(self):
-        response = self.client.post('/accounts/login/?next=/accounts/logout/',
+        response = self.client.post(reverse('front_login') + '?next=' +
+            reverse('front_logout'),
             {'username':'existing', 'password':'P4s5W0r6'})
-        self.assertRedirects(response, '/accounts/profile/')
+        self.assertRedirects(response, reverse('profile') )
 
     def test_login_view_next_deleted(self):
-        response = self.client.post('/accounts/login/?next=/accounts/profile/deleted',
+        response = self.client.post(reverse('front_login') + '?next=' +
+            reverse('profile_deleted'),
             {'username':'existing', 'password':'P4s5W0r6'})
-        self.assertRedirects(response, '/accounts/profile/')
+        self.assertRedirects(response, reverse('profile') )
 
     def test_login_view_next_reset(self):
-        response = self.client.post('/accounts/login/?next=/accounts/password_reset/done/',
+        response = self.client.post(reverse('front_login') + '?next=' +
+            reverse('password_reset_done'),
             {'username':'existing', 'password':'P4s5W0r6'})
-        self.assertRedirects(response, '/accounts/profile/')
+        self.assertRedirects(response, reverse('profile'))
 
     def test_login_view_next_registration(self):
-        response = self.client.post('/accounts/login/?next=/registration/',
+        response = self.client.post(reverse('front_login') + '?next=' +
+            reverse('registration'),
             {'username':'existing', 'password':'P4s5W0r6'})
-        self.assertRedirects(response, '/accounts/profile/')
+        self.assertRedirects(response, reverse('profile'))
 
     def test_change_profile_view_status_code(self):
-        self.client.post('/accounts/login/', {'username':'existing',
+        self.client.post(reverse('front_login'), {'username':'existing',
             'password':'P4s5W0r6'})
         usr = User.objects.get(username='existing')
         response = self.client.get(reverse('profile_change',
@@ -111,7 +116,7 @@ class UserViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_change_profile_view_post_status_code(self):
-        self.client.post('/accounts/login/', {'username':'existing',
+        self.client.post(reverse('front_login'), {'username':'existing',
             'password':'P4s5W0r6'})
         usr = User.objects.get(username='existing')
         response = self.client.post(reverse('profile_change',
@@ -121,7 +126,7 @@ class UserViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_change_profile_view_post_redirects(self):
-        self.client.post('/accounts/login/', {'username':'existing',
+        self.client.post(reverse('front_login'), {'username':'existing',
             'password':'P4s5W0r6'})
         usr = User.objects.get(username='existing')
         response = self.client.post(reverse('profile_change',
@@ -129,10 +134,10 @@ class UserViewTest(TestCase):
             'last_name': 'Guy', 'email': 'me@existing.com', 'avatar': '',
             'bio': 'Foo Bar', 'yes_spam': True})
         self.assertRedirects(response,
-            '/accounts/profile/?submitted=existing')
+            reverse('profile')+'?submitted=existing')
 
     def test_change_profile_view_template(self):
-        self.client.post('/accounts/login/', {'username':'existing',
+        self.client.post(reverse('front_login'), {'username':'existing',
             'password':'P4s5W0r6'})
         usr = User.objects.get(username='existing')
         response = self.client.get(reverse('profile_change',
@@ -140,7 +145,7 @@ class UserViewTest(TestCase):
         self.assertTemplateUsed(response, 'users/profile_change.html')
 
     def test_change_profile_view_denied(self):
-        self.client.post('/accounts/login/', {'username':'existing',
+        self.client.post(reverse('front_login'), {'username':'existing',
             'password':'P4s5W0r6'})
         other = User.objects.get(username='otherguy')
         response = self.client.get(reverse('profile_change',
@@ -148,7 +153,7 @@ class UserViewTest(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_delete_profile_view_status_code(self):
-        self.client.post('/accounts/login/', {'username':'existing',
+        self.client.post(reverse('front_login'), {'username':'existing',
             'password':'P4s5W0r6'})
         usr = User.objects.get(username='existing')
         response = self.client.get(reverse('profile_delete',
@@ -156,7 +161,7 @@ class UserViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_delete_profile_view_template(self):
-        self.client.post('/accounts/login/', {'username':'existing',
+        self.client.post(reverse('front_login'), {'username':'existing',
             'password':'P4s5W0r6'})
         usr = User.objects.get(username='existing')
         response = self.client.get(reverse('profile_delete',
@@ -164,7 +169,7 @@ class UserViewTest(TestCase):
         self.assertTemplateUsed(response, 'users/profile_delete.html')
 
     def test_delete_profile_view_denied(self):
-        self.client.post('/accounts/login/', {'username':'existing',
+        self.client.post(reverse('front_login'), {'username':'existing',
             'password':'P4s5W0r6'})
         other = User.objects.get(username='otherguy')
         response = self.client.get(reverse('profile_delete',
@@ -178,4 +183,4 @@ class UserViewTest(TestCase):
         usr = User.objects.get(username='existing')
         response = self.client.post(reverse('profile_delete',
             kwargs={'pk': usr.uuid}), {'delete': True})
-        self.assertRedirects(response, '/accounts/profile/deleted')
+        self.assertRedirects(response, reverse('profile_deleted'))
