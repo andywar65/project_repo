@@ -774,7 +774,7 @@ msgstr "I campi con l'asterisco (*) sono richiesti"
 
 #: .\users\templates\users\front_login.html:47
 msgid "Password forgotten?"
-msgstr "Dimentcato la password?"
+msgstr "Dimenticato la password?"
 
 #: .\users\templates\users\front_logout.html:10
 msgid "Successful logout"
@@ -1003,7 +1003,7 @@ msgstr ""
 
 #: .\users\templates\users\reset_done.html:24
 msgid "Now just"
-msgstr "Ora"
+msgstr "Ora effettua il"
 
 #: .\users\templates\users\reset_password.html:11
 msgid "Request new password"
