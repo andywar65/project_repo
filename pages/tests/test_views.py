@@ -92,23 +92,28 @@ class TreePageModelTest(TestCase):
         self.assertEqual(response.context['adjacent'], (None, page) )
 
     def test_tree_page_by_path_view_status_code(self):
-        response = self.client.get('/docs/page-1/child-page/')
+        response = self.client.get(reverse('docs:page_list') +
+            'page-1/child-page/')
         self.assertEqual(response.status_code, 200)
 
     def test_tree_page_by_path_view_wrong_path(self):
-        response = self.client.get('/docs/wrong-path/child-page/')
+        response = self.client.get(reverse('docs:page_list') +
+            'wrong-path/child-page/')
         self.assertEqual(response.status_code, 404)
 
     def test_tree_page_by_path_view_template(self):
-        response = self.client.get('/docs/page-1/child-page/')
+        response = self.client.get(reverse('docs:page_list') +
+            'page-1/child-page/')
         self.assertTemplateUsed(response, 'pages/tree_page.html')
 
     def test_tree_page_by_path_view_context_object(self):
         page = TreePage.objects.get(slug='child-page')
-        response = self.client.get('/docs/page-1/child-page/')
+        response = self.client.get(reverse('docs:page_list') +
+            'page-1/child-page/')
         self.assertEqual(response.context['page'], page )
 
     def test_tree_page_by_path_view_context_adjacent(self):
         page = TreePage.objects.get(slug='page-1')
-        response = self.client.get('/docs/page-1/child-page/')
+        response = self.client.get(reverse('docs:page_list') +
+            'page-1/child-page/')
         self.assertEqual(response.context['adjacent'], (page, None) )

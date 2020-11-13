@@ -57,11 +57,6 @@ class TreePageModelTest(TestCase):
         sibling = TreePage.objects.get(slug = 'second-child-page')
         self.assertEquals(child.get_adjacent_pages(), (parent, sibling))
 
-    #def test_tree_page_stream_search(self):
-        #page = TreePage.objects.get(slug = 'page-1')
-        #self.assertEquals(page.stream_search,
-            #'\n  \n    Foo\n    \n  \n  \n     Bar \n  \n\n')
-
     def test_tree_page_get_paragraphs(self):
         page = TreePage.objects.get(slug = 'page-1')
         self.assertEquals(page.get_paragraphs(), 'Bar')
