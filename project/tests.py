@@ -39,28 +39,28 @@ class SearchTest(TestCase):
             )
 
     def test_search_results_view_status_code(self):
-        response = self.client.get('/search/?q=foo')
+        response = self.client.get(reverse('search_results') + '?q=foo')
         self.assertEqual(response.status_code, 200)
 
     def test_search_results_view_template(self):
-        response = self.client.get('/search/?q=foo')
+        response = self.client.get(reverse('search_results') + '?q=foo')
         self.assertTemplateUsed(response, 'search_results.html')
 
     def test_search_results_view_context_success(self):
-        response = self.client.get('/search/?q=foo')
+        response = self.client.get(reverse('search_results') + '?q=foo')
         self.assertTrue(response.context['success'])
 
     def test_search_results_view_context_success_false(self):
-        response = self.client.get('/search/?q=false')
+        response = self.client.get(reverse('search_results') + '?q=false')
         self.assertFalse(response.context['success'])
 
     def test_search_results_view_not_validating(self):
-        response = self.client.get('/search/?q=')
+        response = self.client.get(reverse('search_results') + '?q=')
         self.assertFalse(response.context['success'])
 
     def test_search_results_view_context_posts(self):
         article = Article.objects.filter(slug='article-4')
-        response = self.client.get('/search/?q=foo')
+        response = self.client.get(reverse('search_results') + '?q=foo')
         #workaround found in
         #https://stackoverflow.com/questions/17685023/how-do-i-test-django-querysets-are-equal
         self.assertQuerysetEqual(response.context['all_blogs'], article,
@@ -68,12 +68,12 @@ class SearchTest(TestCase):
 
     def test_search_results_view_context_uploads(self):
         article = Article.objects.filter(slug='article-4')
-        response = self.client.get('/search/?q=foo')
+        response = self.client.get(reverse('search_results') + '?q=foo')
         self.assertQuerysetEqual(response.context['all_uploads'], article,
             transform=lambda x: x)
 
     def test_search_results_view_context_pages(self):
         page = TreePage.objects.filter(slug='page-2')
-        response = self.client.get('/search/?q=foo')
+        response = self.client.get(reverse('search_results') + '?q=foo')
         self.assertQuerysetEqual(response.context['pages'], page,
             transform=lambda x: x)
