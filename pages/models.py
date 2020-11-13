@@ -5,6 +5,7 @@ from django.utils.timezone import now
 from django.utils.html import strip_tags
 from django.db import models
 from django.utils.translation import gettext as _
+from django.urls import reverse
 
 from filebrowser.fields import FileBrowseField
 from treebeard.mp_tree import MP_Node
@@ -80,7 +81,7 @@ class TreePage(MP_Node):
     #node_order_by = ['title']
 
     def get_path(self):
-        path = '/docs/'
+        path = reverse('docs:page_list')
         ancestors = self.get_ancestors()
         if ancestors:
             for ancestor in ancestors:

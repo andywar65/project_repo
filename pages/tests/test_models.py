@@ -1,13 +1,12 @@
 from django.test import TestCase
+from django.urls import reverse
 
-#from streamblocks.models import IndexedParagraph
 from pages.models import TreePage
 
 class TreePageModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        #IndexedParagraph.objects.create(id=61, title='Foo', body='Bar')
         TreePage.objects.create(title='Page 1', path = '0001', depth = 1,
             numchild = 2,
             body = 'Bar',
@@ -36,12 +35,12 @@ class TreePageModelTest(TestCase):
     def test_tree_page_get_path(self):
         page = TreePage.objects.get(slug = 'page-1')
         #this test also generate unique slug
-        self.assertEquals(page.get_path(), '/docs/page-1/')
+        self.assertEquals(page.get_path(), reverse('docs:page_list')+'page-1/')
 
     def test_child_tree_page_get_path(self):
         page = TreePage.objects.get(slug = 'child-page')
         #this test also generate unique slug
-        self.assertEquals(page.get_path(), '/docs/page-1/child-page/')
+        self.assertEquals(page.get_path(), reverse('docs:page_list')+'page-1/child-page/')
 
     def test_tree_page_get_adjacent_pages(self):
         page = TreePage.objects.get(slug = 'page-1')
