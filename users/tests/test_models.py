@@ -95,8 +95,7 @@ class UserMessageModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        user = User.objects.create(username='andy.war65', password='P4s5W0r6',
-            first_name='Andrea', last_name='Guerra', email='andy@war.com')
+        user = User.objects.create(username='test-directory', password='P4s5W0r6',)
         UserMessage.objects.create(id=19, user=user, subject='Foo', body='Bar',
             attachment = SimpleUploadedFile('file.txt', b'Foo Bar',
             'text/plain'))
@@ -104,15 +103,15 @@ class UserMessageModelTest(TestCase):
     def tearDown(self):
         """Checks existing files, then removes them"""
         list = os.listdir(os.path.join(settings.PRIVATE_STORAGE_ROOT,
-            'users/andy.war65'))
+            'users/test-directory'))
         for file in list:
             os.remove(os.path.join(settings.PRIVATE_STORAGE_ROOT,
-                f'users/andy.war65/{file}'))
+                f'users/test-directory/{file}'))
 
     def test_user_message_directory(self):
         message = UserMessage.objects.get(id = 19)
         #first we test if the directory is correct
         self.assertEquals(str(message.attachment).split('_')[0],
-            'users/andy.war65/file')
+            'users/test-directory/file')
         #then we test if random suffix was added
         self.assertEquals(len(str(message.attachment).split('_')[1]), 11)
