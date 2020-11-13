@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 23:30+0100\n"
+"POT-Creation-Date: 2020-11-13 12:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -709,7 +709,8 @@ msgstr "puoi andare all'amministrazione"
 msgid ""
 "or you can logout (it's always better to logout at the end of the session)"
 msgstr ""
-"oppure puoi effettuare il logout (sempre meglio farlo alla fine di una sessione)"
+"oppure puoi effettuare il logout (sempre meglio farlo alla fine di una "
+"sessione)"
 
 #: .\users\templates\users\account.html:24
 #: .\users\templates\users\profile_change.html:5
@@ -791,8 +792,6 @@ msgstr "Ora puoi effettuare un nuovo"
 #: .\users\templates\users\message.html:11
 #: .\users\templates\users\message_log.html:5
 #: .\users\templates\users\message_log.html:11
-#, fuzzy
-#| msgid "Contacts"
 msgid "Contact"
 msgstr "Contatto"
 
@@ -830,7 +829,8 @@ msgstr "al sito oppure"
 
 #: .\users\templates\users\message.html:24
 msgid "if you have already. Alternatively fill the following form and submit."
-msgstr "se lo hai già fatto. In alternativa riempi il modulo qui sotto e Invia."
+msgstr ""
+"se lo hai già fatto. In alternativa riempi il modulo qui sotto e Invia."
 
 #: .\users\templates\users\message.html:28
 #: .\users\templates\users\message_log.html:25
@@ -915,7 +915,8 @@ msgstr "Cancella il tuo profilo"
 
 #: .\users\templates\users\profile_delete.html:12
 msgid "Are you sure you want to delete your profile? There's no way back"
-msgstr "Sei sicuro di voler cancellare il tuo profilo? Non puoi tornare indietro"
+msgstr ""
+"Sei sicuro di voler cancellare il tuo profilo? Non puoi tornare indietro"
 
 #: .\users\templates\users\profile_deleted.html:4
 #: .\users\templates\users\profile_deleted.html:10
@@ -960,10 +961,10 @@ msgid ""
 "        send us a word use this other"
 msgstr ""
 "\n"
-"        Riempi questo modulo per registrarti a %(name)s. Utenti registrati hanno accesso "
-"a\n"
-"        contenuti extra e possono interagire con il sito. Se vuoi semplicemente "
-"\n"
+"        Riempi questo modulo per registrarti a %(name)s. Utenti registrati "
+"hanno accesso a\n"
+"        contenuti extra e possono interagire con il sito. Se vuoi "
+"semplicemente \n"
 "        contattarci usa questo altro"
 
 #: .\users\templates\users\registration.html:29
@@ -997,7 +998,8 @@ msgstr "effettua il logout"
 
 #: .\users\templates\users\reset_done.html:22
 msgid "Your password has been resetted, try not to forget it again"
-msgstr "La tua password è stata reimpostata, cerca di non dimenticarla di nuovo"
+msgstr ""
+"La tua password è stata reimpostata, cerca di non dimenticarla di nuovo"
 
 #: .\users\templates\users\reset_done.html:24
 msgid "Now just"
@@ -1022,7 +1024,8 @@ msgstr ""
 
 #: .\users\templates\users\reset_password.html:22
 msgid "Insert signup email and press Submit, then follow the instructions"
-msgstr "Inserisci la mail di registrazione e premi Invia, poi segui le istruzioni"
+msgstr ""
+"Inserisci la mail di registrazione e premi Invia, poi segui le istruzioni"
 
 #: .\users\templates\users\reset_password_confirm.html:5
 msgid "Password reset"
@@ -1042,7 +1045,8 @@ msgstr "Richiesta modifica password inviata"
 
 #: .\users\templates\users\reset_password_done.html:12
 msgid "In your inbox you should find a link to reset the password"
-msgstr "Nella posta in arrivo ci dovrebbe essere un link per reimpostare la password"
+msgstr ""
+"Nella posta in arrivo ci dovrebbe essere un link per reimpostare la password"
 
 #: .\users\templates\users\reset_password_done.html:13
 msgid "If you don't find it try looking in the spam folder"
