@@ -130,6 +130,8 @@ class FrontLoginView(LoginView):
             return reverse('profile')
         elif redirect_to == reverse('registration'):
             return reverse('profile')
+        elif not redirect_to:
+            return reverse('profile')
         return redirect_to
 
 class FrontLogoutView(LogoutView):
