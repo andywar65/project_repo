@@ -7,7 +7,7 @@ from .views import (FrontLoginView, FrontLogoutView, FrontPasswordResetView,
     ProfileChangeView, ProfileDeleteView, TemplateDeletedView,
     RegistrationFormView)
 
-app_name = 'account'
+#app_name = 'account'
 urlpatterns = [
     path(_('profile/'), TemplateAccountView.as_view(),
         name='profile'),

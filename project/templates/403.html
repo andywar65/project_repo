@@ -9,7 +9,7 @@
     <h4><strong>{% translate 'Access denied' %}</strong></h4>
     <div class="alert alert-danger" role="alert">
       <p>{% translate "You don't have permissions to access this page" %}.</p>
-      <p>{% translate "Maybe you still have to" %} <a href="{% url 'account:front_login' %}">{% translate "login" %}</a>,
+      <p>{% translate "Maybe you still have to" %} <a href="{% url 'front_login' %}">{% translate "login" %}</a>,
       {% translate "otherwise use this" %} <a href="{% url 'contacts' %}">{% translate "form" %}</a>
       {% translate "to request permissions" %}.</p>
     </div>

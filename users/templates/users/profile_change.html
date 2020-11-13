@@ -33,7 +33,7 @@
     <p>{% translate "You have subscribed to the" %}
       <a href="{% url 'docs:page_list' %}privacy/">{% translate "Privacy agreement" %}.</a></p>
     <p>{% translate "If you want to unsubscribe you have to" %}
-      <a href="{% url 'account:profile_delete' user.uuid %}">
+      <a href="{% url 'profile_delete' user.uuid %}">
       {% translate "delete your account" %}.</a></p>
   </div>
 </div>

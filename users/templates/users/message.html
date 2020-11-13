@@ -18,9 +18,9 @@
       </div>
       {% endif %}
       <p>{% translate "You are an anonymous user. You can either" %}
-        <a href="{% url 'account:registration' %}">{% translate "signup" %} </a>
+        <a href="{% url 'registration' %}">{% translate "signup" %} </a>
         {% translate "to the website or" %}
-        <a href="{% url 'account:front_login' %}?next={% url 'contacts' %}">{% translate "login" %}</a>
+        <a href="{% url 'front_login' %}?next={% url 'contacts' %}">{% translate "login" %}</a>
         {% translate "if you have already. Alternatively fill the following form and submit." %}
       </p>
       {% if form.errors %}

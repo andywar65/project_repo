@@ -27,7 +27,7 @@
         send us a word use this other{% endblocktranslate %}
         <a href="{% url 'contacts' %}">{% translate "Privacy agreement" %}.</a></p>
       <p>{% translate "If you are a registered user just" %}
-        <a href="{% url 'account:front_login' %}?next={% translate '/registration' %}">{% translate "login" %}.</a></p>
+        <a href="{% url 'front_login' %}?next={% translate '/registration' %}">{% translate "login" %}.</a></p>
         {% if form.errors %}
           <p class="alert alert-danger" role="alert">
             {% translate "Fix the errors below, please" %}.

@@ -20,21 +20,21 @@
     <p>{% translate "From here you can change your profile and your password" %}
       {% if user.is_staff %}, {% translate "you can go to the backend" %}{% endif %}
       {% translate "or you can logout (it's always better to logout at the end of the session)" %}.</p>
-      <a class="btn btn-success center" role="button" href="{% url 'account:profile_change' user.uuid %}">
+      <a class="btn btn-success center" role="button" href="{% url 'profile_change' user.uuid %}">
         {% translate "Change profile" %}</a>
-        <a class="btn btn-warning" role="button" href="{% url 'account:password_change' %}">
+        <a class="btn btn-warning" role="button" href="{% url 'password_change' %}">
           {% translate "Change password" %}</a>
       {% if user.is_staff %}
         <a class="btn btn-primary" role="button" href="/admin/">
           {% translate "Go to admin" %}</a>
       {% endif %}
-        <a class="btn btn-danger" role="button" href="{% url 'account:front_logout' %}">
+        <a class="btn btn-danger" role="button" href="{% url 'front_logout' %}">
           {% translate "Logout" %}</a>
     {% else %}
     <p class="alert alert-danger" role="alert">
       {% translate "WARNING! To access this area you must login" %}.
     </p>
-    <p>{% translate "Click here to" %} <a href="{% url 'account:front_login' %}">{% translate "login" %}</a>.</p>
+    <p>{% translate "Click here to" %} <a href="{% url 'front_login' %}">{% translate "login" %}</a>.</p>
     {% endif %}
     <hr class="mb-4">
   </div>

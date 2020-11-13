@@ -13,15 +13,15 @@
       {% translate "Now that you're logged in you could do the following" %}:
     </p>
     <ul>
-      <li>{% translate "Modify your" %} <a href="{% url 'account:profile' %}">{% translate "account" %}</a></li>
-      <li>{% translate "Just" %} <a href="{% url 'account:front_logout' %}">{% translate "logout" %}</a></li>
+      <li>{% translate "Modify your" %} <a href="{% url 'profile' %}">{% translate "account" %}</a></li>
+      <li>{% translate "Just" %} <a href="{% url 'front_logout' %}">{% translate "logout" %}</a></li>
     </ul>
     {% else %}
     <h4><strong>{% translate "Password resetted" %}</strong></h4>
     <p class="alert alert-success" role="alert">
       {% translate "Your password has been resetted, try not to forget it again" %}!
     </p>
-    <p>{% translate "Now just" %} <a href="{% url 'account:front_login' %}">{% translate "login" %}</a>.</p>
+    <p>{% translate "Now just" %} <a href="{% url 'front_login' %}">{% translate "login" %}</a>.</p>
     {% endif %}
     <hr class="mb-4">
   </div>

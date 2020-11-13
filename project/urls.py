@@ -35,7 +35,7 @@ urlpatterns = [
     path('grappelli/', include('grappelli.urls')), # grappelli URLS
     path('admin/', admin.site.urls),
     path(_('contacts/'), ContactFormView.as_view(), name='contacts'),
-    path(_('account/'), include('users.urls', namespace = 'account') ),
+    path(_('account/'), include('users.urls', ) ),#namespace = 'account'
     path(_('search/'), views.search_results, name='search_results'),
     path('', HomeTemplateView.as_view()),
     path(_('articles/'), include('blog.urls.posts', namespace = 'blog')),

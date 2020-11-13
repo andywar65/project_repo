@@ -14,7 +14,7 @@
       <p class="alert alert-warning" role="alert">
       {% translate 'You are already authenticated as' %} {{ user.username }}.
       {% translate "If you want to login with a different account you have to" %}
-      <a href="{% url 'account:front_logout' %}">{% translate "logout first" %}</a>.
+      <a href="{% url 'front_logout' %}">{% translate "logout first" %}</a>.
       </p>
       <hr class="mb-4">
     {% else %}
@@ -44,7 +44,7 @@
                   <hr class="mb-4">
                   <button class="btn btn-secondary btn-lg btn-block" type="submit">{% translate "Submit" %}</button>
                   <small>{% translate "Fields with asterisk (*) are required" %}</small><br>
-                  <a href="{% url 'account:front_password_reset' %}">{% translate "Password forgotten?" %}</a>
+                  <a href="{% url 'front_password_reset' %}">{% translate "Password forgotten?" %}</a>
                   <hr class="mb-4">
           {% csrf_token %}
         </form>
