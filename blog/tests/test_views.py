@@ -193,34 +193,34 @@ class ArticleViewTest(TestCase):
     def test_user_upload_create_view_redirect_not_logged(self):
         response = self.client.get('/articoli/contributi/?post_id=34')
         self.assertRedirects(response,
-            '/accounts/login/?next=/articoli/contributi/%3Fpost_id%3D34')
+            '/account/login/?next=/articoli/contributi/%3Fpost_id%3D34')
 
     def test_user_upload_create_view_status_code(self):
-        self.client.post('/accounts/login/', {'username':'logged_in',
+        self.client.post('/account/login/', {'username':'logged_in',
             'password':'P4s5W0r6'})
         response = self.client.get(reverse('blog:post_upload'))
         self.assertEqual(response.status_code, 200)
 
     def test_user_upload_create_view_status_code_untrusted(self):
-        self.client.post('/accounts/login/', {'username':'untrusted',
+        self.client.post('/account/login/', {'username':'untrusted',
             'password':'P4s5W0r6'})
         response = self.client.get(reverse('blog:post_upload'))
         self.assertEqual(response.status_code, 403)
 
     def test_user_upload_create_view_status_code_untrusted_explicit(self):
-        self.client.post('/accounts/login/', {'username':'untrusted',
+        self.client.post('/account/login/', {'username':'untrusted',
             'password':'P4s5W0r6'})
         response = self.client.get('/articoli/contributi/?post_id=34')
         self.assertEqual(response.status_code, 403)
 
     def test_user_upload_create_view_template(self):
-        self.client.post('/accounts/login/', {'username':'logged_in',
+        self.client.post('/account/login/', {'username':'logged_in',
             'password':'P4s5W0r6'})
         response = self.client.get(reverse('blog:post_upload'))
         self.assertTemplateUsed(response, 'blog/userupload_form.html')
 
     def test_user_upload_create_view_success_url(self):
-        self.client.post('/accounts/login/', {'username':'logged_in',
+        self.client.post('/account/login/', {'username':'logged_in',
             'password':'P4s5W0r6'})
         article = Article.objects.get(slug='article-3')
         response = self.client.post(f'/articoli/contributi/?post_id={article.slug}',
