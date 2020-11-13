@@ -1,4 +1,8 @@
-from django.test import TestCase
+import os
+
+from django.conf import settings
+from django.test import TestCase, override_settings
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 from users.models import User, Profile, UserMessage
 
@@ -10,11 +14,12 @@ class UserModelTest(TestCase):
             first_name='Andrea', last_name='Guerra', email='andy@war.com')
         #next save is just for coverage purposes
         user.save()
-        profile = Profile.objects.get(pk=user.uuid)
+        profile = user.profile
         profile.avatar = 'uploads/users/avatar.jpg'
         profile.save()
         User.objects.create(username='rawydna56', password='P4s5W0r6',)
-        UserMessage.objects.create(id=17, user=user, subject='Foo', body='Bar')
+        UserMessage.objects.create(id=17, user=user, subject='Foo', body='Bar',
+            )
         UserMessage.objects.create(id=18, nickname='Nick Name',
             email='me@example.com', subject='Foo', body='Bar')
 
@@ -84,3 +89,30 @@ class UserModelTest(TestCase):
     def test_user_message_str_method(self):
         message = UserMessage.objects.get(id = 17)
         self.assertEquals(message.__str__(), 'Messaggio - 17')
+
+class UserMessageModelTest(TestCase):
+    """Testing methods that need SimpleUploadedFile"""
+    @classmethod
+    def setUpTestData(cls):
+        # Set up non-modified objects used by all test methods
+        user = User.objects.create(username='andy.war65', password='P4s5W0r6',
+            first_name='Andrea', last_name='Guerra', email='andy@war.com')
+        UserMessage.objects.create(id=19, user=user, subject='Foo', body='Bar',
+            attachment = SimpleUploadedFile('file.txt', b'Foo Bar',
+            'text/plain'))
+
+    def tearDown(self):
+        """Checks existing files, then removes them"""
+        list = os.listdir(os.path.join(settings.PRIVATE_STORAGE_ROOT,
+            'users/andy.war65'))
+        for file in list:
+            os.remove(os.path.join(settings.PRIVATE_STORAGE_ROOT,
+                f'users/andy.war65/{file}'))
+
+    def test_user_message_directory(self):
+        message = UserMessage.objects.get(id = 19)
+        #first we test if the directory is correct
+        self.assertEquals(str(message.attachment).split('_')[0],
+            'users/andy.war65/file')
+        #then we test if random suffix was added
+        self.assertEquals(len(str(message.attachment).split('_')[1]), 11)
