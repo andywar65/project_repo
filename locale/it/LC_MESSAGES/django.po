@@ -540,8 +540,8 @@ msgid "contacts/"
 msgstr "contatti/"
 
 #: .\project\urls.py:38
-msgid "account/"
-msgstr "account/"
+msgid "accounts/"
+msgstr "accounts/"
 
 #: .\project\urls.py:39
 msgid "search/"
@@ -699,92 +699,93 @@ msgstr "Account di"
 
 #: .\users\templates\users\account.html:20
 msgid "From here you can change your profile and your password"
-msgstr ""
+msgstr "Da qui puoi cambiare il tuo profilo e la password"
 
 #: .\users\templates\users\account.html:21
 msgid "you can go to the backend"
-msgstr ""
+msgstr "puoi andare all'amministrazione"
 
 #: .\users\templates\users\account.html:22
 msgid ""
 "or you can logout (it's always better to logout at the end of the session)"
 msgstr ""
+"oppure puoi effettuare il logout (sempre meglio farlo alla fine di una sessione)"
 
 #: .\users\templates\users\account.html:24
 #: .\users\templates\users\profile_change.html:5
 msgid "Change profile"
-msgstr ""
+msgstr "Cambia profilo"
 
 #: .\users\templates\users\account.html:26
 #: .\users\templates\users\password_change.html:5
 #: .\users\templates\users\password_change.html:11
 msgid "Change password"
-msgstr ""
+msgstr "Cambia password"
 
 #: .\users\templates\users\account.html:29
 msgid "Go to admin"
-msgstr ""
+msgstr "Vai all'amministrazione"
 
 #: .\users\templates\users\account.html:32
 #: .\users\templates\users\front_logout.html:4
 msgid "Logout"
-msgstr ""
+msgstr "Logout"
 
 #: .\users\templates\users\account.html:35
 msgid "WARNING! To access this area you must login"
-msgstr ""
+msgstr "ATTENZIONE! Per accedere a quest'area devi effettuare il login"
 
 #: .\users\templates\users\account.html:37
 msgid "Click here to"
-msgstr ""
+msgstr "Fai click qui per"
 
 #: .\users\templates\users\form_errors.html:6
 #: .\users\templates\users\front_login.html:23
 msgid "Fix error below"
-msgstr ""
+msgstr "Aggiusta l'errore qui sotto"
 
 #: .\users\templates\users\form_errors.html:7
 #: .\users\templates\users\front_login.html:24
 msgid "Fix errors below"
-msgstr ""
+msgstr "Aggiusta gli errori qui sotto"
 
 #: .\users\templates\users\front_login.html:15
 msgid "You are already authenticated as"
-msgstr ""
+msgstr "Sei già autenticato come"
 
 #: .\users\templates\users\front_login.html:16
 msgid "If you want to login with a different account you have to"
-msgstr ""
+msgstr "Per effettuare il login con account differente devi prima"
 
 #: .\users\templates\users\front_login.html:17
 msgid "logout first"
-msgstr ""
+msgstr "effettuare il logout"
 
 #: .\users\templates\users\front_login.html:45
 #: .\users\templates\users\profile_includes\button.html:4
 msgid "Submit"
-msgstr ""
+msgstr "Invia"
 
 #: .\users\templates\users\front_login.html:46
 #: .\users\templates\users\profile_includes\button.html:5
 msgid "Fields with asterisk (*) are required"
-msgstr ""
+msgstr "I campi con l'asterisco (*) sono richiesti"
 
 #: .\users\templates\users\front_login.html:47
 msgid "Password forgotten?"
-msgstr ""
+msgstr "Dimentcato la password?"
 
 #: .\users\templates\users\front_logout.html:10
 msgid "Successful logout"
-msgstr ""
+msgstr "Logout effettuato"
 
 #: .\users\templates\users\front_logout.html:12
 msgid "Logout was successful"
-msgstr ""
+msgstr "Hai effettuato correttamente il logout"
 
 #: .\users\templates\users\front_logout.html:14
 msgid "You can perform a new"
-msgstr ""
+msgstr "Ora puoi effettuare un nuovo"
 
 #: .\users\templates\users\message.html:5
 #: .\users\templates\users\message.html:11
@@ -793,45 +794,43 @@ msgstr ""
 #, fuzzy
 #| msgid "Contacts"
 msgid "Contact"
-msgstr "Contatti"
+msgstr "Contatto"
 
 #: .\users\templates\users\message.html:14
 #: .\users\templates\users\message_log.html:14
 msgid "Thank you, your message was successfully submitted"
-msgstr ""
+msgstr "Grazie, il tuo messaggio è stato inviato correttamente"
 
 #: .\users\templates\users\message.html:15
 #: .\users\templates\users\message_log.html:15
 msgid "We will get in touch by email"
-msgstr ""
+msgstr "Ti contatteremo a breve via email"
 
 #: .\users\templates\users\message.html:16
 #: .\users\templates\users\message_log.html:16
 msgid "It's not an automatic process, it may take some time"
-msgstr ""
+msgstr "Non è un processo automatico, può richiedere del tempo"
 
 #: .\users\templates\users\message.html:17
 #: .\users\templates\users\message_log.html:17
 msgid "In the meanwhile you can send another"
-msgstr ""
+msgstr "Nel frattempo puoi inviarne un altro"
 
 #: .\users\templates\users\message.html:20
 msgid "You are an anonymous user. You can either"
-msgstr ""
+msgstr "Sei un utente anonimo. Puoi sia"
 
 #: .\users\templates\users\message.html:21
 msgid "signup"
-msgstr ""
+msgstr "registrarti"
 
 #: .\users\templates\users\message.html:22
-#, fuzzy
-#| msgid "Talk about this website"
 msgid "to the website or"
-msgstr "Parla di questo sito"
+msgstr "al sito oppure"
 
 #: .\users\templates\users\message.html:24
 msgid "if you have already. Alternatively fill the following form and submit."
-msgstr ""
+msgstr "se lo hai già fatto. In alternativa riempi il modulo qui sotto e Invia."
 
 #: .\users\templates\users\message.html:28
 #: .\users\templates\users\message_log.html:25
@@ -840,7 +839,7 @@ msgstr ""
 #: .\users\templates\users\profile_delete.html:16
 #: .\users\templates\users\registration.html:33
 msgid "Fix the errors below, please"
-msgstr ""
+msgstr "Aggiusta gli errori qui sotto, per favore"
 
 #: .\users\templates\users\message.html:54
 #: .\users\templates\users\profile_change.html:34
@@ -848,7 +847,7 @@ msgstr ""
 #: .\users\templates\users\registration.html:28
 #: .\users\templates\users\registration.html:49
 msgid "Privacy agreement"
-msgstr ""
+msgstr "Informativa della privacy"
 
 #: .\users\templates\users\message_log.html:20
 #, python-format
@@ -857,30 +856,31 @@ msgid ""
 "        Hello %(name)s, write down your message, then submit.\n"
 "        "
 msgstr ""
+"\n"
+"        Ciao %(name)s, scrivi il tuo messaggio, poi Invia.\n"
+"        "
 
 #: .\users\templates\users\password_change_done.html:4
 #: .\users\templates\users\password_change_done.html:10
 msgid "Password changed"
-msgstr ""
+msgstr "Password cambiata"
 
 #: .\users\templates\users\password_change_done.html:12
 msgid "Your password was successfully changed"
-msgstr ""
+msgstr "La tua password è stata cambiata con successo"
 
 #: .\users\templates\users\password_change_done.html:14
 msgid "Go back to the"
-msgstr ""
+msgstr "torna al"
 
 #: .\users\templates\users\password_change_done.html:14
 #: .\users\templates\users\reset_done.html:16
-#, fuzzy
-#| msgid "accounts/"
 msgid "account"
-msgstr "account/"
+msgstr "account"
 
 #: .\users\templates\users\profile_change.html:11
 msgid "Change your profile"
-msgstr ""
+msgstr "Cambia il tuo profilo"
 
 #: .\users\templates\users\profile_change.html:12
 #, python-format
@@ -889,48 +889,51 @@ msgid ""
 "      Your username is %(name)s (can't change that)\n"
 "    "
 msgstr ""
+"\n"
+"      Il tuo nome utente è %(name)s (non lo puoi cambiare)\n"
+"    "
 
 #: .\users\templates\users\profile_change.html:33
 msgid "You have subscribed to the"
-msgstr ""
+msgstr "Hai assentito al trattamento dei dati secondo la"
 
 #: .\users\templates\users\profile_change.html:35
 msgid "If you want to unsubscribe you have to"
-msgstr ""
+msgstr "Se vuoi revocare l'assenso devi"
 
 #: .\users\templates\users\profile_change.html:37
 msgid "delete your account"
-msgstr ""
+msgstr "cancellare il tuo account"
 
 #: .\users\templates\users\profile_delete.html:5
 msgid "Delete profile"
-msgstr ""
+msgstr "Cancella profilo"
 
 #: .\users\templates\users\profile_delete.html:11
 msgid "Delete your profile"
-msgstr ""
+msgstr "Cancella il tuo profilo"
 
 #: .\users\templates\users\profile_delete.html:12
 msgid "Are you sure you want to delete your profile? There's no way back"
-msgstr ""
+msgstr "Sei sicuro di voler cancellare il tuo profilo? Non puoi tornare indietro"
 
 #: .\users\templates\users\profile_deleted.html:4
 #: .\users\templates\users\profile_deleted.html:10
 msgid "Profile deleted"
-msgstr ""
+msgstr "Profilo cancellato"
 
 #: .\users\templates\users\profile_deleted.html:12
 msgid "Your profile was deleted. Thanks anyway for subscribing to"
-msgstr ""
+msgstr "Il tuo profilo è stato cancellato. Grazie per esserti iscritto a"
 
 #: .\users\templates\users\registration.html:5
 #: .\users\templates\users\registration.html:11
 msgid "Signup request"
-msgstr ""
+msgstr "Richiesta iscrizione"
 
 #: .\users\templates\users\registration.html:14
 msgid "Your request was forwarded successfully, thanks!"
-msgstr ""
+msgstr "La tua richiesta è stata inviata correttamente"
 
 #: .\users\templates\users\registration.html:15
 msgid ""
@@ -940,6 +943,11 @@ msgid ""
 "          Remember that you subscribed to the\n"
 "        "
 msgstr ""
+"\n"
+"          Riceverai presto una mail con le credenziali di accesso.\n"
+"          Effettua il login e cambia la password automatica.\n"
+"          Ricorda che hai assentito al trattamento dei dati secondo la\n"
+"        "
 
 #: .\users\templates\users\registration.html:24
 #, python-format
@@ -951,53 +959,53 @@ msgid ""
 "to\n"
 "        send us a word use this other"
 msgstr ""
+"\n"
+"        Riempi questo modulo per registrarti a %(name)s. Utenti registrati hanno accesso "
+"a\n"
+"        contenuti extra e possono interagire con il sito. Se vuoi semplicemente "
+"\n"
+"        contattarci usa questo altro"
 
 #: .\users\templates\users\registration.html:29
 msgid "If you are a registered user just"
-msgstr ""
+msgstr "Se sei un utente registrato puoi semplicemente"
 
 #: .\users\templates\users\registration.html:30
-#, fuzzy
-#| msgid "registration/"
 msgid "/registration"
-msgstr "registrazione/"
+msgstr "/registrazione"
 
 #: .\users\templates\users\reset_done.html:4
 #: .\users\templates\users\reset_done.html:20
 msgid "Password resetted"
-msgstr ""
+msgstr "Password reimpostata"
 
 #: .\users\templates\users\reset_done.html:13
 msgid "Now that you're logged in you could do the following"
-msgstr ""
+msgstr "Ora che hai effettuato il login puoi fare le seguenti cose"
 
 #: .\users\templates\users\reset_done.html:16
-#, fuzzy
-#| msgid "Modify"
 msgid "Modify your"
-msgstr "Modifica"
+msgstr "Modifica il tuo"
 
 #: .\users\templates\users\reset_done.html:17
 msgid "Just"
-msgstr ""
+msgstr "Semplicemente"
 
 #: .\users\templates\users\reset_done.html:17
 msgid "logout"
-msgstr ""
+msgstr "effettua il logout"
 
 #: .\users\templates\users\reset_done.html:22
 msgid "Your password has been resetted, try not to forget it again"
-msgstr ""
+msgstr "La tua password è stata reimpostata, cerca di non dimenticarla di nuovo"
 
 #: .\users\templates\users\reset_done.html:24
 msgid "Now just"
-msgstr ""
+msgstr "Ora"
 
 #: .\users\templates\users\reset_password.html:11
-#, fuzzy
-#| msgid "Website in few words"
 msgid "Request new password"
-msgstr "Il sito in quattro parole"
+msgstr "Richiedi password"
 
 #: .\users\templates\users\reset_password.html:15
 #, python-format
@@ -1007,96 +1015,98 @@ msgid ""
 "    you don't need a new password.\n"
 "    "
 msgstr ""
+"\n"
+"    Pare che tu abbia già fatto il login come %(name)s,\n"
+"    non ti serve una nuova password.\n"
+"    "
 
 #: .\users\templates\users\reset_password.html:22
 msgid "Insert signup email and press Submit, then follow the instructions"
-msgstr ""
+msgstr "Inserisci la mail di registrazione e premi Invia, poi segui le istruzioni"
 
 #: .\users\templates\users\reset_password_confirm.html:5
 msgid "Password reset"
-msgstr ""
+msgstr "Reimposta password"
 
 #: .\users\templates\users\reset_password_confirm.html:11
 msgid "Reset the password"
-msgstr ""
+msgstr "Reimposta la password"
 
 #: .\users\templates\users\reset_password_done.html:4
 msgid "Request sent"
-msgstr ""
+msgstr "Richiesta inviata"
 
 #: .\users\templates\users\reset_password_done.html:10
 msgid "Password change request sent"
-msgstr ""
+msgstr "Richiesta modifica password inviata"
 
 #: .\users\templates\users\reset_password_done.html:12
 msgid "In your inbox you should find a link to reset the password"
-msgstr ""
+msgstr "Nella posta in arrivo ci dovrebbe essere un link per reimpostare la password"
 
 #: .\users\templates\users\reset_password_done.html:13
 msgid "If you don't find it try looking in the spam folder"
-msgstr ""
+msgstr "Se non lo trovi cerca anche nella cartella di Spam"
 
 #: .\users\templates\users\widgets\small_clearable_file_input.html:5
 msgid "Download"
-msgstr ""
+msgstr "Scarica"
 
 #: .\users\templates\users\widgets\small_clearable_file_input.html:8
 msgid "or delete"
-msgstr ""
+msgstr "o cancella"
 
 #: .\users\urls.py:12
 msgid "profile/"
-msgstr ""
+msgstr "profilo/"
 
 #: .\users\urls.py:14
 msgid "profile/<uuid:pk>/change"
-msgstr ""
+msgstr "profilo/<uuid:pk>/cambia"
 
 #: .\users\urls.py:16
 msgid "profile/<uuid:pk>/delete"
-msgstr ""
+msgstr "profilo/<uuid:pk>/cancella"
 
 #: .\users\urls.py:18
 msgid "profile/deleted"
-msgstr ""
+msgstr "profilo/cancellato"
 
 #: .\users\urls.py:20
 msgid "registration/"
 msgstr "registrazione/"
 
 #: .\users\urls.py:22
-#, fuzzy
-#| msgid "login"
 msgid "login/"
-msgstr "login"
+msgstr "login/"
 
 #: .\users\urls.py:24
 msgid "logout/"
-msgstr ""
+msgstr "esci/"
 
 #: .\users\urls.py:26
 msgid "password_reset/"
-msgstr ""
+msgstr "reimposta_password/"
 
 #: .\users\urls.py:28
 msgid "password_reset/done/"
-msgstr ""
+msgstr "reimposta_password/fatto/"
 
 #: .\users\urls.py:30
 msgid "reset/<uidb64>/<token>/"
-msgstr ""
+msgstr "reimposta/<uidb64>/<token>/"
 
 #: .\users\urls.py:32
 msgid "reset/done/"
-msgstr ""
+msgstr "reimposta/fatto/"
 
 #: .\users\urls.py:34
 msgid "password_change/"
-msgstr ""
+msgstr "cambia_password/"
 
 #: .\users\urls.py:36
 msgid "password_change_done/"
-msgstr ""
+msgstr "cambia_password_fatto/"
 
 #: .\users\views.py:30
 #, python-format
@@ -1121,12 +1131,31 @@ msgid ""
 "        Change password: %(change_pwd)s\n"
 "        "
 msgstr ""
+"\n"
+"        Ciao %(username)s! \n"
+"\n"
+"        Abbiamo ricevuto la tua registrazione a %(site_name)s.\n"
+"\n"
+"        Puoi effettuare il login al seguente link: \n"
+"\n"
+"        %(login)s \n"
+"\n"
+"        Usa il nome utente che hai scelto: %(username)s\n"
+"        Questa è la password: %(password)s (cambiala!).\n"
+"        Dopo il login puoi impostare il tuo profilo.\n"
+"        Grazie.\n"
+"        Lo staff di %(site_name)s \n"
+"\n"
+"        Link utili:\n"
+"        Informativa della privacy: %(privacy)s\n"
+"        Cambia password: %(change_pwd)s\n"
+"        "
 
 #: .\users\views.py:59
 #, python-format
 msgid "Access credentials to %(acro)s"
-msgstr ""
+msgstr "Credenziali di accesso a %(acro)s"
 
 #: .\users\views.py:168 .\users\views.py:205
 msgid "User is not authorized to manage this profile"
-msgstr ""
+msgstr "L'utente non è autorizzato a gestire questo profilo"
