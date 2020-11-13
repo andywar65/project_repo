@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from pages.models import TreePage
+from pages.models import TreePage, HomePage
 
 class TreePageModelTest(TestCase):
     @classmethod
@@ -27,6 +27,16 @@ class TreePageModelTest(TestCase):
             numchild = 0,
             body = 'Foo Foo Bar',
             )
+        TreePage.objects.create(title='Paragraph Page', path = '0003',
+            depth = 1,
+            numchild = 0,
+            body = '<h4 class="indexed_paragraph">Foo</h4>',
+            )
+        HomePage.objects.create(title='Home Page')
+
+    def test_home_page_str_method(self):
+        page = HomePage.objects.all().first()
+        self.assertEquals(page.__str__(), 'Home Page')
 
     def test_tree_page_str_method(self):
         page = TreePage.objects.get(slug = 'page-1')
@@ -36,6 +46,10 @@ class TreePageModelTest(TestCase):
         page = TreePage.objects.get(slug = 'page-1')
         #this test also generate unique slug
         self.assertEquals(page.get_path(), reverse('docs:page_list')+'page-1/')
+
+    def test_tree_page_get_paragraphs(self):
+        page = TreePage.objects.get(slug = 'paragraph-page')
+        self.assertEquals(page.get_paragraphs(), 'id="paragraph-0"')
 
     def test_child_tree_page_get_path(self):
         page = TreePage.objects.get(slug = 'child-page')
