@@ -1,0 +1,57 @@
+MIME-Version: 1.0
+Date: Sun, 15 Nov 2020 23:08:27 +0100
+Message-ID: <CAGtD8JsDaWSxuwbtHSujLumCEYgNK4kte+=tOL63_n24LFx3iA@mail.gmail.com>
+Subject: articoli
+From: Studio Perilli <me@example.com>
+To: my@mailbox.com
+Content-Type: multipart/alternative; boundary="00000000000064ab3205b42c8062"
+
+--00000000000064ab3205b42c8062
+Content-Type: text/plain; charset="UTF-8"
+
+TITOLO[Articolo 1]
+DESCRIZIONE[Scrivi qui l'introduzione]
+TESTO[Scrivi qui il testo dell'articolo]
+DATA[gg/mm/aa]
+CATEGORIE[]
+NOTIFICA[SPAM]
+
+ISTRUZIONI:
+
+Scrivi solo all'interno delle parentesi quadre.
+La data si riferisce al giorno di pubblicazione (oggi di default).
+Lascia SPAM in NOTIFICA se vuoi inviare notifiche a tutti gli utenti.
+
+Allega le immagini facendo attenzione al nome dei file:
+
+0-Didascalia della prima immagine.jpg
+1-Didascalia della seconda immagine.jpg
+2-ecc...
+
+Puoi allegare jpg, png ecc., in formato orizzontale e con
+minimo 1600 pixel di larghezza (standard delle immagini di WhatsApp).
+
+Scrivi "articoli" nel soggetto e invia a:
+<indirizzo email associato alla mailbox USER = settings.IMAP_USER>
+da: <indirizzo email di utente con permesso blog:add_article>
+
+--00000000000064ab3205b42c8062
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">TITOLO[Articolo 1]<br>DESCRIZI=
+ONE[Scrivi qui l&#39;introduzione]<br>TESTO[Scrivi qui il testo dell&#39;ar=
+ticolo]<br>DATA[gg/mm/aa]<br>CATEGORIE[parole, chiave, separate, da, virgol=
+e]<br>NOTIFICA[SPAM]<br><br>ISTRUZIONI:<br><br>Scrivi solo all&#39;interno =
+delle parentesi quadre.<br>La data si riferisce al giorno di pubblicazione =
+(oggi di default).<br>Lascia SPAM in NOTIFICA se vuoi inviare notifiche a t=
+utti gli utenti.<br><br>Allega le immagini facendo attenzione al nome dei f=
+ile:<br><br>0-Didascalia della prima immagine.jpg<br>1-Didascalia della sec=
+onda immagine.jpg<br>2-ecc...<br><br>Puoi allegare jpg, png ecc., in format=
+o orizzontale e con<br>minimo 1600 pixel di larghezza (standard delle immag=
+ini di WhatsApp).<br><br>Scrivi &quot;articoli&quot; nel soggetto e invia a=
+:<br>&lt;indirizzo email associato alla mailbox USER =3D settings.IMAP_USER=
+&gt;<br>da: &lt;indirizzo email di utente con permesso blog:add_article&gt;=
+</div>
+
+--00000000000064ab3205b42c8062--

@@ -12,6 +12,7 @@ from taggit.models import Tag
 
 from users.models import User
 from blog.models import Article, UserUpload
+from pages.models import GalleryImage
 from blog.management.commands.fetch_article_emails import process_message
 
 class ArticleViewTest(TestCase):
@@ -246,26 +247,36 @@ class ProcessMessageTest(TestCase):
         User.objects.create_user(username='author',
             password='P4s5W0r6')
 
-    #def tearDown(self):
-        #"""Checks existing files, then removes them"""
-        #list = os.listdir(os.path.join(settings.MEDIA_ROOT,
-            #'uploads/images/galleries/'))
-        #for file in list:
-            #os.remove(os.path.join(settings.MEDIA_ROOT,
-                #f'uploads/images/galleries/{file}'))
+    def tearDown(self):
+        """Checks existing files, then removes them"""
+        try:
+            list = os.listdir(os.path.join(settings.MEDIA_ROOT,
+                'uploads/images/galleries/'))
+        except:
+            return
+        for file in list:
+            os.remove(os.path.join(settings.MEDIA_ROOT,
+                f'uploads/images/galleries/{file}'))
 
-    def test_process_message(self):
+    def test_process_message_no_attachment(self):
+        #WARNING: works if USE_I18N=True and LANGUAGE_CODE=it
         author = User.objects.get(username='author')
-        text = """%(title)s Article Title]
-            %(intro)s Article Introduction]
-            %(body)s Foo Bar]
-            %(date)s 15-11-2020]
-            %(tags)s]
-            %(notice)s SPAM]""" % {'title': _('TITLE['), 'intro': _('DESCRIPTION['),
-                'body': _('TEXT['), 'date': _('DATE['),
-                'tags': _('CATEGORIES['), 'notice': _('NOTICE[')}
-        message = MailMessage()
-        message.text = text
+        msg_path = os.path.join(settings.STATIC_ROOT, 'blog/samples/no_att.eml')
+        with open(msg_path, 'rb') as f:
+            bytes_data = f.read()
+        message = MailMessage.from_bytes(bytes_data)
         process_message(message, author)
-        article = Article.objects.get(slug='article-title')
-        self.assertEqual(article.title, 'Article Title')
+        article = Article.objects.get(slug='articolo-1')
+        self.assertEqual(article.title, "Articolo 1")
+
+    def test_process_message_with_attachment(self):
+        #WARNING: works if USE_I18N=True and LANGUAGE_CODE=it
+        author = User.objects.get(username='author')
+        msg_path = os.path.join(settings.STATIC_ROOT, 'blog/samples/with_att.eml')
+        with open(msg_path, 'rb') as f:
+            bytes_data = f.read()
+        message = MailMessage.from_bytes(bytes_data)
+        process_message(message, author)
+        article = Article.objects.get(slug='articolo-2')
+        image = GalleryImage.objects.get(post_id=article.uuid)
+        self.assertEqual(image.caption, "Logo")
