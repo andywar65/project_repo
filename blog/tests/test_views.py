@@ -4,6 +4,9 @@ from django.conf import settings
 from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.contrib.auth.models import Group
+from django.utils.translation import gettext as _
+
+from imap_tools.message import MailMessage
 
 from taggit.models import Tag
 
@@ -242,3 +245,27 @@ class ProcessMessageTest(TestCase):
         # Set up non-modified objects used by all test methods
         User.objects.create_user(username='author',
             password='P4s5W0r6')
+
+    #def tearDown(self):
+        #"""Checks existing files, then removes them"""
+        #list = os.listdir(os.path.join(settings.MEDIA_ROOT,
+            #'uploads/images/galleries/'))
+        #for file in list:
+            #os.remove(os.path.join(settings.MEDIA_ROOT,
+                #f'uploads/images/galleries/{file}'))
+
+    def test_process_message(self):
+        author = User.objects.get(username='author')
+        text = """%(title)s Article Title]
+            %(intro)s Article Introduction]
+            %(body)s Foo Bar]
+            %(date)s 15-11-2020]
+            %(tags)s]
+            %(notice)s SPAM]""" % {'title': _('TITLE['), 'intro': _('DESCRIPTION['),
+                'body': _('TEXT['), 'date': _('DATE['),
+                'tags': _('CATEGORIES['), 'notice': _('NOTICE[')}
+        message = MailMessage()
+        message.text = text
+        process_message(message, author)
+        article = Article.objects.get(slug='article-title')
+        self.assertEqual(article.title, 'Article Title')
