@@ -1,0 +1,25 @@
+TITOLO[Scrivi qui il titolo dell'articolo]
+DESCRIZIONE[Scrivi qui l'introduzione]
+TESTO[Scrivi qui il testo dell'articolo]
+DATA[gg/mm/aa]
+CATEGORIE[parole, chiave, separate, da, virgole]
+NOTIFICA[SPAM]
+
+ISTRUZIONI:
+
+Scrivi solo all'interno delle parentesi quadre.
+La data si riferisce al giorno di pubblicazione (oggi di default).
+Lascia SPAM in NOTIFICA se vuoi inviare notifiche a tutti gli utenti.
+
+Allega le immagini facendo attenzione al nome dei file:
+
+0-Didascalia della prima immagine.jpg
+1-Didascalia della seconda immagine.jpg
+2-ecc...
+
+Puoi allegare jpg, png ecc., in formato orizzontale e con
+minimo 1600 pixel di larghezza (standard delle immagini di WhatsApp).
+
+Scrivi "articoli" nel soggetto e invia a:
+<indirizzo email associato alla mailbox USER = settings.IMAP_USER>
+da: <indirizzo email di utente con permesso blog:add_article>

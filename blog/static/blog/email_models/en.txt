@@ -5,7 +5,8 @@ DATE[dd/mm/yy]
 TAGS[comma, separated, list, of, keywords]
 NOTICE[SPAM]
 
-From now on you can delete, the beef is above.
+INSTRUCTIONS:
+
 Write only inside square brackets.
 The date is when the article has been issued (defaults to now).
 Leave SPAM in notice if you want to notify new post to all Users.
@@ -21,4 +22,4 @@ at least 1600 pixel wide (it's the WhatsApp image standard).
 
 Write "articles" in the subject and send to:
 <email address associated to mailbox USER = settings.IMAP_USER>
-from <email address of User with add articles permission>
+from: <email address of User with blog:add_article permission>
