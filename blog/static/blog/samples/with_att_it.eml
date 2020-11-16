@@ -12,18 +12,18 @@ Content-Type: multipart/alternative; boundary="000000000000cd2e8005b42d2ae0"
 --000000000000cd2e8005b42d2ae0
 Content-Type: text/plain; charset="UTF-8"
 
-TITLE[Articolo 2]
-DESCRIPTION[Scrivi qui l'introduzione]
-TEXT[Scrivi qui il testo dell'articolo]
-DATE[dd/mm/yy]
-CATEGORIES[parole, chiave, separate, da, virgole]
-NOTICE[SPAM]
+TITOLO[Articolo 2]
+DESCRIZIONE[Scrivi qui l'introduzione]
+TESTO[Scrivi qui il testo dell'articolo]
+DATA[gg/mm/aa]
+CATEGORIE[parole, chiave, separate, da, virgole]
+NOTIFICA[SPAM]
 
 ISTRUZIONI:
 
 Scrivi solo all'interno delle parentesi quadre.
 La data si riferisce al giorno di pubblicazione (oggi di default).
-Lascia SPAM in NOTICE se vuoi inviare notifiche a tutti gli utenti.
+Lascia SPAM in NOTIFICA se vuoi inviare notifiche a tutti gli utenti.
 
 Allega le immagini facendo attenzione al nome dei file:
 
@@ -42,12 +42,12 @@ da: <indirizzo email di utente con permesso blog:add_article>
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">TITLE[Articolo 2]<br>DESCRIPTION[Scrivi =
-qui l&#39;introduzione]<br>TEXT[Scrivi qui il testo dell&#39;articolo]<br>=
-DATE[dd/mm/yy]<br>CATEGORIES[parole, chiave, separate, da, virgole]<br>NOTIF=
+<div dir=3D"ltr"><div dir=3D"ltr">TITOLO[Articolo 2]<br>DESCRIZIONE[Scrivi =
+qui l&#39;introduzione]<br>TESTO[Scrivi qui il testo dell&#39;articolo]<br>=
+DATA[gg/mm/aa]<br>CATEGORIE[parole, chiave, separate, da, virgole]<br>NOTIF=
 ICA[SPAM]<br><br>ISTRUZIONI:<br><br>Scrivi solo all&#39;interno delle paren=
 tesi quadre.<br>La data si riferisce al giorno di pubblicazione (oggi di de=
-fault).<br>Lascia SPAM in NOTICE se vuoi inviare notifiche a tutti gli ut=
+fault).<br>Lascia SPAM in NOTIFICA se vuoi inviare notifiche a tutti gli ut=
 enti.<br><br>Allega le immagini facendo attenzione al nome dei file:<br><br=
 >0-Didascalia della prima immagine.jpg<br>1-Didascalia della seconda immagi=
 ne.jpg<br>2-ecc...<br><br>Puoi allegare jpg, png ecc., in formato orizzonta=

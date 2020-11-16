@@ -258,25 +258,20 @@ class ProcessMessageTest(TestCase):
             os.remove(os.path.join(settings.MEDIA_ROOT,
                 f'uploads/images/galleries/{file}'))
 
-    def test_process_message_no_attachment(self):
-        #WARNING: works if USE_I18N=True and LANGUAGE_CODE=it
-        author = User.objects.get(username='author')
-        msg_path = os.path.join(settings.STATIC_ROOT, 'blog/samples/no_att.eml')
-        with open(msg_path, 'rb') as f:
-            bytes_data = f.read()
-        message = MailMessage.from_bytes(bytes_data)
-        process_message(message, author)
-        article = Article.objects.get(slug='articolo-1')
-        self.assertEqual(article.title, "Articolo 1")
-
     def test_process_message_with_attachment(self):
-        #WARNING: works if USE_I18N=True and LANGUAGE_CODE=it
         author = User.objects.get(username='author')
-        msg_path = os.path.join(settings.STATIC_ROOT, 'blog/samples/with_att.eml')
+        #WARNING: assumes that if i18n, email is in italian
+        if settings.USE_I18N:
+            msg_path = os.path.join(settings.STATIC_ROOT,
+                'blog/samples/with_att_it.eml')
+        else:
+            msg_path = os.path.join(settings.STATIC_ROOT,
+                'blog/samples/with_att.eml')
         with open(msg_path, 'rb') as f:
             bytes_data = f.read()
         message = MailMessage.from_bytes(bytes_data)
         process_message(message, author)
         article = Article.objects.get(slug='articolo-2')
+        self.assertEqual(article.title, "Articolo 2")
         image = GalleryImage.objects.get(post_id=article.uuid)
         self.assertEqual(image.caption, "Logo")
