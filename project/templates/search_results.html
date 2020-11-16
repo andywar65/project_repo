@@ -46,6 +46,17 @@
           </ul>
         {% endfor %}
       {% endif %}
+      {% if progs %}
+        <h5>Progetti</h5>
+        {% for prog in progs %}
+          <ul>
+            <li>
+              <a href="{{ prog.get_full_path }}">{{ prog.title }}</a>
+              {{ prog.intro }}
+            </li>
+          </ul>
+        {% endfor %}
+      {% endif %}
     {% else %}
     <h1>{% translate 'Null search' %}</h1>
     <p>{% translate "We didn't find elements that satisfy your search" %}</p>
