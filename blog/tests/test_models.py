@@ -1,4 +1,6 @@
 from django.test import TestCase
+from django.urls import reverse
+from django.utils.translation import gettext as _
 
 from users.models import User, Profile
 from pages.models import GalleryImage
@@ -41,7 +43,8 @@ class ArticleModelTest(TestCase):
 
     def test_article_get_path(self):
         article = Article.objects.get(slug='article-1')
-        self.assertEquals(article.get_path(), '/articoli/2020/05/09/article-1')
+        self.assertEquals(article.get_path(),
+            reverse('blog:post_index')+'2020/05/09/article-1')
 
     def test_article_get_previous(self):
         article = Article.objects.get(slug='article-1')
@@ -68,11 +71,6 @@ class ArticleModelTest(TestCase):
         article = Article.objects.get(slug='article-1')
         self.assertEquals(article.notice, 'DONE')
 
-    #def test_article_stream_search(self):
-        #article = Article.objects.get(slug='article-1')
-        #self.assertEquals(article.stream_search,
-            #'\n  \n    Foo\n    \n  \n  \n     Bar \n  \n\n')
-
     def test_userupload_str_method(self):
         upload = UserUpload.objects.get(id = 49)
-        self.assertEquals(upload.__str__(), 'Contributo - 49')
+        self.assertEquals(upload.__str__(), _('Contribution')+' - 49')

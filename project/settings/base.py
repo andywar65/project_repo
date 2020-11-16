@@ -153,7 +153,7 @@ LANGUAGE_CODE = get_secret('LANGUAGE_CODE')#'en-us'
 
 TIME_ZONE = get_secret('TIME_ZONE')
 
-USE_I18N = True
+USE_I18N = False
 
 USE_L10N = True
 

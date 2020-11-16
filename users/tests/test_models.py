@@ -3,6 +3,7 @@ import os
 from django.conf import settings
 from django.test import TestCase, override_settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.utils.translation import gettext as _
 
 from users.models import User, Profile, UserMessage
 
@@ -88,7 +89,7 @@ class UserModelTest(TestCase):
 
     def test_user_message_str_method(self):
         message = UserMessage.objects.get(id = 17)
-        self.assertEquals(message.__str__(), 'Messaggio - 17')
+        self.assertEquals(message.__str__(), _('Message')+' - 17')
 
 class UserMessageModelTest(TestCase):
     """Testing methods that need SimpleUploadedFile"""
