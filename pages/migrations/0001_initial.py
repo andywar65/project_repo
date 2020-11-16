@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        #('portfolio', '0001_squashed_0012_auto_20201023_2349'),
+        ('portfolio', '0001_squashed_0012_auto_20201023_2349'),
         ('blog', '0001_initial'),
     ]
 
@@ -77,7 +77,7 @@ class Migration(migrations.Migration):
                 ('position', models.PositiveSmallIntegerField(null=True, verbose_name='Posizione')),
                 ('home', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='home_image', to='pages.homepage')),
                 ('post', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='article_image', to='blog.article')),
-                #('prog', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='project_image', to='portfolio.project')),
+                ('prog', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='project_image', to='portfolio.project')),
             ],
             options={
                 'verbose_name': 'Immagine',
