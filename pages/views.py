@@ -5,6 +5,8 @@ from django.utils.crypto import get_random_string
 from django.utils.translation import gettext as _
 
 from blog.models import Article
+from portfolio.models import Project
+
 from .models import ( HomePage, GalleryImage, HomeButton, TreePage )
 
 class HomeTemplateView(TemplateView):
