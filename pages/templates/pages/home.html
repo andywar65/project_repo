@@ -34,6 +34,13 @@
   </div>
 </div>
 <hr class="mb-4">
+<a href="/progetti/"><h4><strong>Progetti</strong></h4></a>
+{% if progs %}
+  {% include 'portfolio/project_list_loop.html' %}
+{% else %}
+<p>Non ci sono progetti disponibili</p>
+{% endif %}
+<hr class="mb-4">
 <a href="{% url 'blog:post_index' %}"><h4><strong>{% translate 'In-depth articles'%}</strong></h4></a>
   {% include 'blog/article_archive_list.html' %}
 {% endblock content %}
