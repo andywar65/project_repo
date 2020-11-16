@@ -14,10 +14,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'blog:post_index' %}">{% translate 'Articles' %}</a>
+          <a class="nav-link" href="/progetti/">Progetti</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'docs:page_list' %}">{% translate 'Documents' %}</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="{% url 'docs:page_list' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% translate 'Documents' %}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'docs:page_list' %}">{% translate 'Documents' %}</a>
+            <a class="dropdown-item" href="{% url 'blog:post_index' %}">{% translate 'Articles' %}</a>
+            {% if perms.accounting.view_invoice %}
+              <a class="dropdown-item" href="/fatture/">Fatture</a>
+            {% endif %}
+          </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="{% url 'contacts' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
