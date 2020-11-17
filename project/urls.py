@@ -27,8 +27,8 @@ from users.views import ContactFormView
 from pages.views import HomeTemplateView
 from . import views
 
-admin.site.site_header = 'Amministrazione ' + settings.WEBSITE_NAME
-admin.site.site_title = 'Amministrazione ' + settings.WEBSITE_NAME
+admin.site.site_header = _('Admin ') + settings.WEBSITE_NAME
+admin.site.site_title = _('Admin ') + settings.WEBSITE_NAME
 
 urlpatterns = [
     path('admin/filebrowser/', site.urls),
@@ -40,9 +40,9 @@ urlpatterns = [
     path('', HomeTemplateView.as_view()),
     path(_('articles/'), include('blog.urls.posts', namespace = 'blog')),
     path(_('docs/'), include('pages.urls.tree_pages', namespace = 'docs')),
-    path(_('fatture/'), include('accounting.urls.invoices',
+    path(_('invoices/'), include('accounting.urls.invoices',
         namespace = 'invoices')),
-    path(_('progetti/'), include('portfolio.urls', namespace = 'portfolio')),
+    path(_('projects/'), include('portfolio.urls', namespace = 'portfolio')),
     path('favicon.ico',
         RedirectView.as_view(url=str(settings.STATIC_ROOT) + 'images/favicon.ico')),
     re_path('^private-media/', include(private_storage.urls)),
