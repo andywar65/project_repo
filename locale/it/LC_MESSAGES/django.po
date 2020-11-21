@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-19 00:15+0100\n"
+"POT-Creation-Date: 2020-11-21 23:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,153 +19,155 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\accounting\apps.py:7
-#, fuzzy
-#| msgid "Account"
 msgid "Accounting"
-msgstr "Account"
+msgstr "Contabilità"
 
-#: .\accounting\choices.py:3
+#: .\accounting\choices.py:3 .\accounting\tests\test_views.py:129
 msgid "Architectural design"
-msgstr ""
+msgstr "Progettazione architettonica"
 
-#: .\accounting\choices.py:4
+#: .\accounting\choices.py:4 .\accounting\tests\test_views.py:127
 msgid "Construction supervision"
-msgstr ""
+msgstr "Direzione lavori"
 
-#: .\accounting\choices.py:5
+#: .\accounting\choices.py:5 .\accounting\tests\test_views.py:126
 msgid "Land registry"
-msgstr ""
+msgstr "Catasto"
 
-#: .\accounting\choices.py:6
+#: .\accounting\choices.py:6 .\accounting\tests\test_views.py:128
 msgid "Expertise"
-msgstr ""
+msgstr "Perizie"
 
-#: .\accounting\choices.py:7
-msgid "Anticipazioni"
-msgstr ""
+#: .\accounting\choices.py:7 .\accounting\tests\test_views.py:125
+msgid "Advance payment"
+msgstr "Anticipazioni"
 
 #: .\accounting\choices.py:8 .\accounting\choices.py:24
-#, fuzzy
-#| msgid "Previous"
+#: .\accounting\tests\test_views.py:130 .\accounting\tests\test_views.py:147
 msgid "Various"
-msgstr "Precedente"
+msgstr "Varie"
 
-#: .\accounting\choices.py:9 .\accounting\views.py:79 .\accounting\views.py:93
+#: .\accounting\choices.py:9 .\accounting\tests\test_views.py:124
+#: .\accounting\tests\test_views.py:133 .\accounting\views.py:79
+#: .\accounting\views.py:93 .\portfolio\choices.py:3 .\portfolio\choices.py:7
+#: .\portfolio\choices.py:11 .\portfolio\choices.py:14
 msgid "Other"
-msgstr ""
+msgstr "Altro"
 
-#: .\accounting\choices.py:10
+#: .\accounting\choices.py:10 .\accounting\tests\test_views.py:138
 msgid "Staff"
-msgstr ""
+msgstr "Collaboratori"
 
-#: .\accounting\choices.py:11
+#: .\accounting\choices.py:11 .\accounting\tests\test_views.py:136
 msgid "Fleet"
-msgstr ""
+msgstr "Automobili"
 
-#: .\accounting\choices.py:12
+#: .\accounting\choices.py:12 .\accounting\tests\test_views.py:135
 msgid "Equipment"
-msgstr ""
+msgstr "Attrezzature"
 
-#: .\accounting\choices.py:13
+#: .\accounting\choices.py:13 .\accounting\tests\test_views.py:144
 msgid "Services"
-msgstr ""
+msgstr "Servizi"
 
-#: .\accounting\choices.py:14
+#: .\accounting\choices.py:14 .\accounting\tests\test_views.py:141
 msgid "Training"
-msgstr ""
+msgstr "Formazione"
 
-#: .\accounting\choices.py:15
+#: .\accounting\choices.py:15 .\accounting\tests\test_views.py:137
 msgid "Office products"
-msgstr ""
+msgstr "Cancelleria"
 
-#: .\accounting\choices.py:16
+#: .\accounting\choices.py:16 .\accounting\tests\test_views.py:146
 msgid "Telecom"
-msgstr ""
+msgstr "Telefoni"
 
-#: .\accounting\choices.py:17
+#: .\accounting\choices.py:17 .\accounting\tests\test_views.py:140
 msgid "Supplies"
-msgstr ""
+msgstr "Erogazioni"
 
-#: .\accounting\choices.py:18
+#: .\accounting\choices.py:18 .\accounting\tests\test_views.py:132
 msgid "Rentals"
-msgstr ""
+msgstr "Affitti"
 
-#: .\accounting\choices.py:19
+#: .\accounting\choices.py:19 .\accounting\tests\test_views.py:134
 msgid "Assurances"
-msgstr ""
+msgstr "Assicurazioni"
 
 #: .\accounting\choices.py:20 .\accounting\models.py:21
-#: .\accounting\views.py:198
+#: .\accounting\tests\test_views.py:142 .\accounting\views.py:198
 msgid "Social security"
-msgstr ""
+msgstr "Contributi"
 
-#: .\accounting\choices.py:21
+#: .\accounting\choices.py:21 .\accounting\tests\test_views.py:145
 msgid "Taxes"
-msgstr ""
+msgstr "Tasse"
 
-#: .\accounting\choices.py:22
+#: .\accounting\choices.py:22 .\accounting\tests\test_views.py:143
 msgid "Refunds"
-msgstr ""
+msgstr "Restituzioni"
 
-#: .\accounting\choices.py:23
+#: .\accounting\choices.py:23 .\accounting\tests\test_views.py:139
 msgid "Dividends"
-msgstr ""
+msgstr "Dividendi"
 
 #: .\accounting\forms.py:13 .\accounting\forms.py:19
 msgid ""
 "You are assigning a passive category to an active\n"
 "                    invoice!"
 msgstr ""
+"Stai assegnando una categoria passiva ad una fattura\n"
+"                    attiva!"
 
 #: .\accounting\forms.py:29
-#, fuzzy
-#| msgid "Delete the profile"
 msgid "Delete the invoice"
-msgstr "Cancella il profilo"
+msgstr "Cancella la fattura"
 
 #: .\accounting\forms.py:30
 msgid "Caution, can't undo this."
-msgstr ""
+msgstr "Attenzione, non si può tornare indietro."
 
 #: .\accounting\management\commands\fetch_invoice_emails.py:23
 #: .\accounting\views.py:254
 msgid "invoices"
-msgstr ""
+msgstr "fatture"
 
-#: .\accounting\models.py:14 .\accounting\views.py:197
-#, fuzzy
-#| msgid "Number of"
+#: .\accounting\models.py:14
+#: .\accounting\templates\accounting\invoice_loop.html:8
+#: .\accounting\views.py:197
 msgid "Number"
-msgstr "Numero di"
+msgstr "Numero"
 
 #: .\accounting\models.py:15
 msgid "Client/Supplier"
-msgstr ""
+msgstr "Cliente/Fornitore"
 
 #: .\accounting\models.py:16
+#: .\accounting\templates\accounting\invoice_loop.html:19
 msgid "Active"
-msgstr ""
+msgstr "Attiva"
 
 #: .\accounting\models.py:17
 msgid "Active if checked, passive if not"
-msgstr ""
+msgstr "Attiva se spuntata, altrimenti passiva"
 
-#: .\accounting\models.py:18 .\accounting\models.py:43 .\blog\models.py:36
+#: .\accounting\models.py:18 .\accounting\models.py:43
+#: .\accounting\templates\accounting\invoice_loop.html:10 .\blog\models.py:36
 #: .\blog\models.py:110
 msgid "Date"
 msgstr "Data"
 
 #: .\accounting\models.py:19
 msgid "Reason"
-msgstr ""
+msgstr "Causale"
 
 #: .\accounting\models.py:20 .\accounting\views.py:198
 msgid "Taxable"
-msgstr ""
+msgstr "Imponibile"
 
 #: .\accounting\models.py:23 .\accounting\views.py:198
 msgid "VAT"
-msgstr ""
+msgstr "IVA"
 
 #: .\accounting\models.py:25 .\accounting\views.py:199 .\blog\models.py:20
 msgid "Category"
@@ -176,50 +178,52 @@ msgid ""
 "'A' for active and 'P' for passive.\n"
 "            "
 msgstr ""
+"'A' per attiva e 'P' per passiva.\n"
+"            "
 
 #: .\accounting\models.py:28
+#: .\accounting\templates\accounting\invoice_loop.html:12
 msgid "Paid"
-msgstr ""
+msgstr "Saldata"
 
 #: .\accounting\models.py:35
-#, fuzzy
-#| msgid "Account"
+#: .\accounting\templates\accounting\invoice_loop.html:11
 msgid "Amount"
-msgstr "Account"
+msgstr "Importo"
 
 #: .\accounting\models.py:38
 msgid "Invoice"
-msgstr ""
+msgstr "Fattura"
 
 #: .\accounting\models.py:39
+#: .\accounting\templates\accounting\invoice_archive.html:4
 #: .\accounting\templates\accounting\invoice_archive_month.html:4
+#: .\accounting\templates\accounting\invoice_archive_year.html:4
 #: .\accounting\views.py:213 .\accounting\views.py:227
 #: .\project\templates\navbar.html:27
 msgid "Invoices"
-msgstr ""
+msgstr "Fatture"
 
 #: .\accounting\models.py:44
 msgid "CSV / XML file"
-msgstr ""
+msgstr "File CSV / XML"
 
 #: .\accounting\models.py:207
-#, fuzzy
-#| msgid "First name"
 msgid "File name"
-msgstr "Nome"
+msgstr "Nome del file"
 
 #: .\accounting\models.py:213
 msgid "CSV/XML file"
-msgstr ""
+msgstr "File CSV/XML"
 
 #: .\accounting\models.py:214
 msgid "CSV/XML files"
-msgstr ""
+msgstr "File CSV/XML"
 
 #: .\accounting\templates\accounting\csvinvoice_form.html:6
 #: .\accounting\templates\accounting\invoice_add.html:4
 msgid "Add file"
-msgstr ""
+msgstr "Aggiungi file"
 
 #: .\accounting\templates\accounting\csvinvoice_form.html:16
 #, python-format
@@ -231,8 +235,19 @@ msgid ""
 "invoice.\n"
 "      "
 msgstr ""
+"Ciao %(name)s,\n"
+"      scegli il file (o i file) e invia.\n"
+"      Il file CSV deve contenere <a href=\"%(sample_file_url)s\">\n"
+"      questi campi</a>, mentre l'XML può essere scaricato assieme alla fattura "
+"elettronica.\n"
+"      "
 
 #: .\accounting\templates\accounting\csvinvoice_form.html:24
+#: .\accounting\templates\accounting\invoice_delete_form.html:16
+#: .\accounting\templates\accounting\invoice_form.html:20
+#: .\accounting\templates\accounting\invoice_update_form.html:27
+#: .\portfolio\templates\portfolio\projectstation_form.html:19
+#: .\portfolio\templates\portfolio\stationimage_form.html:19
 #: .\users\templates\users\message.html:28
 #: .\users\templates\users\message_log.html:25
 #: .\users\templates\users\password_change.html:14
@@ -243,48 +258,49 @@ msgid "Fix the errors below, please"
 msgstr "Correggi gli errori qui sotto, per favore"
 
 #: .\accounting\templates\accounting\csvinvoice_form.html:35
-#, fuzzy
-#| msgid "You don't have permissions to access this page"
 msgid "You don't have permission to add invoice file"
-msgstr "Non hai le credenziali per accedere a questa pagina"
+msgstr "Non hai le credenziali per aggiungere file di fatture"
 
 #: .\accounting\templates\accounting\email.html:4
 msgid "Email invoices"
-msgstr ""
+msgstr "Fatture via email"
 
 #: .\accounting\templates\accounting\email.html:9
-#, fuzzy
-#| msgid "Notify by email"
 msgid "Invoices by email"
-msgstr "Notifica per email"
+msgstr "Fatture via email"
 
 #: .\accounting\templates\accounting\email.html:13
 #: .\accounting\templates\accounting\invoice_alerts.html:32
 msgid "Created invoices"
-msgstr ""
+msgstr "Fatture create"
 
 #: .\accounting\templates\accounting\email.html:14
 #: .\accounting\templates\accounting\invoice_alerts.html:33
 msgid "modified"
-msgstr ""
+msgstr "modificate"
 
 #: .\accounting\templates\accounting\email.html:15
 #: .\accounting\templates\accounting\invoice_alerts.html:34
 msgid "errors"
-msgstr ""
+msgstr "errori"
 
 #: .\accounting\templates\accounting\email.html:21
+#: .\accounting\templates\accounting\invoice_archive.html:11
 #: .\accounting\templates\accounting\invoice_archive_month.html:13
 msgid "This year's invoices"
-msgstr ""
+msgstr "Le fatture di quest'anno"
 
 #: .\accounting\templates\accounting\email.html:22
+#: .\accounting\templates\accounting\invoice_archive.html:12
+#: .\accounting\templates\accounting\invoice_archive_year.html:14
 msgid "This month's invoices"
-msgstr ""
+msgstr "Le fatture di questo mese"
 
 #: .\accounting\templates\accounting\invoice_add.html:3
+#: .\accounting\templates\accounting\invoice_form.html:5
+#: .\accounting\templates\accounting\invoice_form.html:12
 msgid "Add invoice"
-msgstr ""
+msgstr "Aggiungi fattura"
 
 #: .\accounting\templates\accounting\invoice_alerts.html:5
 #, python-format
@@ -293,20 +309,19 @@ msgid ""
 "    Invoice <strong>%(link)s</strong> successfully created!\n"
 "    "
 msgstr ""
+"\n"
+"    Fattura <strong>%(link)s</strong> creata con successo!\n"
+"    "
 
 #: .\accounting\templates\accounting\invoice_alerts.html:14
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "      %(name)s's profile has been successfully modified!\n"
-#| "      "
+#, python-format
 msgid ""
 "\n"
 "    Invoice <strong>%(link)s</strong> successfully modified!\n"
 "    "
 msgstr ""
 "\n"
-"      Il profilo di %(name)s è stato modificato con successo!\n"
+"      La fattura %(link)s è stata modificata con successo!\n"
 "      "
 
 #: .\accounting\templates\accounting\invoice_alerts.html:23
@@ -316,92 +331,198 @@ msgid ""
 "    Invoice <strong>%(link)s</strong> successfully deleted!\n"
 "    "
 msgstr ""
+"\n"
+"    Fattura <strong>%(link)s</strong> cancellata con successo!\n"
+"    "
 
-#: .\accounting\templates\accounting\invoice_archive_month.html:14
-#, fuzzy
-#| msgid "Go to admin"
-msgid "Go to charts"
-msgstr "Vai all'amministrazione"
+#: .\accounting\templates\accounting\invoice_archive.html:16
+msgid "List if invoices"
+msgstr "Lista delle fattura"
 
-#: .\accounting\templates\accounting\invoice_archive_month.html:15
-#, fuzzy
-#| msgid "Download"
-msgid "Download CSV file"
-msgstr "Scarica"
-
-#: .\accounting\templates\accounting\invoice_archive_month.html:19
-#, fuzzy
-#| msgid "Articles of"
-msgid "Invoices of"
-msgstr "Articoli di"
-
+#: .\accounting\templates\accounting\invoice_archive.html:29
 #: .\accounting\templates\accounting\invoice_archive_month.html:35
-#, fuzzy
-#| msgid "No articles available"
+#: .\accounting\templates\accounting\invoice_archive_year.html:36
 msgid "There are no invoices available"
-msgstr "Nessun articolo disponibile"
+msgstr "Nessuna fattura disponibile"
 
+#: .\accounting\templates\accounting\invoice_archive.html:37
 #: .\accounting\templates\accounting\invoice_archive_month.html:42
+#: .\accounting\templates\accounting\invoice_archive_year.html:43
 #: .\blog\templates\blog\article_archive_day.html:15
 #: .\blog\templates\blog\article_archive_month.html:15
 #: .\blog\templates\blog\article_archive_year.html:15
 #: .\blog\templates\blog\article_pagination.html:6
+#: .\portfolio\templates\portfolio\project_archive_year.html:20
+#: .\portfolio\templates\portfolio\project_category_list.html:20
+#: .\portfolio\templates\portfolio\project_list.html:28
+#: .\portfolio\templates\portfolio\projectstation_list.html:54
+#: .\portfolio\templates\portfolio\stationimage_archive_day.html:30
 msgid "PREVIOUS"
 msgstr "PRECEDENTE"
 
+#: .\accounting\templates\accounting\invoice_archive.html:40
 #: .\accounting\templates\accounting\invoice_archive_month.html:45
+#: .\accounting\templates\accounting\invoice_archive_year.html:46
 #: .\blog\templates\blog\article_archive_day.html:18
 #: .\blog\templates\blog\article_archive_month.html:18
 #: .\blog\templates\blog\article_archive_year.html:18
 #: .\blog\templates\blog\article_pagination.html:9
+#: .\portfolio\templates\portfolio\project_archive_year.html:23
+#: .\portfolio\templates\portfolio\project_category_list.html:23
+#: .\portfolio\templates\portfolio\project_list.html:31
+#: .\portfolio\templates\portfolio\projectstation_list.html:57
+#: .\portfolio\templates\portfolio\stationimage_archive_day.html:33
 msgid "NEXT"
 msgstr "PROSSIMO"
 
+#: .\accounting\templates\accounting\invoice_archive_month.html:14
+#: .\accounting\templates\accounting\invoice_archive_year.html:15
+msgid "Go to charts"
+msgstr "Vai ai grafici"
+
+#: .\accounting\templates\accounting\invoice_archive_month.html:15
+#: .\accounting\templates\accounting\invoice_archive_year.html:16
+msgid "Download CSV file"
+msgstr "Scarica file CSV"
+
+#: .\accounting\templates\accounting\invoice_archive_month.html:19
+#: .\accounting\templates\accounting\invoice_archive_year.html:20
+msgid "Invoices of"
+msgstr "Fatture di"
+
+#: .\accounting\templates\accounting\invoice_buttons.html:5
+#: .\portfolio\templates\portfolio\add_buttons.html:4
+msgid "Save"
+msgstr "Salva"
+
+#: .\accounting\templates\accounting\invoice_buttons.html:9
+#: .\portfolio\templates\portfolio\add_buttons.html:8
+msgid "Save and add"
+msgstr "Salva e aggiungi"
+
+#: .\accounting\templates\accounting\invoice_buttons.html:12
+#: .\accounting\templates\accounting\invoice_delete_form.html:27
+#: .\portfolio\templates\portfolio\add_buttons.html:11
+#: .\users\templates\users\front_login.html:46
+#: .\users\templates\users\profile_includes\button.html:5
+msgid "Fields with asterisk (*) are required"
+msgstr "I campi con l'asterisco (*) sono richiesti"
+
+#: .\accounting\templates\accounting\invoice_delete_form.html:5
+#: .\accounting\templates\accounting\invoice_delete_form.html:11
+msgid "Delete invoice"
+msgstr "Cancella la fattura"
+
+#: .\accounting\templates\accounting\invoice_delete_form.html:26
+#: .\accounting\templates\accounting\invoice_update_form.html:21
+msgid "Delete"
+msgstr "Cancella"
+
+#: .\accounting\templates\accounting\invoice_delete_form.html:32
+msgid "You don't have permissions to delete invoices"
+msgstr "Non hai le credenziali per cancellare fatture"
+
+#: .\accounting\templates\accounting\invoice_form.html:14
+#: .\portfolio\templates\portfolio\projectstation_form.html:13
+#: .\portfolio\templates\portfolio\stationimage_form.html:13
+#, python-format
+msgid ""
+"\n"
+"      Hello %(name)s, fill the fields below then submit.\n"
+"    "
+msgstr ""
+"\n"
+"        Ciao %(name)s, inserisci i dati qui sotto, poi Invia.\n"
+"        "
+
+#: .\accounting\templates\accounting\invoice_form.html:31
+msgid "You don't have permissions to add invoices"
+msgstr "Non hai le credenziali per aggiungere fatture"
+
+#: .\accounting\templates\accounting\invoice_loop.html:9
+#: .\accounting\views.py:197
+msgid "Client"
+msgstr "Cliente"
+
+#: .\accounting\templates\accounting\invoice_loop.html:21
+msgid "Passive"
+msgstr "Passive"
+
+#: .\accounting\templates\accounting\invoice_loop.html:27
+msgid "OK"
+msgstr "OK"
+
+#: .\accounting\templates\accounting\invoice_sum.html:6
+msgid "Totals"
+msgstr "Totali"
+
+#: .\accounting\templates\accounting\invoice_sum.html:12
+msgid "Active by category"
+msgstr "Attive per categoria"
+
+#: .\accounting\templates\accounting\invoice_sum.html:16
+msgid "Passive by category"
+msgstr "Passive per categoria"
+
+#: .\accounting\templates\accounting\invoice_update_form.html:5
+#: .\accounting\templates\accounting\invoice_update_form.html:12
+msgid "Modify invoice"
+msgstr "Modifica fattura"
+
+#: .\accounting\templates\accounting\invoice_update_form.html:16
+#, python-format
+msgid ""
+"\n"
+"          Hello %(name)s, update the fields below then submit.\n"
+"        "
+msgstr ""
+"\n"
+"        Ciao %(name)s, modifica i campi qui sotto, poi Invia.\n"
+"        "
+
+#: .\accounting\templates\accounting\invoice_update_form.html:38
+msgid "You don't have permissions to modify invoices"
+msgstr "Non hai le credenziali per modificare le fatture"
+
 #: .\accounting\urls\invoices.py:14
 msgid "<int:year>/download/"
-msgstr ""
+msgstr "<int:year>/download/"
 
 #: .\accounting\urls\invoices.py:17
 msgid "<int:year>/<int:month>/download/"
-msgstr ""
+msgstr "<int:year>/<int:month>/download/"
 
 #: .\accounting\urls\invoices.py:19
 msgid "add/"
-msgstr ""
+msgstr "aggiungi/"
 
 #: .\accounting\urls\invoices.py:20
 msgid "add/csv/"
-msgstr ""
+msgstr "aggiungi/csv/"
 
 #: .\accounting\urls\invoices.py:21
 msgid "change/<pk>/"
-msgstr ""
+msgstr "cambia/<pk>/"
 
 #: .\accounting\urls\invoices.py:23
 msgid "delete/<pk>/"
-msgstr ""
-
-#: .\accounting\views.py:197
-msgid "Client"
-msgstr ""
+msgstr "cancella/<pk>/"
 
 #: .\accounting\views.py:197
 msgid "Active?"
-msgstr ""
+msgstr "Attiva?"
 
 #: .\accounting\views.py:197
 msgid "dd/mm/yy"
-msgstr ""
+msgstr "gg/mm/aa"
 
-#: .\accounting\views.py:198
-#, fuzzy
-#| msgid "Position"
+#: .\accounting\views.py:198 .\portfolio\models.py:74
 msgid "Description"
-msgstr "Posizione"
+msgstr "Descrizione"
 
 #: .\accounting\views.py:199
 msgid "Paid?"
-msgstr ""
+msgstr "Saldata?"
 
 #: .\blog\apps.py:7
 msgid "Trusted"
@@ -424,7 +545,8 @@ msgid "Already sent"
 msgstr "Già inviata"
 
 #: .\blog\forms.py:9 .\blog\models.py:35 .\blog\models.py:113
-#: .\pages\models.py:25 .\pages\models.py:76 .\users\models.py:87
+#: .\pages\models.py:25 .\pages\models.py:76 .\portfolio\models.py:30
+#: .\users\models.py:87
 msgid "Text"
 msgstr "Testo"
 
@@ -437,18 +559,22 @@ msgid "Author"
 msgstr "Autore"
 
 #: .\blog\management\commands\fetch_article_emails.py:18
+#: .\portfolio\management\commands\fetch_portfolio_emails.py:37
 msgid "TITLE["
 msgstr "TITOLO["
 
 #: .\blog\management\commands\fetch_article_emails.py:18
+#: .\portfolio\management\commands\fetch_portfolio_emails.py:37
 msgid "DESCRIPTION["
 msgstr "DESCRIZIONE["
 
 #: .\blog\management\commands\fetch_article_emails.py:19
+#: .\portfolio\management\commands\fetch_portfolio_emails.py:37
 msgid "TEXT["
 msgstr "TESTO["
 
 #: .\blog\management\commands\fetch_article_emails.py:19
+#: .\portfolio\management\commands\fetch_portfolio_emails.py:38
 msgid "DATE["
 msgstr "DATA["
 
@@ -475,7 +601,7 @@ msgid "Another article by %(name)s!"
 msgstr "Un nuovo articolo di %(name)s!"
 
 #: .\blog\models.py:29 .\pages\models.py:20 .\pages\models.py:59
-#: .\pages\models.py:69
+#: .\pages\models.py:69 .\portfolio\models.py:24 .\portfolio\models.py:71
 msgid "Title"
 msgstr "Titolo"
 
@@ -483,7 +609,7 @@ msgstr "Titolo"
 msgid "The title of the article"
 msgstr "Il titolo dell'articolo"
 
-#: .\blog\models.py:32 .\pages\models.py:74
+#: .\blog\models.py:32 .\pages\models.py:74 .\portfolio\models.py:27
 msgid "Introduction"
 msgstr "Introduzione"
 
@@ -534,7 +660,8 @@ msgstr "Articoli"
 msgid "User"
 msgstr "Utente"
 
-#: .\blog\models.py:111 .\pages\models.py:53
+#: .\blog\models.py:111 .\pages\models.py:53 .\portfolio\forms.py:14
+#: .\portfolio\models.py:96 .\portfolio\models.py:98 .\portfolio\models.py:113
 msgid "Image"
 msgstr "Immagine"
 
@@ -565,7 +692,7 @@ msgstr "Articoli di approfondimento"
 #: .\blog\templates\blog\article_archive_month.html:8
 #: .\blog\templates\blog\article_archive_year.html:8
 msgid "in category:"
-msgstr "nella categoria"
+msgstr "nella categoria:"
 
 #: .\blog\templates\blog\article_archive_authors.html:4
 msgid "Articles by"
@@ -597,6 +724,9 @@ msgid "List of authors"
 msgstr "Lista degli autori"
 
 #: .\blog\templates\blog\article_detail.html:39
+#: .\portfolio\templates\portfolio\project_detail.html:19
+#: .\portfolio\templates\portfolio\projectstation_detail.html:27
+#: .\portfolio\templates\portfolio\projectstation_list.html:40
 msgid "Modify"
 msgstr "Modifica"
 
@@ -699,7 +829,7 @@ msgstr "Il sito in quattro parole"
 msgid "Talk about this website"
 msgstr "Parla di questo sito"
 
-#: .\pages\models.py:27
+#: .\pages\models.py:27 .\portfolio\models.py:31 .\portfolio\models.py:95
 msgid "Date:"
 msgstr "Data:"
 
@@ -708,10 +838,11 @@ msgid "Home Page"
 msgstr "Home Page"
 
 #: .\pages\models.py:43 .\pages\models.py:45 .\pages\models.py:54
+#: .\portfolio\models.py:114
 msgid "Images"
 msgstr "Immagini"
 
-#: .\pages\models.py:48
+#: .\pages\models.py:48 .\portfolio\models.py:101
 msgid "Caption"
 msgstr "Didascalia"
 
@@ -760,16 +891,34 @@ msgid "Tree pages"
 msgstr "Pagine ad albero"
 
 #: .\pages\templates\pages\gallery.html:15
+#: .\portfolio\templates\portfolio\stationgallery.html:15
 msgid "Previous"
 msgstr "Precedente"
 
 #: .\pages\templates\pages\gallery.html:19
+#: .\portfolio\templates\portfolio\stationgallery.html:19
 msgid "Next"
 msgstr "Prossimo"
 
 #: .\pages\templates\pages\home.html:6
 msgid "Home"
 msgstr "Home"
+
+#: .\pages\templates\pages\home.html:37 .\portfolio\models.py:61
+#: .\portfolio\templates\portfolio\project_archive_year.html:4
+#: .\portfolio\templates\portfolio\project_category_list.html:4
+#: .\portfolio\templates\portfolio\project_category_list.html:8
+#: .\portfolio\templates\portfolio\project_list.html:4
+#: .\project\templates\navbar.html:17
+msgid "Projects"
+msgstr "Progetti"
+
+#: .\pages\templates\pages\home.html:41
+#: .\portfolio\templates\portfolio\project_archive_year.html:14
+#: .\portfolio\templates\portfolio\project_category_list.html:14
+#: .\portfolio\templates\portfolio\project_list.html:22
+msgid "There are no projects available"
+msgstr "Nessun progetto disponibile"
 
 #: .\pages\templates\pages\tree_page.html:18
 msgid "Modify page"
@@ -800,6 +949,260 @@ msgstr "Nessuna Home Page disponibile"
 #: .\pages\views.py:51 .\pages\views.py:64
 msgid "Request path is different from GET path"
 msgstr "Il request path è diverso dal GET path"
+
+#: .\portfolio\apps.py:7
+msgid "Project Manager"
+msgstr "Project Manager"
+
+#: .\portfolio\choices.py:3
+msgid "Residential"
+msgstr "Residenziale"
+
+#: .\portfolio\choices.py:4
+msgid "Offices"
+msgstr "Terziario"
+
+#: .\portfolio\choices.py:4
+msgid "Hospitals"
+msgstr "Sanitario"
+
+#: .\portfolio\choices.py:4
+msgid "Production"
+msgstr "Produttivo"
+
+#: .\portfolio\choices.py:5
+msgid "Schools"
+msgstr "Scolastico"
+
+#: .\portfolio\choices.py:7
+msgid "Furniture"
+msgstr "Arredamento"
+
+#: .\portfolio\choices.py:7
+msgid "Refurbishment"
+msgstr "Ristrutturazione"
+
+#: .\portfolio\choices.py:8
+msgid "Restoration"
+msgstr "Restauro"
+
+#: .\portfolio\choices.py:8
+msgid "Extension"
+msgstr "Ampliamento"
+
+#: .\portfolio\choices.py:8
+msgid "Construction"
+msgstr "Costruzione"
+
+#: .\portfolio\choices.py:9
+msgid "Demolition"
+msgstr "Demolizione"
+
+#: .\portfolio\choices.py:11
+msgid "Designed"
+msgstr "Progettato"
+
+#: .\portfolio\choices.py:12
+msgid "Under construction"
+msgstr "In corso"
+
+#: .\portfolio\choices.py:12
+msgid "Done"
+msgstr "Realizzato"
+
+#: .\portfolio\management\commands\fetch_portfolio_emails.py:28
+msgid "projects"
+msgstr "progetti"
+
+#: .\portfolio\management\commands\fetch_portfolio_emails.py:38
+msgid "SITE["
+msgstr "LUOGO["
+
+#: .\portfolio\management\commands\fetch_portfolio_emails.py:38
+msgid "CATEGORY["
+msgstr "CATEGORIA["
+
+#: .\portfolio\management\commands\fetch_portfolio_emails.py:39
+msgid "INTERVENTION["
+msgstr "INTERVENTO["
+
+#: .\portfolio\management\commands\fetch_portfolio_emails.py:39
+msgid "STATUS["
+msgstr "STATUS["
+
+#: .\portfolio\management\commands\fetch_portfolio_emails.py:39
+msgid "COST["
+msgstr "COSTO["
+
+#: .\portfolio\models.py:25
+msgid "Title of the project"
+msgstr "Titolo del progetto"
+
+#: .\portfolio\models.py:33
+msgid "Site"
+msgstr "Luogo"
+
+#: .\portfolio\models.py:34
+msgid "Something like \"Rome - Monteverde\""
+msgstr "Qualcosa tipo \"Roma - Monteverde\""
+
+#: .\portfolio\models.py:37
+msgid "Functional category"
+msgstr "Categoria funzionale"
+
+#: .\portfolio\models.py:39
+msgid "Type of intervention"
+msgstr "Tipo di intervento"
+
+#: .\portfolio\models.py:41
+msgid "Status of intervention"
+msgstr "Status dell'intervento"
+
+#: .\portfolio\models.py:43
+msgid "Cost of intervention"
+msgstr "Costo dell'intervento"
+
+#: .\portfolio\models.py:53
+#, python-format
+msgid "Project-%(date)s"
+msgstr "Progetto-%(date)s"
+
+#: .\portfolio\models.py:60 .\portfolio\models.py:70
+msgid "Project"
+msgstr "Progetto"
+
+#: .\portfolio\models.py:65
+#, python-format
+msgid "Another photo station by %(sitename)s!"
+msgstr "Un'altra stazione fotografica di %(sitename)s!"
+
+#: .\portfolio\models.py:72
+msgid "Title of the photo station"
+msgstr "Titolo della stazione fotografica"
+
+#: .\portfolio\models.py:87
+msgid "Photo station"
+msgstr "Stazione fotografica"
+
+#: .\portfolio\models.py:88
+#: .\portfolio\templates\portfolio\project_detail.html:23
+#: .\portfolio\templates\portfolio\projectstation_detail.html:32
+#: .\portfolio\templates\portfolio\stationimage_archive_day.html:20
+msgid "Photo stations"
+msgstr "Stazioni fotografiche"
+
+#: .\portfolio\models.py:94
+msgid "Station"
+msgstr "Stazione"
+
+#: .\portfolio\templates\portfolio\project_archive_year.html:8
+msgid "Projects of"
+msgstr "Progetti di"
+
+#: .\portfolio\templates\portfolio\project_list.html:9
+msgid "List of projects"
+msgstr "Lista dei progetti"
+
+#: .\portfolio\templates\portfolio\project_list.html:13
+msgid "Add project"
+msgstr "Aggiungi progetto"
+
+#: .\portfolio\templates\portfolio\projectstation_detail.html:9
+#: .\portfolio\templates\portfolio\stationimage_form.html:5
+msgid "Add image"
+msgstr "Aggiungi immagine"
+
+#: .\portfolio\templates\portfolio\projectstation_detail.html:16
+msgid "There are no images available for this station"
+msgstr "Nessuna immagine disponibile per questa stazione"
+
+#: .\portfolio\templates\portfolio\projectstation_form.html:5
+#: .\portfolio\templates\portfolio\projectstation_form.html:11
+msgid "Add photo station"
+msgstr "Aggiungi stazione fotografica"
+
+#: .\portfolio\templates\portfolio\projectstation_form.html:30
+msgid "You don't have permissions to add photo stations"
+msgstr "Non hai le credenziali per aggiungere stazioni fotografiche"
+
+#: .\portfolio\templates\portfolio\projectstation_list.html:5
+msgid "Stations"
+msgstr "Stazioni"
+
+#: .\portfolio\templates\portfolio\projectstation_list.html:10
+msgid "Photo stations of project"
+msgstr "Stazioni fotografiche del progetto"
+
+#: .\portfolio\templates\portfolio\projectstation_list.html:15
+msgid "Add Station"
+msgstr "Aggiungi Stazione"
+
+#: .\portfolio\templates\portfolio\projectstation_list.html:48
+msgid "There are no photo stations available"
+msgstr "Nessuna stazione fotografica disponibile"
+
+#: .\portfolio\templates\portfolio\stationgallery.html:30
+msgid "No description"
+msgstr "Nessuna descrizione"
+
+#: .\portfolio\templates\portfolio\stationimage_archive_day.html:10
+msgid "No images today"
+msgstr "Oggi nessuna immagine"
+
+#: .\portfolio\templates\portfolio\stationimage_form.html:11
+msgid "Add an image"
+msgstr "Aggiungi un'immagine"
+
+#: .\portfolio\templates\portfolio\stationimage_form.html:30
+msgid "You don't have permissions to add images"
+msgstr "Non hai le credenziali per aggiungere immagini"
+
+#: .\portfolio\urls.py:13
+msgid "category/"
+msgstr "categoria/"
+
+#: .\portfolio\urls.py:16
+msgid "<slug>/stations/"
+msgstr "<slug>/stazioni/"
+
+#: .\portfolio\urls.py:18
+msgid "<slug>/stations/add/"
+msgstr "<slug>/stazioni/aggiungi/"
+
+#: .\portfolio\urls.py:20
+msgid "<slug:prog_slug>/stations/<slug:stat_slug>/"
+msgstr "<slug:prog_slug>/stazioni/<slug:stat_slug>/"
+
+#: .\portfolio\urls.py:22
+msgid "<slug:prog_slug>/stations/<slug:stat_slug>/add/"
+msgstr "<slug:prog_slug>/stazioni/<slug:stat_slug>/aggiungi/"
+
+#: .\portfolio\urls.py:24
+msgid "<slug>/stations/<int:year>/<int:month>/<int:day>/"
+msgstr "<slug>/stazioni/<int:year>/<int:month>/<int:day>/"
+
+#: .\portfolio\views.py:53
+msgid "in Category: %(read)s"
+msgstr "nella Categoria: %(read)s"
+
+#: .\portfolio\views.py:56
+#, python-format
+msgid "with Intervention type: %(read)s"
+msgstr "con tipo di Intervento: %(read)s"
+
+#: .\portfolio\views.py:59
+#, python-format
+msgid "with Status: %(read)s"
+msgstr "con Status: %(read)s"
+
+#: .\portfolio\views.py:62
+#, python-format
+msgid "with Cost: %(read)s"
+msgstr "con Costo: %(read)s"
+
+#: .\portfolio\views.py:122 .\portfolio\views.py:197
+msgid "Station does not belong to Project"
+msgstr "La Stazione non appartiene al Progetto"
 
 #: .\project\templates\403.html:4 .\project\templates\403.html:9
 msgid "Access denied"
@@ -853,10 +1256,6 @@ msgstr "Usa questo"
 msgid "to notify the incovenience"
 msgstr "per segnalare l'inconveniente"
 
-#: .\project\templates\navbar.html:17
-msgid "Projects"
-msgstr ""
-
 #: .\project\templates\navbar.html:33
 msgid "Contacts"
 msgstr "Contatti"
@@ -904,7 +1303,7 @@ msgstr "Non abbiamo trovato elementi che soddisfino la tua ricerca"
 
 #: .\project\urls.py:30 .\project\urls.py:31
 msgid "Admin"
-msgstr ""
+msgstr "Amministrazione"
 
 #: .\project\urls.py:37
 msgid "contacts/"
@@ -928,11 +1327,11 @@ msgstr "documenti/"
 
 #: .\project\urls.py:43
 msgid "invoices/"
-msgstr ""
+msgstr "fatture/"
 
 #: .\project\urls.py:45
 msgid "projects/"
-msgstr ""
+msgstr "progetti/"
 
 #: .\users\apps.py:7
 msgid "User Manager"
@@ -1145,11 +1544,6 @@ msgstr "effettuare il logout"
 #: .\users\templates\users\profile_includes\button.html:4
 msgid "Submit"
 msgstr "Invia"
-
-#: .\users\templates\users\front_login.html:46
-#: .\users\templates\users\profile_includes\button.html:5
-msgid "Fields with asterisk (*) are required"
-msgstr "I campi con l'asterisco (*) sono richiesti"
 
 #: .\users\templates\users\front_login.html:47
 msgid "Password forgotten?"
