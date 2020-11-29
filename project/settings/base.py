@@ -159,6 +159,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+MAPBOX_TOKEN = get_secret('MAPBOX_TOKEN')
+
 AUTH_USER_MODEL = 'users.User'
 PROFILE_IS_TRUSTED_BY_DEFAULT = False
 
