@@ -13,9 +13,21 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
+        {% if perms.bimblog.view_building %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="{% url 'portfolio:project_list' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% translate 'Projects' %}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'portfolio:project_list' %}">{% translate 'Projects' %}</a>
+            <a class="dropdown-item" href="{% url 'bimblog:building_list' %}">{% translate 'Buildings' %}</a>
+          </div>
+        </li>
+        {% else %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'portfolio:project_list' %}">{% translate 'Projects' %}</a>
         </li>
+        {% endif %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="{% url 'docs:page_list' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {% translate 'Documents' %}
