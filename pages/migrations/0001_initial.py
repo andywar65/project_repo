@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('portfolio', '0001_squashed_0012_auto_20201023_2349'),
+        ('portfolio', '0001_squashed_0011_auto_20201222_0003'),
         ('blog', '0001_initial'),
     ]
 
