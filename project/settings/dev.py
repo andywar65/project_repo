@@ -47,6 +47,8 @@ BASE_URL = 'http://127.0.0.1:8000'
 
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
+MAPBOX_TOKEN = get_secret('MAPBOX_TOKEN_DEV')
+
 
 try:
     from .local import *

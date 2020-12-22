@@ -53,6 +53,8 @@ REST_API_TARGET = get_secret('REST_API_TARGET') + '/wp-json/wp/v2/'
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = get_secret('BASE_URL')
 
+MAPBOX_TOKEN = get_secret('MAPBOX_TOKEN')
+
 try:
     from .local import *
 except ImportError:
