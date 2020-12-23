@@ -600,7 +600,7 @@ msgstr "Cancella l'immagine"
 
 #: .\bimblog\models.py:21
 msgid "Another Building by %(website)s!"
-msgstr "Un nuovo edificio di %(name)s!"
+msgstr "Un nuovo edificio di %(website)s!"
 
 #: .\bimblog\models.py:31 .\bimblog\models.py:120 .\blog\models.py:29
 #: .\pages\models.py:20 .\pages\models.py:59 .\pages\models.py:69
