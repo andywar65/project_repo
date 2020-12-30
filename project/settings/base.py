@@ -49,18 +49,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
-    'users.apps.UsersConfig',
-    'pages.apps.PagesConfig',
-    'blog.apps.BlogConfig',
-    'accounting.apps.AccountingConfig',
-    'portfolio.apps.PortfolioConfig',
-    'bimblog.apps.BimblogConfig',
+    #third party
     'captcha',
     'taggit',
     'crispy_forms',
     'treebeard',
     'private_storage',
     'rest_framework',
+    #local
+    'users.apps.UsersConfig',
+    'pages.apps.PagesConfig',
+    'blog.apps.BlogConfig',
+    'accounting.apps.AccountingConfig',
+    'portfolio.apps.PortfolioConfig',
+    'bimblog.apps.BimblogConfig',
 ]
 
 MIDDLEWARE = [

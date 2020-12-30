@@ -1561,7 +1561,7 @@ msgstr "progetti"
 
 #: .\portfolio\models.py:20
 msgid "Another Project by %(website)s!"
-msgstr "Un nuovo progetto di %(name)s!"
+msgstr "Un nuovo progetto di %(website)s!"
 
 #: .\portfolio\models.py:29
 msgid "Title of the project"
