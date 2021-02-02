@@ -9,6 +9,9 @@ from portfolio.models import Project
 
 from .models import ( HomePage, GalleryImage, HomeButton, TreePage )
 
+class VueTemplateView(TemplateView):
+    template_name = 'pages/vue-home.html'
+
 class HomeTemplateView(TemplateView):
     template_name = 'pages/home.html'
 

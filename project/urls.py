@@ -24,7 +24,7 @@ from filebrowser.sites import site
 import private_storage.urls
 
 from users.views import ContactFormView
-from pages.views import HomeTemplateView
+from pages.views import VueTemplateView
 from . import views
 
 admin.site.site_header = _('Admin') + ' ' + settings.WEBSITE_NAME
@@ -37,7 +37,7 @@ urlpatterns = [
     path(_('contacts/'), ContactFormView.as_view(), name='contacts'),
     path(_('accounts/'), include('users.urls', ) ),#namespace = 'account'
     path(_('search/'), views.search_results, name='search_results'),
-    path('', HomeTemplateView.as_view()),
+    path('', VueTemplateView.as_view()),
     path(_('articles/'), include('blog.urls.posts', namespace = 'blog')),
     path(_('docs/'), include('pages.urls.tree_pages', namespace = 'docs')),
     path(_('invoices/'), include('accounting.urls.invoices',
