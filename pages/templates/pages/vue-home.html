@@ -4,11 +4,13 @@
 
 {% block title %}{{ website.acro }} | {% translate 'Home' %}{%endblock title %}
 {% block extra-head %}
+
+<script src="{% static 'pages/js/three.js' %}"></script>
 {% endblock extra-head %}
 
 {% block content %}
-
 {% endblock content %}
 
 {% block extra-js %}
+<script src="{% static 'pages/js/vue_tutorial.js' %}"></script>
 {% endblock extra-js %}
