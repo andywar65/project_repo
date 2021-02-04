@@ -58,6 +58,7 @@ db.sqlite3
 /accounting
 /portfolio
 /bimblog
+/buildings
 
 # Flask stuff:
 instance/
