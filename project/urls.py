@@ -43,7 +43,7 @@ urlpatterns = [
     path(_('invoices/'), include('accounting.urls.invoices',
         namespace = 'invoices')),
     path(_('projects/'), include('portfolio.urls', namespace = 'portfolio')),
-    path(_('buildings/'), include('bimblog.urls', namespace = 'bimblog')),
+    path(_('buildings/'), include('buildings.urls', namespace = 'buildings')),
     path('favicon.ico',
         RedirectView.as_view(url=str(settings.STATIC_ROOT) + 'images/favicon.ico')),
     re_path('^private-media/', include(private_storage.urls)),
