@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-22 14:31+0100\n"
+"POT-Creation-Date: 2021-02-08 12:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,8 +123,7 @@ msgstr ""
 msgid "Delete the invoice"
 msgstr "Cancella la fattura"
 
-#: .\accounting\forms.py:30 .\bimblog\forms.py:24 .\bimblog\forms.py:37
-#: .\bimblog\forms.py:55 .\bimblog\forms.py:77
+#: .\accounting\forms.py:30 .\bimblog\forms.py:39 .\buildings\forms.py:33
 msgid "Caution, can't undo this."
 msgstr "Attenzione, non si può tornare indietro."
 
@@ -153,7 +152,8 @@ msgstr "Attiva se spuntata, altrimenti passiva"
 
 #: .\accounting\models.py:18 .\accounting\models.py:43
 #: .\accounting\templates\accounting\invoice_loop.html:10
-#: .\bimblog\models.py:38 .\blog\models.py:36 .\blog\models.py:110
+#: .\bimblog\models.py:58 .\blog\models.py:36 .\blog\models.py:110
+#: .\buildings\models.py:56
 msgid "Date"
 msgstr "Data"
 
@@ -246,18 +246,8 @@ msgstr ""
 #: .\accounting\templates\accounting\invoice_delete_form.html:16
 #: .\accounting\templates\accounting\invoice_form.html:20
 #: .\accounting\templates\accounting\invoice_update_form.html:27
-#: .\bimblog\templates\bimblog\building_form.html:25
-#: .\bimblog\templates\bimblog\building_form_delete.html:16
-#: .\bimblog\templates\bimblog\building_form_update.html:38
-#: .\bimblog\templates\bimblog\buildingplan_form.html:20
-#: .\bimblog\templates\bimblog\buildingplan_form_delete.html:16
-#: .\bimblog\templates\bimblog\buildingplan_form_update.html:28
-#: .\bimblog\templates\bimblog\photostation_form.html:27
-#: .\bimblog\templates\bimblog\photostation_form_delete.html:16
-#: .\bimblog\templates\bimblog\photostation_form_update.html:34
-#: .\bimblog\templates\bimblog\stationimage_form.html:20
-#: .\bimblog\templates\bimblog\stationimage_form_delete.html:16
-#: .\bimblog\templates\bimblog\stationimage_form_update.html:28
+#: .\bimblog\templates\bimblog\includes\form_errors.html:5
+#: .\buildings\templates\buildings\includes\form_errors.html:5
 #: .\users\templates\users\message.html:28
 #: .\users\templates\users\message_log.html:25
 #: .\users\templates\users\password_change.html:14
@@ -363,6 +353,7 @@ msgstr "Nessuna fattura disponibile"
 #: .\blog\templates\blog\article_archive_month.html:15
 #: .\blog\templates\blog\article_archive_year.html:15
 #: .\blog\templates\blog\article_pagination.html:6
+#: .\buildings\templates\buildings\stationimage_archive_day.html:22
 #: .\portfolio\templates\portfolio\project_archive_year.html:20
 #: .\portfolio\templates\portfolio\project_category_list.html:20
 #: .\portfolio\templates\portfolio\project_list.html:28
@@ -377,6 +368,7 @@ msgstr "PRECEDENTE"
 #: .\blog\templates\blog\article_archive_month.html:18
 #: .\blog\templates\blog\article_archive_year.html:18
 #: .\blog\templates\blog\article_pagination.html:9
+#: .\buildings\templates\buildings\stationimage_archive_day.html:25
 #: .\portfolio\templates\portfolio\project_archive_year.html:23
 #: .\portfolio\templates\portfolio\project_category_list.html:23
 #: .\portfolio\templates\portfolio\project_list.html:31
@@ -399,24 +391,23 @@ msgid "Invoices of"
 msgstr "Fatture di"
 
 #: .\accounting\templates\accounting\invoice_buttons.html:5
-#: .\bimblog\templates\bimblog\add_buttons.html:4
+#: .\bimblog\templates\bimblog\includes\add_buttons.html:4
+#: .\buildings\templates\buildings\includes\add_buttons.html:4
 #: .\portfolio\templates\portfolio\add_buttons.html:4
 msgid "Save"
 msgstr "Salva"
 
 #: .\accounting\templates\accounting\invoice_buttons.html:9
-#: .\bimblog\templates\bimblog\add_buttons.html:8
+#: .\bimblog\templates\bimblog\includes\add_buttons.html:8
+#: .\buildings\templates\buildings\includes\add_buttons.html:8
 #: .\portfolio\templates\portfolio\add_buttons.html:8
 msgid "Save and add"
 msgstr "Salva e aggiungi"
 
 #: .\accounting\templates\accounting\invoice_buttons.html:12
 #: .\accounting\templates\accounting\invoice_delete_form.html:27
-#: .\bimblog\templates\bimblog\add_buttons.html:11
-#: .\bimblog\templates\bimblog\building_form_delete.html:27
-#: .\bimblog\templates\bimblog\buildingplan_form_delete.html:27
-#: .\bimblog\templates\bimblog\photostation_form_delete.html:27
-#: .\bimblog\templates\bimblog\stationimage_form_delete.html:27
+#: .\bimblog\templates\bimblog\includes\add_buttons.html:11
+#: .\buildings\templates\buildings\includes\add_buttons.html:11
 #: .\portfolio\templates\portfolio\add_buttons.html:11
 #: .\users\templates\users\front_login.html:46
 #: .\users\templates\users\profile_includes\button.html:5
@@ -430,14 +421,18 @@ msgstr "Cancella la fattura"
 
 #: .\accounting\templates\accounting\invoice_delete_form.html:26
 #: .\accounting\templates\accounting\invoice_update_form.html:21
-#: .\bimblog\templates\bimblog\building_form_delete.html:26
-#: .\bimblog\templates\bimblog\building_form_update.html:32
-#: .\bimblog\templates\bimblog\buildingplan_form_delete.html:26
-#: .\bimblog\templates\bimblog\buildingplan_form_update.html:22
-#: .\bimblog\templates\bimblog\photostation_form_delete.html:26
-#: .\bimblog\templates\bimblog\photostation_form_update.html:28
-#: .\bimblog\templates\bimblog\stationimage_form_delete.html:26
-#: .\bimblog\templates\bimblog\stationimage_form_update.html:22
+#: .\bimblog\templates\bimblog\building_form_update.html:25
+#: .\bimblog\templates\bimblog\buildingplan_form_update.html:20
+#: .\bimblog\templates\bimblog\discipline_form_update.html:18
+#: .\bimblog\templates\bimblog\includes\delete_buttons.html:8
+#: .\bimblog\templates\bimblog\photostation_form_update.html:26
+#: .\bimblog\templates\bimblog\stationimage_form_update.html:20
+#: .\buildings\templates\buildings\building_form_update.html:25
+#: .\buildings\templates\buildings\includes\delete_buttons.html:8
+#: .\buildings\templates\buildings\photostation_form_update.html:26
+#: .\buildings\templates\buildings\plan_form_update.html:20
+#: .\buildings\templates\buildings\planset_form_update.html:18
+#: .\buildings\templates\buildings\stationimage_form_update.html:20
 msgid "Delete"
 msgstr "Cancella"
 
@@ -446,10 +441,6 @@ msgid "You don't have permissions to delete invoices"
 msgstr "Non hai le credenziali per cancellare fatture"
 
 #: .\accounting\templates\accounting\invoice_form.html:14
-#: .\bimblog\templates\bimblog\building_form.html:19
-#: .\bimblog\templates\bimblog\buildingplan_form.html:14
-#: .\bimblog\templates\bimblog\photostation_form.html:21
-#: .\bimblog\templates\bimblog\stationimage_form.html:14
 #, python-format
 msgid ""
 "\n"
@@ -495,10 +486,6 @@ msgid "Modify invoice"
 msgstr "Modifica fattura"
 
 #: .\accounting\templates\accounting\invoice_update_form.html:16
-#: .\bimblog\templates\bimblog\building_form_update.html:27
-#: .\bimblog\templates\bimblog\buildingplan_form_update.html:17
-#: .\bimblog\templates\bimblog\photostation_form_update.html:23
-#: .\bimblog\templates\bimblog\stationimage_form_update.html:17
 #, python-format
 msgid ""
 "\n"
@@ -521,7 +508,7 @@ msgstr "<int:year>/download/"
 msgid "<int:year>/<int:month>/download/"
 msgstr "<int:year>/<int:month>/download/"
 
-#: .\accounting\urls\invoices.py:19 .\bimblog\urls.py:14
+#: .\accounting\urls\invoices.py:19
 msgid "add/"
 msgstr "aggiungi/"
 
@@ -545,7 +532,8 @@ msgstr "Attiva?"
 msgid "dd/mm/yy"
 msgstr "gg/mm/aa"
 
-#: .\accounting\views.py:198 .\bimblog\models.py:123
+#: .\accounting\views.py:198 .\bimblog\models.py:27 .\bimblog\models.py:152
+#: .\buildings\models.py:149 .\buildings\models.py:189
 msgid "Description"
 msgstr "Descrizione"
 
@@ -553,172 +541,432 @@ msgstr "Descrizione"
 msgid "Paid?"
 msgstr "Saldata?"
 
-#: .\bimblog\admin.py:17 .\bimblog\forms.py:8 .\bimblog\forms.py:60
-#: .\bimblog\models.py:26 .\bimblog\models.py:28 .\bimblog\models.py:151
-#: .\bimblog\models.py:153 .\bimblog\models.py:169 .\blog\models.py:111
-#: .\pages\models.py:53
+#: .\bimblog\admin.py:21 .\bimblog\forms.py:16 .\bimblog\forms.py:65
+#: .\bimblog\models.py:46 .\bimblog\models.py:48 .\bimblog\models.py:180
+#: .\bimblog\models.py:182 .\bimblog\models.py:198 .\blog\models.py:111
+#: .\buildings\admin.py:21 .\buildings\forms.py:16 .\buildings\forms.py:59
+#: .\buildings\models.py:44 .\buildings\models.py:46 .\buildings\models.py:217
+#: .\buildings\models.py:219 .\buildings\models.py:235 .\pages\models.py:53
 msgid "Image"
 msgstr "Immagine"
 
-#: .\bimblog\admin.py:23
+#: .\bimblog\admin.py:27 .\buildings\admin.py:27
 msgid "Map"
 msgstr "Mappa"
 
-#: .\bimblog\apps.py:7
+#: .\bimblog\apps.py:7 .\buildings\apps.py:7
 msgid "Building Manager"
 msgstr "Building Manager"
 
-#: .\bimblog\forms.py:23
+#: .\bimblog\apps.py:25 .\bimblog\apps.py:27 .\buildings\apps.py:25
+#: .\buildings\apps.py:27
+msgid "Architecture"
+msgstr "Edile"
+
+#: .\bimblog\apps.py:29 .\bimblog\apps.py:31 .\buildings\apps.py:29
+#: .\buildings\apps.py:31
+msgid "MEP"
+msgstr "Impianti"
+
+#: .\bimblog\apps.py:33 .\bimblog\apps.py:35 .\buildings\apps.py:33
+#: .\buildings\apps.py:35
+msgid "Structure"
+msgstr "Strutturali"
+
+#: .\bimblog\forms.py:17 .\bimblog\forms.py:27 .\bimblog\models.py:37
+#: .\bimblog\models.py:69
+#: .\bimblog\templates\bimblog\discipline_list_create.html:5
+msgid "Disciplines"
+msgstr ""
+
+#: .\bimblog\forms.py:19 .\bimblog\forms.py:29 .\bimblog\models.py:70
+msgid "Show only plans belonging to chosen disciplines"
+msgstr ""
+
+#: .\bimblog\forms.py:37 .\buildings\forms.py:31
 msgid "Delete the building"
 msgstr "Cancella l'edificio'"
 
-#: .\bimblog\forms.py:27 .\bimblog\forms.py:40 .\bimblog\models.py:70
-#: .\bimblog\models.py:77 .\bimblog\models.py:116
-#: .\bimblog\templates\bimblog\building_detail.html:19 .\portfolio\models.py:50
+#: .\bimblog\forms.py:42 .\bimblog\forms.py:50 .\bimblog\models.py:93
+#: .\bimblog\models.py:100 .\bimblog\models.py:145
+#: .\bimblog\templates\bimblog\building_detail.html:20 .\buildings\forms.py:36
+#: .\buildings\forms.py:44 .\buildings\forms.py:74 .\buildings\forms.py:88
+#: .\buildings\models.py:97 .\buildings\models.py:104 .\buildings\models.py:141
+#: .\buildings\models.py:182
+#: .\buildings\templates\buildings\building_detail.html:20
+#: .\buildings\templates\buildings\plan_detail.html:20
 #: .\portfolio\templates\portfolio\project_detail.html:25
 msgid "Building"
 msgstr "Edificio"
 
-#: .\bimblog\forms.py:35
-msgid "Delete the building plan"
-msgstr "Cancella la planimetria"
-
-#: .\bimblog\forms.py:53
-#: .\bimblog\templates\bimblog\photostation_form_delete.html:5
-msgid "Delete photo station"
-msgstr "Cancella la stazione fotografica"
-
-#: .\bimblog\forms.py:58 .\bimblog\forms.py:67 .\bimblog\models.py:142
-#: .\bimblog\templates\bimblog\photostation_detail.html:11
+#: .\bimblog\forms.py:63 .\bimblog\forms.py:72 .\bimblog\models.py:171
+#: .\bimblog\templates\bimblog\stationimage_list_create.html:12
+#: .\buildings\forms.py:57 .\buildings\forms.py:66 .\buildings\models.py:208
+#: .\buildings\templates\buildings\stationimage_list_create.html:12
 msgid "Photo station"
 msgstr "Stazione fotografica"
 
-#: .\bimblog\forms.py:75
-#: .\bimblog\templates\bimblog\stationimage_form_delete.html:5
-msgid "Delete image"
-msgstr "Cancella l'immagine"
+#: .\bimblog\forms.py:87 .\bimblog\forms.py:95 .\bimblog\models.py:20
+msgid "Parent discipline"
+msgstr ""
 
-#: .\bimblog\models.py:21
-msgid "Another Building by %(website)s!"
-msgstr "Un nuovo edificio di %(website)s!"
+#: .\bimblog\forms.py:89
+msgid "Choose carefully: can be changed only by staff in admin"
+msgstr ""
 
-#: .\bimblog\models.py:31 .\bimblog\models.py:120 .\blog\models.py:29
-#: .\pages\models.py:20 .\pages\models.py:59 .\pages\models.py:69
-#: .\portfolio\models.py:28
+#: .\bimblog\forms.py:97 .\bimblog\models.py:22 .\buildings\forms.py:92
+msgid "Can be changed only by staff in admin"
+msgstr ""
+
+#: .\bimblog\models.py:24 .\bimblog\models.py:51 .\bimblog\models.py:149
+#: .\blog\models.py:29 .\buildings\models.py:49 .\buildings\models.py:146
+#: .\buildings\models.py:186 .\pages\models.py:20 .\pages\models.py:59
+#: .\pages\models.py:69 .\portfolio\models.py:27
 msgid "Title"
 msgstr "Titolo"
 
-#: .\bimblog\models.py:32
+#: .\bimblog\models.py:25
+#, fuzzy
+#| msgid "File name"
+msgid "Discipline name"
+msgstr "Nome del file"
+
+#: .\bimblog\models.py:29
+#, fuzzy
+#| msgid "Few words to describe this building"
+msgid "Few words to describe the discipline"
+msgstr "Poche parole per descrivere l'edificio"
+
+#: .\bimblog\models.py:36 .\bimblog\models.py:102
+#: .\bimblog\templates\bimblog\includes\building_detail_plans.html:9
+msgid "Discipline"
+msgstr ""
+
+#: .\bimblog\models.py:41 .\buildings\models.py:40
+#, python-format
+msgid "Another Building by %(website)s!"
+msgstr "Un nuovo edificio di %(website)s!"
+
+#: .\bimblog\models.py:52 .\buildings\models.py:50
 msgid "Building name"
 msgstr "Nome dell'edificio"
 
-#: .\bimblog\models.py:34 .\blog\models.py:32 .\pages\models.py:74
-#: .\portfolio\models.py:31
+#: .\bimblog\models.py:54 .\blog\models.py:32 .\buildings\models.py:52
+#: .\pages\models.py:74 .\portfolio\models.py:30
 msgid "Introduction"
 msgstr "Introduzione"
 
-#: .\bimblog\models.py:36
+#: .\bimblog\models.py:56 .\buildings\models.py:54
 msgid "Few words to describe this building"
 msgstr "Poche parole per descrivere l'edificio"
 
-#: .\bimblog\models.py:40
+#: .\bimblog\models.py:60 .\buildings\models.py:58
 msgid "Address"
 msgstr "Indirizzo"
 
-#: .\bimblog\models.py:41
+#: .\bimblog\models.py:61 .\buildings\models.py:59
 msgid "Something like \"Rome - Monteverde\" is ok"
 msgstr "Qualcosa tipo \"Roma - Monteverde\" va bene"
 
-#: .\bimblog\models.py:43 .\bimblog\models.py:126
+#: .\bimblog\models.py:63 .\bimblog\models.py:155 .\buildings\models.py:61
+#: .\buildings\models.py:192
 msgid "Latitude"
 msgstr "Latitudine"
 
-#: .\bimblog\models.py:44 .\bimblog\models.py:127
+#: .\bimblog\models.py:64 .\bimblog\models.py:156 .\buildings\models.py:62
+#: .\buildings\models.py:193
 msgid "Longitude"
 msgstr "Longitudine"
 
-#: .\bimblog\models.py:45
+#: .\bimblog\models.py:65 .\buildings\models.py:63
 msgid "Coordinates from Google Maps or https://openstreetmap.org"
 msgstr "Coordinate da Google Maps o https://openstreetmap.org"
 
-#: .\bimblog\models.py:46
+#: .\bimblog\models.py:66 .\buildings\models.py:64
 msgid "Zoom factor"
 msgstr "Fattore di zoom"
 
-#: .\bimblog\models.py:47
+#: .\bimblog\models.py:67
 msgid "Maximum should be 21"
 msgstr "Massimo intorno a 21"
 
-#: .\bimblog\models.py:58
+#: .\bimblog\models.py:81 .\buildings\models.py:80
 #, python-format
 msgid "Building-%(date)s"
 msgstr "Edificio-%(date)s"
 
-#: .\bimblog\models.py:71 .\bimblog\templates\bimblog\building_list.html:6
+#: .\bimblog\models.py:94
+#: .\bimblog\templates\bimblog\building_list_create.html:7
+#: .\buildings\models.py:98
+#: .\buildings\templates\buildings\building_list_create.html:7
 #: .\project\templates\navbar.html:23
 msgid "Buildings"
 msgstr "Edifici"
 
-#: .\bimblog\models.py:78 .\users\forms\front_forms.py:43 .\users\models.py:26
-#: .\users\models.py:55 .\users\models.py:80 .\users\models.py:99
+#: .\bimblog\models.py:104 .\buildings\models.py:105
+#: .\users\forms\front_forms.py:43 .\users\models.py:26 .\users\models.py:55
+#: .\users\models.py:80 .\users\models.py:99
 msgid "Name"
 msgstr "Nome"
 
-#: .\bimblog\models.py:79
+#: .\bimblog\models.py:105 .\buildings\models.py:106
 msgid "Name of the building plan"
 msgstr "Nome della planimetria"
 
-#: .\bimblog\models.py:81
+#: .\bimblog\models.py:107 .\buildings\models.py:108
 msgid "Elevation in meters"
 msgstr "Elevazione in metri"
 
-#: .\bimblog\models.py:82
+#: .\bimblog\models.py:108 .\buildings\models.py:109
 msgid "DXF file"
 msgstr "File DXF"
 
-#: .\bimblog\models.py:86
+#: .\bimblog\models.py:112 .\buildings\models.py:113
 msgid "Refresh geometry"
 msgstr "Rinnova geometrie"
 
-#: .\bimblog\models.py:105 .\bimblog\models.py:118
+#: .\bimblog\models.py:114 .\buildings\models.py:115
+msgid "Visible"
+msgstr ""
+
+#: .\bimblog\models.py:115 .\buildings\models.py:116
+msgid "Check if plan is immediately visible"
+msgstr ""
+
+#: .\bimblog\models.py:134 .\bimblog\models.py:147 .\buildings\models.py:135
+#: .\buildings\models.py:184
 msgid "Building plan"
 msgstr "Planimetria"
 
-#: .\bimblog\models.py:106
+#: .\bimblog\models.py:135 .\buildings\models.py:136
 msgid "Building plans"
 msgstr "Planimetrie"
 
-#: .\bimblog\models.py:110
+#: .\bimblog\models.py:139 .\buildings\models.py:176
 #, python-format
 msgid "Another photo station by %(sitename)s!"
 msgstr "Un'altra stazione fotografica di %(sitename)s!"
 
-#: .\bimblog\models.py:121
+#: .\bimblog\models.py:150 .\buildings\models.py:187
 msgid "Title of the photo station"
 msgstr "Titolo della stazione fotografica"
 
-#: .\bimblog\models.py:143
+#: .\bimblog\models.py:172 .\buildings\models.py:209
 msgid "Photo stations"
 msgstr "Stazioni fotografiche"
 
-#: .\bimblog\models.py:149
+#: .\bimblog\models.py:178 .\buildings\models.py:215
 msgid "Station"
 msgstr "Stazione"
 
-#: .\bimblog\models.py:150 .\pages\models.py:27 .\portfolio\models.py:35
+#: .\bimblog\models.py:179 .\buildings\models.py:216 .\pages\models.py:27
+#: .\portfolio\models.py:34
 msgid "Date:"
 msgstr "Data:"
 
-#: .\bimblog\models.py:156 .\pages\models.py:48
+#: .\bimblog\models.py:185 .\buildings\models.py:222 .\pages\models.py:48
 msgid "Caption"
 msgstr "Didascalia"
 
-#: .\bimblog\models.py:170 .\pages\models.py:43 .\pages\models.py:45
-#: .\pages\models.py:54
+#: .\bimblog\models.py:199 .\buildings\models.py:236 .\pages\models.py:43
+#: .\pages\models.py:45 .\pages\models.py:54
 msgid "Images"
 msgstr "Immagini"
 
-#: .\bimblog\templates\bimblog\building_alerts.html:5
+#: .\bimblog\templates\bimblog\building_detail.html:25
+#: .\buildings\templates\buildings\building_detail.html:25
+#: .\buildings\templates\buildings\plan_detail.html:26
+msgid "Modify features"
+msgstr "Modifica le caratteristiche"
+
+#: .\bimblog\templates\bimblog\building_detail.html:37
+#: .\bimblog\templates\bimblog\building_form_update.html:7
+#: .\bimblog\templates\bimblog\building_form_update.html:18
+#: .\buildings\templates\buildings\building_detail.html:35
+#: .\buildings\templates\buildings\building_form_update.html:7
+#: .\buildings\templates\buildings\building_form_update.html:18
+#: .\buildings\templates\buildings\plan_detail.html:36
+msgid "Modify building"
+msgstr "Modifica edificio"
+
+#: .\bimblog\templates\bimblog\building_detail.html:40
+#: .\buildings\templates\buildings\building_detail.html:38
+#: .\buildings\templates\buildings\plan_detail.html:39
+msgid "Back to all buildings"
+msgstr "Torna agli edifici"
+
+#: .\bimblog\templates\bimblog\building_detail.html:45
+#: .\bimblog\templates\bimblog\buildingplan_form.html:5
+#: .\bimblog\templates\bimblog\buildingplan_form.html:12
+#: .\buildings\templates\buildings\building_detail.html:47
+#: .\buildings\templates\buildings\plan_detail.html:48
+#: .\buildings\templates\buildings\plan_form.html:5
+#: .\buildings\templates\buildings\plan_form.html:12
+msgid "Add building plan"
+msgstr "Aggiungi planimetria"
+
+#: .\bimblog\templates\bimblog\building_detail.html:49
+#: .\bimblog\templates\bimblog\photostation_form.html:7
+#: .\bimblog\templates\bimblog\photostation_form.html:19
+#: .\buildings\templates\buildings\building_detail.html:51
+#: .\buildings\templates\buildings\photostation_form.html:7
+#: .\buildings\templates\buildings\photostation_form.html:19
+#: .\buildings\templates\buildings\plan_detail.html:52
+msgid "Add photo station"
+msgstr "Aggiungi stazione fotografica"
+
+#: .\bimblog\templates\bimblog\building_detail.html:53
+#: .\bimblog\templates\bimblog\discipline_list_create.html:17
+#: .\bimblog\templates\bimblog\discipline_list_create.html:50
+#, fuzzy
+#| msgid "Add file"
+msgid "Add discipline"
+msgstr "Aggiungi file"
+
+#: .\bimblog\templates\bimblog\building_detail.html:71
+#: .\buildings\templates\buildings\building_detail.html:80
+#: .\buildings\templates\buildings\plan_detail.html:79
+msgid "Images by date"
+msgstr "Immagini per data"
+
+#: .\bimblog\templates\bimblog\building_form_delete.html:4
+#: .\buildings\templates\buildings\building_form_delete.html:4
+msgid "Delete building"
+msgstr "Cancella l'edificio"
+
+#: .\bimblog\templates\bimblog\building_form_delete.html:10
+#: .\buildings\templates\buildings\building_form_delete.html:10
+msgid "Delete building:"
+msgstr "Cancella l'edificio"
+
+#: .\bimblog\templates\bimblog\building_form_delete.html:14
+#: .\buildings\templates\buildings\building_form_delete.html:14
+msgid "You don't have permissions to delete buildings"
+msgstr "Non hai le credenziali per cancellare edifici"
+
+#: .\bimblog\templates\bimblog\building_form_update.html:48
+#: .\buildings\templates\buildings\building_form_update.html:48
+msgid "You don't have permissions to modify buildings"
+msgstr "Non hai le credenziali per modificare edifici"
+
+#: .\bimblog\templates\bimblog\building_list_create.html:17
+#: .\buildings\templates\buildings\building_list_create.html:17
+msgid "Map of all buildings"
+msgstr "Mappa di tutti gli edifici"
+
+#: .\bimblog\templates\bimblog\building_list_create.html:21
+#: .\bimblog\templates\bimblog\building_list_create.html:34
+#: .\buildings\templates\buildings\building_list_create.html:21
+#: .\buildings\templates\buildings\building_list_create.html:34
+msgid "Add building"
+msgstr "Aggiungi edificio"
+
+#: .\bimblog\templates\bimblog\building_list_create.html:37
+#: .\buildings\templates\buildings\building_list_create.html:37
+msgid "Click on the map above to set Latitude, Longitude and Zoom factor."
+msgstr "Fai click sulla mappa qui sopra per definire latitudine, longitudine e fattore di zoom"
+
+#: .\bimblog\templates\bimblog\building_list_create.html:48
+#: .\buildings\templates\buildings\building_list_create.html:48
+msgid "You don't have permissions to add buildings"
+msgstr "Non hai le credenziali per aggiungere edifici"
+
+#: .\bimblog\templates\bimblog\buildingplan_form.html:25
+#: .\buildings\templates\buildings\plan_form.html:25
+msgid "You don't have permissions to add building plans"
+msgstr "Non hai le credenziali per aggiungere planimetrie"
+
+#: .\bimblog\templates\bimblog\buildingplan_form_delete.html:4
+#: .\buildings\templates\buildings\plan_form_delete.html:4
+msgid "Delete building plan"
+msgstr "Cancella planimetria"
+
+#: .\bimblog\templates\bimblog\buildingplan_form_delete.html:10
+#: .\buildings\templates\buildings\plan_form_delete.html:10
+msgid "Delete building plan:"
+msgstr "Cancella la planimetria:"
+
+#: .\bimblog\templates\bimblog\buildingplan_form_delete.html:14
+#: .\buildings\templates\buildings\plan_form_delete.html:14
+msgid "You don't have permissions to delete building plans"
+msgstr "Non hai le credenziali per cancellare le planimetrie"
+
+#: .\bimblog\templates\bimblog\buildingplan_form_update.html:6
+#: .\bimblog\templates\bimblog\buildingplan_form_update.html:13
+#: .\buildings\templates\buildings\plan_form_update.html:6
+#: .\buildings\templates\buildings\plan_form_update.html:13
+msgid "Modify building plan"
+msgstr "Modifica la planimetria"
+
+#: .\bimblog\templates\bimblog\buildingplan_form_update.html:33
+#: .\buildings\templates\buildings\plan_form_update.html:33
+msgid "You don't have permissions to modify building plans"
+msgstr "Non hai le credenziali per modificare le planimetrie"
+
+#: .\bimblog\templates\bimblog\discipline_form_delete.html:4
+#, fuzzy
+#| msgid "Delete building"
+msgid "Delete discipline"
+msgstr "Cancella l'edificio"
+
+#: .\bimblog\templates\bimblog\discipline_form_delete.html:10
+#, fuzzy
+#| msgid "Delete building:"
+msgid "Delete discipline:"
+msgstr "Cancella l'edificio"
+
+#: .\bimblog\templates\bimblog\discipline_form_delete.html:11
+msgid "Remember that disciplines are shared among buildings."
+msgstr ""
+
+#: .\bimblog\templates\bimblog\discipline_form_delete.html:15
+#, fuzzy
+#| msgid "You don't have permissions to delete buildings"
+msgid "You don't have permissions to delete disciplines"
+msgstr "Non hai le credenziali per cancellare edifici"
+
+#: .\bimblog\templates\bimblog\discipline_form_update.html:5
+#, fuzzy
+#| msgid "Modify plans"
+msgid "Modify discipline"
+msgstr "Modifica planimetrie"
+
+#: .\bimblog\templates\bimblog\discipline_form_update.html:11
+#, fuzzy
+#| msgid "Modify building"
+msgid "Modify discipline: "
+msgstr "Modifica edificio"
+
+#: .\bimblog\templates\bimblog\discipline_form_update.html:31
+#, fuzzy
+#| msgid "You don't have permissions to modify buildings"
+msgid "You don't have permissions to modify disciplines"
+msgstr "Non hai le credenziali per modificare edifici"
+
+#: .\bimblog\templates\bimblog\discipline_list_create.html:14
+#, fuzzy
+#| msgid "List of buildings"
+msgid "List of disciplines"
+msgstr "Lista degli edifici"
+
+#: .\bimblog\templates\bimblog\discipline_list_create.html:40
+#: .\buildings\templates\buildings\includes\planset_annotated_list.html:27
+msgid "Modify directory (in admin)"
+msgstr "Modifica la directory (nell'amministrazione)"
+
+#: .\bimblog\templates\bimblog\discipline_list_create.html:44
+msgid "There are no disciplines, please add one"
+msgstr ""
+
+#: .\bimblog\templates\bimblog\discipline_list_create.html:63
+#, fuzzy
+#| msgid "You don't have permissions to add buildings"
+msgid "You don't have permissions to add disciplines"
+msgstr "Non hai le credenziali per aggiungere edifici"
+
+#: .\bimblog\templates\bimblog\includes\building_alerts.html:5
+#: .\buildings\templates\buildings\includes\building_alerts.html:5
+#, python-format
 msgid ""
 "\n"
 "    Building <strong>%(link)s</strong> successfully created!\n"
@@ -728,17 +976,21 @@ msgstr ""
 "    Edificio <strong>%(link)s</strong> creato con successo!\n"
 "    "
 
-#: .\bimblog\templates\bimblog\building_alerts.html:14
+#: .\bimblog\templates\bimblog\includes\building_alerts.html:14
+#: .\buildings\templates\buildings\includes\building_alerts.html:14
+#, python-format
 msgid ""
 "\n"
 "    Building <strong>%(link)s</strong> successfully modified!\n"
 "    "
 msgstr ""
 "\n"
-"      Edificio %(link)s è stato modificato con successo!\n"
+"      Edificio <strong>%(link)s</strong> è stato modificato con successo!\n"
 "      "
 
-#: .\bimblog\templates\bimblog\building_alerts.html:23
+#: .\bimblog\templates\bimblog\includes\building_alerts.html:23
+#: .\buildings\templates\buildings\includes\building_alerts.html:23
+#, python-format
 msgid ""
 "\n"
 "    Building <strong>%(link)s</strong> successfully deleted!\n"
@@ -748,75 +1000,18 @@ msgstr ""
 "    Edificio <strong>%(link)s</strong> cancellato con successo!\n"
 "    "
 
-#: .\bimblog\templates\bimblog\building_detail.html:25
-#: .\bimblog\templates\bimblog\buildingplan_form.html:5
-#: .\bimblog\templates\bimblog\buildingplan_form.html:12
-msgid "Add building plan"
-msgstr "Aggiungi planimetria"
-
-#: .\bimblog\templates\bimblog\building_detail.html:28
-#: .\bimblog\templates\bimblog\photostation_form.html:7
-#: .\bimblog\templates\bimblog\photostation_form.html:19
-msgid "Add photo station"
-msgstr "Aggiungi stazione fotografica"
-
-#: .\bimblog\templates\bimblog\building_detail.html:40
-#: .\bimblog\templates\bimblog\building_form_update.html:7
-#: .\bimblog\templates\bimblog\building_form_update.html:23
-msgid "Modify building"
-msgstr "Modifica edificio"
-
-#: .\bimblog\templates\bimblog\building_detail.html:44
-msgid "Back to all buildings"
-msgstr "Torna agli edifici"
-
-#: .\bimblog\templates\bimblog\building_detail.html:60
-msgid "Images by date"
-msgstr "Immagini per data"
-
-#: .\bimblog\templates\bimblog\building_detail.html:132
-msgid "No plan"
-msgstr "Nessuna planimetria"
-
-#: .\bimblog\templates\bimblog\building_detail_plans.html:7
+#: .\bimblog\templates\bimblog\includes\building_detail_plans.html:7
 msgid "Modify plans"
 msgstr "Modifica planimetrie"
 
-#: .\bimblog\templates\bimblog\building_detail_plans.html:8
+#: .\bimblog\templates\bimblog\includes\building_detail_plans.html:8
+#: .\buildings\templates\buildings\includes\building_detail_plans.html:8
 msgid "Elevation (mt)"
 msgstr "Elevazione (m)"
 
-#: .\bimblog\templates\bimblog\building_form.html:6
-#: .\bimblog\templates\bimblog\building_form.html:17
-#: .\bimblog\templates\bimblog\building_list.html:20
-msgid "Add building"
-msgstr "Aggiungi edificio"
-
-#: .\bimblog\templates\bimblog\building_form.html:40
-msgid "You don't have permissions to add buildings"
-msgstr "Non hai le credenziali per aggiungere edifici"
-
-#: .\bimblog\templates\bimblog\building_form_delete.html:5
-msgid "Delete building"
-msgstr "Cancella l'edificio"
-
-#: .\bimblog\templates\bimblog\building_form_delete.html:11
-msgid "Delete building:"
-msgstr "Cancella l'edificio"
-
-#: .\bimblog\templates\bimblog\building_form_delete.html:32
-msgid "You don't have permissions to delete buildings"
-msgstr "Non hai le credenziali per cancellare edifici"
-
-#: .\bimblog\templates\bimblog\building_form_update.html:59
-msgid "You don't have permissions to modify buildings"
-msgstr "Non hai le credenziali per modificare edifici"
-
-#: .\bimblog\templates\bimblog\building_list.html:16
-msgid "List of buildings"
-msgstr "Lista degli edifici"
-
-#: .\bimblog\templates\bimblog\buildingplan_alerts.html:5
+#: .\bimblog\templates\bimblog\includes\buildingplan_alerts.html:5
+#: .\buildings\templates\buildings\includes\plan_alerts.html:5
+#, python-format
 msgid ""
 "\n"
 "    Building plan <strong>%(link)s</strong> successfully created!\n"
@@ -826,17 +1021,21 @@ msgstr ""
 "    Planimetria <strong>%(link)s</strong> creata con successo!\n"
 "    "
 
-#: .\bimblog\templates\bimblog\buildingplan_alerts.html:14
+#: .\bimblog\templates\bimblog\includes\buildingplan_alerts.html:14
+#: .\buildings\templates\buildings\includes\plan_alerts.html:14
+#, python-format
 msgid ""
 "\n"
 "    Building plan <strong>%(link)s</strong> successfully modified!\n"
 "    "
 msgstr ""
 "\n"
-"      Planimetria %(link)s modificata con successo!\n"
+"      Planimetria <strong>%(link)s</strong> modificata con successo!\n"
 "      "
 
-#: .\bimblog\templates\bimblog\buildingplan_alerts.html:23
+#: .\bimblog\templates\bimblog\includes\buildingplan_alerts.html:23
+#: .\buildings\templates\buildings\includes\plan_alerts.html:23
+#, python-format
 msgid ""
 "\n"
 "    Building plan <strong>%(link)s</strong> successfully deleted!\n"
@@ -846,32 +1045,74 @@ msgstr ""
 "    Planimetria <strong>%(link)s</strong> cancellata con successo!\n"
 "    "
 
-#: .\bimblog\templates\bimblog\buildingplan_form.html:31
-msgid "You don't have permissions to add building plans"
-msgstr "Non hai le credenziali per aggiungere planimetrie"
+#: .\bimblog\templates\bimblog\includes\delete_buttons.html:3
+#: .\buildings\templates\buildings\includes\delete_buttons.html:3
+msgid "WARNING, we can't undo this!"
+msgstr "ATTENZIONE, non si può tornare indietro!"
 
-#: .\bimblog\templates\bimblog\buildingplan_form_delete.html:5
-msgid "Delete building plan"
-msgstr "Cancella planimetria"
+#: .\bimblog\templates\bimblog\includes\delete_buttons.html:12
+#: .\buildings\templates\buildings\includes\delete_buttons.html:12
+msgid "Cancel"
+msgstr "Annulla"
 
-#: .\bimblog\templates\bimblog\buildingplan_form_delete.html:11
-msgid "Delete building plan:"
-msgstr "Cancella la planimetria:"
+#: .\bimblog\templates\bimblog\includes\discipline_alerts.html:5
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "    Building <strong>%(link)s</strong> successfully created!\n"
+#| "    "
+msgid ""
+"\n"
+"    Discipline <strong>%(link)s</strong> successfully created!\n"
+"    "
+msgstr ""
+"\n"
+"    Edificio <strong>%(link)s</strong> creato con successo!\n"
+"    "
 
-#: .\bimblog\templates\bimblog\buildingplan_form_delete.html:32
-msgid "You don't have permissions to delete building plans"
-msgstr "Non hai le credenziali per cancellare le planimetrie"
+#: .\bimblog\templates\bimblog\includes\discipline_alerts.html:14
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "    Building <strong>%(link)s</strong> successfully modified!\n"
+#| "    "
+msgid ""
+"\n"
+"    Discipline <strong>%(link)s</strong> successfully modified!\n"
+"    "
+msgstr ""
+"\n"
+"      Edificio %(link)s è stato modificato con successo!\n"
+"      "
 
-#: .\bimblog\templates\bimblog\buildingplan_form_update.html:6
-#: .\bimblog\templates\bimblog\buildingplan_form_update.html:13
-msgid "Modify building plan"
-msgstr "Modifica la planimetria"
+#: .\bimblog\templates\bimblog\includes\discipline_alerts.html:23
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "    Building <strong>%(link)s</strong> successfully deleted!\n"
+#| "    "
+msgid ""
+"\n"
+"    Discipline <strong>%(link)s</strong> successfully deleted!\n"
+"    "
+msgstr ""
+"\n"
+"    Edificio <strong>%(link)s</strong> cancellato con successo!\n"
+"    "
 
-#: .\bimblog\templates\bimblog\buildingplan_form_update.html:39
-msgid "You don't have permissions to modify building plans"
-msgstr "Non hai le credenziali per modificare le planimetrie"
+#: .\bimblog\templates\bimblog\includes\hello_formula.html:3
+#: .\buildings\templates\buildings\includes\hello_formula.html:3
+#, python-format
+msgid ""
+"\n"
+"  Hello %(name)s, fill the fields below then submit.\n"
+msgstr ""
+"\n"
+"        Ciao %(name)s, inserisci i dati qui sotto, poi Invia.\n"
 
-#: .\bimblog\templates\bimblog\photostation_alerts.html:5
+#: .\bimblog\templates\bimblog\includes\photostation_alerts.html:5
+#: .\buildings\templates\buildings\includes\photostation_alerts.html:5
+#, python-format
 msgid ""
 "\n"
 "    Photo station <strong>%(link)s</strong> successfully created!\n"
@@ -881,17 +1122,21 @@ msgstr ""
 "    Stazione fotografica <strong>%(link)s</strong> creata con successo!\n"
 "    "
 
-#: .\bimblog\templates\bimblog\photostation_alerts.html:14
+#: .\bimblog\templates\bimblog\includes\photostation_alerts.html:14
+#: .\buildings\templates\buildings\includes\photostation_alerts.html:14
+#, python-format
 msgid ""
 "\n"
 "    Photo station <strong>%(link)s</strong> successfully modified!\n"
 "    "
 msgstr ""
 "\n"
-"      Stazione fotografica %(link)s modificata con successo!\n"
+"      Stazione fotografica <strong>%(link)s</strong> modificata con successo!\n"
 "      "
 
-#: .\bimblog\templates\bimblog\photostation_alerts.html:23
+#: .\bimblog\templates\bimblog\includes\photostation_alerts.html:23
+#: .\buildings\templates\buildings\includes\photostation_alerts.html:23
+#, python-format
 msgid ""
 "\n"
 "    Photo station <strong>%(link)s</strong> successfully deleted!\n"
@@ -901,56 +1146,26 @@ msgstr ""
 "    Stazione fotografica <strong>%(link)s</strong> cancellata con successo!\n"
 "    "
 
-#: .\bimblog\templates\bimblog\photostation_detail.html:17
-#: .\bimblog\templates\bimblog\stationimage_form.html:5
-msgid "Add image"
-msgstr "Aggiungi immagine"
-
-#: .\bimblog\templates\bimblog\photostation_detail.html:24
-msgid "There are no images available for this station"
-msgstr "Nessuna immagine disponibile per questa stazione"
-
-#: .\bimblog\templates\bimblog\photostation_detail.html:30
-#: .\bimblog\templates\bimblog\photostation_form_update.html:8
-#: .\bimblog\templates\bimblog\photostation_form_update.html:19
-msgid "Modify photo station"
-msgstr "Modifica stazione fotografica"
-
-#: .\bimblog\templates\bimblog\photostation_detail.html:34
-msgid "Back to building"
-msgstr "Torna all'edificio"
-
-#: .\bimblog\templates\bimblog\photostation_form.html:42
-msgid "You don't have permissions to add photo stations"
-msgstr "Non hai le credenziali per aggiungere stazioni fotografiche"
-
-#: .\bimblog\templates\bimblog\photostation_form_delete.html:11
-msgid "Delete photo station:"
-msgstr "Cancella la stazione fotografica:"
-
-#: .\bimblog\templates\bimblog\photostation_form_delete.html:32
-msgid "You don't have permissions to delete photo stations"
-msgstr "Non hai le credenziali per cancellare stazioni fotografiche"
-
-#: .\bimblog\templates\bimblog\photostation_form_update.html:49
-msgid "You don't have permissions to change photo stations"
-msgstr "Non hai le credenziali per modificare stazioni fotografiche"
-
-#: .\bimblog\templates\bimblog\station_gallery.html:15
+#: .\bimblog\templates\bimblog\includes\station_gallery.html:15
+#: .\buildings\templates\buildings\includes\station_gallery.html:15
 #: .\pages\templates\pages\gallery.html:15
 msgid "Previous"
 msgstr "Precedente"
 
-#: .\bimblog\templates\bimblog\station_gallery.html:19
+#: .\bimblog\templates\bimblog\includes\station_gallery.html:19
+#: .\buildings\templates\buildings\includes\station_gallery.html:19
 #: .\pages\templates\pages\gallery.html:19
 msgid "Next"
 msgstr "Prossimo"
 
-#: .\bimblog\templates\bimblog\station_gallery.html:35
+#: .\bimblog\templates\bimblog\includes\station_gallery.html:35
+#: .\buildings\templates\buildings\includes\station_gallery.html:35
 msgid "No description"
 msgstr "Nessuna descrizione"
 
-#: .\bimblog\templates\bimblog\stationimage_alerts.html:5
+#: .\bimblog\templates\bimblog\includes\stationimage_alerts.html:5
+#: .\buildings\templates\buildings\includes\stationimage_alerts.html:5
+#, python-format
 msgid ""
 "\n"
 "    Image <strong>%(link)s</strong> successfully created!\n"
@@ -960,17 +1175,21 @@ msgstr ""
 "    Immagine <strong>%(link)s</strong> creata con successo!\n"
 "    "
 
-#: .\bimblog\templates\bimblog\stationimage_alerts.html:14
+#: .\bimblog\templates\bimblog\includes\stationimage_alerts.html:14
+#: .\buildings\templates\buildings\includes\stationimage_alerts.html:14
+#, python-format
 msgid ""
 "\n"
 "    Image <strong>%(link)s</strong> successfully modified!\n"
 "    "
 msgstr ""
 "\n"
-"      Immagine %(link)s modificata con successo!\n"
+"      Immagine <strong>%(link)s</strong> modificata con successo!\n"
 "      "
 
-#: .\bimblog\templates\bimblog\stationimage_alerts.html:23
+#: .\bimblog\templates\bimblog\includes\stationimage_alerts.html:23
+#: .\buildings\templates\buildings\includes\stationimage_alerts.html:23
+#, python-format
 msgid ""
 "\n"
 "    Image <strong>%(link)s</strong> successfully deleted!\n"
@@ -980,102 +1199,217 @@ msgstr ""
 "    Immagine <strong>%(link)s</strong> cancellata con successo!\n"
 "    "
 
+#: .\bimblog\templates\bimblog\photostation_form.html:36
+#: .\buildings\templates\buildings\photostation_form.html:36
+msgid "You don't have permissions to add photo stations"
+msgstr "Non hai le credenziali per aggiungere stazioni fotografiche"
+
+#: .\bimblog\templates\bimblog\photostation_form_delete.html:4
+#: .\buildings\templates\buildings\photostation_form_delete.html:4
+msgid "Delete photo station"
+msgstr "Cancella la stazione fotografica"
+
+#: .\bimblog\templates\bimblog\photostation_form_delete.html:10
+#: .\buildings\templates\buildings\photostation_form_delete.html:10
+msgid "Delete photo station:"
+msgstr "Cancella la stazione fotografica:"
+
+#: .\bimblog\templates\bimblog\photostation_form_delete.html:14
+#: .\buildings\templates\buildings\photostation_form_delete.html:14
+msgid "You don't have permissions to delete photo stations"
+msgstr "Non hai le credenziali per cancellare stazioni fotografiche"
+
+#: .\bimblog\templates\bimblog\photostation_form_update.html:8
+#: .\bimblog\templates\bimblog\photostation_form_update.html:19
+#: .\bimblog\templates\bimblog\stationimage_list_create.html:40
+#: .\buildings\templates\buildings\photostation_form_update.html:8
+#: .\buildings\templates\buildings\photostation_form_update.html:19
+#: .\buildings\templates\buildings\stationimage_list_create.html:41
+msgid "Modify photo station"
+msgstr "Modifica stazione fotografica"
+
+#: .\bimblog\templates\bimblog\photostation_form_update.html:43
+#: .\buildings\templates\buildings\photostation_form_update.html:43
+msgid "You don't have permissions to change photo stations"
+msgstr "Non hai le credenziali per modificare stazioni fotografiche"
+
 #: .\bimblog\templates\bimblog\stationimage_archive_day.html:9
+#: .\buildings\templates\buildings\stationimage_archive_day.html:9
 msgid "Images by day"
 msgstr "Immagini per data"
 
 #: .\bimblog\templates\bimblog\stationimage_archive_day.html:17
+#: .\buildings\templates\buildings\stationimage_archive_day.html:17
 msgid "No images today"
 msgstr "Oggi nessuna immagine"
 
-#: .\bimblog\templates\bimblog\stationimage_form.html:12
-msgid "Add an image"
-msgstr "Aggiungi un'immagine"
+#: .\bimblog\templates\bimblog\stationimage_form_delete.html:4
+#: .\buildings\templates\buildings\stationimage_form_delete.html:4
+msgid "Delete image"
+msgstr "Cancella l'immagine"
 
-#: .\bimblog\templates\bimblog\stationimage_form.html:31
-msgid "You don't have permissions to add images"
-msgstr "Non hai le credenziali per aggiungere immagini"
-
-#: .\bimblog\templates\bimblog\stationimage_form_delete.html:11
+#: .\bimblog\templates\bimblog\stationimage_form_delete.html:10
+#: .\buildings\templates\buildings\stationimage_form_delete.html:10
 msgid "Delete image:"
 msgstr "Cancella immagine:"
 
-#: .\bimblog\templates\bimblog\stationimage_form_delete.html:32
+#: .\bimblog\templates\bimblog\stationimage_form_delete.html:14
+#: .\buildings\templates\buildings\stationimage_form_delete.html:14
 msgid "You don't have permissions to delete images"
 msgstr "Non hai le credenziali per cancellare immagini"
 
 #: .\bimblog\templates\bimblog\stationimage_form_update.html:6
 #: .\bimblog\templates\bimblog\stationimage_form_update.html:13
+#: .\buildings\templates\buildings\stationimage_form_update.html:6
+#: .\buildings\templates\buildings\stationimage_form_update.html:13
 msgid "Modify image"
 msgstr "Modifica immagine"
 
-#: .\bimblog\templates\bimblog\stationimage_form_update.html:43
+#: .\bimblog\templates\bimblog\stationimage_form_update.html:37
+#: .\buildings\templates\buildings\stationimage_form_update.html:37
 msgid "You don't have permissions to modify images"
 msgstr "Non hai le credenziali per modificare immagini"
 
-#: .\bimblog\urls.py:16
+#: .\bimblog\templates\bimblog\stationimage_list_create.html:18
+#: .\buildings\templates\buildings\stationimage_list_create.html:19
+msgid "Bakcwards in time"
+msgstr "Indietro nel tempo"
+
+#: .\bimblog\templates\bimblog\stationimage_list_create.html:21
+#: .\buildings\templates\buildings\stationimage_list_create.html:22
+msgid "Forwards in time"
+msgstr "Avanti nel tempo"
+
+#: .\bimblog\templates\bimblog\stationimage_list_create.html:25
+#: .\buildings\templates\buildings\stationimage_list_create.html:26
+msgid "Add image"
+msgstr "Aggiungi immagine"
+
+#: .\bimblog\templates\bimblog\stationimage_list_create.html:33
+#: .\buildings\templates\buildings\stationimage_list_create.html:34
+msgid "There are no images available for this station"
+msgstr "Nessuna immagine disponibile per questa stazione"
+
+#: .\bimblog\templates\bimblog\stationimage_list_create.html:45
+#: .\buildings\templates\buildings\stationimage_list_create.html:46
+msgid "Back to building"
+msgstr "Torna all'edificio"
+
+#: .\bimblog\templates\bimblog\stationimage_list_create.html:53
+#: .\buildings\templates\buildings\stationimage_list_create.html:54
+msgid "Add an image"
+msgstr "Aggiungi un'immagine"
+
+#: .\bimblog\templates\bimblog\stationimage_list_create.html:66
+#: .\buildings\templates\buildings\stationimage_list_create.html:67
+msgid "You don't have permissions to add images"
+msgstr "Non hai le credenziali per aggiungere immagini"
+
+#: .\bimblog\urls.py:17 .\buildings\urls.py:9
 msgid "<slug>/change/"
 msgstr "<slug>/modifica/"
 
-#: .\bimblog\urls.py:17
+#: .\bimblog\urls.py:18 .\buildings\urls.py:10
 msgid "<slug>/delete/"
 msgstr "<slug>/cancella/"
 
-#: .\bimblog\urls.py:18
+#: .\bimblog\urls.py:19 .\buildings\urls.py:19
 msgid "<slug>/plan/add/"
 msgstr "<slug>/planimetrie/aggiungi/"
 
-#: .\bimblog\urls.py:20
+#: .\bimblog\urls.py:21 .\buildings\urls.py:23
 msgid "<slug:build_slug>/plan/<slug:plan_slug>/change/"
 msgstr "<slug:build_slug>/planimetrie/<slug:plan_slug>/modifica/"
 
-#: .\bimblog\urls.py:22
+#: .\bimblog\urls.py:23 .\buildings\urls.py:25
 msgid "<slug:build_slug>/plan/<slug:plan_slug>/delete/"
 msgstr "<slug:build_slug>/planimetrie/<slug:plan_slug>/cancella/"
 
-#: .\bimblog\urls.py:24
+#: .\bimblog\urls.py:25 .\buildings\urls.py:27
 msgid "<slug>/station/add/"
 msgstr "<slug>/stazioni/aggiungi/"
 
-#: .\bimblog\urls.py:26
+#: .\bimblog\urls.py:27 .\buildings\urls.py:29
 msgid "<slug:build_slug>/station/<slug:stat_slug>/"
 msgstr "<slug:build_slug>/stazioni/<slug:stat_slug>/"
 
-#: .\bimblog\urls.py:28
+#: .\bimblog\urls.py:29 .\buildings\urls.py:31
 msgid "<slug:build_slug>/station/<slug:stat_slug>/change/"
 msgstr "<slug:build_slug>/stazioni/<slug:stat_slug>/modifica/"
 
-#: .\bimblog\urls.py:30
+#: .\bimblog\urls.py:31 .\buildings\urls.py:33
 msgid "<slug:build_slug>/station/<slug:stat_slug>/delete/"
 msgstr "<slug:build_slug>/stazioni/<slug:stat_slug>/cancella/"
 
-#: .\bimblog\urls.py:32
-msgid "<slug:build_slug>/stations/<slug:stat_slug>/image/add/"
-msgstr "<slug:build_slug>/stazioni/<slug:stat_slug>/immagini/aggiungi/"
-
-#: .\bimblog\urls.py:34
+#: .\bimblog\urls.py:33 .\buildings\urls.py:35
 msgid "<slug:build_slug>/stations/<slug:stat_slug>/image/<pk>/change"
 msgstr "<slug:build_slug>/stazioni/<slug:stat_slug>/immagini/<pk>/modifica/"
 
-#: .\bimblog\urls.py:36
+#: .\bimblog\urls.py:35 .\buildings\urls.py:37
 msgid "<slug:build_slug>/stations/<slug:stat_slug>/image/<pk>/delete"
 msgstr "<slug:build_slug>/stazioni/<slug:stat_slug>/immagini/<pk>/cancella/"
 
-#: .\bimblog\urls.py:38
+#: .\bimblog\urls.py:37 .\buildings\urls.py:39
 msgid "<slug>/stations/<int:year>/<int:month>/<int:day>/"
 msgstr "<slug>/stazioni/<int:year>/<int:month>/<int:day>/"
 
-#: .\bimblog\views\building.py:196 .\bimblog\views\building.py:222
+#: .\bimblog\urls.py:39
+#, fuzzy
+#| msgid "<slug>/plan/add/"
+msgid "<slug>/discipline/add/"
+msgstr "<slug>/planimetrie/aggiungi/"
+
+#: .\bimblog\urls.py:41
+#, fuzzy
+#| msgid "<slug>/change/"
+msgid "<slug>/discipline/<pk>/change/"
+msgstr "<slug>/modifica/"
+
+#: .\bimblog\urls.py:43
+#, fuzzy
+#| msgid "<slug>/delete/"
+msgid "<slug>/discipline/<pk>/delete/"
+msgstr "<slug>/cancella/"
+
+#: .\bimblog\views\building.py:111 .\buildings\views\building.py:112
+#, fuzzy
+#| msgid "You don't have permissions to add buildings"
+msgid "User has no permission to add buildings"
+msgstr "Non hai le credenziali per aggiungere edifici"
+
+#: .\bimblog\views\building.py:168 .\buildings\views\building.py:184
+#: .\buildings\views\building.py:359
+msgid "No plan"
+msgstr "Nessuna planimetria"
+
+#: .\bimblog\views\building.py:268 .\bimblog\views\building.py:294
+#: .\buildings\views\building.py:291 .\buildings\views\building.py:318
+#: .\buildings\views\building.py:377
 msgid "Plan does not belong to Building"
 msgstr "La planimetria non appartiene al'edificio"
 
-#: .\bimblog\views\station.py:68 .\bimblog\views\station.py:103
-#: .\bimblog\views\station.py:136 .\bimblog\views\station.py:163
-#: .\bimblog\views\station.py:202 .\bimblog\views\station.py:232
+#: .\bimblog\views\building.py:340
+#, fuzzy
+#| msgid "You don't have permissions to add buildings"
+msgid "User has no permission to add disciplines"
+msgstr "Non hai le credenziali per aggiungere edifici"
+
+#: .\bimblog\views\station.py:77 .\bimblog\views\station.py:123
+#: .\bimblog\views\station.py:157 .\bimblog\views\station.py:201
+#: .\bimblog\views\station.py:225 .\buildings\views\station.py:82
+#: .\buildings\views\station.py:135 .\buildings\views\station.py:169
+#: .\buildings\views\station.py:213 .\buildings\views\station.py:237
 msgid "Station does not belong to Building"
 msgstr "La stazione non appartiene al'edificio"
 
-#: .\bimblog\views\station.py:204 .\bimblog\views\station.py:234
+#: .\bimblog\views\station.py:180 .\buildings\views\station.py:192
+#, fuzzy
+#| msgid "You don't have permissions to add images"
+msgid "User has no permission to add images"
+msgstr "Non hai le credenziali per aggiungere immagini"
+
+#: .\bimblog\views\station.py:203 .\bimblog\views\station.py:227
+#: .\buildings\views\station.py:215 .\buildings\views\station.py:239
 msgid "Image does not belong to Photo Station"
 msgstr "L'immagine non appartiene alla stazione fotografica"
 
@@ -1101,7 +1435,7 @@ msgstr "Già inviata"
 
 #: .\blog\forms.py:9 .\blog\models.py:35 .\blog\models.py:113
 #: .\pages\models.py:25 .\pages\models.py:76 .\portfolio\admin.py:22
-#: .\portfolio\models.py:34 .\users\models.py:87
+#: .\portfolio\models.py:33 .\users\models.py:87
 msgid "Text"
 msgstr "Testo"
 
@@ -1265,6 +1599,7 @@ msgid "List of authors"
 msgstr "Lista degli autori"
 
 #: .\blog\templates\blog\article_detail.html:39
+#: .\buildings\templates\buildings\includes\building_detail_plans.html:7
 #: .\portfolio\templates\portfolio\project_detail.html:19
 msgid "Modify"
 msgstr "Modifica"
@@ -1348,6 +1683,173 @@ msgstr "autori/<username>/"
 msgid "uploads/<username>/"
 msgstr "upload/<username>/"
 
+#: .\buildings\forms.py:90 .\buildings\models.py:142
+msgid "Parent set"
+msgstr "Set genitore"
+
+#: .\buildings\models.py:65
+msgid "Maximum should be 23"
+msgstr "Massimo intorno a 23"
+
+#: .\buildings\models.py:144
+msgid "Choose carefully, can be changed only by staff in admin"
+msgstr "Scegli bene, può essere modificato solo in amministrazione"
+
+#: .\buildings\models.py:147
+msgid "Set name"
+msgstr "Nome del set"
+
+#: .\buildings\models.py:151
+msgid "Few words to describe the set"
+msgstr "Poche parole per descrivere il set"
+
+#: .\buildings\models.py:155
+#: .\buildings\templates\buildings\building_detail.html:68
+#: .\buildings\templates\buildings\plan_detail.html:69
+msgid "Plans"
+msgstr "Planimetrie"
+
+#: .\buildings\models.py:156
+msgid "Choose plans to show in this set"
+msgstr "Scegli le planimetrie da mostrare in questo set"
+
+#: .\buildings\models.py:171
+msgid "Plan set"
+msgstr "Set di planimetrie"
+
+#: .\buildings\models.py:172
+#: .\buildings\templates\buildings\plan_detail.html:61
+msgid "Plan sets"
+msgstr "Set di planimetrie"
+
+#: .\buildings\templates\buildings\building_detail.html:43
+#: .\buildings\templates\buildings\plan_detail.html:44
+msgid "Add Plan set"
+msgstr "Aggiungi un set di planimetrie"
+
+#: .\buildings\templates\buildings\building_detail.html:60
+msgid "Active Plan set: "
+msgstr "Set di planimetrie attivo: "
+
+#: .\buildings\templates\buildings\building_detail.html:74
+msgid "No plans in active set"
+msgstr "Nessuna planimetria nel set attivo"
+
+#: .\buildings\templates\buildings\building_detail.html:90
+#: .\buildings\templates\buildings\plan_detail.html:89
+msgid "No images available"
+msgstr "Nessuna immagine disponibile"
+
+#: .\buildings\templates\buildings\includes\planset_alerts.html:5
+#, python-format
+msgid ""
+"\n"
+"    Plan set <strong>%(link)s</strong> successfully created!\n"
+"    "
+msgstr ""
+"\n"
+"    Set di planimetrie <strong>%(link)s</strong> creato con successo!\n"
+"    "
+
+#: .\buildings\templates\buildings\includes\planset_alerts.html:14
+#, python-format
+msgid ""
+"\n"
+"    Plan set <strong>%(link)s</strong> successfully modified!\n"
+"    "
+msgstr ""
+"\n"
+"      Set di planimetrie <strong>%(link)s</strong> modificato con successo!\n"
+"      "
+
+#: .\buildings\templates\buildings\includes\planset_alerts.html:23
+#, python-format
+msgid ""
+"\n"
+"    Plan set <strong>%(link)s</strong> successfully deleted!\n"
+"    "
+msgstr ""
+"\n"
+"    Set di planimetrie <strong>%(link)s</strong> cancellato con successo!\n"
+"    "
+
+#: .\buildings\templates\buildings\includes\planset_annotated_list.html:12
+msgid "Activate!"
+msgstr "Attiva!"
+
+#: .\buildings\templates\buildings\includes\planset_annotated_list.html:17
+msgid "Modify plan set"
+msgstr "Modifica il set di planimetrie"
+
+#: .\buildings\templates\buildings\plan_detail.html:21
+msgid "plan"
+msgstr "planimetria"
+
+#: .\buildings\templates\buildings\plan_detail.html:23
+msgid "Elevation (m)"
+msgstr "Elevazione (m)"
+
+#: .\buildings\templates\buildings\planset_form.html:5
+msgid "Create Plan set"
+msgstr "Crea il set di planimetrie"
+
+#: .\buildings\templates\buildings\planset_form.html:14
+msgid "Add plan set"
+msgstr "Aggiungi un set di planimetrie"
+
+#: .\buildings\templates\buildings\planset_form.html:27
+msgid "You don't have permissions to add plan sets"
+msgstr "Non hai le credenziali per aggiungere set di planimetrie"
+
+#: .\buildings\templates\buildings\planset_form_delete.html:4
+msgid "Delete Plan set"
+msgstr "Cancella il set di planimetrie"
+
+#: .\buildings\templates\buildings\planset_form_delete.html:10
+msgid "Delete Plan set:"
+msgstr "Cancella il set di planimetrie:"
+
+#: .\buildings\templates\buildings\planset_form_delete.html:11
+msgid "You can't delete Base plan set."
+msgstr "Non puoi cancellare il set Base"
+
+#: .\buildings\templates\buildings\planset_form_delete.html:15
+msgid "You don't have permissions to delete plan sets"
+msgstr "Non hai le credenziali per cancellare set di planimetrie"
+
+#: .\buildings\templates\buildings\planset_form_update.html:5
+msgid "Modify Plan set"
+msgstr "Modifica il set di planimetrie"
+
+#: .\buildings\templates\buildings\planset_form_update.html:11
+msgid "Modify Plan set: "
+msgstr "Modifica il set di planimetrie"
+
+#: .\buildings\templates\buildings\planset_form_update.html:31
+msgid "You don't have permissions to modify plan sets"
+msgstr "Non hai le credenziali per modificare i set di planimetrie"
+
+#: .\buildings\urls.py:11
+msgid "<slug>/sets/add/"
+msgstr "<slug>/set/aggiungi/"
+
+#: .\buildings\urls.py:15
+msgid "<slug:build_slug>/sets/<slug:set_slug>/change/"
+msgstr "<slug:build_slug>/set/<slug:set_slug>/modifica/"
+
+#: .\buildings\urls.py:17
+msgid "<slug:build_slug>/sets/<slug:set_slug>/delete/"
+msgstr "<slug:build_slug>/set/<slug:stat_slug>/cancella/"
+
+#: .\buildings\urls.py:21
+msgid "<slug:build_slug>/plan/<slug:plan_slug>/"
+msgstr "<slug:build_slug>/planimetrie/<slug:plan_slug>/"
+
+#: .\buildings\views\building.py:138 .\buildings\views\building.py:460
+#: .\buildings\views\building.py:496
+msgid "Plan set does not belong to Building"
+msgstr "Il set di planimetrie non appartiene all'edificio"
+
 #: .\pages\apps.py:7
 msgid "Page Makers"
 msgstr "Impaginatori"
@@ -1416,11 +1918,11 @@ msgstr "Pagina ad albero"
 msgid "Tree pages"
 msgstr "Pagine ad albero"
 
-#: .\pages\templates\pages\home.html:6
+#: .\pages\templates\pages\home.html:6 .\pages\templates\pages\vue-home.html:5
 msgid "Home"
 msgstr "Home"
 
-#: .\pages\templates\pages\home.html:37 .\portfolio\models.py:68
+#: .\pages\templates\pages\home.html:37 .\portfolio\models.py:64
 #: .\portfolio\templates\portfolio\project_archive_year.html:4
 #: .\portfolio\templates\portfolio\project_category_list.html:4
 #: .\portfolio\templates\portfolio\project_category_list.html:8
@@ -1459,11 +1961,11 @@ msgstr "Documenti"
 msgid "No documents available"
 msgstr "Nessun documento disponibile"
 
-#: .\pages\views.py:19
+#: .\pages\views.py:22
 msgid "No Home Pages available"
 msgstr "Nessuna Home Page disponibile"
 
-#: .\pages\views.py:51 .\pages\views.py:64
+#: .\pages\views.py:54 .\pages\views.py:67
 msgid "Request path is different from GET path"
 msgstr "Il request path è diverso dal GET path"
 
@@ -1559,44 +2061,45 @@ msgstr "COSTO["
 msgid "projects"
 msgstr "progetti"
 
-#: .\portfolio\models.py:20
+#: .\portfolio\models.py:19
+#, python-format
 msgid "Another Project by %(website)s!"
 msgstr "Un nuovo progetto di %(website)s!"
 
-#: .\portfolio\models.py:29
+#: .\portfolio\models.py:28
 msgid "Title of the project"
 msgstr "Titolo del progetto"
 
-#: .\portfolio\models.py:37
+#: .\portfolio\models.py:36
 msgid "Site"
 msgstr "Luogo"
 
-#: .\portfolio\models.py:38
+#: .\portfolio\models.py:37
 msgid "Something like \"Rome - Monteverde\""
 msgstr "Qualcosa tipo \"Roma - Monteverde\""
 
-#: .\portfolio\models.py:41
+#: .\portfolio\models.py:40
 msgid "Functional category"
 msgstr "Categoria funzionale"
 
-#: .\portfolio\models.py:43
+#: .\portfolio\models.py:42
 msgid "Type of intervention"
 msgstr "Tipo di intervento"
 
-#: .\portfolio\models.py:45
+#: .\portfolio\models.py:44
 msgid "Status of intervention"
 msgstr "Status dell'intervento"
 
-#: .\portfolio\models.py:47
+#: .\portfolio\models.py:46
 msgid "Cost of intervention"
 msgstr "Costo dell'intervento"
 
-#: .\portfolio\models.py:60
+#: .\portfolio\models.py:56
 #, python-format
 msgid "Project-%(date)s"
 msgstr "Progetto-%(date)s"
 
-#: .\portfolio\models.py:67
+#: .\portfolio\models.py:63
 msgid "Project"
 msgstr "Progetto"
 
@@ -2358,6 +2861,12 @@ msgstr "Credenziali di accesso a %(acro)s"
 #: .\users\views.py:170 .\users\views.py:207
 msgid "User is not authorized to manage this profile"
 msgstr "L'utente non è autorizzato a gestire questo profilo"
+
+#~ msgid "Delete the building plan"
+#~ msgstr "Cancella la planimetria"
+
+#~ msgid "<slug:build_slug>/stations/<slug:stat_slug>/image/add/"
+#~ msgstr "<slug:build_slug>/stazioni/<slug:stat_slug>/immagini/aggiungi/"
 
 #~ msgid "Stations"
 #~ msgstr "Stazioni"
