@@ -27,8 +27,8 @@ from users.views import ContactFormView
 from pages.views import HomeTemplateView
 from . import views
 
-admin.site.site_header = 'Amministrazione ' + settings.WEBSITE_NAME
-admin.site.site_title = 'Amministrazione ' + settings.WEBSITE_NAME
+admin.site.site_header = _('Admin') + ' ' + settings.WEBSITE_NAME
+admin.site.site_title = _('Admin') + ' ' + settings.WEBSITE_NAME
 
 urlpatterns = [
     path('admin/filebrowser/', site.urls),
