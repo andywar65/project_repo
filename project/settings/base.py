@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'treebeard',
     'private_storage',
     'rest_framework',
+    'colorfield',
     #local
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
@@ -129,6 +130,8 @@ STATICFILES_DIRS = [
 ]
 
 TAGGIT_CASE_INSENSITIVE = True
+
+GRAPPELLI_ADMIN_TITLE = 'architettura.APP'
 
 FILEBROWSER_VERSIONS = {
     'admin_thumbnail': {'verbose_name': 'Admin Thumbnail', 'width': 60, 'height': 60, 'opts': 'crop'},
