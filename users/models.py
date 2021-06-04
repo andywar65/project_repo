@@ -54,8 +54,8 @@ class Profile(models.Model):
     lat = models.FloatField(_("Latitude"), null=True, blank=True)
     long = models.FloatField(_("Longitude"), null=True, blank=True)
     location = models.PointField(null=True, blank=True)
-    zoom = models.FloatField(_("Zoom factor"), null=True, blank=True,
-        help_text=_("Maximum should be 23"))
+    zoom = models.FloatField(_("Zoom factor"), default = settings.CITY_ZOOM,
+        help_text=_("10 is good for a large city"))
 
     def get_full_name(self):
         return self.user.get_full_name()
