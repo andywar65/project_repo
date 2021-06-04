@@ -8,6 +8,7 @@ from django.core.mail import EmailMessage
 from django.utils.crypto import get_random_string
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext as _
+from django.contrib.gis.db import models
 
 from PIL import Image
 from private_storage.fields import PrivateFileField
@@ -49,6 +50,12 @@ class Profile(models.Model):
     yes_spam = models.BooleanField(default = False,
         verbose_name = _('Mailing list'),
         help_text = _("Do you want to be notified on new articles?"),)
+    city_name = models.CharField(max_length=100, null=True, blank=True)
+    lat = models.FloatField(_("Latitude"), null=True, blank=True)
+    long = models.FloatField(_("Longitude"), null=True, blank=True)
+    location = models.PointField(null=True, blank=True)
+    zoom = models.FloatField(_("Zoom factor"), null=True, blank=True,
+        help_text=_("Maximum should be 23"))
 
     def get_full_name(self):
         return self.user.get_full_name()
