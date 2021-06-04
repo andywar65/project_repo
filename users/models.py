@@ -9,6 +9,7 @@ from django.utils.crypto import get_random_string
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext as _
 from django.contrib.gis.db import models
+from django.contrib.gis.geos import Point
 
 from PIL import Image
 from private_storage.fields import PrivateFileField
@@ -65,6 +66,13 @@ class Profile(models.Model):
         if self.avatar:
             return FileObject(str(self.avatar))
         return
+
+    def save(self, *args, **kwargs):
+        if self.long and self.lat:
+            self.location = Point( self.long, self.lat )
+            self.long = None
+            self.lat = None
+        super(Profile, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.user.get_full_name()
