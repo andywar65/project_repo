@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% load i18n %}
 
 {% block title %}{{ website.acro }} | {% translate "Change profile" %}{%endblock title %}
+
+{% block extra-head %}
+  {% include 'buildings/includes/leaflet_extra_head.html' %}
+{% endblock extra-head %}
 
 {% block content %}
 <div class="row">
@@ -27,6 +32,10 @@
             {{ form.bio|as_crispy_field }}
           </div>
         </div>
+        {% include 'users/profile_includes/map.html' %}
+        <div class="row">
+          <div class="col" id="mapid" style="height: 600px;"></div>
+        </div>
         {% include 'users/profile_includes/button.html' %}
       {% csrf_token %}
     </form>
@@ -38,3 +47,7 @@
   </div>
 </div>
 {% endblock content %}
+{% block extra-js %}
+  {{ map_data|json_script:"map_data"}}
+  <script src="{% static 'buildings/js/buildings.js'%}"></script>
+{% endblock extra-js %}
