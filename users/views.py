@@ -173,6 +173,13 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
     def get_initial(self):
         initial = super(ProfileChangeView, self).get_initial()
         usr = self.request.user
+        if usr.profile.location:
+            city_long = usr.profile.location.coords[0]
+            city_lat = usr.profile.location.coords[1]
+        else:
+            city_long = settings.CITY_LONG
+            city_lat = settings.CITY_LAT
+
         initial.update({'first_name': usr.first_name,
             'last_name': usr.last_name,
             'email': usr.email,
@@ -180,8 +187,8 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
             'bio': usr.profile.bio,
             'yes_spam': usr.profile.yes_spam,
             'city_name': usr.profile.city_name,
-            'lat': usr.profile.location.coords[1],
-            'long': usr.profile.location.coords[0],
+            'lat': city_lat,
+            'long': city_long,
             'zoom': usr.profile.zoom,
             })
         return initial
@@ -189,7 +196,7 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         profile = self.request.user.profile
-        if profile.location.coords[0]:
+        if profile.location:
             city_long = profile.location.coords[0]
             city_lat = profile.location.coords[1]
             city_zoom = profile.zoom
