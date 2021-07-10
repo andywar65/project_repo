@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'private_storage',
     'rest_framework',
     'colorfield',
+    'wkhtmltopdf'
     #local
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
