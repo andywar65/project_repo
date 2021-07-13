@@ -47,12 +47,23 @@
         {% endfor %}
       {% endif %}
       {% if progs %}
-        <h5>Progetti</h5>
+        <h5>{% translate 'Projects' %}</h5>
         {% for prog in progs %}
           <ul>
             <li>
               <a href="{{ prog.get_full_path }}">{{ prog.title }}</a>
               {{ prog.intro }}
+            </li>
+          </ul>
+        {% endfor %}
+      {% endif %}
+      {% if jours %}
+        <h5>{% translate 'Building log entries' %}</h5>
+        {% for jour in jours %}
+          <ul>
+            <li>
+              <a href="{{ jour.get_path }}">{{ jour.title }}</a>
+              {{ jour.intro }}
             </li>
           </ul>
         {% endfor %}
