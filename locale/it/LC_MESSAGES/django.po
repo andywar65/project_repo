@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-28 18:32+0200\n"
+"POT-Creation-Date: 2021-08-11 22:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -905,6 +905,7 @@ msgstr "Home"
 #: .\portfolio\templates\portfolio\project_category_list.html:8
 #: .\portfolio\templates\portfolio\project_list.html:4
 #: .\project\templates\navbar.html:18 .\project\templates\navbar.html:21
+#: .\project\templates\search_results.html:50
 msgid "Projects"
 msgstr "Progetti"
 
@@ -1213,10 +1214,14 @@ msgid "Pages"
 msgstr "Pagine"
 
 #: .\project\templates\search_results.html:61
+msgid "Building log entries"
+msgstr "Giornali di cantiere"
+
+#: .\project\templates\search_results.html:72
 msgid "Null search"
 msgstr "Ricerca nulla"
 
-#: .\project\templates\search_results.html:62
+#: .\project\templates\search_results.html:73
 msgid "We didn't find elements that satisfy your search"
 msgstr "Non abbiamo trovato elementi che soddisfino la tua ricerca"
 
