@@ -65,6 +65,7 @@ class HomeButton(models.Model):
     class Meta:
         verbose_name=_("Home Page button")
         verbose_name_plural=_("Home Page buttons")
+        ordering = ( 'position', )
 
 class TreePage(MP_Node):
     title = models.CharField(_('Title'), max_length = 50)
