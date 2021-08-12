@@ -52,6 +52,7 @@ class GalleryImage(models.Model):
     class Meta:
         verbose_name=_("Image")
         verbose_name_plural=_("Images")
+        ordering = ( 'position', )
 
 class HomeButton(models.Model):
     home = models.ForeignKey(HomePage, null=True, editable=False,
