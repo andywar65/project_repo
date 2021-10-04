@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'treebeard',
     'private_storage',
     'rest_framework',
+    'rest_framework_gis',
     'colorfield',
     #local
     'users.apps.UsersConfig',
