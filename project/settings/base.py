@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'accounting.apps.AccountingConfig',
     'portfolio.apps.PortfolioConfig',
     'buildings.apps.BuildingsConfig',
+    'maps.apps.MapsConfig',
     'bimblog.apps.BimblogConfig',
 ]
 

@@ -44,6 +44,7 @@ urlpatterns = [
         namespace = 'invoices')),
     path(_('projects/'), include('portfolio.urls', namespace = 'portfolio')),
     path(_('buildings/'), include('buildings.urls', namespace = 'buildings')),
+    path(_('maps/'), include('maps.urls', namespace = 'maps')),
     path('favicon.ico',
         RedirectView.as_view(url=str(settings.STATIC_ROOT) + 'images/favicon.ico')),
     re_path('^private-media/', include(private_storage.urls)),
