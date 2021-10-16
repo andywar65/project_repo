@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-11 22:44+0200\n"
+"POT-Creation-Date: 2021-08-30 12:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -546,7 +546,7 @@ msgid "Already sent"
 msgstr "Già inviata"
 
 #: .\blog\forms.py:9 .\blog\models.py:35 .\blog\models.py:113
-#: .\pages\models.py:25 .\pages\models.py:76 .\portfolio\admin.py:22
+#: .\pages\models.py:25 .\pages\models.py:78 .\portfolio\admin.py:22
 #: .\portfolio\models.py:33 .\users\models.py:102
 msgid "Text"
 msgstr "Testo"
@@ -601,8 +601,8 @@ msgstr "Categorie"
 msgid "Another article by %(name)s!"
 msgstr "Un nuovo articolo di %(name)s!"
 
-#: .\blog\models.py:29 .\pages\models.py:20 .\pages\models.py:59
-#: .\pages\models.py:69 .\portfolio\models.py:27
+#: .\blog\models.py:29 .\pages\models.py:20 .\pages\models.py:60
+#: .\pages\models.py:71 .\portfolio\models.py:27
 msgid "Title"
 msgstr "Titolo"
 
@@ -610,7 +610,7 @@ msgstr "Titolo"
 msgid "The title of the article"
 msgstr "Il titolo dell'articolo"
 
-#: .\blog\models.py:32 .\pages\models.py:74 .\portfolio\models.py:30
+#: .\blog\models.py:32 .\pages\models.py:76 .\portfolio\models.py:30
 msgid "Introduction"
 msgstr "Introduzione"
 
@@ -815,7 +815,7 @@ msgstr "Impaginatori"
 msgid "Appears on first image"
 msgstr "Appare nella prima immagine"
 
-#: .\pages\models.py:23 .\pages\models.py:60
+#: .\pages\models.py:23 .\pages\models.py:61
 msgid "Subtitle"
 msgstr "Sottotitolo"
 
@@ -843,27 +843,27 @@ msgstr "Immagini"
 msgid "Caption"
 msgstr "Didascalia"
 
-#: .\pages\models.py:50 .\pages\models.py:62
+#: .\pages\models.py:50 .\pages\models.py:63
 msgid "Position"
 msgstr "Posizione"
 
-#: .\pages\models.py:61
+#: .\pages\models.py:62
 msgid "Link"
 msgstr "Link"
 
-#: .\pages\models.py:65
+#: .\pages\models.py:66
 msgid "Home Page button"
 msgstr "Pulsante di Home Page"
 
-#: .\pages\models.py:66
+#: .\pages\models.py:67
 msgid "Home Page buttons"
 msgstr "Pulsanti di Home Page"
 
-#: .\pages\models.py:70
+#: .\pages\models.py:72
 msgid "Slug"
 msgstr "Slug"
 
-#: .\pages\models.py:72
+#: .\pages\models.py:74
 msgid ""
 "Title as it appears in the address bar,\n"
 "            only lowercase, no blank spaces"
@@ -871,19 +871,19 @@ msgstr ""
 "Titolo così come appare nella barra degli indirizzi,\n"
 "            solo minuscole, senza spazi bianchi"
 
-#: .\pages\models.py:77
+#: .\pages\models.py:79
 msgid "Show summary"
 msgstr "Mostra il sommario"
 
-#: .\pages\models.py:78
+#: .\pages\models.py:80
 msgid "Show navigation"
 msgstr "Mostra la navigazione"
 
-#: .\pages\models.py:142
+#: .\pages\models.py:144
 msgid "Tree page"
 msgstr "Pagina ad albero"
 
-#: .\pages\models.py:143
+#: .\pages\models.py:145
 msgid "Tree pages"
 msgstr "Pagine ad albero"
 
