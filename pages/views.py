@@ -5,7 +5,7 @@ from django.utils.crypto import get_random_string
 from django.utils.translation import gettext as _
 
 from blog.models import Article
-from portfolio.models import Project
+#from portfolio.models import Project
 
 from .models import ( HomePage, GalleryImage, HomeButton, TreePage )
 
@@ -27,7 +27,7 @@ class HomeTemplateView(TemplateView):
         context['images'] = context['page'].home_image.all()
         context['actions'] = context['page'].home_button.all()[:3]
         context['posts'] = Article.objects.all()[:6]
-        context['progs'] = Project.objects.all()[:6]
+        #context['progs'] = Project.objects.all()[:6]
         return context
 
 class TreePageListView(ListView):

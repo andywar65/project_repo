@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
 
 from blog.models import Article, UserUpload
-from portfolio.models import Project
+#from portfolio.models import Project
 from buildings.models import Journal
 from pages.models import TreePage
 
@@ -38,7 +38,7 @@ def search_results(request):
             pages = pages.order_by('-rank')
             success = True
         #search in projects
-        progs = Project.objects.annotate(rank=SearchRank(v, q))
+        #progs = Project.objects.annotate(rank=SearchRank(v, q))
         progs = progs.filter(rank__gt=0.01)
         if progs:
             progs = progs.order_by('-rank')
