@@ -18,8 +18,8 @@ class Migration(migrations.Migration):
             name='homebutton',
             options={'ordering': ('position',), 'verbose_name': 'Pulsante di Home Page', 'verbose_name_plural': 'Pulsanti di Home Page'},
         ),
-        migrations.RemoveField(
-            model_name='galleryimage',
-            name='prog',
-        ),
+        #migrations.RemoveField(
+            #model_name='galleryimage',
+            #name='prog',
+        #),
     ]
