@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     'portfolio.apps.PortfolioConfig',
     'buildings.apps.BuildingsConfig',
     'maps.apps.MapsConfig',
-    'bimblog.apps.BimblogConfig',
+    #'bimblog.apps.BimblogConfig',
 ]
 
 MIDDLEWARE = [
