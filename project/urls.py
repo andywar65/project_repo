@@ -42,7 +42,7 @@ urlpatterns = [
     path(_('docs/'), include('pages.urls.tree_pages', namespace = 'docs')),
     path(_('invoices/'), include('accounting.urls.invoices',
         namespace = 'invoices')),
-    #path(_('projects/'), include('portfolio.urls', namespace = 'portfolio')),
+    path(_('projects/'), include('portfolio.urls', namespace = 'portfolio')),
     path(_('buildings/'), include('buildings.urls', namespace = 'buildings')),
     path(_('maps/'), include('maps.urls', namespace = 'maps')),
     path('favicon.ico',
