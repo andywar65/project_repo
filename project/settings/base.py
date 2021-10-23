@@ -14,6 +14,7 @@ from pathlib import Path
 import json
 
 from django.core.exceptions import ImproperlyConfigured
+from django.utils.translation import gettext_lazy as _
 
 PROJECT_DIR = Path(__file__).resolve(strict=True).parent.parent
 BASE_DIR = Path(PROJECT_DIR).resolve(strict=True).parent
@@ -73,12 +74,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -158,6 +159,11 @@ LOCALE_PATHS = [
 ]
 
 LANGUAGE_CODE = get_secret('LANGUAGE_CODE')#'en-us'
+
+LANGUAGES = [
+    ('it', _('Italian')),
+    ('en', _('English')),
+]
 
 TIME_ZONE = get_secret('TIME_ZONE')
 

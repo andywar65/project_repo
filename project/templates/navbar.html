@@ -53,6 +53,7 @@
           {% endif %}
         </li>
       </ul>
+      {% include "language_selector.html" %}
       <form class="form-inline my-2 my-lg-0" action="{% url 'search_results' %}" method="get">
         <input class="form-control mr-sm-2" name="q" type="search" placeholder="{% translate 'Write something' %}" aria-label="Search">
         <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">{% translate 'Search' %}</button>

@@ -48,7 +48,8 @@ urlpatterns = [
     path('favicon.ico',
         RedirectView.as_view(url=str(settings.STATIC_ROOT) + 'images/favicon.ico')),
     re_path('^private-media/', include(private_storage.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]
 
 if settings.DEBUG:
