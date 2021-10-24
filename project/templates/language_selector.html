@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<form class="form-inline my-2 my-lg-0" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+<form class="form-inline mb-sm-2" action="{% url 'set_language' %}" method="post">{% csrf_token %}
     <input name="next" type="hidden" value="/">
     <select class="select form-control mr-sm-2" name="language">
         {% get_current_language as LANGUAGE_CODE %}
