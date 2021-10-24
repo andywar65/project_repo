@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
@@ -34,6 +35,14 @@ urlpatterns = [
     path('admin/filebrowser/', site.urls),
     path('grappelli/', include('grappelli.urls')), # grappelli URLS
     path('admin/', admin.site.urls),
+    path('favicon.ico',
+        RedirectView.as_view(url=str(settings.STATIC_ROOT) + 'images/favicon.ico')),
+    re_path('^private-media/', include(private_storage.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('i18n/', include('django.conf.urls.i18n')),
+]
+
+urlpatterns += i18n_patterns(
     path(_('contacts/'), ContactFormView.as_view(), name='contacts'),
     path(_('accounts/'), include('users.urls', ) ),#namespace = 'account'
     path(_('search/'), views.search_results, name='search_results'),
@@ -45,12 +54,7 @@ urlpatterns = [
     path(_('projects/'), include('portfolio.urls', namespace = 'portfolio')),
     path(_('buildings/'), include('buildings.urls', namespace = 'buildings')),
     path(_('maps/'), include('maps.urls', namespace = 'maps')),
-    path('favicon.ico',
-        RedirectView.as_view(url=str(settings.STATIC_ROOT) + 'images/favicon.ico')),
-    re_path('^private-media/', include(private_storage.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('i18n/', include('django.conf.urls.i18n')),
-]
+)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
