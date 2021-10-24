@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-24 12:58+0200\n"
+"POT-Creation-Date: 2021-10-24 21:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -781,18 +781,6 @@ msgstr "autori/<username>/"
 msgid "uploads/<username>/"
 msgstr "upload/<username>/"
 
-#: .\maps\models.py:44
-msgid "Border"
-msgstr ""
-
-#: .\maps\models.py:45
-msgid "Borders"
-msgstr ""
-
-#: .\maps\templates\maps\border_map.html:6
-msgid "Border map"
-msgstr ""
-
 #: .\pages\apps.py:7
 msgid "Page Makers"
 msgstr "Impaginatori"
@@ -931,10 +919,6 @@ msgstr ""
 
 #: .\project\settings\base.py:166
 msgid "German"
-msgstr ""
-
-#: .\project\settings\base.py:167
-msgid "English"
 msgstr ""
 
 #: .\project\templates\403.html:4 .\project\templates\403.html:9
@@ -1084,7 +1068,7 @@ msgstr "edifici/"
 
 #: .\project\urls.py:56
 msgid "maps/"
-msgstr ""
+msgstr "mappe/"
 
 #: .\users\apps.py:7
 msgid "User Manager"
