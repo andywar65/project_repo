@@ -166,6 +166,10 @@ LANGUAGES = [
     ('de', _('German')),
 ]
 
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'portfolio.translation',
+)
+
 TIME_ZONE = get_secret('TIME_ZONE')
 
 USE_I18N = True
