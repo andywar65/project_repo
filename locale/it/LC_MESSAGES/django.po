@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-30 12:23+0200\n"
+"POT-Creation-Date: 2021-10-24 12:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,8 +49,7 @@ msgstr "Varie"
 
 #: .\accounting\choices.py:9 .\accounting\tests\test_views.py:124
 #: .\accounting\tests\test_views.py:133 .\accounting\views.py:79
-#: .\accounting\views.py:93 .\portfolio\choices.py:3 .\portfolio\choices.py:7
-#: .\portfolio\choices.py:11 .\portfolio\choices.py:14
+#: .\accounting\views.py:93
 msgid "Other"
 msgstr "Altro"
 
@@ -349,9 +348,6 @@ msgstr "Nessuna fattura disponibile"
 #: .\blog\templates\blog\article_archive_month.html:15
 #: .\blog\templates\blog\article_archive_year.html:15
 #: .\blog\templates\blog\article_pagination.html:6
-#: .\portfolio\templates\portfolio\project_archive_year.html:20
-#: .\portfolio\templates\portfolio\project_category_list.html:20
-#: .\portfolio\templates\portfolio\project_list.html:28
 msgid "PREVIOUS"
 msgstr "PRECEDENTE"
 
@@ -362,9 +358,6 @@ msgstr "PRECEDENTE"
 #: .\blog\templates\blog\article_archive_month.html:18
 #: .\blog\templates\blog\article_archive_year.html:18
 #: .\blog\templates\blog\article_pagination.html:9
-#: .\portfolio\templates\portfolio\project_archive_year.html:23
-#: .\portfolio\templates\portfolio\project_category_list.html:23
-#: .\portfolio\templates\portfolio\project_list.html:31
 msgid "NEXT"
 msgstr "PROSSIMO"
 
@@ -384,18 +377,15 @@ msgid "Invoices of"
 msgstr "Fatture di"
 
 #: .\accounting\templates\accounting\invoice_buttons.html:5
-#: .\portfolio\templates\portfolio\add_buttons.html:4
 msgid "Save"
 msgstr "Salva"
 
 #: .\accounting\templates\accounting\invoice_buttons.html:9
-#: .\portfolio\templates\portfolio\add_buttons.html:8
 msgid "Save and add"
 msgstr "Salva e aggiungi"
 
 #: .\accounting\templates\accounting\invoice_buttons.html:12
 #: .\accounting\templates\accounting\invoice_delete_form.html:27
-#: .\portfolio\templates\portfolio\add_buttons.html:11
 #: .\users\templates\users\front_login.html:46
 #: .\users\templates\users\profile_includes\button.html:5
 msgid "Fields with asterisk (*) are required"
@@ -515,16 +505,6 @@ msgstr "Descrizione"
 msgid "Paid?"
 msgstr "Saldata?"
 
-#: .\bimblog\models.py:5
-#, python-format
-msgid "Another Building by %(website)s!"
-msgstr "Un nuovo edificio di %(website)s!"
-
-#: .\bimblog\models.py:8
-#, python-format
-msgid "Another photo station by %(sitename)s!"
-msgstr "Un'altra stazione fotografica di %(sitename)s!"
-
 #: .\blog\apps.py:7
 msgid "Trusted"
 msgstr "Di fiducia"
@@ -546,8 +526,7 @@ msgid "Already sent"
 msgstr "Già inviata"
 
 #: .\blog\forms.py:9 .\blog\models.py:35 .\blog\models.py:113
-#: .\pages\models.py:25 .\pages\models.py:78 .\portfolio\admin.py:22
-#: .\portfolio\models.py:33 .\users\models.py:102
+#: .\pages\models.py:25 .\pages\models.py:78 .\users\models.py:102
 msgid "Text"
 msgstr "Testo"
 
@@ -560,22 +539,18 @@ msgid "Author"
 msgstr "Autore"
 
 #: .\blog\management\commands\fetch_article_emails.py:18
-#: .\portfolio\management\commands\fetch_portfolio_emails.py:18
 msgid "TITLE["
 msgstr "TITOLO["
 
 #: .\blog\management\commands\fetch_article_emails.py:18
-#: .\portfolio\management\commands\fetch_portfolio_emails.py:18
 msgid "DESCRIPTION["
 msgstr "DESCRIZIONE["
 
 #: .\blog\management\commands\fetch_article_emails.py:19
-#: .\portfolio\management\commands\fetch_portfolio_emails.py:18
 msgid "TEXT["
 msgstr "TESTO["
 
 #: .\blog\management\commands\fetch_article_emails.py:19
-#: .\portfolio\management\commands\fetch_portfolio_emails.py:19
 msgid "DATE["
 msgstr "DATA["
 
@@ -602,7 +577,7 @@ msgid "Another article by %(name)s!"
 msgstr "Un nuovo articolo di %(name)s!"
 
 #: .\blog\models.py:29 .\pages\models.py:20 .\pages\models.py:60
-#: .\pages\models.py:71 .\portfolio\models.py:27
+#: .\pages\models.py:71
 msgid "Title"
 msgstr "Titolo"
 
@@ -610,7 +585,7 @@ msgstr "Titolo"
 msgid "The title of the article"
 msgstr "Il titolo dell'articolo"
 
-#: .\blog\models.py:32 .\pages\models.py:76 .\portfolio\models.py:30
+#: .\blog\models.py:32 .\pages\models.py:76
 msgid "Introduction"
 msgstr "Introduzione"
 
@@ -682,7 +657,7 @@ msgid "Contributions"
 msgstr "Contributi"
 
 #: .\blog\templates\blog\article_archive.html:7
-#: .\pages\templates\pages\home.html:44
+#: .\pages\templates\pages\home.html:45
 msgid "In-depth articles"
 msgstr "Articoli di approfondimento"
 
@@ -724,7 +699,6 @@ msgid "List of authors"
 msgstr "Lista degli autori"
 
 #: .\blog\templates\blog\article_detail.html:39
-#: .\portfolio\templates\portfolio\project_detail.html:19
 msgid "Modify"
 msgstr "Modifica"
 
@@ -807,6 +781,18 @@ msgstr "autori/<username>/"
 msgid "uploads/<username>/"
 msgstr "upload/<username>/"
 
+#: .\maps\models.py:44
+msgid "Border"
+msgstr ""
+
+#: .\maps\models.py:45
+msgid "Borders"
+msgstr ""
+
+#: .\maps\templates\maps\border_map.html:6
+msgid "Border map"
+msgstr ""
+
 #: .\pages\apps.py:7
 msgid "Page Makers"
 msgstr "Impaginatori"
@@ -827,7 +813,7 @@ msgstr "Il sito in quattro parole"
 msgid "Talk about this website"
 msgstr "Parla di questo sito"
 
-#: .\pages\models.py:27 .\portfolio\models.py:34
+#: .\pages\models.py:27
 msgid "Date:"
 msgstr "Data:"
 
@@ -899,20 +885,13 @@ msgstr "Prossimo"
 msgid "Home"
 msgstr "Home"
 
-#: .\pages\templates\pages\home.html:37 .\portfolio\models.py:64
-#: .\portfolio\templates\portfolio\project_archive_year.html:4
-#: .\portfolio\templates\portfolio\project_category_list.html:4
-#: .\portfolio\templates\portfolio\project_category_list.html:8
-#: .\portfolio\templates\portfolio\project_list.html:4
-#: .\project\templates\navbar.html:18 .\project\templates\navbar.html:21
+#: .\pages\templates\pages\home.html:38 .\project\templates\navbar.html:18
+#: .\project\templates\navbar.html:21
 #: .\project\templates\search_results.html:50
 msgid "Projects"
 msgstr "Progetti"
 
-#: .\pages\templates\pages\home.html:41
-#: .\portfolio\templates\portfolio\project_archive_year.html:14
-#: .\portfolio\templates\portfolio\project_category_list.html:14
-#: .\portfolio\templates\portfolio\project_list.html:22
+#: .\pages\templates\pages\home.html:42
 msgid "There are no projects available"
 msgstr "Nessun progetto disponibile"
 
@@ -946,179 +925,17 @@ msgstr "Nessuna Home Page disponibile"
 msgid "Request path is different from GET path"
 msgstr "Il request path è diverso dal GET path"
 
-#: .\portfolio\admin.py:26
-msgid "Gallery"
-msgstr "Galleria"
+#: .\project\settings\base.py:165
+msgid "Italian"
+msgstr ""
 
-#: .\portfolio\admin.py:28
-msgid "Meta"
-msgstr "Meta"
+#: .\project\settings\base.py:166
+msgid "German"
+msgstr ""
 
-#: .\portfolio\apps.py:7
-msgid "Project Manager"
-msgstr "Project Manager"
-
-#: .\portfolio\choices.py:3
-msgid "Residential"
-msgstr "Residenziale"
-
-#: .\portfolio\choices.py:4
-msgid "Offices"
-msgstr "Terziario"
-
-#: .\portfolio\choices.py:4
-msgid "Hospitals"
-msgstr "Sanitario"
-
-#: .\portfolio\choices.py:4
-msgid "Production"
-msgstr "Produttivo"
-
-#: .\portfolio\choices.py:5
-msgid "Schools"
-msgstr "Scolastico"
-
-#: .\portfolio\choices.py:7
-msgid "Furniture"
-msgstr "Arredamento"
-
-#: .\portfolio\choices.py:7
-msgid "Refurbishment"
-msgstr "Ristrutturazione"
-
-#: .\portfolio\choices.py:8
-msgid "Restoration"
-msgstr "Restauro"
-
-#: .\portfolio\choices.py:8
-msgid "Extension"
-msgstr "Ampliamento"
-
-#: .\portfolio\choices.py:8
-msgid "Construction"
-msgstr "Costruzione"
-
-#: .\portfolio\choices.py:9
-msgid "Demolition"
-msgstr "Demolizione"
-
-#: .\portfolio\choices.py:11
-msgid "Designed"
-msgstr "Progettato"
-
-#: .\portfolio\choices.py:12
-msgid "Under construction"
-msgstr "In corso"
-
-#: .\portfolio\choices.py:12
-msgid "Done"
-msgstr "Realizzato"
-
-#: .\portfolio\management\commands\fetch_portfolio_emails.py:19
-msgid "SITE["
-msgstr "LUOGO["
-
-#: .\portfolio\management\commands\fetch_portfolio_emails.py:19
-msgid "CATEGORY["
-msgstr "CATEGORIA["
-
-#: .\portfolio\management\commands\fetch_portfolio_emails.py:20
-msgid "INTERVENTION["
-msgstr "INTERVENTO["
-
-#: .\portfolio\management\commands\fetch_portfolio_emails.py:20
-msgid "STATUS["
-msgstr "STATUS["
-
-#: .\portfolio\management\commands\fetch_portfolio_emails.py:20
-msgid "COST["
-msgstr "COSTO["
-
-#: .\portfolio\management\commands\fetch_portfolio_emails.py:63
-msgid "projects"
-msgstr "progetti"
-
-#: .\portfolio\models.py:19
-#, python-format
-msgid "Another Project by %(website)s!"
-msgstr "Un nuovo progetto di %(website)s!"
-
-#: .\portfolio\models.py:28
-msgid "Title of the project"
-msgstr "Titolo del progetto"
-
-#: .\portfolio\models.py:36
-msgid "Site"
-msgstr "Luogo"
-
-#: .\portfolio\models.py:37
-msgid "Something like \"Rome - Monteverde\""
-msgstr "Qualcosa tipo \"Roma - Monteverde\""
-
-#: .\portfolio\models.py:40
-msgid "Functional category"
-msgstr "Categoria funzionale"
-
-#: .\portfolio\models.py:42
-msgid "Type of intervention"
-msgstr "Tipo di intervento"
-
-#: .\portfolio\models.py:44
-msgid "Status of intervention"
-msgstr "Status dell'intervento"
-
-#: .\portfolio\models.py:46
-msgid "Cost of intervention"
-msgstr "Costo dell'intervento"
-
-#: .\portfolio\models.py:56
-#, python-format
-msgid "Project-%(date)s"
-msgstr "Progetto-%(date)s"
-
-#: .\portfolio\models.py:63
-msgid "Project"
-msgstr "Progetto"
-
-#: .\portfolio\templates\portfolio\project_archive_year.html:8
-msgid "Projects of"
-msgstr "Progetti di"
-
-#: .\portfolio\templates\portfolio\project_detail.html:25
-msgid "Building"
-msgstr "Edificio"
-
-#: .\portfolio\templates\portfolio\project_list.html:9
-msgid "List of projects"
-msgstr "Lista dei progetti"
-
-#: .\portfolio\templates\portfolio\project_list.html:13
-msgid "Add project"
-msgstr "Aggiungi progetto"
-
-#: .\portfolio\urls.py:11
-msgid "category/"
-msgstr "categoria/"
-
-#: .\portfolio\views.py:50
-#, python-format
-msgid "in Category: %(read)s"
-msgstr "nella Categoria: %(read)s"
-
-#: .\portfolio\views.py:53
-#, python-format
-msgid "with Intervention type: %(read)s"
-msgstr "con tipo di Intervento: %(read)s"
-
-#: .\portfolio\views.py:56
-#, python-format
-msgid "with Status: %(read)s"
-msgstr "con Status: %(read)s"
-
-#: .\portfolio\views.py:59
-#, python-format
-msgid "with Cost: %(read)s"
-msgstr "con Costo: %(read)s"
+#: .\project\settings\base.py:167
+msgid "English"
+msgstr ""
 
 #: .\project\templates\403.html:4 .\project\templates\403.html:9
 msgid "Access denied"
@@ -1171,6 +988,10 @@ msgstr "Usa questo"
 #: .\project\templates\404.html:15
 msgid "to notify the incovenience"
 msgstr "per segnalare l'inconveniente"
+
+#: .\project\templates\language_selector.html:15
+msgid "Set language"
+msgstr ""
 
 #: .\project\templates\navbar.html:22
 msgid "Buildings"
@@ -1225,41 +1046,45 @@ msgstr "Ricerca nulla"
 msgid "We didn't find elements that satisfy your search"
 msgstr "Non abbiamo trovato elementi che soddisfino la tua ricerca"
 
-#: .\project\urls.py:30 .\project\urls.py:31
+#: .\project\urls.py:31 .\project\urls.py:32
 msgid "Admin"
 msgstr "Amministrazione"
 
-#: .\project\urls.py:37
+#: .\project\urls.py:46
 msgid "contacts/"
 msgstr "contatti/"
 
-#: .\project\urls.py:38
+#: .\project\urls.py:47
 msgid "accounts/"
 msgstr "accounts/"
 
-#: .\project\urls.py:39
+#: .\project\urls.py:48
 msgid "search/"
 msgstr "ricerca/"
 
-#: .\project\urls.py:41
+#: .\project\urls.py:50
 msgid "articles/"
 msgstr "articoli/"
 
-#: .\project\urls.py:42
+#: .\project\urls.py:51
 msgid "docs/"
 msgstr "documenti/"
 
-#: .\project\urls.py:43
+#: .\project\urls.py:52
 msgid "invoices/"
 msgstr "fatture/"
 
-#: .\project\urls.py:45
+#: .\project\urls.py:54
 msgid "projects/"
 msgstr "progetti/"
 
-#: .\project\urls.py:46
+#: .\project\urls.py:55
 msgid "buildings/"
 msgstr "edifici/"
+
+#: .\project\urls.py:56
+msgid "maps/"
+msgstr ""
 
 #: .\users\apps.py:7
 msgid "User Manager"
@@ -1883,3 +1708,143 @@ msgstr "Credenziali di accesso a %(acro)s"
 #: .\users\views.py:170 .\users\views.py:244
 msgid "User is not authorized to manage this profile"
 msgstr "L'utente non è autorizzato a gestire questo profilo"
+
+#, python-format
+#~ msgid "Another Building by %(website)s!"
+#~ msgstr "Un nuovo edificio di %(website)s!"
+
+#, python-format
+#~ msgid "Another photo station by %(sitename)s!"
+#~ msgstr "Un'altra stazione fotografica di %(sitename)s!"
+
+#~ msgid "Gallery"
+#~ msgstr "Galleria"
+
+#~ msgid "Meta"
+#~ msgstr "Meta"
+
+#~ msgid "Project Manager"
+#~ msgstr "Project Manager"
+
+#~ msgid "Residential"
+#~ msgstr "Residenziale"
+
+#~ msgid "Offices"
+#~ msgstr "Terziario"
+
+#~ msgid "Hospitals"
+#~ msgstr "Sanitario"
+
+#~ msgid "Production"
+#~ msgstr "Produttivo"
+
+#~ msgid "Schools"
+#~ msgstr "Scolastico"
+
+#~ msgid "Furniture"
+#~ msgstr "Arredamento"
+
+#~ msgid "Refurbishment"
+#~ msgstr "Ristrutturazione"
+
+#~ msgid "Restoration"
+#~ msgstr "Restauro"
+
+#~ msgid "Extension"
+#~ msgstr "Ampliamento"
+
+#~ msgid "Construction"
+#~ msgstr "Costruzione"
+
+#~ msgid "Demolition"
+#~ msgstr "Demolizione"
+
+#~ msgid "Designed"
+#~ msgstr "Progettato"
+
+#~ msgid "Under construction"
+#~ msgstr "In corso"
+
+#~ msgid "Done"
+#~ msgstr "Realizzato"
+
+#~ msgid "SITE["
+#~ msgstr "LUOGO["
+
+#~ msgid "CATEGORY["
+#~ msgstr "CATEGORIA["
+
+#~ msgid "INTERVENTION["
+#~ msgstr "INTERVENTO["
+
+#~ msgid "STATUS["
+#~ msgstr "STATUS["
+
+#~ msgid "COST["
+#~ msgstr "COSTO["
+
+#~ msgid "projects"
+#~ msgstr "progetti"
+
+#, python-format
+#~ msgid "Another Project by %(website)s!"
+#~ msgstr "Un nuovo progetto di %(website)s!"
+
+#~ msgid "Title of the project"
+#~ msgstr "Titolo del progetto"
+
+#~ msgid "Site"
+#~ msgstr "Luogo"
+
+#~ msgid "Something like \"Rome - Monteverde\""
+#~ msgstr "Qualcosa tipo \"Roma - Monteverde\""
+
+#~ msgid "Functional category"
+#~ msgstr "Categoria funzionale"
+
+#~ msgid "Type of intervention"
+#~ msgstr "Tipo di intervento"
+
+#~ msgid "Status of intervention"
+#~ msgstr "Status dell'intervento"
+
+#~ msgid "Cost of intervention"
+#~ msgstr "Costo dell'intervento"
+
+#, python-format
+#~ msgid "Project-%(date)s"
+#~ msgstr "Progetto-%(date)s"
+
+#~ msgid "Project"
+#~ msgstr "Progetto"
+
+#~ msgid "Projects of"
+#~ msgstr "Progetti di"
+
+#~ msgid "Building"
+#~ msgstr "Edificio"
+
+#~ msgid "List of projects"
+#~ msgstr "Lista dei progetti"
+
+#~ msgid "Add project"
+#~ msgstr "Aggiungi progetto"
+
+#~ msgid "category/"
+#~ msgstr "categoria/"
+
+#, python-format
+#~ msgid "in Category: %(read)s"
+#~ msgstr "nella Categoria: %(read)s"
+
+#, python-format
+#~ msgid "with Intervention type: %(read)s"
+#~ msgstr "con tipo di Intervento: %(read)s"
+
+#, python-format
+#~ msgid "with Status: %(read)s"
+#~ msgstr "con Status: %(read)s"
+
+#, python-format
+#~ msgid "with Cost: %(read)s"
+#~ msgstr "con Costo: %(read)s"

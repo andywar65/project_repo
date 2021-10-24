@@ -43,6 +43,7 @@ SECRET_KEY = get_secret('SECRET_KEY')
 INSTALLED_APPS = [
     'grappelli',
     'filebrowser',
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -162,7 +163,7 @@ LANGUAGE_CODE = get_secret('LANGUAGE_CODE')#'en-us'
 
 LANGUAGES = [
     ('it', _('Italian')),
-    ('en', _('English')),
+    ('de', _('German')),
 ]
 
 TIME_ZONE = get_secret('TIME_ZONE')
