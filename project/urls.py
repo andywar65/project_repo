@@ -40,6 +40,7 @@ urlpatterns = [
     re_path('^private-media/', include(private_storage.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('i18n/', include('django.conf.urls.i18n')),
+    path('map_api/', include('maps.api_urls')),
 ]
 
 urlpatterns += i18n_patterns(
