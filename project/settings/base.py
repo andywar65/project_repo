@@ -135,7 +135,7 @@ STATICFILES_DIRS = [
 
 TAGGIT_CASE_INSENSITIVE = True
 
-GRAPPELLI_ADMIN_TITLE = 'architettura.APP'
+GRAPPELLI_ADMIN_TITLE = get_secret('WEBSITE_NAME')
 
 FILEBROWSER_VERSIONS = {
     'admin_thumbnail': {'verbose_name': 'Admin Thumbnail', 'width': 60, 'height': 60, 'opts': 'crop'},
