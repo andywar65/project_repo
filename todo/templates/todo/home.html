@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Tasks{% endblock %}
+
+{% block extra-head %}
+  {% include 'todo/vue-extra-head.html' %}
+{% endblock extra-head %}
+
+{% block content %}
+<div id="vue-app" class="row justify-content-center bg-white p-5 shadow rounded">
+    <header class="text-center pb-5">
+        <h2 class="h2">Your Tasks!</h2>
+    </header>
+
+
+    <div v-if="errored">
+        <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
+    </div>
+
+    <div v-else>
+        <div v-if="loading">Loading...</div>
+
+        <div v-else class="row">
+
+            <div class="col-sm">
+                <h6 class="h4">Backlog</h6>
+                <task v-for="task in backlog_tasks" :key="task.id" :task="task"></task>
+                <add-task></add-task>
+
+            </div>
+            <div class="col-sm">
+                <h6 class="h4">Todo</h6>
+                <task v-for="task in todo_tasks" :key="task.id" :task="task"></task>
+
+
+            </div>
+            <div class="col-sm">
+                <h6 class="h4">In Progress</h6>
+                <task v-for="task in in_progress_tasks" :key="task.id" :task="task"></task>
+
+            </div>
+            <div class="col-sm">
+                <h6 class="h4">Done</h6>
+                <task v-for="task in done_tasks" :key="task.id" :task="task"></task>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row text-center py-2">
+    <small>
+        <a href="aymaneMx.com" class="text-muted">aymaneMx©</a>
+    </small>
+</div>
+
+{% endblock %}
+
+{% block extra-js %}
+  <script src="{% static 'todo/js/tasks.js'%}"></script>
+{% endblock extra-js %}
