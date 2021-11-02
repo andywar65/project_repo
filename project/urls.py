@@ -41,7 +41,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('map-api/', include('maps.api_urls')),
-    #path('tasks/', include('todo.urls')),
+    path('tasks/', include('todo.urls')),
 ]
 
 urlpatterns += i18n_patterns(

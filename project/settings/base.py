@@ -69,7 +69,7 @@ INSTALLED_APPS = [
     'portfolio.apps.PortfolioConfig',
     'buildings.apps.BuildingsConfig',
     'maps.apps.MapsConfig',
-    #'todo.apps.TodoConfig',
+    'todo.apps.TodoConfig',
     #'bimblog.apps.BimblogConfig',
 ]
 
