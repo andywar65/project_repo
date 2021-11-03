@@ -1,12 +1,12 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView
 from rest_framework import generics
 
 from .models import Task
 from .serializers import TaskSerializer
 
-
-def home_view(request):
-    return render(request, 'todo/home.html', {})
+class TaskTemplateView(TemplateView):
+    template_name = 'todo/home.html'
 
 
 class TaskUpdateView(generics.RetrieveUpdateAPIView):
