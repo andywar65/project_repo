@@ -77,8 +77,8 @@ Vue.component('task', {
                 <div class="card-body text-dark">
                     <h6 class="card-title">[[ task.title ]]</h6>
                     <p class="card-text">[[ task.description ]]</p>
-                    <a href="#" class="card-link" v-on:click="deleteTask(task)"><i class="fa fa-trash-o"></i></a>
-                    <a href="#" class="card-link" v-on:click="showForm" ><i class="fa fa-pencil-square-o"></i></a>
+                    <a href="#" class="card-link" v-show="perms.delete" v-on:click="deleteTask(task)"><i class="fa fa-trash-o"></i></a>
+                    <a href="#" class="card-link" v-show="perms.change" v-on:click="showForm" ><i class="fa fa-pencil-square-o"></i></a>
                     <a href="#" class="card-link" v-on:click="completeTask" v-show="canBeCompleted"><i class="fa fa-check"></i></a>
 
                 </div>
@@ -103,11 +103,12 @@ Vue.component('task', {
     data() {
         return {
             isEditing: false,
+            perms: JSON.parse(document.getElementById("perms").textContent),
         };
     },
     computed: {
         canBeCompleted() {
-            return this.task.status !== 3;
+            return this.task.status !== 3 && perms.change;
         },
     },
     methods: {
