@@ -1,3 +1,4 @@
+const perms = JSON.parse(document.getElementById("perms").textContent);
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 

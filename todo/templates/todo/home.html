@@ -26,7 +26,7 @@
             <div class="col-sm">
                 <h6 class="h4">Backlog</h6>
                 <task v-for="task in backlog_tasks" :key="task.id" :task="task"></task>
-                <add-task></add-task>
+                {% if perms.add %}<add-task></add-task>{% endif %}
 
             </div>
             <div class="col-sm">
@@ -51,7 +51,7 @@
 </div>
 <div class="row text-center py-2">
     <small>
-        <a href="aymaneMx.com" class="text-muted">aymaneMx©</a>
+        <a href="https://aymaneMx.com" class="text-muted">aymaneMx©</a>
     </small>
 </div>
 
