@@ -58,6 +58,6 @@
 {% endblock %}
 
 {% block extra-js %}
-  {{ user.perms|json_script:"user"}}
+  {{ perms|json_script:"perms" }}
   <script src="{% static 'todo/js/tasks.js'%}"></script>
 {% endblock extra-js %}
