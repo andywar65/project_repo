@@ -165,6 +165,7 @@ LANGUAGE_CODE = get_secret('LANGUAGE_CODE')#'en-us'
 LANGUAGES = [
     ('it', _('Italian')),
     ('de', _('German')),
+    ('en', _('English')),
 ]
 
 MODELTRANSLATION_TRANSLATION_FILES = (
