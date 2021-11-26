@@ -32,10 +32,6 @@
             {{ form.bio|as_crispy_field }}
           </div>
         </div>
-        {% include 'users/profile_includes/map.html' %}
-        <div class="row">
-          <div class="col" id="mapid" style="height: 600px;"></div>
-        </div>
         {% include 'users/profile_includes/button.html' %}
       {% csrf_token %}
     </form>

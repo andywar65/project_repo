@@ -174,7 +174,8 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
         initial = super(ProfileChangeView, self).get_initial()
         usr = self.request.user
 
-        initial.update({'first_name': usr.first_name,
+        initial.update({
+            'first_name': usr.first_name,
             'last_name': usr.last_name,
             'email': usr.email,
             'avatar': usr.profile.avatar,

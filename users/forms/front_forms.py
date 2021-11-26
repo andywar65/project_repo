@@ -107,13 +107,6 @@ class ProfileChangeForm(forms.Form):
         widget = forms.Textarea(attrs={'placeholder': _("Talk about yourself")}) )
     yes_spam = forms.BooleanField( label=_("Mailing list"), required = False,
         help_text = _("Want to receive notifications about new articles?"))
-    city_name = forms.CharField( label = _('City name'), required = False,
-        widget = forms.TextInput())
-    lat = forms.FloatField( label = _('Latitude'), required = False,
-        help_text = _('Click on map to select'))
-    long = forms.FloatField( label = _('Longitude'), required = False,)
-    zoom = forms.FloatField( label = _('Zoom factor'), required = False,
-        help_text = _('Zoom on map to set'))
 
 class ProfileDeleteForm(forms.Form):
     delete = forms.BooleanField( label=_("Delete the profile"), required = True,
