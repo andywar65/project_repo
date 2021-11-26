@@ -173,12 +173,6 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
     def get_initial(self):
         initial = super(ProfileChangeView, self).get_initial()
         usr = self.request.user
-        if usr.profile.location:
-            city_long = usr.profile.location.coords[0]
-            city_lat = usr.profile.location.coords[1]
-        else:
-            city_long = settings.CITY_LONG
-            city_lat = settings.CITY_LAT
 
         initial.update({'first_name': usr.first_name,
             'last_name': usr.last_name,
@@ -186,33 +180,8 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
             'avatar': usr.profile.avatar,
             'bio': usr.profile.bio,
             'yes_spam': usr.profile.yes_spam,
-            'city_name': usr.profile.city_name,
-            'lat': city_lat,
-            'long': city_long,
-            'zoom': usr.profile.zoom,
             })
         return initial
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        profile = self.request.user.profile
-        if profile.location:
-            city_long = profile.location.coords[0]
-            city_lat = profile.location.coords[1]
-            city_zoom = profile.zoom
-        else:
-            city_long = settings.CITY_LONG
-            city_lat = settings.CITY_LAT
-            city_zoom = settings.CITY_ZOOM
-        context['map_data'] = {
-            'on_map_click': True,
-            'on_map_zoom': True,
-            'city_lat': city_lat,
-            'city_long': city_long,
-            'city_zoom': city_zoom,
-            'mapbox_token': settings.MAPBOX_TOKEN
-            }
-        return context
 
     def form_valid(self, form):
         user = User.objects.get(uuid = self.request.user.uuid )
@@ -223,10 +192,6 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
         profile.avatar = form.cleaned_data['avatar']
         profile.bio = form.cleaned_data['bio']
         profile.yes_spam = form.cleaned_data['yes_spam']
-        profile.city_name = form.cleaned_data['city_name']
-        profile.lat = form.cleaned_data['lat']
-        profile.long = form.cleaned_data['long']
-        profile.zoom = form.cleaned_data['zoom']
         user.save()
         profile.save()
         return super(ProfileChangeView, self).form_valid(form)

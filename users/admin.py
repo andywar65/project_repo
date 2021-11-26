@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.gis.forms.widgets import OSMWidget
 from django.contrib.gis.db import models
 
 from .models import (User, Profile, UserMessage, )
@@ -19,7 +18,3 @@ class UserMessageAdmin(admin.ModelAdmin):
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('get_full_name', )
-    exclude = ('lat', 'long')
-    formfield_overrides = {
-        models.PointField: {"widget": OSMWidget},
-    }

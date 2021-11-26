@@ -8,8 +8,6 @@ from django.core.mail import EmailMessage
 from django.utils.crypto import get_random_string
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext as _
-from django.contrib.gis.db import models
-from django.contrib.gis.geos import Point
 
 from PIL import Image
 from private_storage.fields import PrivateFileField
@@ -51,12 +49,9 @@ class Profile(models.Model):
     yes_spam = models.BooleanField(default = False,
         verbose_name = _('Mailing list'),
         help_text = _("Do you want to be notified on new articles?"),)
-    city_name = models.CharField(max_length=100, null=True, blank=True)
-    lat = models.FloatField(_("Latitude"), null=True, blank=True)
-    long = models.FloatField(_("Longitude"), null=True, blank=True)
-    location = models.PointField(null=True, blank=True)
-    zoom = models.FloatField(_("Zoom factor"), default = settings.CITY_ZOOM,
-        help_text=_("10 is good for a large city"))
+    immutable = models.BooleanField(default = False,
+        verbose_name = _('Immutable'),
+        help_text = _("Fields cannot be changes"),)
 
     def get_full_name(self):
         return self.user.get_full_name()
@@ -66,13 +61,6 @@ class Profile(models.Model):
         if self.avatar:
             return FileObject(str(self.avatar))
         return
-
-    def save(self, *args, **kwargs):
-        if self.long and self.lat:
-            self.location = Point( self.long, self.lat )
-            self.long = None
-            self.lat = None
-        super(Profile, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.user.get_full_name()
