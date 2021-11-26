@@ -168,6 +168,8 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
     def get(self, request, *args, **kwargs):
         if request.user.uuid != kwargs['pk']:
             raise Http404(_("User is not authorized to manage this profile"))
+        if request.user.profile.immutable:
+            raise Http404(_("Profile cannot be changed"))
         return super(ProfileChangeView, self).get(request, *args, **kwargs)
 
     def get_initial(self):
@@ -208,6 +210,8 @@ class ProfileDeleteView(LoginRequiredMixin, FormView):
     def get(self, request, *args, **kwargs):
         if request.user.uuid != kwargs['pk']:
             raise Http404(_("User is not authorized to manage this profile"))
+        if request.user.profile.immutable:
+            raise Http404(_("Profile cannot be changed"))
         return super(ProfileDeleteView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
