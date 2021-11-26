@@ -17,19 +17,21 @@
     </p>
     {% endif %}
     <h4><strong>{% translate 'Account of' %} {{ user.get_full_name }}</strong></h4>
-    <p>{% translate "From here you can change your profile and your password" %}
-      {% if user.is_staff %}, {% translate "you can go to the backend" %}{% endif %}
-      {% translate "or you can logout (it's always better to logout at the end of the session)" %}.</p>
+    {% if not user.profile.immutable %}
+      <p>{% translate "From here you can change your profile and your password" %}
+        {% if user.is_staff %}, {% translate "you can go to the backend" %}{% endif %}
+        {% translate "or you can logout (it's always better to logout at the end of the session)" %}.</p>
       <a class="btn btn-success center" role="button" href="{% url 'profile_change' user.uuid %}">
         {% translate "Change profile" %}</a>
         <a class="btn btn-warning" role="button" href="{% url 'password_change' %}">
           {% translate "Change password" %}</a>
-      {% if user.is_staff %}
-        <a class="btn btn-primary" role="button" href="/admin/">
-          {% translate "Go to admin" %}</a>
-      {% endif %}
-        <a class="btn btn-danger" role="button" href="{% url 'front_logout' %}">
-          {% translate "Logout" %}</a>
+    {% endif %}
+    {% if user.is_staff %}
+      <a class="btn btn-primary" role="button" href="/admin/">
+        {% translate "Go to admin" %}</a>
+    {% endif %}
+      <a class="btn btn-danger" role="button" href="{% url 'front_logout' %}">
+        {% translate "Logout" %}</a>
     {% else %}
     <p class="alert alert-danger" role="alert">
       {% translate "WARNING! To access this area you must login" %}.
