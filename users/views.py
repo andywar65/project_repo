@@ -158,6 +158,11 @@ class FrontPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     template_name = 'users/password_change.html'
     form_class = FrontPasswordChangeForm
 
+    def setup(self, request, *args, **kwargs):
+        super(FrontPasswordChangeView, self).setup(request, *args, **kwargs)
+        if request.user.profile.immutable:
+            raise Http404(_("Password cannot be changed by immutable user"))
+
 class FrontPasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
     template_name = 'users/password_change_done.html'
 
