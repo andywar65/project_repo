@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-24 21:24+0200\n"
+"POT-Creation-Date: 2021-11-30 14:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -526,7 +526,7 @@ msgid "Already sent"
 msgstr "Già inviata"
 
 #: .\blog\forms.py:9 .\blog\models.py:35 .\blog\models.py:113
-#: .\pages\models.py:25 .\pages\models.py:78 .\users\models.py:102
+#: .\pages\models.py:25 .\pages\models.py:78 .\users\models.py:90
 msgid "Text"
 msgstr "Testo"
 
@@ -632,7 +632,7 @@ msgstr "Articolo"
 msgid "Articles"
 msgstr "Articoli"
 
-#: .\blog\models.py:109 .\users\models.py:93
+#: .\blog\models.py:109 .\users\models.py:81
 msgid "User"
 msgstr "Utente"
 
@@ -913,13 +913,17 @@ msgstr "Nessuna Home Page disponibile"
 msgid "Request path is different from GET path"
 msgstr "Il request path è diverso dal GET path"
 
-#: .\project\settings\base.py:165
-msgid "Italian"
-msgstr ""
-
 #: .\project\settings\base.py:166
+msgid "Italian"
+msgstr "Italiano"
+
+#: .\project\settings\base.py:167
 msgid "German"
-msgstr ""
+msgstr "Tedesco"
+
+#: .\project\settings\base.py:168
+msgid "English"
+msgstr "Inglese"
 
 #: .\project\templates\403.html:4 .\project\templates\403.html:9
 msgid "Access denied"
@@ -933,7 +937,7 @@ msgstr "Non hai le credenziali per accedere a questa pagina"
 msgid "Maybe you still have to"
 msgstr "Forse devi ancora effettuare il"
 
-#: .\project\templates\403.html:12 .\users\templates\users\account.html:37
+#: .\project\templates\403.html:12 .\users\templates\users\account.html:39
 #: .\users\templates\users\front_logout.html:14
 #: .\users\templates\users\message.html:23
 #: .\users\templates\users\registration.html:30
@@ -975,7 +979,7 @@ msgstr "per segnalare l'inconveniente"
 
 #: .\project\templates\language_selector.html:15
 msgid "Set language"
-msgstr ""
+msgstr "Scegli lingua"
 
 #: .\project\templates\navbar.html:22
 msgid "Buildings"
@@ -985,7 +989,7 @@ msgstr "Edifici"
 msgid "Contacts"
 msgstr "Contatti"
 
-#: .\project\templates\navbar.html:42 .\users\models.py:128
+#: .\project\templates\navbar.html:42 .\users\models.py:116
 msgid "Messages"
 msgstr "Messaggi"
 
@@ -993,7 +997,7 @@ msgstr "Messaggi"
 msgid "Register"
 msgstr "Registrazione"
 
-#: .\project\templates\navbar.html:44 .\users\models.py:107
+#: .\project\templates\navbar.html:44 .\users\models.py:95
 msgid "Privacy"
 msgstr "Privacy"
 
@@ -1034,39 +1038,39 @@ msgstr "Non abbiamo trovato elementi che soddisfino la tua ricerca"
 msgid "Admin"
 msgstr "Amministrazione"
 
-#: .\project\urls.py:46
+#: .\project\urls.py:49
 msgid "contacts/"
 msgstr "contatti/"
 
-#: .\project\urls.py:47
+#: .\project\urls.py:50
 msgid "accounts/"
 msgstr "accounts/"
 
-#: .\project\urls.py:48
+#: .\project\urls.py:51
 msgid "search/"
 msgstr "ricerca/"
 
-#: .\project\urls.py:50
+#: .\project\urls.py:53
 msgid "articles/"
 msgstr "articoli/"
 
-#: .\project\urls.py:51
+#: .\project\urls.py:54
 msgid "docs/"
 msgstr "documenti/"
 
-#: .\project\urls.py:52
+#: .\project\urls.py:55
 msgid "invoices/"
 msgstr "fatture/"
 
-#: .\project\urls.py:54
+#: .\project\urls.py:57
 msgid "projects/"
 msgstr "progetti/"
 
-#: .\project\urls.py:55
+#: .\project\urls.py:58
 msgid "buildings/"
 msgstr "edifici/"
 
-#: .\project\urls.py:56
+#: .\project\urls.py:59
 msgid "maps/"
 msgstr "mappe/"
 
@@ -1074,7 +1078,7 @@ msgstr "mappe/"
 msgid "User Manager"
 msgstr "User Manager"
 
-#: .\users\apps.py:13
+#: .\users\apps.py:13 : .\users\views.py:177 .\users\views.py:219
 msgid "Profile Manager"
 msgstr "Profile Manager"
 
@@ -1094,8 +1098,8 @@ msgstr "Scivi qui il soggetto"
 msgid "Write here the message"
 msgstr "Scrivi qui il tuo messaggio"
 
-#: .\users\forms\front_forms.py:43 .\users\models.py:28 .\users\models.py:63
-#: .\users\models.py:95 .\users\models.py:114
+#: .\users\forms\front_forms.py:43 .\users\models.py:26 .\users\models.py:58
+#: .\users\models.py:83 .\users\models.py:102
 msgid "Name"
 msgstr "Nome"
 
@@ -1128,7 +1132,7 @@ msgstr "Nome"
 msgid "Last name"
 msgstr "Cognome"
 
-#: .\users\forms\front_forms.py:106 .\users\models.py:50
+#: .\users\forms\front_forms.py:106 .\users\models.py:48
 msgid "Short bio"
 msgstr "Breve biografia"
 
@@ -1136,7 +1140,7 @@ msgstr "Breve biografia"
 msgid "Talk about yourself"
 msgstr "Parla di te stesso"
 
-#: .\users\forms\front_forms.py:108 .\users\models.py:52
+#: .\users\forms\front_forms.py:108 .\users\models.py:50
 msgid "Mailing list"
 msgstr "Mailing list"
 
@@ -1144,80 +1148,60 @@ msgstr "Mailing list"
 msgid "Want to receive notifications about new articles?"
 msgstr "Vuoi ricevere le notifiche dei nuovi articoli?"
 
-#: .\users\forms\front_forms.py:110
-msgid "City name"
-msgstr "Nome città"
-
-#: .\users\forms\front_forms.py:112 .\users\models.py:55
-msgid "Latitude"
-msgstr "Latitudine"
-
-#: .\users\forms\front_forms.py:113
-msgid "Click on map to select"
-msgstr "Fai click sulla mappa per selezionare"
-
-#: .\users\forms\front_forms.py:114 .\users\models.py:56
-msgid "Longitude"
-msgstr "Longitudine"
-
-#: .\users\forms\front_forms.py:115 .\users\models.py:58
-msgid "Zoom factor"
-msgstr "Fattore di zoom"
-
-#: .\users\forms\front_forms.py:116
-msgid "Zoom on map to set"
-msgstr "Fai zoom sulla mappa per selezionare"
-
-#: .\users\forms\front_forms.py:119
+#: .\users\forms\front_forms.py:112
 msgid "Delete the profile"
 msgstr "Cancella il profilo"
 
-#: .\users\forms\front_forms.py:120
+#: .\users\forms\front_forms.py:113
 msgid "Check to delete the profile."
 msgstr "Metti la spunta per cancellare il profilo."
 
-#: .\users\models.py:53
+#: .\users\models.py:51
 msgid "Do you want to be notified on new articles?"
 msgstr "Vuoi essere notificato dell'uscita di nuovi articoli?"
 
-#: .\users\models.py:59
-msgid "10 is good for a large city"
-msgstr "10 va bene per una grande città"
+#: .\users\models.py:53
+msgid "Immutable"
+msgstr "Immutabile"
 
-#: .\users\models.py:81
+#: .\users\models.py:54
+msgid "Fields cannot be changes"
+msgstr "I campi non possono variare"
+
+#: .\users\models.py:69
 msgid "Profile"
 msgstr "Profilo"
 
-#: .\users\models.py:82
+#: .\users\models.py:70
 msgid "Profiles"
 msgstr "Profili"
 
-#: .\users\models.py:97 .\users\views.py:105
+#: .\users\models.py:85 .\users\views.py:105
 msgid "From"
 msgstr "Modulo"
 
-#: .\users\models.py:99
+#: .\users\models.py:87
 msgid "To"
 msgstr "Destinatario"
 
-#: .\users\models.py:101
+#: .\users\models.py:89
 msgid "Subject"
 msgstr "Soggetto"
 
-#: .\users\models.py:105
+#: .\users\models.py:93
 msgid "Attachment"
 msgstr "Allegato"
 
-#: .\users\models.py:121
+#: .\users\models.py:109
 msgid "Email address"
 msgstr "Indirizzo email"
 
-#: .\users\models.py:124
+#: .\users\models.py:112
 #, python-format
 msgid "Message - %(id)d"
 msgstr "Messaggio - %(id)d"
 
-#: .\users\models.py:127 .\users\tests\test_models.py:92
+#: .\users\models.py:115 .\users\tests\test_models.py:92
 msgid "Message"
 msgstr "Messaggio"
 
@@ -1240,46 +1224,46 @@ msgstr ""
 msgid "Account of"
 msgstr "Account di"
 
-#: .\users\templates\users\account.html:20
+#: .\users\templates\users\account.html:21
 msgid "From here you can change your profile and your password"
 msgstr "Da qui puoi cambiare il tuo profilo e la password"
 
-#: .\users\templates\users\account.html:21
+#: .\users\templates\users\account.html:22
 msgid "you can go to the backend"
 msgstr "puoi andare all'amministrazione"
 
-#: .\users\templates\users\account.html:22
+#: .\users\templates\users\account.html:23
 msgid ""
 "or you can logout (it's always better to logout at the end of the session)"
 msgstr ""
 "oppure puoi effettuare il logout (sempre meglio farlo alla fine di una "
 "sessione)"
 
-#: .\users\templates\users\account.html:24
+#: .\users\templates\users\account.html:25
 #: .\users\templates\users\profile_change.html:6
 msgid "Change profile"
 msgstr "Cambia profilo"
 
-#: .\users\templates\users\account.html:26
+#: .\users\templates\users\account.html:27
 #: .\users\templates\users\password_change.html:5
 #: .\users\templates\users\password_change.html:11
 msgid "Change password"
 msgstr "Cambia password"
 
-#: .\users\templates\users\account.html:29
+#: .\users\templates\users\account.html:31
 msgid "Go to admin"
 msgstr "Vai all'amministrazione"
 
-#: .\users\templates\users\account.html:32
+#: .\users\templates\users\account.html:34
 #: .\users\templates\users\front_logout.html:4
 msgid "Logout"
 msgstr "Logout"
 
-#: .\users\templates\users\account.html:35
+#: .\users\templates\users\account.html:37
 msgid "WARNING! To access this area you must login"
 msgstr "ATTENZIONE! Per accedere a quest'area devi effettuare il login"
 
-#: .\users\templates\users\account.html:37
+#: .\users\templates\users\account.html:39
 msgid "Click here to"
 msgstr "Fai click qui per"
 
@@ -1295,7 +1279,7 @@ msgstr "Aggiusta gli errori qui sotto"
 
 #: .\users\templates\users\front_login.html:15
 msgid "You are already authenticated as"
-msgstr "Sei già autenticato come"
+msgstr "Sei già autenticato/a come"
 
 #: .\users\templates\users\front_login.html:16
 msgid "If you want to login with a different account you have to"
@@ -1371,7 +1355,7 @@ msgstr ""
 "se lo hai già fatto. In alternativa riempi il modulo qui sotto e Invia."
 
 #: .\users\templates\users\message.html:54
-#: .\users\templates\users\profile_change.html:43
+#: .\users\templates\users\profile_change.html:39
 #: .\users\templates\users\registration.html:20
 #: .\users\templates\users\registration.html:28
 #: .\users\templates\users\registration.html:49
@@ -1422,15 +1406,15 @@ msgstr ""
 "      Il tuo nome utente è %(name)s (non lo puoi cambiare)\n"
 "    "
 
-#: .\users\templates\users\profile_change.html:42
+#: .\users\templates\users\profile_change.html:38
 msgid "You have subscribed to the"
 msgstr "Hai assentito al trattamento dei dati secondo la"
 
-#: .\users\templates\users\profile_change.html:44
+#: .\users\templates\users\profile_change.html:40
 msgid "If you want to unsubscribe you have to"
 msgstr "Se vuoi revocare l'assenso devi"
 
-#: .\users\templates\users\profile_change.html:46
+#: .\users\templates\users\profile_change.html:42
 msgid "delete your account"
 msgstr "cancellare il tuo account"
 
@@ -1689,146 +1673,10 @@ msgstr ""
 msgid "Access credentials to %(acro)s"
 msgstr "Credenziali di accesso a %(acro)s"
 
-#: .\users\views.py:170 .\users\views.py:244
+#: .\users\views.py:164
+msgid "Password cannot be changed by immutable user"
+msgstr "La password non può essere modificata da utente immutabile"
+
+#: .\users\views.py:175 .\users\views.py:217
 msgid "User is not authorized to manage this profile"
 msgstr "L'utente non è autorizzato a gestire questo profilo"
-
-#, python-format
-#~ msgid "Another Building by %(website)s!"
-#~ msgstr "Un nuovo edificio di %(website)s!"
-
-#, python-format
-#~ msgid "Another photo station by %(sitename)s!"
-#~ msgstr "Un'altra stazione fotografica di %(sitename)s!"
-
-#~ msgid "Gallery"
-#~ msgstr "Galleria"
-
-#~ msgid "Meta"
-#~ msgstr "Meta"
-
-#~ msgid "Project Manager"
-#~ msgstr "Project Manager"
-
-#~ msgid "Residential"
-#~ msgstr "Residenziale"
-
-#~ msgid "Offices"
-#~ msgstr "Terziario"
-
-#~ msgid "Hospitals"
-#~ msgstr "Sanitario"
-
-#~ msgid "Production"
-#~ msgstr "Produttivo"
-
-#~ msgid "Schools"
-#~ msgstr "Scolastico"
-
-#~ msgid "Furniture"
-#~ msgstr "Arredamento"
-
-#~ msgid "Refurbishment"
-#~ msgstr "Ristrutturazione"
-
-#~ msgid "Restoration"
-#~ msgstr "Restauro"
-
-#~ msgid "Extension"
-#~ msgstr "Ampliamento"
-
-#~ msgid "Construction"
-#~ msgstr "Costruzione"
-
-#~ msgid "Demolition"
-#~ msgstr "Demolizione"
-
-#~ msgid "Designed"
-#~ msgstr "Progettato"
-
-#~ msgid "Under construction"
-#~ msgstr "In corso"
-
-#~ msgid "Done"
-#~ msgstr "Realizzato"
-
-#~ msgid "SITE["
-#~ msgstr "LUOGO["
-
-#~ msgid "CATEGORY["
-#~ msgstr "CATEGORIA["
-
-#~ msgid "INTERVENTION["
-#~ msgstr "INTERVENTO["
-
-#~ msgid "STATUS["
-#~ msgstr "STATUS["
-
-#~ msgid "COST["
-#~ msgstr "COSTO["
-
-#~ msgid "projects"
-#~ msgstr "progetti"
-
-#, python-format
-#~ msgid "Another Project by %(website)s!"
-#~ msgstr "Un nuovo progetto di %(website)s!"
-
-#~ msgid "Title of the project"
-#~ msgstr "Titolo del progetto"
-
-#~ msgid "Site"
-#~ msgstr "Luogo"
-
-#~ msgid "Something like \"Rome - Monteverde\""
-#~ msgstr "Qualcosa tipo \"Roma - Monteverde\""
-
-#~ msgid "Functional category"
-#~ msgstr "Categoria funzionale"
-
-#~ msgid "Type of intervention"
-#~ msgstr "Tipo di intervento"
-
-#~ msgid "Status of intervention"
-#~ msgstr "Status dell'intervento"
-
-#~ msgid "Cost of intervention"
-#~ msgstr "Costo dell'intervento"
-
-#, python-format
-#~ msgid "Project-%(date)s"
-#~ msgstr "Progetto-%(date)s"
-
-#~ msgid "Project"
-#~ msgstr "Progetto"
-
-#~ msgid "Projects of"
-#~ msgstr "Progetti di"
-
-#~ msgid "Building"
-#~ msgstr "Edificio"
-
-#~ msgid "List of projects"
-#~ msgstr "Lista dei progetti"
-
-#~ msgid "Add project"
-#~ msgstr "Aggiungi progetto"
-
-#~ msgid "category/"
-#~ msgstr "categoria/"
-
-#, python-format
-#~ msgid "in Category: %(read)s"
-#~ msgstr "nella Categoria: %(read)s"
-
-#, python-format
-#~ msgid "with Intervention type: %(read)s"
-#~ msgstr "con tipo di Intervento: %(read)s"
-
-#, python-format
-#~ msgid "with Status: %(read)s"
-#~ msgstr "con Status: %(read)s"
-
-#, python-format
-#~ msgid "with Cost: %(read)s"
-#~ msgstr "con Costo: %(read)s"
