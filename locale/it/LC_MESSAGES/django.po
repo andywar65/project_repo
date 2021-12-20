@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-30 14:53+0100\n"
+"POT-Creation-Date: 2021-12-20 19:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1078,7 +1078,7 @@ msgstr "mappe/"
 msgid "User Manager"
 msgstr "User Manager"
 
-#: .\users\apps.py:13 : .\users\views.py:177 .\users\views.py:219
+#: .\users\apps.py:13
 msgid "Profile Manager"
 msgstr "Profile Manager"
 
@@ -1680,3 +1680,7 @@ msgstr "La password non può essere modificata da utente immutabile"
 #: .\users\views.py:175 .\users\views.py:217
 msgid "User is not authorized to manage this profile"
 msgstr "L'utente non è autorizzato a gestire questo profilo"
+
+#: .\users\views.py:177 .\users\views.py:219
+msgid "Profile cannot be changed"
+msgstr "Il profilo non può essere modificato"
