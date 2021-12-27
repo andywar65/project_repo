@@ -17,6 +17,7 @@
     </p>
     {% endif %}
     <h4><strong>{% translate 'Account of' %} {{ user.get_full_name }}</strong></h4>
+    {% if not user.is_building_guest %}
       <p>{% translate "From here you can change your profile and your password (unless you are a Visitor)" %}
         {% if user.is_staff %}, {% translate "you can go to the backend" %}{% endif %}
         {% translate "or you can logout (it's always better to logout at the end of the session)" %}.</p>
@@ -24,6 +25,7 @@
         {% translate "Change profile" %}</a>
         <a class="btn btn-warning" role="button" href="{% url 'password_change' %}">
           {% translate "Change password" %}</a>
+    {% endif %}
     {% if user.is_staff %}
       <a class="btn btn-primary" role="button" href="/admin/">
         {% translate "Go to admin" %}</a>
