@@ -160,8 +160,9 @@ class FrontPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
 
     def setup(self, request, *args, **kwargs):
         super(FrontPasswordChangeView, self).setup(request, *args, **kwargs)
-        if request.user.profile.immutable:
-            raise Http404(_("Password cannot be changed by immutable user"))
+        is_guest = request.user.groups.filter(name='Building Guest').exists()
+        if is_guest:
+            raise Http404(_("Password cannot be changed by Building Guest user"))
 
 class FrontPasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
     template_name = 'users/password_change_done.html'
@@ -173,8 +174,9 @@ class ProfileChangeView(LoginRequiredMixin, FormView):
     def get(self, request, *args, **kwargs):
         if request.user.uuid != kwargs['pk']:
             raise Http404(_("User is not authorized to manage this profile"))
-        if request.user.profile.immutable:
-            raise Http404(_("Profile cannot be changed"))
+        is_guest = request.user.groups.filter(name='Building Guest').exists()
+        if is_guest:
+            raise Http404(_("Profile cannot be changed by Building Guest user"))
         return super(ProfileChangeView, self).get(request, *args, **kwargs)
 
     def get_initial(self):
@@ -215,8 +217,9 @@ class ProfileDeleteView(LoginRequiredMixin, FormView):
     def get(self, request, *args, **kwargs):
         if request.user.uuid != kwargs['pk']:
             raise Http404(_("User is not authorized to manage this profile"))
-        if request.user.profile.immutable:
-            raise Http404(_("Profile cannot be changed"))
+        is_guest = request.user.groups.filter(name='Building Guest').exists()
+        if is_guest:
+            raise Http404(_("Profile cannot be changed by Building Guest user"))
         return super(ProfileDeleteView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
