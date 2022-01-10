@@ -36,11 +36,6 @@ class User(AbstractUser):
         if self.is_active:
             memb, created = Profile.objects.get_or_create(user_id = self.uuid)
 
-    def is_building_guest(self):
-        if self.groups.filter(name='Building Guest').exists():
-            return True
-        return False
-
     class Meta:
         ordering = ('last_name', 'first_name', 'username')
 
