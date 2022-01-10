@@ -54,6 +54,7 @@ class Profile(models.Model):
     yes_spam = models.BooleanField(default = False,
         verbose_name = _('Mailing list'),
         help_text = _("Do you want to be notified on new articles?"),)
+    immutable = models.BooleanField(default = False,)
 
     def get_full_name(self):
         return self.user.get_full_name()
